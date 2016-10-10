@@ -54,4 +54,5 @@ def run_strategy(smaPeriod):
     myStrategy.run()
     print "Final portfolio value: $%.2f" % myStrategy.getBroker().getEquity()
 
-run_strategy(15)
+for i in range(10, 30):
+    run_strategy(i)
