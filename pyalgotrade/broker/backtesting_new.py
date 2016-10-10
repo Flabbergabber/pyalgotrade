@@ -23,6 +23,7 @@
 import abc
 from ib.ext import Contract
 from ib.ext import Order
+from datetime import datetime
 from pyalgotrade import broker
 from pyalgotrade.broker import fillstrategy
 from pyalgotrade import logger
@@ -506,3 +507,423 @@ class Broker(broker.Broker):
         self.notifyOrderEvent(
             broker.OrderEvent(activeOrder, broker.OrderEvent.Type.CANCELED, "User requested cancellation")
         )
+##############################################################
+        #####################################################
+        #####################################################
+        #### Apartir d'ici, méthodes tirées de ibBroker
+        
+        
+        
+    def makeStkContrcatIB(self,m_symbol,m_secType = 'STK',m_exchange = 'SMART',m_currency = 'USD'):
+        from ib.ext.Contract import Contract
+        newContract = Contract()
+        newContract.m_symbol = m_symbol
+        newContract.m_secType = m_secType
+        newContract.m_exchange = m_exchange
+        newContract.m_currency = m_currency
+        return newContract
+    def makeOptContractIB(self,m_symbol, m_right, m_expiry, m_strike,m_secType = 'OPT',m_exchange = 'SMART',m_currency = 'USD'):
+        '''
+        makeOptContract('BAC', '20160304', 'C', 15)
+        sym: Ticker instrument
+        exp: expiry date format YYYYYMMDD
+        right: C or P 
+        strike price: float
+        '''
+        from ib.ext.Contract import Contract
+        newOptContract = Contract()
+        newOptContract.m_symbol = m_symbol
+        newOptContract.m_secType = m_secType
+        newOptContract.m_right = m_right
+        newOptContract.m_expiry = m_expiry
+        newOptContract.m_strike = float(m_strike)
+        newOptContract.m_exchange = m_exchange
+        newOptContract.m_currency = m_currency
+        #newOptContract.m_localSymbol = ''
+        #newOptContract.m_primaryExch = ''
+        return newOptContract
+    def makeForexContractIB(self,m_symbol,m_secType = 'CASH',m_exchange = 'IDEALPRO',m_currency = 'USD'):
+        from ib.ext.Contract import Contract
+        newContract = Contract()
+        newContract.m_symbol = m_symbol
+        newContract.m_secType = m_secType
+        newContract.m_exchange = m_exchange
+        newContract.m_currency = m_currency
+        return newContract
+    def makeOrderIB(self,m_orderId, m_action,m_tif ,
+                 m_orderType,m_totalQuantity,
+                 m_clientId = 0,m_permid = 0,m_lmtPrice = 0,m_auxPrice = 0,m_transmit = True):
+        '''
+        optOrder = makeOptOrder( 'BUY', orderID, 'DAY', 'MKT')
+        action: 'BUY' or 'SELL'
+        orderID: float that identifies the order
+        tif: time in force 'DAY', 'GTC'
+        orderType:'MKT','STP','STP LMT'
+        totalQunatity: int number of share  
+        '''
+        from ib.ext.Order import Order
+        newOptOrder = Order()
+        newOptOrder.m_orderId           =   m_orderId  #int m_orderId	The id for this order.
+        newOptOrder.m_clientId          =   m_clientId #int m_clientId	The id of the client that placed this order.
+        newOptOrder.m_permid            =   m_permid #int m_permid	The TWS id used to identify orders, remains the same over TWS sessions.
+        #Main Order Fields
+        newOptOrder.m_action            =   m_action #String m_action	Identifies the side. Valid values are: BUY, SELL, SSHORT
+        newOptOrder.m_lmtPrice          =   m_lmtPrice #double m_lmtPrice This is the LIMIT price, used for limit, stop-limit and relative orders. In all other cases specify zero. For relative orders with no limit price, also specify zero.
+        newOptOrder.m_auxPrice          =   m_auxPrice #double m_auxPrice This is the STOP price for stop-limit orders, and the offset amount for relative orders. In all other cases, specify zero.
+        newOptOrder.m_orderType         =   m_orderType #String m_orderType
+        newOptOrder.m_totalQuantity     =   int(m_totalQuantity) #long m_totalQuantity	The order quantity.
+        newOptOrder.m_parentId          =   None  #int m_parentId	The order ID of the parent order, used for bracket and auto trailing stop orders.
+        newOptOrder.m_trailStopPrice    =   None  #m_trailStopPrice	For TRAILLIMIT orders only
+        newOptOrder.m_trailingPercent   =   None  # double m_trailingPercent	
+
+        #Extended Order Fields
+        newOptOrder.m_tif           =   m_tif #String m_tif	The time in force. Valid values are: DAY, GTC, IOC, GTD.
+        newOptOrder.m_transmit      =   m_transmit #  bool m_transmit	Specifies whether the order will be transmitted by TWS. If set to false, the order will be created at TWS but will not be sent.
+        newOptOrder.m_allOrNone     = 0 #  boolean m_allOrNone	0 = no, 1 = yes
+
+        return newOptOrder
+    def checkOrderStatusIB(self,order):
+        ibOrder=order
+        i=0
+        position=0
+        for Order in self.__activeOrder:
+            if(Order['ibOrder_m_orderId']==ibOrder.m_orderId):
+                position=i
+                i+=1
+        if i !=1:
+            return('Order ID %s not unique'%(ibOrder.m_orderId))
+        elif i==0:                
+            return('Order ID %s does not exist in active order'%(ibOrder.m_orderId))
+        elif i==1:
+            return self.__activeOrder[position]['status']
+    def submitOrderIB(self,contract,order):
+            ''' 
+            Process contract and order then submit to IB
+            '''
+ 
+            if checkOrderStatus(order) =='GENERATED':# Order must be in Generated status in the Active Order Table
+                
+                ibContract=contract
+                ibOrder=order
+                if self.__debug:
+                    now=datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') 
+                    print ('%s[IB LiveBroker submitOrder] CONTRACT RECEIVED INFORMATION') 
+                    print ('%s[IB LiveBroker submitOrder] ibContract.m_symbol    : %s' %(now,ibContract.m_symbol)) 
+                    print ('%s[IB LiveBroker submitOrder] ibContract.m_secType   : %s' %(now,ibContract.m_secType)) 
+                    print ('%s[IB LiveBroker submitOrder] ibContract.m_currency  : %s' %(now,ibContract.m_currency)) 
+                    print ('%s[IB LiveBroker submitOrder] ibContract.m_exchange  : %s' %(now,ibContract.m_exchange)) 
+                    print ('%s[IB LiveBroker submitOrder] ibContract.m_multiplier: %s' %(now,ibContract.m_multiplier)) 
+                    print ('%s[IB LiveBroker submitOrder] ibContract.m_expiry    : %s' %(now,ibContract.m_expiry)) 
+                    print ('%s[IB LiveBroker submitOrder] ibContract.m_strike    : %s' %(now,ibContract.m_strike))
+                    print   ('%s[IB LiveBroker submitOrder]')
+                    print ('%s[IB LiveBroker submitOrder] ORDER RECEIVED INFORMATION') 
+                    print ('%s[IB LiveBroker submitOrder] m_clientId         : %s' %(now,ibOrder.m_clientId))
+                    print ('%s[IB LiveBroker submitOrder] m_orderId          : %s' %(now,ibOrder.m_orderId))
+                    print ('%s[IB LiveBroker submitOrder] m_parentId          : %s' %(now,ibOrder.m_parentId))
+                    print ('%s[IB LiveBroker submitOrder] m_action           : %s' %(now,ibOrder.m_action))
+                    print ('%s[IB LiveBroker submitOrder] m_transmit         : %s' %(now,ibOrder.m_transmit))
+                    print ('%s[IB LiveBroker submitOrder] m_orderType        : %s' %(now,ibOrder.m_orderType))
+                    print ('%s[IB LiveBroker submitOrder] m_totalQuantity    : %s' %(now,ibOrder.m_totalQuantity)) 
+                    print ('%s[IB LiveBroker submitOrder] m_lmtPrice         : %s' %(now,ibOrder.m_lmtPrice)) 
+                    print ('%s[IB LiveBroker submitOrder] m_auxPrice STOP    : %s' %(now,ibOrder.m_auxPrice)) 
+                    print ('%s[IB LiveBroker submitOrder] m_trailStopPrice   : %s' %(now,ibOrder.m_trailStopPrice)) 
+                    print ('%s[IB LiveBroker submitOrder] m_trailingPercent  : %s' %(now,ibOrder.m_trailingPercent)) 
+                    print ('%s[IB LiveBroker submitOrder] m_allOrNone        : %s' %(now,ibOrder.m_allOrNone)) 
+                    print ('%s[IB LiveBroker submitOrder] m_tif              : %s' %(now,ibOrder.m_tif)) 
+
+                self.__ib.placeOrder(ibOrder.m_orderId,ibContract, ibOrder)
+                if self.__debug:
+                    print('%s[IB LiveBroker submitOrder] ORDER SUBMITTED TO IB' %(now))
+            
+                self.__setOrderStatus(contract=contract,order=order,status='SUBMITTED', datetime=datetime.datetime.now())
+                self.__registerOrder(contract=contract,order=order,status='SUBMITTED',datetime=datetime.datetime.now())
+                self.__nextOrderId += 1
+                if self.__debug:
+                    print('%s[submitOrder] INCREASE ORDER ID: %s' %(now,self.__nextOrderId))
+
+            else:
+                if self.__debug:
+                    raise('Order %s not in GEnerated Status ' %(order.m_orderId))
+                    print('[submitOrder] =====EXIT===============EXIT=====EXIT' %())
+                    raise Exception("The order was already processed")
+    def createMarketOrderIB(self, contract,action, quantity, GoodTillCanceled = True,AllOrNone = True):
+        ibContract=contract
+        if self.__debug:
+            now=datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') 
+            print ('%s[IB LiveBroker createMarketOrder] CONTRACT RECEIVED INFORMATION') 
+            print ('%s[IB LiveBroker createMarketOrder] ibContract.m_symbol    : %s' %(now,ibContract.m_symbol)) 
+            print ('%s[IB LiveBroker createMarketOrder] ibContract.m_secType   : %s' %(now,ibContract.m_secType)) 
+            print ('%s[IB LiveBroker createMarketOrder] ibContract.m_currency  : %s' %(now,ibContract.m_currency)) 
+            print ('%s[IB LiveBroker createMarketOrder] ibContract.m_exchange  : %s' %(now,ibContract.m_exchange)) 
+            print ('%s[IB LiveBroker createMarketOrder] ibContract.m_multiplier: %s' %(now,ibContract.m_multiplier)) 
+            print ('%s[IB LiveBroker createMarketOrder] ibContract.m_expiry    : %s' %(now,ibContract.m_expiry)) 
+            print ('%s[IB LiveBroker createMarketOrder] ibContract.m_strike    : %s' %(now,ibContract.m_strike))
+            
+        ibOrder=Order()
+        ibOrder.m_orderId       = self.__getUniqueOrderId()
+        ibOrder.m_totalQuantity = quantity
+        
+        if action == 'BUY':
+            ibOrder.m_action    = 'BUY'
+        elif action == 'SELL':
+            ibOrder.m_action = 'SELL'
+ 
+        ibOrder.m_orderType = 'MKT'
+ 
+        if AllOrNone == AllOrNone:
+            ibOrder.m_allOrNone = 1
+        else:
+            ibOrder.m_allOrNone = 0
+
+        if GoodTillCanceled == True:
+            ibOrder.m_tif = 'GTC'
+        else:
+            ibOrder.m_tif = 'DAY'
+            
+        if self.__debug:
+            now=datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') 
+            print ('%s[IB LiveBroker createMarketOrder]CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC'%(now))
+            print ('%s[IB LiveBroker createMarketOrder] ibContract contract' %(now)) 
+            print ('%s[IB LiveBroker createMarketOrder] ibContract.m_symbol: %s' %(now,ibContract.m_symbol)) 
+            print ('%s[IB LiveBroker createMarketOrder] ibContract.m_secType: %s' %(now,ibContract.m_secType)) 
+            print ('%s[IB LiveBroker createMarketOrder] ibContract.m_currency: %s' %(now,ibContract.m_currency)) 
+            print ('%s[IB LiveBroker createMarketOrder] ibContract.m_exchange: %s' %(now,ibContract.m_exchange)) 
+            print ('%s[IB LiveBroker createMarketOrder] ibContract.m_multiplier: %s' %(now,ibContract.m_multiplier)) 
+            print ('%s[IB LiveBroker createMarketOrder] ibContract.m_expiry: %s' %(now,ibContract.m_expiry)) 
+            print ('%s[IB LiveBroker createMarketOrder]ibContract.m_strike %s' %(now,ibContract.m_strike))
+
+            print ('%s[IB LiveBroker createMarketOrder]'%(now))
+            print ('%s[IB LiveBroker createMarketOrder] OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO'%(now))
+            print ('%s[IB LiveBroker createMarketOrder] ibOder ' %(now)) 
+            print ('%s[IB LiveBroker createMarketOrder] ibOrder.m_orderId: %s' %(now,ibOrder.m_orderId)) 
+            print ('%s[IB LiveBroker createMarketOrder] ibOrder.m_clientId  : %s' %(now,ibOrder.m_clientId  )) 
+            #print ('%s[IB LiveBroker createMarketOrder] ibOrder.m_permid: %s' %(now,ibOrder.m_permid)) 
+            print ('%s[IB LiveBroker createMarketOrder] ibOrder.m_action : %s' %(now,ibOrder.m_action )) 
+            print ('%s[IB LiveBroker createMarketOrder] ibOrder.m_lmtPrice : %s' %(now,ibOrder.m_lmtPrice )) 
+            print ('%s[IB LiveBroker createMarketOrder]  ibOrder.m_auxPrice: %s' %( ibOrder.m_auxPrice)) 
+            print ('%s[IB LiveBroker createMarketOrder]ibOrder.m_tif  %s' %(now,ibOrder.m_tif ))
+            print ('%s[IB LiveBroker createMarketOrder]ibOrder.m_transmit  %s' %(now,ibOrder.m_transmit ))
+            print ('%s[IB LiveBroker createMarketOrder]ibOrder.m_orderType   %s' %(now,ibOrder.m_orderType  ))
+            print ('%s[IB LiveBroker createMarketOrder]ibOrder.m_totalQuantity   %s' %(now,ibOrder.m_totalQuantity ))
+            print ('%s[IB LiveBroker createMarketOrder]ibOrder.m_allOrNone  %s' %(now,ibOrder.m_allOrNone ))
+            print ('%s[IB LiveBroker createMarketOrder]ibOrder.m_tif   %s' %(now,ibOrder.m_tif ))
+            print ('%s[IB LiveBroker createMarketOrder]>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>'%(now))
+
+        self.__setOrderStatus(contract=contract,order=order,status='GENERATED', datetime=datetime.datetime.now())
+        self.__registerOrder(contract=contract,order=order,status='GENERATED',datetime=datetime.datetime.now())
+        if self.__debug:
+            print('%s[IB LiveBroker createMarketOrder]INCREASE ORDER ID: %s' %(now,self.__nextOrderId))
+    def createLimitOrderIB(self, contract, action, limitPrice, quantity,GoodTillCanceled = True,AllOrNone = True):
+        ibContract=contract
+        if self.__debug:
+            now=datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') 
+            print ('%s[IB LiveBroker createLimitOrder] CONTRACT RECEIVED INFORMATION') 
+            print ('%s[IB LiveBroker createLimitOrder] ibContract.m_symbol    : %s' %(now,ibContract.m_symbol)) 
+            print ('%s[IB LiveBroker createLimitOrder] ibContract.m_secType   : %s' %(now,ibContract.m_secType)) 
+            print ('%s[IB LiveBroker createLimitOrder] ibContract.m_currency  : %s' %(now,ibContract.m_currency)) 
+            print ('%s[IB LiveBroker createLimitOrder] ibContract.m_exchange  : %s' %(now,ibContract.m_exchange)) 
+            print ('%s[IB LiveBroker createLimitOrder] ibContract.m_multiplier: %s' %(now,ibContract.m_multiplier)) 
+            print ('%s[IB LiveBroker createLimitOrder] ibContract.m_expiry    : %s' %(now,ibContract.m_expiry)) 
+            print ('%s[IB LiveBroker createLimitOrder] ibContract.m_strike    : %s' %(now,ibContract.m_strike))
+            
+        ibOrder=Order()
+        ibOrder.m_orderId       = self.__getUniqueOrderId()
+        ibOrder.m_totalQuantity = quantity
+        
+        if action == 'BUY':
+            ibOrder.m_action    = 'BUY'
+        elif action == 'SELL':
+            ibOrder.m_action = 'SELL'
+ 
+        ibOrder.m_orderType = 'LMT'
+        ibOrder.m_lmtPrice = limitPrice
+ 
+        if AllOrNone == AllOrNone:
+            ibOrder.m_allOrNone = 1
+        else:
+            ibOrder.m_allOrNone = 0
+
+        if GoodTillCanceled == True:
+            ibOrder.m_tif = 'GTC'
+        else:
+            ibOrder.m_tif = 'DAY'
+            
+        if self.__debug:
+            now=datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') 
+            print ('%s[IB LiveBroker createLimitOrder]CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC'%(now))
+            print ('%s[IB LiveBroker createLimitOrder] ibContract contract' %(now)) 
+            print ('%s[IB LiveBroker createLimitOrder] ibContract.m_symbol: %s' %(now,ibContract.m_symbol)) 
+            print ('%s[IB LiveBroker createLimitOrder] ibContract.m_secType: %s' %(now,ibContract.m_secType)) 
+            print ('%s[IB LiveBroker createLimitOrder] ibContract.m_currency: %s' %(now,ibContract.m_currency)) 
+            print ('%s[IB LiveBroker createLimitOrder] ibContract.m_exchange: %s' %(now,ibContract.m_exchange)) 
+            print ('%s[IB LiveBroker createLimitOrder] ibContract.m_multiplier: %s' %(now,ibContract.m_multiplier)) 
+            print ('%s[IB LiveBroker createLimitOrder] ibContract.m_expiry: %s' %(now,ibContract.m_expiry)) 
+            print ('%s[IB LiveBroker createLimitOrder]ibContract.m_strike %s' %(now,ibContract.m_strike))
+
+            print ('%s[IB LiveBroker createLimitOrder]'%(now))
+            print ('%s[IB LiveBroker createLimitOrder] OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO'%(now))
+            print ('%s[IB LiveBroker createLimitOrder] ibOder ' %(now)) 
+            print ('%s[IB LiveBroker createLimitOrder] ibOrder.m_orderId: %s' %(now,ibOrder.m_orderId)) 
+            print ('%s[IB LiveBroker createLimitOrder] ibOrder.m_clientId  : %s' %(now,ibOrder.m_clientId  )) 
+            #print ('%s[IB LiveBroker createLimitOrder] ibOrder.m_permid: %s' %(now,ibOrder.m_permid)) 
+            print ('%s[IB LiveBroker createLimitOrder] ibOrder.m_action : %s' %(now,ibOrder.m_action )) 
+            print ('%s[IB LiveBroker createLimitOrder] ibOrder.m_lmtPrice : %s' %(now,ibOrder.m_lmtPrice )) 
+            print ('%s[IB LiveBroker createLimitOrder]  ibOrder.m_auxPrice: %s' %( ibOrder.m_auxPrice)) 
+            print ('%s[IB LiveBroker createLimitOrder]ibOrder.m_tif  %s' %(now,ibOrder.m_tif ))
+            print ('%s[IB LiveBroker createLimitOrder]ibOrder.m_transmit  %s' %(now,ibOrder.m_transmit ))
+            print ('%s[IB LiveBroker createLimitOrder]ibOrder.m_orderType   %s' %(now,ibOrder.m_orderType  ))
+            print ('%s[IB LiveBroker createLimitOrder]ibOrder.m_totalQuantity   %s' %(now,ibOrder.m_totalQuantity ))
+            print ('%s[IB LiveBroker createLimitOrder]ibOrder.m_allOrNone  %s' %(now,ibOrder.m_allOrNone ))
+            print ('%s[IB LiveBroker createLimitOrder]ibOrder.m_tif   %s' %(now,ibOrder.m_tif ))
+            print ('%s[IB LiveBroker createLimitOrder]>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>'%(now))
+
+        self.__setOrderStatus(contract=contract,order=order,status='GENERATED', datetime=datetime.datetime.now())
+        self.__registerOrder(contract=contract,order=order,status='GENERATED',datetime=datetime.datetime.now())
+        if self.__debug:
+            print('%s[IB LiveBroker createLimitOrder]INCREASE ORDER ID: %s' %(now,self.__nextOrderId))
+    def createStopOrderIB(self, contract, action, stopPrice, quantity,GoodTillCanceled = True,AllOrNone = True):
+        ibContract=contract
+        if self.__debug:
+            now=datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') 
+            print ('%s[IB LiveBroker createStopOrder] CONTRACT RECEIVED INFORMATION') 
+            print ('%s[IB LiveBroker createStopOrder] ibContract.m_symbol    : %s' %(now,ibContract.m_symbol)) 
+            print ('%s[IB LiveBroker createStopOrder] ibContract.m_secType   : %s' %(now,ibContract.m_secType)) 
+            print ('%s[IB LiveBroker createStopOrder] ibContract.m_currency  : %s' %(now,ibContract.m_currency)) 
+            print ('%s[IB LiveBroker createStopOrder] ibContract.m_exchange  : %s' %(now,ibContract.m_exchange)) 
+            print ('%s[IB LiveBroker createStopOrder] ibContract.m_multiplier: %s' %(now,ibContract.m_multiplier)) 
+            print ('%s[IB LiveBroker createStopOrder] ibContract.m_expiry    : %s' %(now,ibContract.m_expiry)) 
+            print ('%s[IB LiveBroker createStopOrder] ibContract.m_strike    : %s' %(now,ibContract.m_strike))
+            
+        ibOrder=Order()
+        ibOrder.m_orderId       = self.__getUniqueOrderId()
+        ibOrder.m_totalQuantity = quantity
+        
+        if action == 'BUY':
+            ibOrder.m_action    = 'BUY'
+        elif action == 'SELL':
+            ibOrder.m_action = 'SELL'
+ 
+        ibOrder.m_orderType = 'STP'
+        ibOrder.m_auxPrice = stopPrice
+
+        if AllOrNone == AllOrNone:
+            ibOrder.m_allOrNone = 1
+        else:
+            ibOrder.m_allOrNone = 0
+
+        if GoodTillCanceled == True:
+            ibOrder.m_tif = 'GTC'
+        else:
+            ibOrder.m_tif = 'DAY'
+            
+        if self.__debug:
+            now=datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') 
+            print ('%s[IB LiveBroker createStopOrder]CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC'%(now))
+            print ('%s[IB LiveBroker createStopOrder] ibContract contract' %(now)) 
+            print ('%s[IB LiveBroker createStopOrder] ibContract.m_symbol: %s' %(now,ibContract.m_symbol)) 
+            print ('%s[IB LiveBroker createStopOrder] ibContract.m_secType: %s' %(now,ibContract.m_secType)) 
+            print ('%s[IB LiveBroker createStopOrder] ibContract.m_currency: %s' %(now,ibContract.m_currency)) 
+            print ('%s[IB LiveBroker createStopOrder] ibContract.m_exchange: %s' %(now,ibContract.m_exchange)) 
+            print ('%s[IB LiveBroker createStopOrder] ibContract.m_multiplier: %s' %(now,ibContract.m_multiplier)) 
+            print ('%s[IB LiveBroker createStopOrder] ibContract.m_expiry: %s' %(now,ibContract.m_expiry)) 
+            print ('%s[IB LiveBroker createStopOrder]ibContract.m_strike %s' %(now,ibContract.m_strike))
+
+            print ('%s[IB LiveBroker createStopOrder]'%(now))
+            print ('%s[IB LiveBroker createStopOrder] OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO'%(now))
+            print ('%s[IB LiveBroker createStopOrder] ibOder ' %(now)) 
+            print ('%s[IB LiveBroker createStopOrder] ibOrder.m_orderId: %s' %(now,ibOrder.m_orderId)) 
+            print ('%s[IB LiveBroker createStopOrder] ibOrder.m_clientId  : %s' %(now,ibOrder.m_clientId  )) 
+            #print ('%s[IB LiveBroker createStopOrder] ibOrder.m_permid: %s' %(now,ibOrder.m_permid)) 
+            print ('%s[IB LiveBroker createStopOrder] ibOrder.m_action : %s' %(now,ibOrder.m_action )) 
+            print ('%s[IB LiveBroker createStopOrder] ibOrder.m_lmtPrice : %s' %(now,ibOrder.m_lmtPrice )) 
+            print ('%s[IB LiveBroker createStopOrder]  ibOrder.m_auxPrice: %s' %( ibOrder.m_auxPrice)) 
+            print ('%s[IB LiveBroker createStopOrder]ibOrder.m_tif  %s' %(now,ibOrder.m_tif ))
+            print ('%s[IB LiveBroker createStopOrder]ibOrder.m_transmit  %s' %(now,ibOrder.m_transmit ))
+            print ('%s[IB LiveBroker createStopOrder]ibOrder.m_orderType   %s' %(now,ibOrder.m_orderType  ))
+            print ('%s[IB LiveBroker createStopOrder]ibOrder.m_totalQuantity   %s' %(now,ibOrder.m_totalQuantity ))
+            print ('%s[IB LiveBroker createStopOrder]ibOrder.m_allOrNone  %s' %(now,ibOrder.m_allOrNone ))
+            print ('%s[IB LiveBroker createStopOrder]ibOrder.m_tif   %s' %(now,ibOrder.m_tif ))
+            print ('%s[IB LiveBroker createStopOrder]>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>'%(now))
+
+        self.__setOrderStatus(contract=contract,order=order,status='GENERATED', datetime=datetime.datetime.now())
+        self.__registerOrder(contract=contract,order=order,status='GENERATED',datetime=datetime.datetime.now())
+        if self.__debug:
+            print('%s[IB LiveBroker createStopOrder]INCREASE ORDER ID: %s' %(now,self.__nextOrderId))
+    def createStopLimitOrderIB(self,contract, action,stopPrice, limitPrice, quantity):
+        ibContract=contract
+        if self.__debug:
+            now=datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') 
+            print ('%s[IB LiveBroker createStopLimitOrder] CONTRACT RECEIVED INFORMATION') 
+            print ('%s[IB LiveBroker createStopLimitOrder] ibContract.m_symbol    : %s' %(now,ibContract.m_symbol)) 
+            print ('%s[IB LiveBroker createStopLimitOrder] ibContract.m_secType   : %s' %(now,ibContract.m_secType)) 
+            print ('%s[IB LiveBroker createStopLimitOrder] ibContract.m_currency  : %s' %(now,ibContract.m_currency)) 
+            print ('%s[IB LiveBroker createStopLimitOrder] ibContract.m_exchange  : %s' %(now,ibContract.m_exchange)) 
+            print ('%s[IB LiveBroker createStopLimitOrder] ibContract.m_multiplier: %s' %(now,ibContract.m_multiplier)) 
+            print ('%s[IB LiveBroker createStopLimitOrder] ibContract.m_expiry    : %s' %(now,ibContract.m_expiry)) 
+            print ('%s[IB LiveBroker createStopLimitOrder] ibContract.m_strike    : %s' %(now,ibContract.m_strike))
+            
+        ibOrder=Order()
+        ibOrder.m_orderId       = self.__getUniqueOrderId()
+        ibOrder.m_totalQuantity = quantity
+        
+        if action == 'BUY':
+            ibOrder.m_action    = 'BUY'
+        elif action == 'SELL':
+            ibOrder.m_action = 'SELL'
+ 
+        ibOrder.m_orderType = 'STP LMT'
+        ibOrder.m_lmtPrice = limitPrice
+        ibOrder.m_auxPrice = stopPrice
+
+        if AllOrNone == AllOrNone:
+            ibOrder.m_allOrNone = 1
+        else:
+            ibOrder.m_allOrNone = 0
+
+        if GoodTillCanceled == True:
+            ibOrder.m_tif = 'GTC'
+        else:
+            ibOrder.m_tif = 'DAY'
+            
+        if self.__debug:
+            now=datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') 
+            print ('%s[IB LiveBroker createStopLimitOrder]CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC'%(now))
+            print ('%s[IB LiveBroker createStopLimitOrder] ibContract contract' %(now)) 
+            print ('%s[IB LiveBroker createStopLimitOrder] ibContract.m_symbol: %s' %(now,ibContract.m_symbol)) 
+            print ('%s[IB LiveBroker createStopLimitOrder] ibContract.m_secType: %s' %(now,ibContract.m_secType)) 
+            print ('%s[IB LiveBroker createStopLimitOrder] ibContract.m_currency: %s' %(now,ibContract.m_currency)) 
+            print ('%s[IB LiveBroker createStopLimitOrder] ibContract.m_exchange: %s' %(now,ibContract.m_exchange)) 
+            print ('%s[IB LiveBroker createStopLimitOrder] ibContract.m_multiplier: %s' %(now,ibContract.m_multiplier)) 
+            print ('%s[IB LiveBroker createStopLimitOrder] ibContract.m_expiry: %s' %(now,ibContract.m_expiry)) 
+            print ('%s[IB LiveBroker createStopLimitOrder]ibContract.m_strike %s' %(now,ibContract.m_strike))
+
+            print ('%s[IB LiveBroker createStopLimitOrder]'%(now))
+            print ('%s[IB LiveBroker createStopLimitOrder] OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO'%(now))
+            print ('%s[IB LiveBroker createStopLimitOrder] ibOder ' %(now)) 
+            print ('%s[IB LiveBroker createStopLimitOrder] ibOrder.m_orderId: %s' %(now,ibOrder.m_orderId)) 
+            print ('%s[IB LiveBroker createStopLimitOrder] ibOrder.m_clientId  : %s' %(now,ibOrder.m_clientId  )) 
+            #print ('%s[IB LiveBroker createStopLimitOrder] ibOrder.m_permid: %s' %(now,ibOrder.m_permid)) 
+            print ('%s[IB LiveBroker createStopLimitOrder] ibOrder.m_action : %s' %(now,ibOrder.m_action )) 
+            print ('%s[IB LiveBroker createStopLimitOrder] ibOrder.m_lmtPrice : %s' %(now,ibOrder.m_lmtPrice )) 
+            print ('%s[IB LiveBroker createStopLimitOrder]  ibOrder.m_auxPrice: %s' %( ibOrder.m_auxPrice)) 
+            print ('%s[IB LiveBroker createStopLimitOrder]ibOrder.m_tif  %s' %(now,ibOrder.m_tif ))
+            print ('%s[IB LiveBroker createStopLimitOrder]ibOrder.m_transmit  %s' %(now,ibOrder.m_transmit ))
+            print ('%s[IB LiveBroker createStopLimitOrder]ibOrder.m_orderType   %s' %(now,ibOrder.m_orderType  ))
+            print ('%s[IB LiveBroker createStopLimitOrder]ibOrder.m_totalQuantity   %s' %(now,ibOrder.m_totalQuantity ))
+            print ('%s[IB LiveBroker createStopLimitOrder]ibOrder.m_allOrNone  %s' %(now,ibOrder.m_allOrNone ))
+            print ('%s[IB LiveBroker createStopLimitOrder]ibOrder.m_tif   %s' %(now,ibOrder.m_tif ))
+            print ('%s[IB LiveBroker createStopLimitOrder]>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>'%(now))
+
+        self.__setOrderStatus(contract=contract,order=order,status='GENERATED', datetime=datetime.datetime.now())
+        self.__registerOrder(contract=contract,order=order,status='GENERATED',datetime=datetime.datetime.now())
+        if self.__debug:
+            print('%s[IB LiveBroker createStopLimitOrder]INCREASE ORDER ID: %s' %(now,self.__nextOrderId))
+    def cancelOrderIB(self, order):
+        '''
+        activeOrder = self.__activeOrders.get(order.getId())
+        if activeOrder is None:
+            raise Exception("The order is not active anymore")
+        if activeOrder.isFilled():
+            raise Exception("Can't cancel order that has already been filled")
+        '''
+        self.__ib.cancelOrder(order.m_orderId)
