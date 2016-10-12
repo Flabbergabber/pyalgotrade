@@ -143,6 +143,21 @@ class FillStrategy(object):
         :rtype: A :class:`FillInfo` or None if the order should not be filled.
         """
         raise NotImplementedError()
+        
+    @abc.abstractmethod
+    def fillOptionOrder(self, broker_, order, bar):
+        """Override to return the fill price and quantity for a market order or None if the order can't be filled
+        at the given time.
+
+        :param broker_: The broker.
+        :type broker_: :class:`Broker`
+        :param order: The order.
+        :type order: :class:`pyalgotrade.broker.MarketOrder`
+        :param bar: The current bar.
+        :type bar: :class:`pyalgotrade.bar.Bar`
+        :rtype: A :class:`FillInfo` or None if the order should not be filled.
+        """
+        raise NotImplementedError()
 
     @abc.abstractmethod
     def fillLimitOrder(self, broker_, order, bar):

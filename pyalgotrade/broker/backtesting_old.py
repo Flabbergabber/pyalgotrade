@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 # PyAlgoTrade
 #
 # Copyright 2011-2015 Gabriel Martin Becedillas Ruiz
@@ -118,13 +120,6 @@ class MarketOrder(broker.MarketOrder, BacktestingOrder):
 
     def process(self, broker_, bar_):
         return broker_.getFillStrategy().fillMarketOrder(broker_, self, bar_)
-
-class OptionOrder(broker.OptionOrder, BacktestingOrder):
-    def __init__(self, action, instrument, quantity, onClose, instrumentTraits):
-        super(OptionOrder, self).__init__(action, instrument, quantity, onClose, instrumentTraits)
-
-    def process(self, broker_, bar_):
-        return broker_.getFillStrategy().fillOptionOrder(broker_, self, bar_)
 
 
 class LimitOrder(broker.LimitOrder, BacktestingOrder):
@@ -488,18 +483,6 @@ class Broker(broker.Broker):
             raise Exception("Market-on-close not supported with intraday feeds")
 
         return MarketOrder(action, instrument, quantity, onClose, self.getInstrumentTraits(instrument))
-    
-    
-    def createOptionOrder(self, action, instrument, quantity, onClose=False):
-        # In order to properly support market-on-close with intraday feeds I'd need to know about different
-        # exchange/market trading hours and support specifying routing an order to a specific exchange/market.
-        # Even if I had all this in place it would be a problem while paper-trading with a live feed since
-        # I can't tell if the next bar will be the last bar of the market session or not.
-        if onClose is True and self.__barFeed.isIntraday():
-            raise Exception("Market-on-close not supported with intraday feeds")
-
-        return OptionOrder(action, instrument, quantity, onClose, self.getInstrumentTraits(instrument))
-
 
     def createLimitOrder(self, action, instrument, limitPrice, quantity):
         return LimitOrder(action, instrument, limitPrice, quantity, self.getInstrumentTraits(instrument))
