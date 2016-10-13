@@ -355,6 +355,37 @@ class DefaultStrategy(FillStrategy):
                 order, price, fillSize, bar, self.__volumeUsed[order.getInstrument()]
             )
         return FillInfo(price, fillSize)
+        
+     def fillOptionOrder(self, broker_, order, bar):
+        # Calculate the fill size for the order.
+        fillSize = self.__calculateFillSize(broker_, order, bar)
+        if fillSize == 0:
+            broker_.getLogger().debug(
+                "Not enough volume to fill %s market order [%s] for %s share/s" % (
+                    order.getInstrument(),
+                    order.getId(),
+                    order.getRemaining()
+                )
+            )
+            return None
+
+        # Unless its a fill-on-close order, use the open price.
+        if order.getFillOnClose():
+            price = bar.getClose(broker_.getUseAdjustedValues())
+        else:
+            price = bar.getOpen(broker_.getUseAdjustedValues())
+        assert price is not None
+        
+        # If expiry date is met, execute
+#        if bar.getDateTime() >= order.getExpiryDate():
+            
+
+        # Don't slip prices when the bar represents the trading activity of a single trade.
+        if bar.getFrequency() != pyalgotrade.bar.Frequency.TRADE:
+            price = self.__slippageModel.calculatePrice(
+                order, price, fillSize, bar, self.__volumeUsed[order.getInstrument()]
+            )
+        return FillInfo(price, fillSize)
 
     def fillLimitOrder(self, broker_, order, bar):
         # Calculate the fill size for the order.

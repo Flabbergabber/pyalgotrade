@@ -162,6 +162,7 @@ class Position(object):
         self.__shares = 0
         self.__strategy = strategy
         self.__entryOrder = None
+        self.__expiryDate = None
         self.__entryDateTime = None
         self.__exitOrder = None
         self.__exitDateTime = None
@@ -193,6 +194,12 @@ class Position(object):
 
     def setExitDateTime(self, dateTime):
         self.__exitDateTime = dateTime
+        
+    def setExpiryDate(self, dateTime):
+        self.__expiryDate = dateTime
+        
+    def getExpiryDate(self):
+        return self.__expiryDate
 
     def switchState(self, newState):
         self.__state = newState
