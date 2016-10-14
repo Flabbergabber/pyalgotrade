@@ -119,14 +119,6 @@ class MarketOrder(broker.MarketOrder, BacktestingOrder):
     def process(self, broker_, bar_):
         return broker_.getFillStrategy().fillMarketOrder(broker_, self, bar_)
 
-class OptionOrder(broker.OptionOrder, BacktestingOrder):
-    def __init__(self, action, instrument, quantity, onClose, instrumentTraits):
-        super(OptionOrder, self).__init__(action, instrument, quantity, onClose, instrumentTraits)
-
-    def process(self, broker_, bar_):
-        return broker_.getFillStrategy().fillOptionOrder(broker_, self, bar_)
-
-
 class LimitOrder(broker.LimitOrder, BacktestingOrder):
     def __init__(self, action, instrument, limitPrice, quantity, instrumentTraits):
         super(LimitOrder, self).__init__(action, instrument, limitPrice, quantity, instrumentTraits)
@@ -169,6 +161,63 @@ class StopLimitOrder(broker.StopLimitOrder, BacktestingOrder):
 
     def process(self, broker_, bar_):
         return broker_.getFillStrategy().fillStopLimitOrder(broker_, self, bar_)
+
+#############################################################################
+####   OPTION PART
+#
+#############################################################################
+class OptionOrder(broker.OptionOrder, BacktestingOrder):
+    def __init__(self, action, instrument, quantity, onClose, instrumentTraits):
+        super(OptionOrder, self).__init__(action, instrument, quantity, onClose, instrumentTraits)
+
+    def process(self, broker_, bar_):
+        return broker_.getFillStrategy().fillOptionOrder(broker_, self, bar_)
+
+class OptionLimitOrder(broker.LimitOrder, BacktestingOrder):
+    def __init__(self, action, instrument, limitPrice, quantity, instrumentTraits):
+        super(LimitOrder, self).__init__(action, instrument, limitPrice, quantity, instrumentTraits)
+
+    def process(self, broker_, bar_):
+        return broker_.getFillStrategy().fillLimitOrder(broker_, self, bar_)
+
+
+class OptionStopOrder(broker.StopOrder, BacktestingOrder):
+    def __init__(self, action, instrument, stopPrice, quantity, instrumentTraits):
+        super(StopOrder, self).__init__(action, instrument, stopPrice, quantity, instrumentTraits)
+        self.__stopHit = False
+
+    def process(self, broker_, bar_):
+        return broker_.getFillStrategy().fillStopOrder(broker_, self, bar_)
+
+    def setStopHit(self, stopHit):
+        self.__stopHit = stopHit
+
+    def getStopHit(self):
+        return self.__stopHit
+
+
+# http://www.sec.gov/answers/stoplim.htm
+# http://www.interactivebrokers.com/en/trading/orders/stopLimit.php
+class OptionStopLimitOrder(broker.StopLimitOrder, BacktestingOrder):
+    def __init__(self, action, instrument, stopPrice, limitPrice, quantity, instrumentTraits):
+        super(StopLimitOrder, self).__init__(action, instrument, stopPrice, limitPrice, quantity, instrumentTraits)
+        self.__stopHit = False  # Set to true when the limit order is activated (stop price is hit)
+
+    def setStopHit(self, stopHit):
+        self.__stopHit = stopHit
+
+    def getStopHit(self):
+        return self.__stopHit
+
+    def isLimitOrderActive(self):
+        # TODO: Deprecated since v0.15. Use getStopHit instead.
+        return self.__stopHit
+
+    def process(self, broker_, bar_):
+        return broker_.getFillStrategy().fillStopLimitOrder(broker_, self, bar_)
+
+#### FIN OPTION
+
 
 
 ######################################################################
@@ -488,18 +537,6 @@ class Broker(broker.Broker):
             raise Exception("Market-on-close not supported with intraday feeds")
 
         return MarketOrder(action, instrument, quantity, onClose, self.getInstrumentTraits(instrument))
-    
-    
-    def createOptionOrder(self, action, instrument, quantity, onClose=False):
-        # In order to properly support market-on-close with intraday feeds I'd need to know about different
-        # exchange/market trading hours and support specifying routing an order to a specific exchange/market.
-        # Even if I had all this in place it would be a problem while paper-trading with a live feed since
-        # I can't tell if the next bar will be the last bar of the market session or not.
-        if onClose is True and self.__barFeed.isIntraday():
-            raise Exception("Market-on-close not supported with intraday feeds")
-
-        return OptionOrder(action, instrument, quantity, onClose, self.getInstrumentTraits(instrument))
-
 
     def createLimitOrder(self, action, instrument, limitPrice, quantity):
         return LimitOrder(action, instrument, limitPrice, quantity, self.getInstrumentTraits(instrument))
@@ -509,6 +546,30 @@ class Broker(broker.Broker):
 
     def createStopLimitOrder(self, action, instrument, stopPrice, limitPrice, quantity):
         return StopLimitOrder(action, instrument, stopPrice, limitPrice, quantity, self.getInstrumentTraits(instrument))
+
+############################################################
+#section des options
+################################################
+
+    def createOptionOrder(self, action, instrument, quantity, onClose=False):
+        # In order to properly support market-on-close with intraday feeds I'd need to know about different
+        # exchange/market trading hours and support specifying routing an order to a specific exchange/market.
+        # Even if I had all this in place it would be a problem while paper-trading with a live feed since
+        # I can't tell if the next bar will be the last bar of the market session or not.
+        if onClose is True and self.__barFeed.isIntraday():
+            raise Exception("Market-on-close not supported with intraday feeds")
+
+        return OptionOrder(action, instrument, quantity, onClose, self.getInstrumentTraits(instrument))
+    
+    def createOptionLimitOrder(self, action, instrument, limitPrice, quantity):
+        return OptionLimitOrder(action, instrument, limitPrice, quantity, self.getInstrumentTraits(instrument))
+
+    def createOptionStopOrder(self, action, instrument, stopPrice, quantity):
+        return OptionStopOrder(action, instrument, stopPrice, quantity, self.getInstrumentTraits(instrument))
+
+    def createOptionStopLimitOrder(self, action, instrument, stopPrice, limitPrice, quantity):
+        return OptionStopLimitOrder(action, instrument, stopPrice, limitPrice, quantity, self.getInstrumentTraits(instrument))
+
 
     def cancelOrder(self, order):
         activeOrder = self.__activeOrders.get(order.getId())

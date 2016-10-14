@@ -145,21 +145,6 @@ class FillStrategy(object):
         raise NotImplementedError()
         
     @abc.abstractmethod
-    def fillOptionOrder(self, broker_, order, bar):
-        """Override to return the fill price and quantity for a market order or None if the order can't be filled
-        at the given time.
-
-        :param broker_: The broker.
-        :type broker_: :class:`Broker`
-        :param order: The order.
-        :type order: :class:`pyalgotrade.broker.MarketOrder`
-        :param bar: The current bar.
-        :type bar: :class:`pyalgotrade.bar.Bar`
-        :rtype: A :class:`FillInfo` or None if the order should not be filled.
-        """
-        raise NotImplementedError()
-
-    @abc.abstractmethod
     def fillLimitOrder(self, broker_, order, bar):
         """Override to return the fill price and quantity for a limit order or None if the order can't be filled
         at the given time.
@@ -191,6 +176,70 @@ class FillStrategy(object):
 
     @abc.abstractmethod
     def fillStopLimitOrder(self, broker_, order, bar):
+        """Override to return the fill price and quantity for a stop limit order or None if the order can't be filled
+        at the given time.
+
+        :param broker_: The broker.
+        :type broker_: :class:`Broker`
+        :param order: The order.
+        :type order: :class:`pyalgotrade.broker.StopLimitOrder`
+        :param bar: The current bar.
+        :type bar: :class:`pyalgotrade.bar.Bar`
+        :rtype: A :class:`FillInfo` or None if the order should not be filled.
+        """
+        raise NotImplementedError()
+        
+################################################
+#OPTION PART
+#
+############################################        
+    @abc.abstractmethod
+    def fillOptionOrder(self, broker_, order, bar):
+        """Override to return the fill price and quantity for a market order or None if the order can't be filled
+        at the given time.
+
+        :param broker_: The broker.
+        :type broker_: :class:`Broker`
+        :param order: The order.
+        :type order: :class:`pyalgotrade.broker.MarketOrder`
+        :param bar: The current bar.
+        :type bar: :class:`pyalgotrade.bar.Bar`
+        :rtype: A :class:`FillInfo` or None if the order should not be filled.
+        """
+        raise NotImplementedError()
+        
+    @abc.abstractmethod
+    def fillOptionLimitOrder(self, broker_, order, bar):
+        """Override to return the fill price and quantity for a limit order or None if the order can't be filled
+        at the given time.
+
+        :param broker_: The broker.
+        :type broker_: :class:`Broker`
+        :param order: The order.
+        :type order: :class:`pyalgotrade.broker.LimitOrder`
+        :param bar: The current bar.
+        :type bar: :class:`pyalgotrade.bar.Bar`
+        :rtype: A :class:`FillInfo` or None if the order should not be filled.
+        """
+        raise NotImplementedError()
+
+    @abc.abstractmethod
+    def fillOptionStopOrder(self, broker_, order, bar):
+        """Override to return the fill price and quantity for a stop order or None if the order can't be filled
+        at the given time.
+
+        :param broker_: The broker.
+        :type broker_: :class:`Broker`
+        :param order: The order.
+        :type order: :class:`pyalgotrade.broker.StopOrder`
+        :param bar: The current bar.
+        :type bar: :class:`pyalgotrade.bar.Bar`
+        :rtype: A :class:`FillInfo` or None if the order should not be filled.
+        """
+        raise NotImplementedError()
+
+    @abc.abstractmethod
+    def fillOptionStopLimitOrder(self, broker_, order, bar):
         """Override to return the fill price and quantity for a stop limit order or None if the order can't be filled
         at the given time.
 
@@ -355,37 +404,6 @@ class DefaultStrategy(FillStrategy):
                 order, price, fillSize, bar, self.__volumeUsed[order.getInstrument()]
             )
         return FillInfo(price, fillSize)
-        
-     def fillOptionOrder(self, broker_, order, bar):
-        # Calculate the fill size for the order.
-        fillSize = self.__calculateFillSize(broker_, order, bar)
-        if fillSize == 0:
-            broker_.getLogger().debug(
-                "Not enough volume to fill %s market order [%s] for %s share/s" % (
-                    order.getInstrument(),
-                    order.getId(),
-                    order.getRemaining()
-                )
-            )
-            return None
-
-        # Unless its a fill-on-close order, use the open price.
-        if order.getFillOnClose():
-            price = bar.getClose(broker_.getUseAdjustedValues())
-        else:
-            price = bar.getOpen(broker_.getUseAdjustedValues())
-        assert price is not None
-        
-        # If expiry date is met, execute
-#        if bar.getDateTime() >= order.getExpiryDate():
-            
-
-        # Don't slip prices when the bar represents the trading activity of a single trade.
-        if bar.getFrequency() != pyalgotrade.bar.Frequency.TRADE:
-            price = self.__slippageModel.calculatePrice(
-                order, price, fillSize, bar, self.__volumeUsed[order.getInstrument()]
-            )
-        return FillInfo(price, fillSize)
 
     def fillLimitOrder(self, broker_, order, bar):
         # Calculate the fill size for the order.
@@ -445,6 +463,146 @@ class DefaultStrategy(FillStrategy):
         return ret
 
     def fillStopLimitOrder(self, broker_, order, bar):
+        ret = None
+
+        # First check if the stop price was hit so the limit order becomes active.
+        stopPriceTrigger = None
+        if not order.getStopHit():
+            stopPriceTrigger = get_stop_price_trigger(
+                order.getAction(),
+                order.getStopPrice(),
+                broker_.getUseAdjustedValues(),
+                bar
+            )
+            order.setStopHit(stopPriceTrigger is not None)
+
+        # If the stop price was hit, check if we can fill the limit order.
+        if order.getStopHit():
+            # Calculate the fill size for the order.
+            fillSize = self.__calculateFillSize(broker_, order, bar)
+            if fillSize == 0:
+                broker_.getLogger().debug("Not enough volume to fill %s stop limit order [%s] for %s share/s" % (
+                    order.getInstrument(),
+                    order.getId(),
+                    order.getRemaining()
+                ))
+                return None
+
+            price = get_limit_price_trigger(
+                order.getAction(),
+                order.getLimitPrice(),
+                broker_.getUseAdjustedValues(),
+                bar
+            )
+            if price is not None:
+                # If we just hit the stop price, we need to make additional checks.
+                if stopPriceTrigger is not None:
+                    if order.isBuy():
+                        # If the stop price triggered is lower than the limit price, then use that one.
+                        # Else use the limit price.
+                        price = min(stopPriceTrigger, order.getLimitPrice())
+                    else:
+                        # If the stop price triggered is greater than the limit price, then use that one.
+                        # Else use the limit price.
+                        price = max(stopPriceTrigger, order.getLimitPrice())
+
+                ret = FillInfo(price, fillSize)
+
+        return ret
+        
+###############################################
+#   OPTION PART
+#
+##############################################
+    def fillOptionOrder(self, broker_, order, bar):
+        # Calculate the fill size for the order.
+        fillSize = self.__calculateFillSize(broker_, order, bar)
+        if fillSize == 0:
+            broker_.getLogger().debug(
+                "Not enough volume to fill %s market order [%s] for %s share/s" % (
+                    order.getInstrument(),
+                    order.getId(),
+                    order.getRemaining()
+                )
+            )
+            return None
+
+        # Unless its a fill-on-close order, use the open price.
+        if order.getFillOnClose():
+            price = bar.getClose(broker_.getUseAdjustedValues())
+        else:
+            price = bar.getOpen(broker_.getUseAdjustedValues())
+        assert price is not None
+        
+        # If expiry date is met, execute
+#        if bar.getDateTime() >= order.getExpiryDate():
+            
+
+        # Don't slip prices when the bar represents the trading activity of a single trade.
+        if bar.getFrequency() != pyalgotrade.bar.Frequency.TRADE:
+            price = self.__slippageModel.calculatePrice(
+                order, price, fillSize, bar, self.__volumeUsed[order.getInstrument()]
+            )
+        return FillInfo(price, fillSize)
+    
+    def fillOptionLimitOrder(self, broker_, order, bar):
+        # Calculate the fill size for the order.
+        fillSize = self.__calculateFillSize(broker_, order, bar)
+        if fillSize == 0:
+            broker_.getLogger().debug("Not enough volume to fill %s limit order [%s] for %s share/s" % (
+                order.getInstrument(), order.getId(), order.getRemaining())
+            )
+            return None
+
+        ret = None
+        price = get_limit_price_trigger(order.getAction(), order.getLimitPrice(), broker_.getUseAdjustedValues(), bar)
+        if price is not None:
+            ret = FillInfo(price, fillSize)
+        return ret
+
+    def fillOptionStopOrder(self, broker_, order, bar):
+        ret = None
+
+        # First check if the stop price was hit so the market order becomes active.
+        stopPriceTrigger = None
+        if not order.getStopHit():
+            stopPriceTrigger = get_stop_price_trigger(
+                order.getAction(),
+                order.getStopPrice(),
+                broker_.getUseAdjustedValues(),
+                bar
+            )
+            order.setStopHit(stopPriceTrigger is not None)
+
+        # If the stop price was hit, check if we can fill the market order.
+        if order.getStopHit():
+            # Calculate the fill size for the order.
+            fillSize = self.__calculateFillSize(broker_, order, bar)
+            if fillSize == 0:
+                broker_.getLogger().debug("Not enough volume to fill %s stop order [%s] for %s share/s" % (
+                    order.getInstrument(),
+                    order.getId(),
+                    order.getRemaining()
+                ))
+                return None
+
+            # If we just hit the stop price we'll use it as the fill price.
+            # For the remaining bars we'll use the open price.
+            if stopPriceTrigger is not None:
+                price = stopPriceTrigger
+            else:
+                price = bar.getOpen(broker_.getUseAdjustedValues())
+            assert price is not None
+
+            # Don't slip prices when the bar represents the trading activity of a single trade.
+            if bar.getFrequency() != pyalgotrade.bar.Frequency.TRADE:
+                price = self.__slippageModel.calculatePrice(
+                    order, price, fillSize, bar, self.__volumeUsed[order.getInstrument()]
+                )
+            ret = FillInfo(price, fillSize)
+        return ret
+
+    def fillOptionStopLimitOrder(self, broker_, order, bar):
         ret = None
 
         # First check if the stop price was hit so the limit order becomes active.

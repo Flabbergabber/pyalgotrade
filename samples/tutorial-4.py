@@ -1,5 +1,7 @@
 from pyalgotrade import strategy
-from pyalgotrade.barfeed import yahoofeed
+#from pyalgotrade.barfeed import yahoofeed
+#from pyalgotrade.barfeed import googlefeed
+from pyalgotrade.barfeed import ibfeed
 from pyalgotrade.technical import ma
 
 
@@ -46,11 +48,14 @@ class MyStrategy(strategy.BacktestingStrategy):
 
 def run_strategy(smaPeriod):
     # Load the yahoo feed from the CSV file
-    feed = yahoofeed.Feed()
-    feed.addBarsFromCSV("orcl", "orcl-2000.csv")
+#    feed = yahoofeed.Feed()
+#    feed.addBarsFromCSV("orcl", "orcl-2000.csv")
+    feed = ibfeed.Feed()
+    feed.addBarsFromCSV("bac", "bac_short.csv")
 
     # Evaluate the strategy with the feed.
-    myStrategy = MyStrategy(feed, "orcl", smaPeriod)
+#    myStrategy = MyStrategy(feed, "orcl", smaPeriod)
+    myStrategy = MyStrategy(feed, "bac", smaPeriod)
     myStrategy.run()
     print "Final portfolio value: $%.2f" % myStrategy.getBroker().getEquity()
 
