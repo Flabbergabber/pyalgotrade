@@ -95,7 +95,7 @@ class Feed(csvfeed.BarFeed):
     :type maxLen: int.
     """
 
-    def __init__(self, frequency, timezone=None, maxLen=None):
+    def __init__(self, frequency=bar.Frequency.DAY, timezone=None, maxLen=None):
        
         
         super(Feed, self).__init__(frequency, maxLen)
