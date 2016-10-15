@@ -406,7 +406,7 @@ class BaseStrategy(object):
 #
 #################################################
 
-    def optionOrder(self, instrument, quantity, onClose=False, goodTillCanceled=False, allOrNone=False, right, strike, expiry):
+    def optionOrder(self, instrument, quantity, right, strike, expiry, onClose=False, goodTillCanceled=False, allOrNone=False):
         """Submits a market order.
 
         :param instrument: Instrument identifier.
@@ -424,16 +424,16 @@ class BaseStrategy(object):
 
         ret = None
         if quantity > 0:
-            ret = self.getBroker().createMarketOrder(pyalgotrade.broker.Order.Action.BUY, instrument, quantity, onClose)
+            ret = self.getBroker().createMarketOrder(pyalgotrade.broker.Order.Action.BUY, instrument, quantity, right, strike, expiry, onClose)
         elif quantity < 0:
-            ret = self.getBroker().createMarketOrder(pyalgotrade.broker.Order.Action.SELL, instrument, quantity*-1, onClose)
+            ret = self.getBroker().createMarketOrder(pyalgotrade.broker.Order.Action.SELL, instrument, quantity*-1, right, strike, expiry, onClose)
         if ret:
             ret.setGoodTillCanceled(goodTillCanceled)
             ret.setAllOrNone(allOrNone)
             self.getBroker().submitOrder(ret)
         return ret
 
-    def optionLimitOrder(self, instrument, limitPrice, quantity, goodTillCanceled=False, allOrNone=False):
+    def optionLimitOrder(self, instrument, limitPrice, quantity, right, strike, expiry, goodTillCanceled=False, allOrNone=False):
         """Submits a limit order.
 
         :param instrument: Instrument identifier.
@@ -451,16 +451,16 @@ class BaseStrategy(object):
 
         ret = None
         if quantity > 0:
-            ret = self.getBroker().createLimitOrder(pyalgotrade.broker.Order.Action.BUY, instrument, limitPrice, quantity)
+            ret = self.getBroker().createLimitOrder(pyalgotrade.broker.Order.Action.BUY, instrument, limitPrice, quantity, right, strike, expiry)
         elif quantity < 0:
-            ret = self.getBroker().createLimitOrder(pyalgotrade.broker.Order.Action.SELL, instrument, limitPrice, quantity*-1)
+            ret = self.getBroker().createLimitOrder(pyalgotrade.broker.Order.Action.SELL, instrument, limitPrice, quantity*-1, right, strike, expiry)
         if ret:
             ret.setGoodTillCanceled(goodTillCanceled)
             ret.setAllOrNone(allOrNone)
             self.getBroker().submitOrder(ret)
         return ret
 
-    def optionStopOrder(self, instrument, stopPrice, quantity, goodTillCanceled=False, allOrNone=False):
+    def optionStopOrder(self, instrument, stopPrice, quantity, right, strike, expiry, goodTillCanceled=False, allOrNone=False):
         """Submits a stop order.
 
         :param instrument: Instrument identifier.
@@ -487,7 +487,7 @@ class BaseStrategy(object):
             self.getBroker().submitOrder(ret)
         return ret
 
-    def optionStopLimitOrder(self, instrument, stopPrice, limitPrice, quantity, goodTillCanceled=False, allOrNone=False):
+    def optionStopLimitOrder(self, instrument, stopPrice, limitPrice, quantity, right, strike, expiry, goodTillCanceled=False, allOrNone=False):
         """Submits a stop limit order.
 
         :param instrument: Instrument identifier.
@@ -507,16 +507,16 @@ class BaseStrategy(object):
 
         ret = None
         if quantity > 0:
-            ret = self.getBroker().createStopLimitOrder(pyalgotrade.broker.Order.Action.BUY, instrument, stopPrice, limitPrice, quantity)
+            ret = self.getBroker().createStopLimitOrder(pyalgotrade.broker.Order.Action.BUY, instrument, stopPrice, limitPrice, quantity, right, strike, expiry)
         elif quantity < 0:
-            ret = self.getBroker().createStopLimitOrder(pyalgotrade.broker.Order.Action.SELL, instrument, stopPrice, limitPrice, quantity*-1)
+            ret = self.getBroker().createStopLimitOrder(pyalgotrade.broker.Order.Action.SELL, instrument, stopPrice, limitPrice, quantity*-1, right, strike, expiry)
         if ret:
             ret.setGoodTillCanceled(goodTillCanceled)
             ret.setAllOrNone(allOrNone)
             self.getBroker().submitOrder(ret)
         return ret
 
-    def enterOptionLong(self, instrument, quantity, goodTillCanceled=False, allOrNone=False):
+    def enterOptionLong(self, instrument, quantity, right, strike, expiry, goodTillCanceled=False, allOrNone=False):
         """Generates a buy :class:`pyalgotrade.broker.MarketOrder` to enter a long position.
 
         :param instrument: Instrument identifier.
@@ -530,9 +530,9 @@ class BaseStrategy(object):
         :rtype: The :class:`pyalgotrade.strategy.position.Position` entered.
         """
 
-        return pyalgotrade.strategy.position.LongOptionPosition(self, instrument, None, None, quantity, goodTillCanceled, allOrNone)
+        return pyalgotrade.strategy.position.LongOptionPosition(self, instrument, None, None, quantity, right, strike, expiry, goodTillCanceled, allOrNone)
 
-    def enterOptionShort(self, instrument, quantity, goodTillCanceled=False, allOrNone=False):
+    def enterOptionShort(self, instrument, quantity, right, strike, expiry, goodTillCanceled=False, allOrNone=False):
         """Generates a sell short :class:`pyalgotrade.broker.MarketOrder` to enter a short position.
 
         :param instrument: Instrument identifier.
@@ -546,9 +546,9 @@ class BaseStrategy(object):
         :rtype: The :class:`pyalgotrade.strategy.position.Position` entered.
         """
 
-        return pyalgotrade.strategy.position.ShortPosition(self, instrument, None, None, quantity, goodTillCanceled, allOrNone)
+        return pyalgotrade.strategy.position.ShortPosition(self, instrument, None, None, quantity, right, strike, expiry, goodTillCanceled, allOrNone)
 
-    def enterOptionLongLimit(self, instrument, limitPrice, quantity, goodTillCanceled=False, allOrNone=False):
+    def enterOptionLongLimit(self, instrument, limitPrice, quantity, right, strike, expiry, goodTillCanceled=False, allOrNone=False):
         """Generates a buy :class:`pyalgotrade.broker.LimitOrder` to enter a long position.
 
         :param instrument: Instrument identifier.
@@ -566,7 +566,7 @@ class BaseStrategy(object):
 
         return pyalgotrade.strategy.position.LongPosition(self, instrument, None, limitPrice, quantity, goodTillCanceled, allOrNone)
 
-    def enterOptionShortLimit(self, instrument, limitPrice, quantity, goodTillCanceled=False, allOrNone=False):
+    def enterOptionShortLimit(self, instrument, limitPrice, quantity, right, strike, expiry, goodTillCanceled=False, allOrNone=False):
         """Generates a sell short :class:`pyalgotrade.broker.LimitOrder` to enter a short position.
 
         :param instrument: Instrument identifier.
@@ -582,9 +582,9 @@ class BaseStrategy(object):
         :rtype: The :class:`pyalgotrade.strategy.position.Position` entered.
         """
 
-        return pyalgotrade.strategy.position.ShortPosition(self, instrument, None, limitPrice, quantity, goodTillCanceled, allOrNone)
+        return pyalgotrade.strategy.position.ShortPosition(self, instrument, None, limitPrice, quantity, right, strike, expiry, goodTillCanceled, allOrNone)
 
-    def enterOptionLongStop(self, instrument, stopPrice, quantity, goodTillCanceled=False, allOrNone=False):
+    def enterOptionLongStop(self, instrument, stopPrice, quantity, right, strike, expiry, goodTillCanceled=False, allOrNone=False):
         """Generates a buy :class:`pyalgotrade.broker.StopOrder` to enter a long position.
 
         :param instrument: Instrument identifier.
@@ -600,9 +600,9 @@ class BaseStrategy(object):
         :rtype: The :class:`pyalgotrade.strategy.position.Position` entered.
         """
 
-        return pyalgotrade.strategy.position.LongPosition(self, instrument, stopPrice, None, quantity, goodTillCanceled, allOrNone)
+        return pyalgotrade.strategy.position.LongPosition(self, instrument, stopPrice, None, quantity, right, strike, expiry, goodTillCanceled, allOrNone)
 
-    def enterOptionShortStop(self, instrument, stopPrice, quantity, goodTillCanceled=False, allOrNone=False):
+    def enterOptionShortStop(self, instrument, stopPrice, quantity, right, strike, expiry, goodTillCanceled=False, allOrNone=False):
         """Generates a sell short :class:`pyalgotrade.broker.StopOrder` to enter a short position.
 
         :param instrument: Instrument identifier.
@@ -618,9 +618,9 @@ class BaseStrategy(object):
         :rtype: The :class:`pyalgotrade.strategy.position.Position` entered.
         """
 
-        return pyalgotrade.strategy.position.ShortPosition(self, instrument, stopPrice, None, quantity, goodTillCanceled, allOrNone)
+        return pyalgotrade.strategy.position.ShortPosition(self, instrument, stopPrice, None, quantity, right, strike, expiry, goodTillCanceled, allOrNone)
 
-    def enterOptionLongStopLimit(self, instrument, stopPrice, limitPrice, quantity, goodTillCanceled=False, allOrNone=False):
+    def enterOptionLongStopLimit(self, instrument, stopPrice, limitPrice, quantity, right, strike, expiry, goodTillCanceled=False, allOrNone=False):
         """Generates a buy :class:`pyalgotrade.broker.StopLimitOrder` order to enter a long position.
 
         :param instrument: Instrument identifier.
@@ -638,9 +638,9 @@ class BaseStrategy(object):
         :rtype: The :class:`pyalgotrade.strategy.position.Position` entered.
         """
 
-        return pyalgotrade.strategy.position.LongPosition(self, instrument, stopPrice, limitPrice, quantity, goodTillCanceled, allOrNone)
+        return pyalgotrade.strategy.position.LongPosition(self, instrument, stopPrice, limitPrice, quantity, right, strike, expiry, goodTillCanceled, allOrNone)
 
-    def enterOptionShortStopLimit(self, instrument, stopPrice, limitPrice, quantity, goodTillCanceled=False, allOrNone=False):
+    def enterOptionShortStopLimit(self, instrument, stopPrice, limitPrice, quantity, right, strike, expiry, goodTillCanceled=False, allOrNone=False):
         """Generates a sell short :class:`pyalgotrade.broker.StopLimitOrder` order to enter a short position.
 
         :param instrument: Instrument identifier.
@@ -658,7 +658,7 @@ class BaseStrategy(object):
         :rtype: The :class:`pyalgotrade.strategy.position.Position` entered.
         """
 
-        return pyalgotrade.strategy.position.ShortPosition(self, instrument, stopPrice, limitPrice, quantity, goodTillCanceled, allOrNone)
+        return pyalgotrade.strategy.position.ShortPosition(self, instrument, stopPrice, limitPrice, quantity, right, strike, expiry, goodTillCanceled, allOrNone)
 
     def onEnterOk(self, position):
         """Override (optional) to get notified when the order submitted to enter a position was filled. The default implementation is empty.
