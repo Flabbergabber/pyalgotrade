@@ -551,7 +551,7 @@ class Broker(broker.Broker):
 #section des options
 ################################################
 
-    def createOptionOrder(self, action, instrument, quantity, onClose=False, right, strike, expiry):
+    def createOptionOrder(self, action, instrument, quantity, right, strike, expiry, onClose=False):
         # In order to properly support market-on-close with intraday feeds I'd need to know about different
         # exchange/market trading hours and support specifying routing an order to a specific exchange/market.
         # Even if I had all this in place it would be a problem while paper-trading with a live feed since
@@ -559,16 +559,16 @@ class Broker(broker.Broker):
         if onClose is True and self.__barFeed.isIntraday():
             raise Exception("Market-on-close not supported with intraday feeds")
 
-        return OptionOrder(action, instrument, quantity, onClose, self.getInstrumentTraits(instrument) , right, strike, expiry)
+        return OptionOrder(action, instrument, quantity, right, strike, expiry, onClose, self.getInstrumentTraits(instrument))
     
     def createOptionLimitOrder(self, action, instrument, limitPrice, quantity, right, strike, expiry):
-        return OptionLimitOrder(action, instrument, limitPrice, quantity, self.getInstrumentTraits(instrument), right, strike, expiry)
+        return OptionLimitOrder(action, instrument, limitPrice, quantity, right, strike, expiry, self.getInstrumentTraits(instrument))
 
     def createOptionStopOrder(self, action, instrument, stopPrice, quantity, right, strike, expiry):
-        return OptionStopOrder(action, instrument, stopPrice, quantity, self.getInstrumentTraits(instrument), right, strike, expiry)
+        return OptionStopOrder(action, instrument, stopPrice, quantity, right, strike, expiry, self.getInstrumentTraits(instrument))
 
     def createOptionStopLimitOrder(self, action, instrument, stopPrice, limitPrice, quantity, right, strike, expiry):
-        return OptionStopLimitOrder(action, instrument, stopPrice, limitPrice, quantity, self.getInstrumentTraits(instrument), right, strike, expiry)
+        return OptionStopLimitOrder(action, instrument, stopPrice, limitPrice, quantity, right, strike, expiry, self.getInstrumentTraits(instrument))
 
 
     def cancelOrder(self, order):

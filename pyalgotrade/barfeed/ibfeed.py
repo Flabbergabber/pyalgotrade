@@ -67,7 +67,7 @@ class RowParser(csvfeed.RowParser):
         return ret
 
     def getFieldNames(self):
-        return ["Date", "OPEN", "HIGH", "LOW", "Close", "VOLUME"]
+        return ["Date","OPEN","HIGH","LOW","Close","NUMBER_TICKS","VOLUME","VALUE"]
 
     def getDelimiter(self):
         return ";"
