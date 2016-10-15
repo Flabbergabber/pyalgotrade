@@ -11,7 +11,7 @@ class MyStrategy(strategy.BacktestingStrategy):
         self.__position = None
         self.__instrument = instrument
         # We'll use adjusted close values instead of regular close values.
-        self.setUseAdjustedValues(True)
+        self.setUseAdjustedValues(False)
         self.__sma = ma.SMA(feed[instrument].getPriceDataSeries(), smaPeriod)
 
     def onEnterOk(self, position):
