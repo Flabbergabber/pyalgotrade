@@ -507,7 +507,7 @@ class LongOptionPosition(Position):
         else:
             assert(False)
 
-        super(LongPosition, self).__init__(strategy, entryOrder, goodTillCanceled, allOrNone)
+        super(LongOptionPosition, self).__init__(strategy, entryOrder, goodTillCanceled, allOrNone)
 
     def buildExitOrder(self, stopPrice, limitPrice):
         quantity = self.getShares()
