@@ -406,7 +406,7 @@ class BaseStrategy(object):
 #
 #################################################
 
-    def optionOrder(self, instrument, quantity, onClose=False, goodTillCanceled=False, allOrNone=False):
+    def optionOrder(self, instrument, quantity, onClose=False, goodTillCanceled=False, allOrNone=False, right, strike, expiry):
         """Submits a market order.
 
         :param instrument: Instrument identifier.
