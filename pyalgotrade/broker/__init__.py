@@ -126,6 +126,10 @@ class Order(object):
         LIMIT = 2
         STOP = 3
         STOP_LIMIT = 4
+        OPTION_MARKET = 5
+        OPTION_LIMIT = 6
+        OPTION_STOP = 7
+        OPTION_STOP_LIMIT = 8
         NEXT_CUSTOM_TYPE = 1000
 
     # Valid state transitions.
@@ -136,7 +140,7 @@ class Order(object):
         State.PARTIALLY_FILLED: [State.PARTIALLY_FILLED, State.FILLED, State.CANCELED],
     }
 
-    def __init__(self, type_, action, instrument, quantity, instrumentTraits, right, strike, expiry):
+    def __init__(self, type_, action, instrument, quantity, instrumentTraits):
         if quantity is not None and quantity <= 0:
             raise Exception("Invalid quantity")
 
@@ -154,9 +158,7 @@ class Order(object):
         self.__allOrNone = False
         self.__state = Order.State.INITIAL
         self.__submitDateTime = None
-        self.__right = right
-        self.__strike = strike
-        self.__expiry = expiry
+
 
     # This is to check that orders are not compared directly. order ids should be compared.
 #    def __eq__(self, other):
@@ -276,25 +278,6 @@ class Order(object):
     def getAvgFillPrice(self):
         """Returns the average price of the shares that have been executed, or None if nothing has been filled."""
         return self.__avgFillPrice
-
-## OPTION
-    def getRight(self):
-        return self.__right
-        
-    def setRight(self, right):
-        self.__right = right
-    
-    def getStrike(self):
-        return self.__strike
-        
-    def setStrike(self, strike):
-        self.__strike = strike
-        
-    def getExpiry(self):
-        return self.__expiry
-        
-    def setExpiry(self, expiry):
-        self.__expiry = expiry
         
 ## FINOPTION
 
@@ -390,7 +373,7 @@ class MarketOrder(Order):
     """
 
     def __init__(self, action, instrument, quantity, onClose, instrumentTraits):
-        super(MarketOrder, self).__init__(Order.Type.MARKET, action, instrument, quantity, instrumentTraits,None,None,None)
+        super(MarketOrder, self).__init__(Order.Type.MARKET, action, instrument, quantity, instrumentTraits)
         self.__onClose = onClose
 
     def getFillOnClose(self):
@@ -407,7 +390,7 @@ class LimitOrder(Order):
     """
 
     def __init__(self, action, instrument, limitPrice, quantity, instrumentTraits):
-        super(LimitOrder, self).__init__(Order.Type.LIMIT, action, instrument, quantity, instrumentTraits,None,None,None)
+        super(LimitOrder, self).__init__(Order.Type.LIMIT, action, instrument, quantity, instrumentTraits)
         self.__limitPrice = limitPrice
 
     def getLimitPrice(self):
@@ -424,7 +407,7 @@ class StopOrder(Order):
     """
 
     def __init__(self, action, instrument, stopPrice, quantity, instrumentTraits):
-        super(StopOrder, self).__init__(Order.Type.STOP, action, instrument, quantity, instrumentTraits,None,None,None)
+        super(StopOrder, self).__init__(Order.Type.STOP, action, instrument, quantity, instrumentTraits)
         self.__stopPrice = stopPrice
 
     def getStopPrice(self):
@@ -441,7 +424,7 @@ class StopLimitOrder(Order):
     """
 
     def __init__(self, action, instrument, stopPrice, limitPrice, quantity, instrumentTraits):
-        super(StopLimitOrder, self).__init__(Order.Type.STOP_LIMIT, action, instrument, quantity, instrumentTraits,None,None,None)
+        super(StopLimitOrder, self).__init__(Order.Type.STOP_LIMIT, action, instrument, quantity, instrumentTraits)
         self.__stopPrice = stopPrice
         self.__limitPrice = limitPrice
 
@@ -461,23 +444,48 @@ class StopLimitOrder(Order):
 ##########################################
 
 class OptionOrder(Order):
-    """Base class for market orders.
+    """Base class for Option orders.
 
     .. note::
 
         This is a base class and should not be used directly.
     """
+    
+    class Right(object):
+        PUT = 1
+        CALL = 2
 
     def __init__(self, action, instrument, quantity, onClose, instrumentTraits, right, strike, expiry):
         super(MarketOrder, self).__init__(Order.Type.MARKET, action, instrument, quantity, instrumentTraits)
         self.__onClose = onClose
+        self.__right = right
+        self.__strike = strike
+        self.__expiry = expiry
 
     def getFillOnClose(self):
         """Returns True if the order should be filled as close to the closing price as possible (Market-On-Close order)."""
         return self.__onClose
 
+    ## OPTION
+    def getRight(self):
+        return self.__right
+        
+    def setRight(self, right):
+        self.__right = right
+    
+    def getStrike(self):
+        return self.__strike
+        
+    def setStrike(self, strike):
+        self.__strike = strike
+        
+    def getExpiry(self):
+        return self.__expiry
+        
+    def setExpiry(self, expiry):
+        self.__expiry = expiry
 
-class OptionLimitOrder(Order):
+class OptionLimitOrder(OptionOrder):
     """Base class for limit orders.
 
     .. note::
@@ -494,7 +502,7 @@ class OptionLimitOrder(Order):
         return self.__limitPrice
 
 
-class OptionStopOrder(Order):
+class OptionStopOrder(OptionOrder):
     """Base class for stop orders.
 
     .. note::
@@ -511,7 +519,7 @@ class OptionStopOrder(Order):
         return self.__stopPrice
 
 
-class OptionStopLimitOrder(Order):
+class OptionStopLimitOrder(OptionOrder):
     """Base class for stop limit orders.
 
     .. note::
@@ -534,7 +542,7 @@ class OptionStopLimitOrder(Order):
         
 ## FIN OPTION
 
-class OrderExecutionInfo(object):
+class OrderExecutionInfo(OptionOrder):
     """Execution information for an order."""
     def __init__(self, price, quantity, commission, dateTime):
         self.__price = price

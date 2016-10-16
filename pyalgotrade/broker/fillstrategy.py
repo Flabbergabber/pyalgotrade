@@ -510,10 +510,10 @@ class DefaultStrategy(FillStrategy):
 
         return ret
         
-###############################################
-#   OPTION PART
-#
-##############################################
+    ###############################################
+    #   OPTION PART
+    #
+    ##############################################
     def fillOptionOrder(self, broker_, order, bar):
         # Calculate the fill size for the order.
         fillSize = self.__calculateFillSize(broker_, order, bar)

@@ -401,6 +401,7 @@ class BaseStrategy(object):
         return pyalgotrade.strategy.position.ShortPosition(self, instrument, stopPrice, limitPrice, quantity, goodTillCanceled, allOrNone)
 
 
+
 ################################################
 #OPTION PART
 #
@@ -413,6 +414,15 @@ class BaseStrategy(object):
         :type instrument: string.
         :param quantity: The amount of shares. Positive means buy, negative means sell.
         :type quantity: int/float.
+        
+        :param right: PUT or CALL.
+        :type right: Right.
+        :param strike: strike price.
+        :type strike: float.
+        :param expiry: expiry price.
+        :type expiry: date.
+        
+        
         :param onClose: True if the order should be filled as close to the closing price as possible (Market-On-Close order). Default is False.
         :type onClose: boolean.
         :param goodTillCanceled: True if the order is good till canceled. If False then the order gets automatically canceled when the session closes.
@@ -442,6 +452,15 @@ class BaseStrategy(object):
         :type limitPrice: float.
         :param quantity: The amount of shares. Positive means buy, negative means sell.
         :type quantity: int/float.
+        
+        :param right: PUT or CALL.
+        :type right: Right.
+        :param strike: strike price.
+        :type strike: float.
+        :param expiry: expiry price.
+        :type expiry: date.
+        
+        
         :param goodTillCanceled: True if the order is good till canceled. If False then the order gets automatically canceled when the session closes.
         :type goodTillCanceled: boolean.
         :param allOrNone: True if the order should be completely filled or not at all.
@@ -469,6 +488,14 @@ class BaseStrategy(object):
         :type stopPrice: float.
         :param quantity: The amount of shares. Positive means buy, negative means sell.
         :type quantity: int/float.
+        
+        :param right: PUT or CALL.
+        :type right: Right.
+        :param strike: strike price.
+        :type strike: float.
+        :param expiry: expiry price.
+        :type expiry: date.
+        
         :param goodTillCanceled: True if the order is good till canceled. If False then the order gets automatically canceled when the session closes.
         :type goodTillCanceled: boolean.
         :param allOrNone: True if the order should be completely filled or not at all.
@@ -498,6 +525,15 @@ class BaseStrategy(object):
         :type limitPrice: float.
         :param quantity: The amount of shares. Positive means buy, negative means sell.
         :type quantity: int/float.
+        
+        :param right: PUT or CALL.
+        :type right: Right.
+        :param strike: strike price.
+        :type strike: float.
+        :param expiry: expiry price.
+        :type expiry: date.
+        
+        
         :param goodTillCanceled: True if the order is good till canceled. If False then the order gets automatically canceled when the session closes.
         :type goodTillCanceled: boolean.
         :param allOrNone: True if the order should be completely filled or not at all.
@@ -523,6 +559,40 @@ class BaseStrategy(object):
         :type instrument: string.
         :param quantity: Entry order quantity.
         :type quantity: int.
+        
+        :param right: PUT or CALL.
+        :type right: Right.
+        :param strike: strike price.
+        :type strike: float.
+        :param expiry: expiry price.
+        :type expiry: date.
+        
+        
+        :param goodTillCanceled: True if the entry order is good till canceled. If False then the order gets automatically canceled when the session closes.
+        :type goodTillCanceled: boolean.
+        :param allOrNone: True if the orders should be completely filled or not at all.
+        :type allOrNone: boolean.
+        :rtype: The :class:`pyalgotrade.strategy.position.Position` entered.
+        """
+
+        return pyalgotrade.strategy.position.LongOptionPosition(self, instrument, None, None, quantity, right, strike, expiry, goodTillCanceled, allOrNone)
+    
+    def enterOptionLongCall(self, instrument, quantity, right, strike, expiry, goodTillCanceled=False, allOrNone=False):
+        """Generates a buy :class:`pyalgotrade.broker.MarketOrder` to enter a long position.
+
+        :param instrument: Instrument identifier.
+        :type instrument: string.
+        :param quantity: Entry order quantity.
+        :type quantity: int.
+        
+        :param right: PUT or CALL.
+        :type right: Right.
+        :param strike: strike price.
+        :type strike: float.
+        :param expiry: expiry price.
+        :type expiry: date.
+        
+        
         :param goodTillCanceled: True if the entry order is good till canceled. If False then the order gets automatically canceled when the session closes.
         :type goodTillCanceled: boolean.
         :param allOrNone: True if the orders should be completely filled or not at all.
@@ -539,6 +609,14 @@ class BaseStrategy(object):
         :type instrument: string.
         :param quantity: Entry order quantity.
         :type quantity: int.
+        
+        :param right: PUT or CALL.
+        :type right: Right.
+        :param strike: strike price.
+        :type strike: float.
+        :param expiry: expiry price.
+        :type expiry: date.
+        
         :param goodTillCanceled: True if the entry order is good till canceled. If False then the order gets automatically canceled when the session closes.
         :type goodTillCanceled: boolean.
         :param allOrNone: True if the orders should be completely filled or not at all.
@@ -546,7 +624,7 @@ class BaseStrategy(object):
         :rtype: The :class:`pyalgotrade.strategy.position.Position` entered.
         """
 
-        return pyalgotrade.strategy.position.ShortPosition(self, instrument, None, None, quantity, right, strike, expiry, goodTillCanceled, allOrNone)
+        return pyalgotrade.strategy.position.ShortOptionPosition(self, instrument, None, None, quantity, right, strike, expiry, goodTillCanceled, allOrNone)
 
     def enterOptionLongLimit(self, instrument, limitPrice, quantity, right, strike, expiry, goodTillCanceled=False, allOrNone=False):
         """Generates a buy :class:`pyalgotrade.broker.LimitOrder` to enter a long position.
@@ -557,6 +635,14 @@ class BaseStrategy(object):
         :type limitPrice: float.
         :param quantity: Entry order quantity.
         :type quantity: int.
+        
+        :param right: PUT or CALL.
+        :type right: Right.
+        :param strike: strike price.
+        :type strike: float.
+        :param expiry: expiry price.
+        :type expiry: date.
+        
         :param goodTillCanceled: True if the entry order is good till canceled. If False then the order gets automatically canceled when the session closes.
         :type goodTillCanceled: boolean.
         :param allOrNone: True if the orders should be completely filled or not at all.
@@ -564,7 +650,7 @@ class BaseStrategy(object):
         :rtype: The :class:`pyalgotrade.strategy.position.Position` entered.
         """
 
-        return pyalgotrade.strategy.position.LongPosition(self, instrument, None, limitPrice, quantity, goodTillCanceled, allOrNone)
+        return pyalgotrade.strategy.position.LongOptionPosition(self, instrument, None, limitPrice, quantity, right, strike, expiry, goodTillCanceled, allOrNone)
 
     def enterOptionShortLimit(self, instrument, limitPrice, quantity, right, strike, expiry, goodTillCanceled=False, allOrNone=False):
         """Generates a sell short :class:`pyalgotrade.broker.LimitOrder` to enter a short position.
@@ -575,6 +661,14 @@ class BaseStrategy(object):
         :type limitPrice: float.
         :param quantity: Entry order quantity.
         :type quantity: int.
+        
+        :param right: PUT or CALL.
+        :type right: Right.
+        :param strike: strike price.
+        :type strike: float.
+        :param expiry: expiry price.
+        :type expiry: date.
+        
         :param goodTillCanceled: True if the entry order is good till canceled. If False then the order gets automatically canceled when the session closes.
         :type goodTillCanceled: boolean.
         :param allOrNone: True if the orders should be completely filled or not at all.
@@ -582,7 +676,7 @@ class BaseStrategy(object):
         :rtype: The :class:`pyalgotrade.strategy.position.Position` entered.
         """
 
-        return pyalgotrade.strategy.position.ShortPosition(self, instrument, None, limitPrice, quantity, right, strike, expiry, goodTillCanceled, allOrNone)
+        return pyalgotrade.strategy.position.ShortOptionPosition(self, instrument, None, limitPrice, quantity, right, strike, expiry, goodTillCanceled, allOrNone)
 
     def enterOptionLongStop(self, instrument, stopPrice, quantity, right, strike, expiry, goodTillCanceled=False, allOrNone=False):
         """Generates a buy :class:`pyalgotrade.broker.StopOrder` to enter a long position.
@@ -593,6 +687,14 @@ class BaseStrategy(object):
         :type stopPrice: float.
         :param quantity: Entry order quantity.
         :type quantity: int.
+        
+        :param right: PUT or CALL.
+        :type right: Right.
+        :param strike: strike price.
+        :type strike: float.
+        :param expiry: expiry price.
+        :type expiry: date.
+        
         :param goodTillCanceled: True if the entry order is good till canceled. If False then the order gets automatically canceled when the session closes.
         :type goodTillCanceled: boolean.
         :param allOrNone: True if the orders should be completely filled or not at all.
@@ -600,7 +702,7 @@ class BaseStrategy(object):
         :rtype: The :class:`pyalgotrade.strategy.position.Position` entered.
         """
 
-        return pyalgotrade.strategy.position.LongPosition(self, instrument, stopPrice, None, quantity, right, strike, expiry, goodTillCanceled, allOrNone)
+        return pyalgotrade.strategy.position.LongOptionPosition(self, instrument, stopPrice, None, quantity, right, strike, expiry, goodTillCanceled, allOrNone)
 
     def enterOptionShortStop(self, instrument, stopPrice, quantity, right, strike, expiry, goodTillCanceled=False, allOrNone=False):
         """Generates a sell short :class:`pyalgotrade.broker.StopOrder` to enter a short position.
@@ -611,6 +713,14 @@ class BaseStrategy(object):
         :type stopPrice: float.
         :param quantity: Entry order quantity.
         :type quantity: int.
+        
+        :param right: PUT or CALL.
+        :type right: Right.
+        :param strike: strike price.
+        :type strike: float.
+        :param expiry: expiry price.
+        :type expiry: date.
+        
         :param goodTillCanceled: True if the entry order is good till canceled. If False then the order gets automatically canceled when the session closes.
         :type goodTillCanceled: boolean.
         :param allOrNone: True if the orders should be completely filled or not at all.
@@ -618,7 +728,7 @@ class BaseStrategy(object):
         :rtype: The :class:`pyalgotrade.strategy.position.Position` entered.
         """
 
-        return pyalgotrade.strategy.position.ShortPosition(self, instrument, stopPrice, None, quantity, right, strike, expiry, goodTillCanceled, allOrNone)
+        return pyalgotrade.strategy.position.ShortOptionPosition(self, instrument, stopPrice, None, quantity, right, strike, expiry, goodTillCanceled, allOrNone)
 
     def enterOptionLongStopLimit(self, instrument, stopPrice, limitPrice, quantity, right, strike, expiry, goodTillCanceled=False, allOrNone=False):
         """Generates a buy :class:`pyalgotrade.broker.StopLimitOrder` order to enter a long position.
@@ -631,6 +741,14 @@ class BaseStrategy(object):
         :type limitPrice: float.
         :param quantity: Entry order quantity.
         :type quantity: int.
+        
+        :param right: PUT or CALL.
+        :type right: Right.
+        :param strike: strike price.
+        :type strike: float.
+        :param expiry: expiry price.
+        :type expiry: date.
+        
         :param goodTillCanceled: True if the entry order is good till canceled. If False then the order gets automatically canceled when the session closes.
         :type goodTillCanceled: boolean.
         :param allOrNone: True if the orders should be completely filled or not at all.
@@ -638,7 +756,7 @@ class BaseStrategy(object):
         :rtype: The :class:`pyalgotrade.strategy.position.Position` entered.
         """
 
-        return pyalgotrade.strategy.position.LongPosition(self, instrument, stopPrice, limitPrice, quantity, right, strike, expiry, goodTillCanceled, allOrNone)
+        return pyalgotrade.strategy.position.LongOptionPosition(self, instrument, stopPrice, limitPrice, quantity, right, strike, expiry, goodTillCanceled, allOrNone)
 
     def enterOptionShortStopLimit(self, instrument, stopPrice, limitPrice, quantity, right, strike, expiry, goodTillCanceled=False, allOrNone=False):
         """Generates a sell short :class:`pyalgotrade.broker.StopLimitOrder` order to enter a short position.
@@ -651,6 +769,14 @@ class BaseStrategy(object):
         :type limitPrice: float.
         :param quantity: Entry order quantity.
         :type quantity: int.
+        
+        :param right: PUT or CALL.
+        :type right: Right.
+        :param strike: strike price.
+        :type strike: float.
+        :param expiry: expiry price.
+        :type expiry: date.
+        
         :param goodTillCanceled: True if the entry order is good till canceled. If False then the order gets automatically canceled when the session closes.
         :type goodTillCanceled: boolean.
         :param allOrNone: True if the orders should be completely filled or not at all.
@@ -658,7 +784,7 @@ class BaseStrategy(object):
         :rtype: The :class:`pyalgotrade.strategy.position.Position` entered.
         """
 
-        return pyalgotrade.strategy.position.ShortPosition(self, instrument, stopPrice, limitPrice, quantity, right, strike, expiry, goodTillCanceled, allOrNone)
+        return pyalgotrade.strategy.position.ShortOptionPosition(self, instrument, stopPrice, limitPrice, quantity, right, strike, expiry, goodTillCanceled, allOrNone)
 
     def onEnterOk(self, position):
         """Override (optional) to get notified when the order submitted to enter a position was filled. The default implementation is empty.
@@ -752,7 +878,7 @@ class BaseStrategy(object):
             # Unlink the order from the position if its not active anymore.
             if not order.isActive():
                 self.unregisterPositionOrder(pos, order)
-
+            #TODO
             pos.onOrderEvent(orderEvent)
 
     def __onBars(self, dateTime, bars):

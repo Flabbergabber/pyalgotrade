@@ -167,27 +167,27 @@ class StopLimitOrder(broker.StopLimitOrder, BacktestingOrder):
 #
 #############################################################################
 class OptionOrder(broker.OptionOrder, BacktestingOrder):
-    def __init__(self, action, instrument, quantity, onClose, instrumentTraits):
+    def __init__(self, action, instrument, quantity, right, strike, expiry,  onClose, instrumentTraits):
         super(OptionOrder, self).__init__(action, instrument, quantity, onClose, instrumentTraits)
 
     def process(self, broker_, bar_):
         return broker_.getFillStrategy().fillOptionOrder(broker_, self, bar_)
 
 class OptionLimitOrder(broker.LimitOrder, BacktestingOrder):
-    def __init__(self, action, instrument, limitPrice, quantity, instrumentTraits):
+    def __init__(self, action, instrument, limitPrice, quantity, right, strike, expiry,  instrumentTraits):
         super(LimitOrder, self).__init__(action, instrument, limitPrice, quantity, instrumentTraits)
 
     def process(self, broker_, bar_):
-        return broker_.getFillStrategy().fillLimitOrder(broker_, self, bar_)
+        return broker_.getFillStrategy().fillOptionLimitOrder(broker_, self, bar_)
 
 
 class OptionStopOrder(broker.StopOrder, BacktestingOrder):
-    def __init__(self, action, instrument, stopPrice, quantity, instrumentTraits):
+    def __init__(self, action, instrument, stopPrice, quantity, right, strike, expiry,  instrumentTraits):
         super(StopOrder, self).__init__(action, instrument, stopPrice, quantity, instrumentTraits)
         self.__stopHit = False
 
     def process(self, broker_, bar_):
-        return broker_.getFillStrategy().fillStopOrder(broker_, self, bar_)
+        return broker_.getFillStrategy().fillOptionStopOrder(broker_, self, bar_)
 
     def setStopHit(self, stopHit):
         self.__stopHit = stopHit
@@ -214,7 +214,7 @@ class OptionStopLimitOrder(broker.StopLimitOrder, BacktestingOrder):
         return self.__stopHit
 
     def process(self, broker_, bar_):
-        return broker_.getFillStrategy().fillStopLimitOrder(broker_, self, bar_)
+        return broker_.getFillStrategy().fillOptionStopLimitOrder(broker_, self, bar_)
 
 #### FIN OPTION
 
@@ -247,6 +247,7 @@ class Broker(broker.Broker):
             self.__commission = commission
         self.__shares = {}
         self.__activeOrders = {}
+        self.__activeOptionsOrders = {}
         self.__useAdjustedValues = False
         self.__fillStrategy = fillstrategy.DefaultStrategy()
         self.__logger = logger.getLogger(Broker.LOGGER_NAME)
@@ -506,6 +507,13 @@ class Broker(broker.Broker):
         for order in ordersToProcess:
             # This may trigger orders to be added/removed from __activeOrders.
             self.__onBarsImpl(order, bars)
+            
+        
+        ordersToProcess = self.__activeOptionsOrders.values()
+
+        for optionOrder in ordersToProcess:
+            # This may trigger orders to be added/removed from __activeOrders.
+            self.__onBarsImpl(optionOrder, bars)
 
     def start(self):
         super(Broker, self).start()

@@ -495,15 +495,15 @@ class ShortPosition(Position):
 #### OPTION
         
 class LongOptionPosition(Position):
-    def __init__(self, strategy, instrument, stopPrice, limitPrice, quantity, goodTillCanceled, allOrNone):
+    def __init__(self, strategy, instrument, stopPrice, limitPrice, quantity, right, strike, expiry, goodTillCanceled, allOrNone):
         if limitPrice is None and stopPrice is None:
-            entryOrder = strategy.getBroker().createOptionOrder(broker.Order.Action.BUY, instrument, quantity, False)
+            entryOrder = strategy.getBroker().createOptionOrder(broker.Order.Action.BUY, instrument, quantity, right, strike, expiry, False)
         elif limitPrice is not None and stopPrice is None:
-            entryOrder = strategy.getBroker().createOptionLimitOrder(broker.Order.Action.BUY, instrument, limitPrice, quantity)
+            entryOrder = strategy.getBroker().createOptionLimitOrder(broker.Order.Action.BUY, instrument, limitPrice, quantity, right, strike, expiry)
         elif limitPrice is None and stopPrice is not None:
-            entryOrder = strategy.getBroker().createOptionStopOrder(broker.Order.Action.BUY, instrument, stopPrice, quantity)
+            entryOrder = strategy.getBroker().createOptionStopOrder(broker.Order.Action.BUY, instrument, stopPrice, quantity, right, strike, expiry)
         elif limitPrice is not None and stopPrice is not None:
-            entryOrder = strategy.getBroker().createOptionStopLimitOrder(broker.Order.Action.BUY, instrument, stopPrice, limitPrice, quantity)
+            entryOrder = strategy.getBroker().createOptionStopLimitOrder(broker.Order.Action.BUY, instrument, stopPrice, limitPrice, quantity, right, strike, expiry)
         else:
             assert(False)
 
@@ -525,18 +525,17 @@ class LongOptionPosition(Position):
 
         return ret
 
-
 # This class is reponsible for order management in short positions.
 class ShortOptionPosition(Position):
-    def __init__(self, strategy, instrument, stopPrice, limitPrice, quantity, goodTillCanceled, allOrNone):
+    def __init__(self, strategy, instrument, stopPrice, limitPrice, quantity , right, strike, expiry, goodTillCanceled, allOrNone):
         if limitPrice is None and stopPrice is None:
-            entryOrder = strategy.getBroker().createOptionOrder(broker.Order.Action.SELL_SHORT, instrument, quantity, False)
+            entryOrder = strategy.getBroker().createOptionOrder(broker.Order.Action.SELL_SHORT, instrument, quantity, right, strike, expiry,False)
         elif limitPrice is not None and stopPrice is None:
-            entryOrder = strategy.getBroker().createOptionLimitOrder(broker.Order.Action.SELL_SHORT, instrument, limitPrice, quantity)
+            entryOrder = strategy.getBroker().createOptionLimitOrder(broker.Order.Action.SELL_SHORT, instrument, limitPrice, quantity, right, strike, expiry)
         elif limitPrice is None and stopPrice is not None:
-            entryOrder = strategy.getBroker().createOptionStopOrder(broker.Order.Action.SELL_SHORT, instrument, stopPrice, quantity)
+            entryOrder = strategy.getBroker().createOptionStopOrder(broker.Order.Action.SELL_SHORT, instrument, stopPrice, quantity, right, strike, expiry)
         elif limitPrice is not None and stopPrice is not None:
-            entryOrder = strategy.getBroker().createOptionStopLimitOrder(broker.Order.Action.SELL_SHORT, instrument, stopPrice, limitPrice, quantity)
+            entryOrder = strategy.getBroker().createOptionStopLimitOrder(broker.Order.Action.SELL_SHORT, instrument, stopPrice, limitPrice, quantity, right, strike, expiry)
         else:
             assert(False)
 
