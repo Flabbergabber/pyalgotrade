@@ -57,7 +57,7 @@ class MyStrategy(strategy.BacktestingStrategy):
         #elif bar.getPrice() < self.__sma[-1] and not self.__position.exitActive():
             #self.__position.exitMarket()
             
-        elif self.__position is None and self.__position.getAge().days == 25 :
+        elif self.__position is None and self.__option.getAge().days == 25 :
             self.__position = self.enterLong(self.__position.getInstrument(), 10, True)
             print "Order executed at: $%.2f" % bar.getPrice()
 
