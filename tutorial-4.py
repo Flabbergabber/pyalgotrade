@@ -49,14 +49,14 @@ class MyStrategy(strategy.BacktestingStrategy):
             #if bar.getPrice() > self.__sma[-1]:
                 # Enter a buy market order for 10 shares. The order is good till canceled.
             self.__position = self.enterOptionLong(self.__instrument, 10, right, strike, expiry, True)
-            print "Option executed at: $%.2f" % bar.getPrice()
+            print "Option executed for: $%.2f" % (bar.getPrice()+10)
         # Check if we have to exit the position.
         #elif bar.getPrice() < self.__sma[-1] and not self.__position.exitActive():
             #self.__position.exitMarket()
             
         elif self.__position.getAge().days == 25 :
             self.__position = self.enterLong(self.__position.getInstrument(), 10, True)
-            print "Option executed at: $%.2f" % bar.getPrice()
+            print "Order executed at: $%.2f" % bar.getPrice()
 
 def run_strategy(smaPeriod):
     # Load the yahoo feed from the CSV file
