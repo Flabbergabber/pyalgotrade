@@ -1,7 +1,7 @@
 from pyalgotrade import strategy
-from pyalgotrade.barfeed import yahoofeed
+#from pyalgotrade.barfeed import yahoofeed
 #from pyalgotrade.barfeed import googlefeed
-#from pyalgotrade.barfeed import ibfeed
+from pyalgotrade.barfeed import ibfeed
 from pyalgotrade.technical import ma
 from pyalgotrade import broker
 import datetime

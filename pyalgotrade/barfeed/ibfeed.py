@@ -60,15 +60,14 @@ class RowParser(csvfeed.RowParser):
         self.__timezone = timezone
 
     def __parseDateTime(self, dateTime):
-        ret = None
-        
+
         ret = parse_datetime(dateTime)
         
         return ret
 
     def getFieldNames(self):
-        return ["Date","OPEN","HIGH","LOW","Close","NUMBER_TICKS","VOLUME","VALUE"]
-
+        #return ["Date","OPEN","HIGH","LOW","Close","NUMBER_TICKS","VOLUME","VALUE"]
+        return None
     def getDelimiter(self):
         return ";"
 
