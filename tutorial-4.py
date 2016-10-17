@@ -12,7 +12,7 @@ class MyStrategy(strategy.BacktestingStrategy):
         super(MyStrategy, self).__init__(feed, 1000)
         self.__position = None
         self.__option = None
-        self.____optionAlreadyExecuted = False
+        self.__optionAlreadyExecuted = False
         self.__instrument = instrument
         # We'll use adjusted close values instead of regular close values.
         #self.setUseAdjustedValues(True)
