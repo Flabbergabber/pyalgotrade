@@ -58,7 +58,7 @@ class MyStrategy(strategy.BacktestingStrategy):
             #self.__position.exitMarket()
         
         
-        # l'ordre devrait etre generer a partir de la position de l'option 
+        #### l'ordre devrait etre generer a partir de la position de l'option avec le strike price si expiry n'est pas depasse
         elif self.__position is None and self.__option.getAge().days == 25 :
             self.__position = self.enterLong(self.__option.getInstrument(), 10, True)
             print "Order executed at: $%.2f" % bar.getPrice()
