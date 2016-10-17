@@ -54,7 +54,7 @@ class MyStrategy(strategy.BacktestingStrategy):
         #elif bar.getPrice() < self.__sma[-1] and not self.__position.exitActive():
             #self.__position.exitMarket()
             
-        elif self.__position.getAge().days == 25 :
+        elif self.__position.getAge().days == 2 :
             self.__position = self.enterLong(self.__position.getInstrument(), 10, True)
             print "Order executed at: $%.2f" % bar.getPrice()
 
@@ -63,7 +63,7 @@ def run_strategy(smaPeriod):
 #    feed = yahoofeed.Feed()
 #    feed.addBarsFromCSV("orcl", "orcl-2000.csv")
     feed = ibfeed.Feed()
-    feed.addBarsFromCSV("bac", "samples/bac_short.csv")
+    feed.addBarsFromCSV("bac", "samples/bac.csv")
 
     # Evaluate the strategy with the feed.
 #    myStrategy = MyStrategy(feed, "orcl", smaPeriod)

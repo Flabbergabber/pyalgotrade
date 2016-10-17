@@ -455,8 +455,8 @@ class OptionOrder(Order):
         PUT = 1
         CALL = 2
 
-    def __init__(self, action, instrument, quantity, onClose, instrumentTraits, right, strike, expiry):
-        super(OptionOrder, self).__init__(Order.Type.MARKET, action, instrument, quantity, instrumentTraits)
+    def __init__(self, action, instrument, quantity, right, strike, expiry, onClose, instrumentTraits):
+        super(OptionOrder, self).__init__(Order.Type.OPTION_MARKET, action, instrument, quantity, instrumentTraits)
         self.__onClose = onClose
         self.__right = right
         self.__strike = strike
@@ -493,8 +493,8 @@ class OptionLimitOrder(OptionOrder):
         This is a base class and should not be used directly.
     """
 
-    def __init__(self, action, instrument, limitPrice, quantity, instrumentTraits, right, strike, expiry):
-        super(OptionLimitOrder, self).__init__(Order.Type.LIMIT, action, instrument, quantity, instrumentTraits)
+    def __init__(self, action, instrument, limitPrice, quantity, right, strike, expiry, instrumentTraits):
+        super(OptionLimitOrder, self).__init__(Order.Type.OPTION_LIMIT, action, instrument, quantity, instrumentTraits)
         self.__limitPrice = limitPrice
 
     def getLimitPrice(self):
@@ -510,8 +510,8 @@ class OptionStopOrder(OptionOrder):
         This is a base class and should not be used directly.
     """
 
-    def __init__(self, action, instrument, stopPrice, quantity, instrumentTraits, right, strike, expiry):
-        super(OptionStopOrder, self).__init__(Order.Type.STOP, action, instrument, quantity, instrumentTraits)
+    def __init__(self, action, instrument, stopPrice, quantity, right, strike, expiry, instrumentTraits):
+        super(OptionStopOrder, self).__init__(Order.Type.OPTION_STOP, action, instrument, quantity, instrumentTraits)
         self.__stopPrice = stopPrice
 
     def getStopPrice(self):
@@ -527,8 +527,8 @@ class OptionStopLimitOrder(OptionOrder):
         This is a base class and should not be used directly.
     """
 
-    def __init__(self, action, instrument, stopPrice, limitPrice, quantity, instrumentTraits, right, strike, expiry):
-        super(OptionStopLimitOrder, self).__init__(Order.Type.STOP_LIMIT, action, instrument, quantity, instrumentTraits)
+    def __init__(self, action, instrument, stopPrice, limitPrice, quantity, right, strike, expiry, instrumentTraits):
+        super(OptionStopLimitOrder, self).__init__(Order.Type.OPTION_STOP_LIMIT, action, instrument, quantity, instrumentTraits)
         self.__stopPrice = stopPrice
         self.__limitPrice = limitPrice
 
