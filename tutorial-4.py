@@ -56,10 +56,16 @@ class MyStrategy(strategy.BacktestingStrategy):
         # Check if we have to exit the position.
         #elif bar.getPrice() < self.__sma[-1] and not self.__position.exitActive():
             #self.__position.exitMarket()
-            
+        
+        
+        # l'ordre devrait etre generer a partir de la position de l'option 
         elif self.__position is None and self.__option.getAge().days == 25 :
             self.__position = self.enterLong(self.__option.getInstrument(), 10, True)
             print "Order executed at: $%.2f" % bar.getPrice()
+        
+        elif self.__position is not None and self.__position.getAge().days == 60 :
+            self.__position.exitMarket()
+            print "Order exited at: $%.2f" % bar.getPrice()
 
 def run_strategy(smaPeriod):
     # Load the yahoo feed from the CSV file

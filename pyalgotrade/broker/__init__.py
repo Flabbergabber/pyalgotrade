@@ -484,6 +484,10 @@ class OptionOrder(Order):
         
     def setExpiry(self, expiry):
         self.__expiry = expiry
+        
+    def getRemaining(self):
+        """Returns the number of shares still outstanding."""
+        return 0
 
 class OptionLimitOrder(OptionOrder):
     """Base class for limit orders.
