@@ -508,12 +508,7 @@ class Broker(broker.Broker):
             # This may trigger orders to be added/removed from __activeOrders.
             self.__onBarsImpl(order, bars)
             
-        
         ordersToProcess = self.__activeOptionsOrders.values()
-
-        for optionOrder in ordersToProcess:
-            # This may trigger orders to be added/removed from __activeOrders.
-            self.__onBarsImpl(optionOrder, bars)
 
     def start(self):
         super(Broker, self).start()
