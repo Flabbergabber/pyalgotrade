@@ -168,22 +168,22 @@ class StopLimitOrder(broker.StopLimitOrder, BacktestingOrder):
 #############################################################################
 class OptionOrder(broker.OptionOrder, BacktestingOrder):
     def __init__(self, action, instrument, quantity, right, strike, expiry,  onClose, instrumentTraits):
-        super(OptionOrder, self).__init__(action, instrument, quantity, onClose, instrumentTraits)
+        super(OptionOrder, self).__init__(action, instrument, quantity, right, strike, expiry, onClose, instrumentTraits)
 
     def process(self, broker_, bar_):
         return broker_.getFillStrategy().fillOptionOrder(broker_, self, bar_)
 
-class OptionLimitOrder(broker.LimitOrder, BacktestingOrder):
+class OptionLimitOrder(broker.OptionLimitOrder, BacktestingOrder):
     def __init__(self, action, instrument, limitPrice, quantity, right, strike, expiry,  instrumentTraits):
-        super(LimitOrder, self).__init__(action, instrument, limitPrice, quantity, instrumentTraits)
+        super(LimitOrder, self).__init__(action, instrument, limitPrice, quantity, right, strike, expiry, instrumentTraits)
 
     def process(self, broker_, bar_):
         return broker_.getFillStrategy().fillOptionLimitOrder(broker_, self, bar_)
 
 
-class OptionStopOrder(broker.StopOrder, BacktestingOrder):
+class OptionStopOrder(broker.OptionStopOrder, BacktestingOrder):
     def __init__(self, action, instrument, stopPrice, quantity, right, strike, expiry,  instrumentTraits):
-        super(StopOrder, self).__init__(action, instrument, stopPrice, quantity, instrumentTraits)
+        super(StopOrder, self).__init__(action, instrument, stopPrice, quantity, right, strike, expiry, instrumentTraits)
         self.__stopHit = False
 
     def process(self, broker_, bar_):
@@ -198,9 +198,9 @@ class OptionStopOrder(broker.StopOrder, BacktestingOrder):
 
 # http://www.sec.gov/answers/stoplim.htm
 # http://www.interactivebrokers.com/en/trading/orders/stopLimit.php
-class OptionStopLimitOrder(broker.StopLimitOrder, BacktestingOrder):
-    def __init__(self, action, instrument, stopPrice, limitPrice, quantity, instrumentTraits):
-        super(StopLimitOrder, self).__init__(action, instrument, stopPrice, limitPrice, quantity, instrumentTraits)
+class OptionStopLimitOrder(broker.OptionStopLimitOrder, BacktestingOrder):
+    def __init__(self, action, instrument, stopPrice, limitPrice, quantity, right, strike, expiry, instrumentTraits):
+        super(StopLimitOrder, self).__init__(action, instrument, stopPrice, limitPrice, quantity, right, strike, expiry, instrumentTraits)
         self.__stopHit = False  # Set to true when the limit order is activated (stop price is hit)
 
     def setStopHit(self, stopHit):
