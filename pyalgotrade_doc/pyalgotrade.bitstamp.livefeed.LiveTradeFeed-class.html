@@ -1,0 +1,915 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>pyalgotrade.bitstamp.livefeed.LiveTradeFeed</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="pyalgotrade-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="pyalgotrade-module.html">Package&nbsp;pyalgotrade</a> ::
+        <a href="pyalgotrade.bitstamp-module.html">Package&nbsp;bitstamp</a> ::
+        <a href="pyalgotrade.bitstamp.livefeed-module.html">Module&nbsp;livefeed</a> ::
+        Class&nbsp;LiveTradeFeed
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="pyalgotrade.bitstamp.livefeed.LiveTradeFeed-class.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS DESCRIPTION ==================== -->
+<h1 class="epydoc">Class LiveTradeFeed</h1><p class="nomargin-top"><span class="codelink"><a href="pyalgotrade.bitstamp.livefeed-pysrc.html#LiveTradeFeed">source&nbsp;code</a></span></p>
+<center>
+<center>  <map id="uml_class_diagram_for_pyalgotr_43" name="uml_class_diagram_for_pyalgotr_43">
+<area shape="rect" id="node1_38" href="pyalgotrade.bitstamp.livefeed.LiveTradeFeed-class.html#QUEUE_TIMEOUT" title="pyalgotrade.bitstamp.livefeed.LiveTradeFeed.QUEUE_TIMEOUT" alt="" coords="17,656,289,676"/>
+<area shape="rect" id="node1_39" href="pyalgotrade.bitstamp.livefeed.LiveTradeFeed-class.html#__abstractmethods__" title="pyalgotrade.bitstamp.livefeed.LiveTradeFeed.__abstractmethods__" alt="" coords="17,676,289,696"/>
+<area shape="rect" id="node1_40" href="pyalgotrade.bitstamp.livefeed.LiveTradeFeed-class.html#__init__" title="x.__init__(...) initializes x; see help(type(x)) for signature" alt="" coords="17,699,289,719"/>
+<area shape="rect" id="node1_41" href="pyalgotrade.bitstamp.livefeed.LiveTradeFeed-class.html#buildWebSocketClientThread" title="pyalgotrade.bitstamp.livefeed.LiveTradeFeed.buildWebSocketClientThread" alt="" coords="17,719,289,739"/>
+<area shape="rect" id="node1_42" href="pyalgotrade.bitstamp.livefeed.LiveTradeFeed-class.html#getCurrentDateTime" title="pyalgotrade.bitstamp.livefeed.LiveTradeFeed.getCurrentDateTime" alt="" coords="17,739,289,759"/>
+<area shape="rect" id="node1_43" href="pyalgotrade.bitstamp.livefeed.LiveTradeFeed-class.html#enableReconection" title="pyalgotrade.bitstamp.livefeed.LiveTradeFeed.enableReconection" alt="" coords="17,759,289,779"/>
+<area shape="rect" id="node1_44" href="pyalgotrade.bitstamp.livefeed.LiveTradeFeed-class.html#barsHaveAdjClose" title="pyalgotrade.bitstamp.livefeed.LiveTradeFeed.barsHaveAdjClose" alt="" coords="17,779,289,799"/>
+<area shape="rect" id="node1_45" href="pyalgotrade.bitstamp.livefeed.LiveTradeFeed-class.html#getNextBars" title="Override to return the next :class:`pyalgotrade.bar.Bars` in the feed or &#160;None if there are no bars." alt="" coords="17,799,289,819"/>
+<area shape="rect" id="node1_46" href="pyalgotrade.bitstamp.livefeed.LiveTradeFeed-class.html#peekDateTime" title="pyalgotrade.bitstamp.livefeed.LiveTradeFeed.peekDateTime" alt="" coords="17,819,289,839"/>
+<area shape="rect" id="node1_47" href="pyalgotrade.bitstamp.livefeed.LiveTradeFeed-class.html#start" title="pyalgotrade.bitstamp.livefeed.LiveTradeFeed.start" alt="" coords="17,839,289,859"/>
+<area shape="rect" id="node1_48" href="pyalgotrade.bitstamp.livefeed.LiveTradeFeed-class.html#dispatch" title="pyalgotrade.bitstamp.livefeed.LiveTradeFeed.dispatch" alt="" coords="17,859,289,879"/>
+<area shape="rect" id="node1_49" href="pyalgotrade.bitstamp.livefeed.LiveTradeFeed-class.html#stop" title="pyalgotrade.bitstamp.livefeed.LiveTradeFeed.stop" alt="" coords="17,879,289,899"/>
+<area shape="rect" id="node1_50" href="pyalgotrade.bitstamp.livefeed.LiveTradeFeed-class.html#join" title="pyalgotrade.bitstamp.livefeed.LiveTradeFeed.join" alt="" coords="17,899,289,919"/>
+<area shape="rect" id="node1_51" href="pyalgotrade.bitstamp.livefeed.LiveTradeFeed-class.html#eof" title="pyalgotrade.bitstamp.livefeed.LiveTradeFeed.eof" alt="" coords="17,919,289,939"/>
+<area shape="rect" id="node1_52" href="pyalgotrade.bitstamp.livefeed.LiveTradeFeed-class.html#getOrderBookUpdateEvent" title="Returns the event that will be emitted when the orderbook gets updated." alt="" coords="17,939,289,959"/>
+<area shape="rect" id="node1" href="pyalgotrade.bitstamp.livefeed.LiveTradeFeed-class.html" title="A real&#45;time BarFeed that builds bars from live trades." alt="" coords="5,632,301,965"/>
+<area shape="rect" id="node2_53" href="pyalgotrade.barfeed.BaseBarFeed-class.html#reset" title="pyalgotrade.barfeed.BaseBarFeed.reset" alt="" coords="29,347,277,367"/>
+<area shape="rect" id="node2_54" href="pyalgotrade.barfeed.BaseBarFeed-class.html#setUseAdjustedValues" title="pyalgotrade.barfeed.BaseBarFeed.setUseAdjustedValues" alt="" coords="29,367,277,387"/>
+<area shape="rect" id="node2_55" href="pyalgotrade.barfeed.BaseBarFeed-class.html#createDataSeries" title="pyalgotrade.barfeed.BaseBarFeed.createDataSeries" alt="" coords="29,387,277,407"/>
+<area shape="rect" id="node2_56" href="pyalgotrade.barfeed.BaseBarFeed-class.html#getNextValues" title="pyalgotrade.barfeed.BaseBarFeed.getNextValues" alt="" coords="29,407,277,427"/>
+<area shape="rect" id="node2_57" href="pyalgotrade.barfeed.BaseBarFeed-class.html#getFrequency" title="pyalgotrade.barfeed.BaseBarFeed.getFrequency" alt="" coords="29,427,277,447"/>
+<area shape="rect" id="node2_58" href="pyalgotrade.barfeed.BaseBarFeed-class.html#isIntraday" title="pyalgotrade.barfeed.BaseBarFeed.isIntraday" alt="" coords="29,447,277,467"/>
+<area shape="rect" id="node2_59" href="pyalgotrade.barfeed.BaseBarFeed-class.html#getCurrentBars" title="Returns the current :class:`pyalgotrade.bar.Bars`." alt="" coords="29,467,277,487"/>
+<area shape="rect" id="node2_60" href="pyalgotrade.barfeed.BaseBarFeed-class.html#getLastBar" title="Returns the last :class:`pyalgotrade.bar.Bar` for a given instrument, or &#160;None." alt="" coords="29,487,277,507"/>
+<area shape="rect" id="node2_61" href="pyalgotrade.barfeed.BaseBarFeed-class.html#getDefaultInstrument" title="Returns the last instrument registered." alt="" coords="29,507,277,527"/>
+<area shape="rect" id="node2_62" href="pyalgotrade.barfeed.BaseBarFeed-class.html#getRegisteredInstruments" title="Returns a list of registered intstrument names." alt="" coords="29,527,277,547"/>
+<area shape="rect" id="node2_63" href="pyalgotrade.barfeed.BaseBarFeed-class.html#registerInstrument" title="pyalgotrade.barfeed.BaseBarFeed.registerInstrument" alt="" coords="29,547,277,567"/>
+<area shape="rect" id="node2_64" href="pyalgotrade.barfeed.BaseBarFeed-class.html#getDataSeries" title="Returns the :class:`pyalgotrade.dataseries.bards.BarDataSeries` for a given instrument." alt="" coords="29,567,277,587"/>
+<area shape="rect" id="node2_65" href="pyalgotrade.barfeed.BaseBarFeed-class.html#getDispatchPriority" title="pyalgotrade.barfeed.BaseBarFeed.getDispatchPriority" alt="" coords="29,587,277,607"/>
+<area shape="rect" id="node2" href="pyalgotrade.barfeed.BaseBarFeed-class.html" title="Base class for :class:`pyalgotrade.bar.Bar` providing feeds." alt="" coords="17,315,289,613"/>
+<area shape="rect" id="node3_66" href="pyalgotrade.feed.BaseFeed-class.html#registerDataSeries" title="pyalgotrade.feed.BaseFeed.registerDataSeries" alt="" coords="51,149,256,169"/>
+<area shape="rect" id="node3_67" href="pyalgotrade.feed.BaseFeed-class.html#getNextValuesAndUpdateDS" title="pyalgotrade.feed.BaseFeed.getNextValuesAndUpdateDS" alt="" coords="51,169,256,189"/>
+<area shape="rect" id="node3_68" href="pyalgotrade.feed.BaseFeed-class.html#__iter__" title="pyalgotrade.feed.BaseFeed.__iter__" alt="" coords="51,189,256,209"/>
+<area shape="rect" id="node3_69" href="pyalgotrade.feed.BaseFeed-class.html#getNewValuesEvent" title="Returns the event that will be emitted when new values are available." alt="" coords="51,209,256,229"/>
+<area shape="rect" id="node3_70" href="pyalgotrade.feed.BaseFeed-class.html#getKeys" title="pyalgotrade.feed.BaseFeed.getKeys" alt="" coords="51,229,256,249"/>
+<area shape="rect" id="node3_71" href="pyalgotrade.feed.BaseFeed-class.html#__getitem__" title="Returns the :class:`pyalgotrade.dataseries.DataSeries` for a given key." alt="" coords="51,249,256,269"/>
+<area shape="rect" id="node3_72" href="pyalgotrade.feed.BaseFeed-class.html#__contains__" title="Returns True if a :class:`pyalgotrade.dataseries.DataSeries` for the given &#160;key is available." alt="" coords="51,269,256,289"/>
+<area shape="rect" id="node3" href="pyalgotrade.feed.BaseFeed-class.html" title="Base class for feeds." alt="" coords="39,117,268,296"/>
+<area shape="rect" id="node4_73" href="abc.ABCMeta-class.html" title="Metaclass for defining Abstract Base Classes (ABCs)." alt="" coords="32,29,275,49"/>
+<area shape="rect" id="node4_74" href="pyalgotrade.observer.Subject-class.html#setDispatchPriority" title="pyalgotrade.observer.Subject.setDispatchPriority" alt="" coords="32,52,275,72"/>
+<area shape="rect" id="node4_75" href="pyalgotrade.observer.Subject-class.html#onDispatcherRegistered" title="pyalgotrade.observer.Subject.onDispatcherRegistered" alt="" coords="32,72,275,92"/>
+<area shape="rect" id="node4" href="pyalgotrade.observer.Subject-class.html" title="pyalgotrade.observer.Subject" alt="" coords="20,5,287,99"/>
+</map>
+  <img src="uml_class_diagram_for_pyalgotr_43.gif" alt='' usemap="#uml_class_diagram_for_pyalgotr_43" ismap="ismap" class="graph-without-title" />
+</center>
+</center>
+<hr />
+<pre class="literalblock">
+A real-time BarFeed that builds bars from live trades.
+
+:param maxLen: The maximum number of values that the :class:`pyalgotrade.dataseries.bards.BarDataSeries` will hold.
+    Once a bounded length is full, when new items are added, a corresponding number of items are discarded
+    from the opposite end. If None then dataseries.DEFAULT_MAX_LEN is used.
+:type maxLen: int.
+
+.. note::
+    Note that a Bar will be created for every trade, so open, high, low and close values will all be the same.
+
+</pre>
+
+<!-- ==================== NESTED CLASSES ==================== -->
+<a name="section-NestedClasses"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Nested Classes</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-NestedClasses"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="pyalgotrade.observer.Subject-class.html">observer.Subject</a></code></b>:
+      <code><a href="abc.ABCMeta-class.html">__metaclass__</a></code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== INSTANCE METHODS ==================== -->
+<a name="section-InstanceMethods"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Instance Methods</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-InstanceMethods"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyalgotrade.bitstamp.livefeed.LiveTradeFeed-class.html#__init__" class="summary-sig-name">__init__</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">maxLen</span>=<span class="summary-sig-default">None</span>)</span><br />
+      x.__init__(...) initializes x; see help(type(x)) for signature</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.bitstamp.livefeed-pysrc.html#LiveTradeFeed.__init__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="buildWebSocketClientThread"></a><span class="summary-sig-name">buildWebSocketClientThread</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.bitstamp.livefeed-pysrc.html#LiveTradeFeed.buildWebSocketClientThread">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyalgotrade.bitstamp.livefeed.LiveTradeFeed-class.html#getCurrentDateTime" class="summary-sig-name">getCurrentDateTime</a>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.bitstamp.livefeed-pysrc.html#LiveTradeFeed.getCurrentDateTime">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="enableReconection"></a><span class="summary-sig-name">enableReconection</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">enableReconnection</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.bitstamp.livefeed-pysrc.html#LiveTradeFeed.enableReconection">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="__initializeClient"></a><span class="summary-sig-name">__initializeClient</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.bitstamp.livefeed-pysrc.html#LiveTradeFeed.__initializeClient">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="__onConnected"></a><span class="summary-sig-name">__onConnected</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.bitstamp.livefeed-pysrc.html#LiveTradeFeed.__onConnected">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="__onDisconnected"></a><span class="summary-sig-name">__onDisconnected</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.bitstamp.livefeed-pysrc.html#LiveTradeFeed.__onDisconnected">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="__dispatchImpl"></a><span class="summary-sig-name">__dispatchImpl</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">eventFilter</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.bitstamp.livefeed-pysrc.html#LiveTradeFeed.__dispatchImpl">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="__getTradeDateTime"></a><span class="summary-sig-name">__getTradeDateTime</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">trade</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.bitstamp.livefeed-pysrc.html#LiveTradeFeed.__getTradeDateTime">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="__onTrade"></a><span class="summary-sig-name">__onTrade</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">trade</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.bitstamp.livefeed-pysrc.html#LiveTradeFeed.__onTrade">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyalgotrade.bitstamp.livefeed.LiveTradeFeed-class.html#barsHaveAdjClose" class="summary-sig-name">barsHaveAdjClose</a>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.bitstamp.livefeed-pysrc.html#LiveTradeFeed.barsHaveAdjClose">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyalgotrade.bitstamp.livefeed.LiveTradeFeed-class.html#getNextBars" class="summary-sig-name">getNextBars</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Override to return the next :class:`pyalgotrade.bar.Bars` in the feed
+      or None if there are no bars.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.bitstamp.livefeed-pysrc.html#LiveTradeFeed.getNextBars">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyalgotrade.bitstamp.livefeed.LiveTradeFeed-class.html#peekDateTime" class="summary-sig-name">peekDateTime</a>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.bitstamp.livefeed-pysrc.html#LiveTradeFeed.peekDateTime">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyalgotrade.bitstamp.livefeed.LiveTradeFeed-class.html#start" class="summary-sig-name">start</a>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.bitstamp.livefeed-pysrc.html#LiveTradeFeed.start">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyalgotrade.bitstamp.livefeed.LiveTradeFeed-class.html#dispatch" class="summary-sig-name">dispatch</a>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.bitstamp.livefeed-pysrc.html#LiveTradeFeed.dispatch">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyalgotrade.bitstamp.livefeed.LiveTradeFeed-class.html#stop" class="summary-sig-name">stop</a>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.bitstamp.livefeed-pysrc.html#LiveTradeFeed.stop">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyalgotrade.bitstamp.livefeed.LiveTradeFeed-class.html#join" class="summary-sig-name">join</a>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.bitstamp.livefeed-pysrc.html#LiveTradeFeed.join">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyalgotrade.bitstamp.livefeed.LiveTradeFeed-class.html#eof" class="summary-sig-name">eof</a>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.bitstamp.livefeed-pysrc.html#LiveTradeFeed.eof">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyalgotrade.bitstamp.livefeed.LiveTradeFeed-class.html#getOrderBookUpdateEvent" class="summary-sig-name">getOrderBookUpdateEvent</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Returns the event that will be emitted when the orderbook gets 
+      updated.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.bitstamp.livefeed-pysrc.html#LiveTradeFeed.getOrderBookUpdateEvent">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="pyalgotrade.barfeed.BaseBarFeed-class.html">barfeed.BaseBarFeed</a></code></b>:
+      <code><a href="pyalgotrade.barfeed.BaseBarFeed-class.html#createDataSeries">createDataSeries</a></code>,
+      <code><a href="pyalgotrade.barfeed.BaseBarFeed-class.html#getCurrentBars">getCurrentBars</a></code>,
+      <code><a href="pyalgotrade.barfeed.BaseBarFeed-class.html#getDataSeries">getDataSeries</a></code>,
+      <code><a href="pyalgotrade.barfeed.BaseBarFeed-class.html#getDefaultInstrument">getDefaultInstrument</a></code>,
+      <code><a href="pyalgotrade.barfeed.BaseBarFeed-class.html#getDispatchPriority">getDispatchPriority</a></code>,
+      <code><a href="pyalgotrade.barfeed.BaseBarFeed-class.html#getFrequency">getFrequency</a></code>,
+      <code><a href="pyalgotrade.barfeed.BaseBarFeed-class.html#getLastBar">getLastBar</a></code>,
+      <code><a href="pyalgotrade.barfeed.BaseBarFeed-class.html#getNextValues">getNextValues</a></code>,
+      <code><a href="pyalgotrade.barfeed.BaseBarFeed-class.html#getRegisteredInstruments">getRegisteredInstruments</a></code>,
+      <code><a href="pyalgotrade.barfeed.BaseBarFeed-class.html#isIntraday">isIntraday</a></code>,
+      <code><a href="pyalgotrade.barfeed.BaseBarFeed-class.html#registerInstrument">registerInstrument</a></code>,
+      <code><a href="pyalgotrade.barfeed.BaseBarFeed-class.html#reset">reset</a></code>,
+      <code><a href="pyalgotrade.barfeed.BaseBarFeed-class.html#setUseAdjustedValues">setUseAdjustedValues</a></code>
+      </p>
+    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="pyalgotrade.feed.BaseFeed-class.html">feed.BaseFeed</a></code></b>:
+      <code><a href="pyalgotrade.feed.BaseFeed-class.html#__contains__">__contains__</a></code>,
+      <code><a href="pyalgotrade.feed.BaseFeed-class.html#__getitem__">__getitem__</a></code>,
+      <code><a href="pyalgotrade.feed.BaseFeed-class.html#__iter__">__iter__</a></code>,
+      <code><a href="pyalgotrade.feed.BaseFeed-class.html#getKeys">getKeys</a></code>,
+      <code><a href="pyalgotrade.feed.BaseFeed-class.html#getNewValuesEvent">getNewValuesEvent</a></code>,
+      <code><a href="pyalgotrade.feed.BaseFeed-class.html#getNextValuesAndUpdateDS">getNextValuesAndUpdateDS</a></code>,
+      <code><a href="pyalgotrade.feed.BaseFeed-class.html#registerDataSeries">registerDataSeries</a></code>
+      </p>
+    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="pyalgotrade.observer.Subject-class.html">observer.Subject</a></code></b>:
+      <code><a href="pyalgotrade.observer.Subject-class.html#onDispatcherRegistered">onDispatcherRegistered</a></code>,
+      <code><a href="pyalgotrade.observer.Subject-class.html#setDispatchPriority">setDispatchPriority</a></code>
+      </p>
+    <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
+      <code>__delattr__</code>,
+      <code>__format__</code>,
+      <code>__getattribute__</code>,
+      <code>__hash__</code>,
+      <code>__new__</code>,
+      <code>__reduce__</code>,
+      <code>__reduce_ex__</code>,
+      <code>__repr__</code>,
+      <code>__setattr__</code>,
+      <code>__sizeof__</code>,
+      <code>__str__</code>,
+      <code>__subclasshook__</code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS VARIABLES ==================== -->
+<a name="section-ClassVariables"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Class Variables</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-ClassVariables"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="QUEUE_TIMEOUT"></a><span class="summary-name">QUEUE_TIMEOUT</span> = <code title="0.01">0.01</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="__abstractmethods__"></a><span class="summary-name">__abstractmethods__</span> = <code title="frozenset([])"><code class="variable-group">frozenset([</code><code class="variable-group">])</code></code>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <div class="private">    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="pyalgotrade.feed.BaseFeed-class.html">feed.BaseFeed</a></code></b> (private):
+      <code><a href="pyalgotrade.feed.BaseFeed-class.html#_abc_negative_cache_version" onclick="show_private();">_abc_negative_cache_version</a></code>
+      </p></div>
+    <div class="private">    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="pyalgotrade.observer.Subject-class.html">observer.Subject</a></code></b> (private):
+      <code><a href="pyalgotrade.observer.Subject-class.html#_abc_cache" onclick="show_private();">_abc_cache</a></code>,
+      <code><a href="pyalgotrade.observer.Subject-class.html#_abc_negative_cache" onclick="show_private();">_abc_negative_cache</a></code>,
+      <code><a href="pyalgotrade.observer.Subject-class.html#_abc_registry" onclick="show_private();">_abc_registry</a></code>
+      </p></div>
+    </td>
+  </tr>
+</table>
+<!-- ==================== PROPERTIES ==================== -->
+<a name="section-Properties"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Properties</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Properties"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
+      <code>__class__</code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== METHOD DETAILS ==================== -->
+<a name="section-MethodDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Method Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-MethodDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="__init__"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__init__</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">maxLen</span>=<span class="sig-default">None</span>)</span>
+    <br /><em class="fname">(Constructor)</em>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyalgotrade.bitstamp.livefeed-pysrc.html#LiveTradeFeed.__init__">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>x.__init__(...) initializes x; see help(type(x)) for signature</p>
+  <dl class="fields">
+    <dt>Overrides:
+        object.__init__
+        <dd><em class="note">(inherited documentation)</em></dd>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="getCurrentDateTime"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">getCurrentDateTime</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyalgotrade.bitstamp.livefeed-pysrc.html#LiveTradeFeed.getCurrentDateTime">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  
+  <dl class="fields">
+    <dt>Overrides:
+        <a href="pyalgotrade.barfeed.BaseBarFeed-class.html#getCurrentDateTime">barfeed.BaseBarFeed.getCurrentDateTime</a>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="barsHaveAdjClose"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">barsHaveAdjClose</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyalgotrade.bitstamp.livefeed-pysrc.html#LiveTradeFeed.barsHaveAdjClose">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  
+  <dl class="fields">
+    <dt>Overrides:
+        <a href="pyalgotrade.barfeed.BaseBarFeed-class.html#barsHaveAdjClose">barfeed.BaseBarFeed.barsHaveAdjClose</a>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="getNextBars"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">getNextBars</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyalgotrade.bitstamp.livefeed-pysrc.html#LiveTradeFeed.getNextBars">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Override to return the next :class:`pyalgotrade.bar.Bars` in the feed 
+  or None if there are no bars.</p>
+  <p>.. note:</p>
+<pre class="literalblock">
+   This is for BaseBarFeed subclasses and it should not be called directly.
+</pre>
+  <dl class="fields">
+    <dt>Overrides:
+        <a href="pyalgotrade.barfeed.BaseBarFeed-class.html#getNextBars">barfeed.BaseBarFeed.getNextBars</a>
+        <dd><em class="note">(inherited documentation)</em></dd>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="peekDateTime"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">peekDateTime</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyalgotrade.bitstamp.livefeed-pysrc.html#LiveTradeFeed.peekDateTime">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  
+  <dl class="fields">
+    <dt>Overrides:
+        <a href="pyalgotrade.observer.Subject-class.html#peekDateTime">observer.Subject.peekDateTime</a>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="start"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">start</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyalgotrade.bitstamp.livefeed-pysrc.html#LiveTradeFeed.start">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  
+  <dl class="fields">
+    <dt>Overrides:
+        <a href="pyalgotrade.observer.Subject-class.html#start">observer.Subject.start</a>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="dispatch"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">dispatch</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyalgotrade.bitstamp.livefeed-pysrc.html#LiveTradeFeed.dispatch">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  
+  <dl class="fields">
+    <dt>Overrides:
+        <a href="pyalgotrade.observer.Subject-class.html#dispatch">observer.Subject.dispatch</a>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="stop"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">stop</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyalgotrade.bitstamp.livefeed-pysrc.html#LiveTradeFeed.stop">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  
+  <dl class="fields">
+    <dt>Overrides:
+        <a href="pyalgotrade.observer.Subject-class.html#stop">observer.Subject.stop</a>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="join"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">join</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyalgotrade.bitstamp.livefeed-pysrc.html#LiveTradeFeed.join">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  
+  <dl class="fields">
+    <dt>Overrides:
+        <a href="pyalgotrade.observer.Subject-class.html#join">observer.Subject.join</a>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="eof"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">eof</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyalgotrade.bitstamp.livefeed-pysrc.html#LiveTradeFeed.eof">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  
+  <dl class="fields">
+    <dt>Overrides:
+        <a href="pyalgotrade.observer.Subject-class.html#eof">observer.Subject.eof</a>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="getOrderBookUpdateEvent"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">getOrderBookUpdateEvent</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyalgotrade.bitstamp.livefeed-pysrc.html#LiveTradeFeed.getOrderBookUpdateEvent">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Returns the event that will be emitted when the orderbook gets 
+  updated.</p>
+  <p>Eventh handlers should receive one parameter:</p>
+  <ol start="1">
+    <li>
+      A :class:`pyalgotrade.bitstamp.wsclient.OrderBookUpdate` instance.
+    </li>
+  </ol>
+  <p>:rtype: :class:`pyalgotrade.observer.Event`.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="pyalgotrade-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Sat Oct 15 14:17:43 2016
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

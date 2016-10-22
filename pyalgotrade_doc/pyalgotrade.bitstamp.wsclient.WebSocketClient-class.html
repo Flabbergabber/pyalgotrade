@@ -1,0 +1,800 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>pyalgotrade.bitstamp.wsclient.WebSocketClient</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="pyalgotrade-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="pyalgotrade-module.html">Package&nbsp;pyalgotrade</a> ::
+        <a href="pyalgotrade.bitstamp-module.html">Package&nbsp;bitstamp</a> ::
+        <a href="pyalgotrade.bitstamp.wsclient-module.html">Module&nbsp;wsclient</a> ::
+        Class&nbsp;WebSocketClient
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="pyalgotrade.bitstamp.wsclient.WebSocketClient-class.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS DESCRIPTION ==================== -->
+<h1 class="epydoc">Class WebSocketClient</h1><p class="nomargin-top"><span class="codelink"><a href="pyalgotrade.bitstamp.wsclient-pysrc.html#WebSocketClient">source&nbsp;code</a></span></p>
+<center>
+<center>  <map id="uml_class_diagram_for_pyalgotr_47" name="uml_class_diagram_for_pyalgotr_47">
+<area shape="rect" id="node1_60" href="javascript:void(0);" title="Underlying websocket stream that performs the websocket parsing to high &#160;level objects." alt="" coords="71,29,270,49"/>
+<area shape="rect" id="node1_61" href="javascript:void(0);" title="List of protocols supported by this endpoint." alt="" coords="71,49,270,69"/>
+<area shape="rect" id="node1_62" href="javascript:void(0);" title="List of extensions supported by this endpoint." alt="" coords="71,69,270,89"/>
+<area shape="rect" id="node1_63" href="javascript:void(0);" title="Underlying connection." alt="" coords="71,89,270,109"/>
+<area shape="rect" id="node1_64" href="javascript:void(0);" title="Indicates if the client has been marked as terminated." alt="" coords="71,109,270,129"/>
+<area shape="rect" id="node1_65" href="javascript:void(0);" title="Indicates if the server has been marked as terminated." alt="" coords="71,129,270,149"/>
+<area shape="rect" id="node1_66" href="javascript:void(0);" title="Current connection reading buffer size." alt="" coords="71,149,270,169"/>
+<area shape="rect" id="node1_67" href="javascript:void(0);" title="WSGI environ dictionary." alt="" coords="71,169,270,189"/>
+<area shape="rect" id="node1_68" href="javascript:void(0);" title="At which interval the heartbeat will be running." alt="" coords="71,189,270,209"/>
+<area shape="rect" id="node1_69" href="javascript:void(0);" title="Local endpoint address as a tuple" alt="" coords="71,209,270,229"/>
+<area shape="rect" id="node1_70" href="javascript:void(0);" title="Peer endpoint address as a tuple" alt="" coords="71,229,270,249"/>
+<area shape="rect" id="node1_71" href="javascript:void(0);" title="Returns ``True`` if both the client and server have been marked as &#160;terminated." alt="" coords="71,249,270,269"/>
+<area shape="rect" id="node1_72" href="javascript:void(0);" title="ws4py.websocket.WebSocket.connection" alt="" coords="71,269,270,289"/>
+<area shape="rect" id="node1_73" href="javascript:void(0);" title="Send a ping message to the remote peer." alt="" coords="71,292,270,312"/>
+<area shape="rect" id="node1_74" href="javascript:void(0);" title="Pong message, as a :class:`messaging.PongControlMessage` instance, received on the stream." alt="" coords="71,312,270,332"/>
+<area shape="rect" id="node1_75" href="javascript:void(0);" title="Called whenever a socket, or an OS, error is trapped by ws4py but not &#160;managed by it." alt="" coords="71,332,270,352"/>
+<area shape="rect" id="node1_76" href="javascript:void(0);" title="Sends the given ``payload`` out." alt="" coords="71,352,270,372"/>
+<area shape="rect" id="node1_77" href="javascript:void(0);" title="Performs the operation of reading from the underlying connection in order &#160;to feed the stream of bytes." alt="" coords="71,372,270,392"/>
+<area shape="rect" id="node1_78" href="javascript:void(0);" title="Completes the websocket by calling the `closed` method either using the &#160;received closing code and reason, or when none was received, using the &#160;special `1006` code." alt="" coords="71,392,270,412"/>
+<area shape="rect" id="node1_79" href="javascript:void(0);" title="Takes some bytes and process them through the internal stream&#39;s parser." alt="" coords="71,412,270,432"/>
+<area shape="rect" id="node1_80" href="javascript:void(0);" title="Performs the operation of reading from the underlying connection in order to feed the stream of bytes." alt="" coords="71,432,270,452"/>
+<area shape="rect" id="node1" href="javascript:void(0);" title="Represents a websocket endpoint and provides a high level interface to drive the endpoint." alt="" coords="59,5,281,459"/>
+<area shape="rect" id="node2_81" href="javascript:void(0);" title="Returns the Unix socket path if or a tuple ``(host, port)`` depending on &#160;the initial URL&#39;s scheme." alt="" coords="43,501,299,521"/>
+<area shape="rect" id="node2_82" href="javascript:void(0);" title="List of headers appropriate for the upgrade handshake." alt="" coords="43,521,299,541"/>
+<area shape="rect" id="node2_83" href="javascript:void(0);" title="Prepare the request to be sent for the upgrade handshake." alt="" coords="43,541,299,561"/>
+<area shape="rect" id="node2_84" href="javascript:void(0);" title="Initiate the closing handshake with the server." alt="" coords="43,564,299,584"/>
+<area shape="rect" id="node2_85" href="javascript:void(0);" title="Ensure that we received a HTTP `101` status code in response to our request and if not raises :exc:`HandshakeError`." alt="" coords="43,584,299,604"/>
+<area shape="rect" id="node2_86" href="javascript:void(0);" title="Read the upgrade handshake&#39;s response headers and validate them against &#160;:rfc:`6455`." alt="" coords="43,604,299,624"/>
+<area shape="rect" id="node2_87" href="javascript:void(0);" title="ws4py.client.WebSocketBaseClient.handshake_ok" alt="" coords="43,624,299,644"/>
+<area shape="rect" id="node2" href="javascript:void(0);" title="ws4py.client.WebSocketBaseClient" alt="" coords="31,477,311,651"/>
+<area shape="rect" id="node4_88" href="javascript:void(0);" title="Connects the websocket and initiate the upgrade handshake." alt="" coords="18,702,323,722"/>
+<area shape="rect" id="node4_89" href="javascript:void(0);" title="Close the underlying connection" alt="" coords="18,722,323,742"/>
+<area shape="rect" id="node4" href="javascript:void(0);" title="ws4py.client.tornadoclient.TornadoWebSocketClient" alt="" coords="5,669,335,748"/>
+<area shape="rect" id="node3_90" href="pyalgotrade.websocket.pusher.WebSocketClient-class.html#sendEvent" title="pyalgotrade.websocket.pusher.WebSocketClient.sendEvent" alt="" coords="54,1036,289,1056"/>
+<area shape="rect" id="node3_91" href="pyalgotrade.websocket.pusher.WebSocketClient-class.html#subscribeChannel" title="pyalgotrade.websocket.pusher.WebSocketClient.subscribeChannel" alt="" coords="54,1056,289,1076"/>
+<area shape="rect" id="node3_92" href="pyalgotrade.websocket.pusher.WebSocketClient-class.html#sendPing" title="pyalgotrade.websocket.pusher.WebSocketClient.sendPing" alt="" coords="54,1076,289,1096"/>
+<area shape="rect" id="node3_93" href="pyalgotrade.websocket.pusher.WebSocketClient-class.html#sendPong" title="pyalgotrade.websocket.pusher.WebSocketClient.sendPong" alt="" coords="54,1096,289,1116"/>
+<area shape="rect" id="node3_94" href="pyalgotrade.websocket.pusher.WebSocketClient-class.html#onSubscriptionSucceeded" title="pyalgotrade.websocket.pusher.WebSocketClient.onSubscriptionSucceeded" alt="" coords="54,1116,289,1136"/>
+<area shape="rect" id="node3" href="pyalgotrade.websocket.pusher.WebSocketClient-class.html" title="pyalgotrade.websocket.pusher.WebSocketClient" alt="" coords="42,1004,301,1143"/>
+<area shape="rect" id="node6_95" href="pyalgotrade.bitstamp.wsclient.WebSocketClient-class.html#PUSHER_APP_KEY" title="pyalgotrade.bitstamp.wsclient.WebSocketClient.PUSHER_APP_KEY" alt="" coords="39,1186,302,1206"/>
+<area shape="rect" id="node6_96" href="pyalgotrade.bitstamp.wsclient.WebSocketClient-class.html#ON_TRADE" title="pyalgotrade.bitstamp.wsclient.WebSocketClient.ON_TRADE" alt="" coords="39,1206,302,1226"/>
+<area shape="rect" id="node6_97" href="pyalgotrade.bitstamp.wsclient.WebSocketClient-class.html#ON_ORDER_BOOK_UPDATE" title="pyalgotrade.bitstamp.wsclient.WebSocketClient.ON_ORDER_BOOK_UPDATE" alt="" coords="39,1226,302,1246"/>
+<area shape="rect" id="node6_98" href="pyalgotrade.bitstamp.wsclient.WebSocketClient-class.html#ON_CONNECTED" title="pyalgotrade.bitstamp.wsclient.WebSocketClient.ON_CONNECTED" alt="" coords="39,1246,302,1266"/>
+<area shape="rect" id="node6_99" href="pyalgotrade.bitstamp.wsclient.WebSocketClient-class.html#ON_DISCONNECTED" title="pyalgotrade.bitstamp.wsclient.WebSocketClient.ON_DISCONNECTED" alt="" coords="39,1266,302,1286"/>
+<area shape="rect" id="node6_100" href="pyalgotrade.bitstamp.wsclient.WebSocketClient-class.html#__init__" title=".." alt="" coords="39,1289,302,1309"/>
+<area shape="rect" id="node6_101" href="pyalgotrade.bitstamp.wsclient.WebSocketClient-class.html#getQueue" title="pyalgotrade.bitstamp.wsclient.WebSocketClient.getQueue" alt="" coords="39,1309,302,1329"/>
+<area shape="rect" id="node6_102" href="pyalgotrade.bitstamp.wsclient.WebSocketClient-class.html#onMessage" title="pyalgotrade.bitstamp.wsclient.WebSocketClient.onMessage" alt="" coords="39,1329,302,1349"/>
+<area shape="rect" id="node6_103" href="pyalgotrade.bitstamp.wsclient.WebSocketClient-class.html#onOpened" title="pyalgotrade.bitstamp.wsclient.WebSocketClient.onOpened" alt="" coords="39,1349,302,1369"/>
+<area shape="rect" id="node6_104" href="pyalgotrade.bitstamp.wsclient.WebSocketClient-class.html#onClosed" title="pyalgotrade.bitstamp.wsclient.WebSocketClient.onClosed" alt="" coords="39,1369,302,1389"/>
+<area shape="rect" id="node6_105" href="pyalgotrade.bitstamp.wsclient.WebSocketClient-class.html#onDisconnectionDetected" title="pyalgotrade.bitstamp.wsclient.WebSocketClient.onDisconnectionDetected" alt="" coords="39,1389,302,1409"/>
+<area shape="rect" id="node6_106" href="pyalgotrade.bitstamp.wsclient.WebSocketClient-class.html#onConnectionEstablished" title="pyalgotrade.bitstamp.wsclient.WebSocketClient.onConnectionEstablished" alt="" coords="39,1409,302,1429"/>
+<area shape="rect" id="node6_107" href="pyalgotrade.bitstamp.wsclient.WebSocketClient-class.html#onError" title="pyalgotrade.bitstamp.wsclient.WebSocketClient.onError" alt="" coords="39,1429,302,1449"/>
+<area shape="rect" id="node6_108" href="pyalgotrade.bitstamp.wsclient.WebSocketClient-class.html#onUnknownEvent" title="pyalgotrade.bitstamp.wsclient.WebSocketClient.onUnknownEvent" alt="" coords="39,1449,302,1469"/>
+<area shape="rect" id="node6_109" href="pyalgotrade.bitstamp.wsclient.WebSocketClient-class.html#onTrade" title="pyalgotrade.bitstamp.wsclient.WebSocketClient.onTrade" alt="" coords="39,1469,302,1489"/>
+<area shape="rect" id="node6_110" href="pyalgotrade.bitstamp.wsclient.WebSocketClient-class.html#onOrderBookUpdate" title="pyalgotrade.bitstamp.wsclient.WebSocketClient.onOrderBookUpdate" alt="" coords="39,1489,302,1509"/>
+<area shape="rect" id="node6" href="pyalgotrade.bitstamp.wsclient.WebSocketClient-class.html" title="pyalgotrade.bitstamp.wsclient.WebSocketClient" alt="" coords="27,1161,313,1515"/>
+<area shape="rect" id="node5_111" href="pyalgotrade.websocket.client.WebSocketClientBase-class.html#getIOLoop" title="pyalgotrade.websocket.client.WebSocketClientBase.getIOLoop" alt="" coords="54,799,289,819"/>
+<area shape="rect" id="node5_112" href="pyalgotrade.websocket.client.WebSocketClientBase-class.html#setKeepAliveMgr" title="pyalgotrade.websocket.client.WebSocketClientBase.setKeepAliveMgr" alt="" coords="54,819,289,839"/>
+<area shape="rect" id="node5_113" href="pyalgotrade.websocket.client.WebSocketClientBase-class.html#received_message" title="Called whenever a complete ``message``, binary or text, is received and &#160;ready for application&#39;s processing." alt="" coords="54,839,289,859"/>
+<area shape="rect" id="node5_114" href="pyalgotrade.websocket.client.WebSocketClientBase-class.html#opened" title="Called by the server when the upgrade handshake has succeeeded." alt="" coords="54,859,289,879"/>
+<area shape="rect" id="node5_115" href="pyalgotrade.websocket.client.WebSocketClientBase-class.html#closed" title="Called &#160;when the websocket stream and connection are finally closed." alt="" coords="54,879,289,899"/>
+<area shape="rect" id="node5_116" href="pyalgotrade.websocket.client.WebSocketClientBase-class.html#isConnected" title="pyalgotrade.websocket.client.WebSocketClientBase.isConnected" alt="" coords="54,899,289,919"/>
+<area shape="rect" id="node5_117" href="pyalgotrade.websocket.client.WebSocketClientBase-class.html#startClient" title="pyalgotrade.websocket.client.WebSocketClientBase.startClient" alt="" coords="54,919,289,939"/>
+<area shape="rect" id="node5_118" href="pyalgotrade.websocket.client.WebSocketClientBase-class.html#stopClient" title="pyalgotrade.websocket.client.WebSocketClientBase.stopClient" alt="" coords="54,939,289,959"/>
+<area shape="rect" id="node5_119" href="pyalgotrade.websocket.client.WebSocketClientBase-class.html#onUnhandledException" title="pyalgotrade.websocket.client.WebSocketClientBase.onUnhandledException" alt="" coords="54,959,289,979"/>
+<area shape="rect" id="node5" href="pyalgotrade.websocket.client.WebSocketClientBase-class.html" title="pyalgotrade.websocket.client.WebSocketClientBase" alt="" coords="42,767,301,985"/>
+</map>
+  <img src="uml_class_diagram_for_pyalgotr_47.gif" alt='' usemap="#uml_class_diagram_for_pyalgotr_47" ismap="ismap" class="graph-without-title" />
+</center>
+</center>
+<hr />
+<!-- ==================== INSTANCE METHODS ==================== -->
+<a name="section-InstanceMethods"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Instance Methods</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-InstanceMethods"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyalgotrade.bitstamp.wsclient.WebSocketClient-class.html#__init__" class="summary-sig-name">__init__</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      ..</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.bitstamp.wsclient-pysrc.html#WebSocketClient.__init__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="getQueue"></a><span class="summary-sig-name">getQueue</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.bitstamp.wsclient-pysrc.html#WebSocketClient.getQueue">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyalgotrade.bitstamp.wsclient.WebSocketClient-class.html#onMessage" class="summary-sig-name">onMessage</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">msg</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.bitstamp.wsclient-pysrc.html#WebSocketClient.onMessage">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyalgotrade.bitstamp.wsclient.WebSocketClient-class.html#onOpened" class="summary-sig-name">onOpened</a>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.bitstamp.wsclient-pysrc.html#WebSocketClient.onOpened">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyalgotrade.bitstamp.wsclient.WebSocketClient-class.html#onClosed" class="summary-sig-name">onClosed</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">code</span>,
+        <span class="summary-sig-arg">reason</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.bitstamp.wsclient-pysrc.html#WebSocketClient.onClosed">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyalgotrade.bitstamp.wsclient.WebSocketClient-class.html#onDisconnectionDetected" class="summary-sig-name">onDisconnectionDetected</a>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.bitstamp.wsclient-pysrc.html#WebSocketClient.onDisconnectionDetected">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyalgotrade.bitstamp.wsclient.WebSocketClient-class.html#onConnectionEstablished" class="summary-sig-name">onConnectionEstablished</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">event</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.bitstamp.wsclient-pysrc.html#WebSocketClient.onConnectionEstablished">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyalgotrade.bitstamp.wsclient.WebSocketClient-class.html#onError" class="summary-sig-name">onError</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">event</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.bitstamp.wsclient-pysrc.html#WebSocketClient.onError">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyalgotrade.bitstamp.wsclient.WebSocketClient-class.html#onUnknownEvent" class="summary-sig-name">onUnknownEvent</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">event</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.bitstamp.wsclient-pysrc.html#WebSocketClient.onUnknownEvent">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="onTrade"></a><span class="summary-sig-name">onTrade</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">trade</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.bitstamp.wsclient-pysrc.html#WebSocketClient.onTrade">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="onOrderBookUpdate"></a><span class="summary-sig-name">onOrderBookUpdate</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">orderBookUpdate</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.bitstamp.wsclient-pysrc.html#WebSocketClient.onOrderBookUpdate">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="pyalgotrade.websocket.pusher.WebSocketClient-class.html">websocket.pusher.WebSocketClient</a></code></b>:
+      <code><a href="pyalgotrade.websocket.pusher.WebSocketClient-class.html#onSubscriptionSucceeded">onSubscriptionSucceeded</a></code>,
+      <code><a href="pyalgotrade.websocket.pusher.WebSocketClient-class.html#sendEvent">sendEvent</a></code>,
+      <code><a href="pyalgotrade.websocket.pusher.WebSocketClient-class.html#sendPing">sendPing</a></code>,
+      <code><a href="pyalgotrade.websocket.pusher.WebSocketClient-class.html#sendPong">sendPong</a></code>,
+      <code><a href="pyalgotrade.websocket.pusher.WebSocketClient-class.html#subscribeChannel">subscribeChannel</a></code>
+      </p>
+    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="pyalgotrade.websocket.client.WebSocketClientBase-class.html">websocket.client.WebSocketClientBase</a></code></b>:
+      <code><a href="pyalgotrade.websocket.client.WebSocketClientBase-class.html#closed">closed</a></code>,
+      <code><a href="pyalgotrade.websocket.client.WebSocketClientBase-class.html#getIOLoop">getIOLoop</a></code>,
+      <code><a href="pyalgotrade.websocket.client.WebSocketClientBase-class.html#isConnected">isConnected</a></code>,
+      <code><a href="pyalgotrade.websocket.client.WebSocketClientBase-class.html#onUnhandledException">onUnhandledException</a></code>,
+      <code><a href="pyalgotrade.websocket.client.WebSocketClientBase-class.html#opened">opened</a></code>,
+      <code><a href="pyalgotrade.websocket.client.WebSocketClientBase-class.html#received_message">received_message</a></code>,
+      <code><a href="pyalgotrade.websocket.client.WebSocketClientBase-class.html#setKeepAliveMgr">setKeepAliveMgr</a></code>,
+      <code><a href="pyalgotrade.websocket.client.WebSocketClientBase-class.html#startClient">startClient</a></code>,
+      <code><a href="pyalgotrade.websocket.client.WebSocketClientBase-class.html#stopClient">stopClient</a></code>
+      </p>
+    <div class="private">    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="pyalgotrade.websocket.client.WebSocketClientBase-class.html">websocket.client.WebSocketClientBase</a></code></b> (private):
+      <code><a href="pyalgotrade.websocket.client.WebSocketClientBase-class.html#_cleanup" onclick="show_private();">_cleanup</a></code>
+      </p></div>
+    <p class="indent-wrapped-lines"><b>Inherited from <code>ws4py.client.tornadoclient.TornadoWebSocketClient</code></b>:
+      <code>close_connection</code>,
+      <code>connect</code>
+      </p>
+    <div class="private">    <p class="indent-wrapped-lines"><b>Inherited from <code>ws4py.client.tornadoclient.TornadoWebSocketClient</code></b> (private):
+      <code>_write</code>
+      </p></div>
+    <p class="indent-wrapped-lines"><b>Inherited from <code>ws4py.client.WebSocketBaseClient</code></b>:
+      <code>close</code>,
+      <code>handshake_ok</code>,
+      <code>process_handshake_header</code>,
+      <code>process_response_line</code>
+      </p>
+    <div class="private">    <p class="indent-wrapped-lines"><b>Inherited from <code>ws4py.client.WebSocketBaseClient</code></b> (private):
+      <code>_parse_url</code>
+      </p></div>
+    <p class="indent-wrapped-lines"><b>Inherited from <code>ws4py.websocket.WebSocket</code></b>:
+      <code>once</code>,
+      <code>ping</code>,
+      <code>ponged</code>,
+      <code>process</code>,
+      <code>run</code>,
+      <code>send</code>,
+      <code>terminate</code>,
+      <code>unhandled_error</code>
+      </p>
+    <div class="private">    <p class="indent-wrapped-lines"><b>Inherited from <code>ws4py.websocket.WebSocket</code></b> (private):
+      <code>_get_from_pending</code>
+      </p></div>
+    <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
+      <code>__delattr__</code>,
+      <code>__format__</code>,
+      <code>__getattribute__</code>,
+      <code>__hash__</code>,
+      <code>__new__</code>,
+      <code>__reduce__</code>,
+      <code>__reduce_ex__</code>,
+      <code>__repr__</code>,
+      <code>__setattr__</code>,
+      <code>__sizeof__</code>,
+      <code>__str__</code>,
+      <code>__subclasshook__</code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS VARIABLES ==================== -->
+<a name="section-ClassVariables"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Class Variables</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-ClassVariables"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="PUSHER_APP_KEY"></a><span class="summary-name">PUSHER_APP_KEY</span> = <code title="'de504dc5763aeef9ff52'"><code class="variable-quote">'</code><code class="variable-string">de504dc5763aeef9ff52</code><code class="variable-quote">'</code></code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="ON_TRADE"></a><span class="summary-name">ON_TRADE</span> = <code title="1">1</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="ON_ORDER_BOOK_UPDATE"></a><span class="summary-name">ON_ORDER_BOOK_UPDATE</span> = <code title="2">2</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="ON_CONNECTED"></a><span class="summary-name">ON_CONNECTED</span> = <code title="3">3</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="ON_DISCONNECTED"></a><span class="summary-name">ON_DISCONNECTED</span> = <code title="4">4</code>
+    </td>
+  </tr>
+</table>
+<!-- ==================== INSTANCE VARIABLES ==================== -->
+<a name="section-InstanceVariables"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Instance Variables</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-InstanceVariables"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code>ws4py.websocket.WebSocket</code></b>:
+      <code>client_terminated</code>,
+      <code>environ</code>,
+      <code>extensions</code>,
+      <code>heartbeat_freq</code>,
+      <code>protocols</code>,
+      <code>reading_buffer_size</code>,
+      <code>server_terminated</code>,
+      <code>sock</code>,
+      <code>stream</code>
+      </p>
+    <div class="private">    <p class="indent-wrapped-lines"><b>Inherited from <code>ws4py.websocket.WebSocket</code></b> (private):
+      <code>_is_secure</code>
+      </p></div>
+    </td>
+  </tr>
+</table>
+<!-- ==================== PROPERTIES ==================== -->
+<a name="section-Properties"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Properties</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Properties"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code>ws4py.client.WebSocketBaseClient</code></b>:
+      <code>bind_addr</code>,
+      <code>handshake_headers</code>,
+      <code>handshake_request</code>
+      </p>
+    <p class="indent-wrapped-lines"><b>Inherited from <code>ws4py.websocket.WebSocket</code></b>:
+      <code>connection</code>,
+      <code>local_address</code>,
+      <code>peer_address</code>,
+      <code>terminated</code>
+      </p>
+    <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
+      <code>__class__</code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== METHOD DETAILS ==================== -->
+<a name="section-MethodDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Method Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-MethodDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="__init__"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__init__</span>(<span class="sig-arg">self</span>)</span>
+    <br /><em class="fname">(Constructor)</em>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyalgotrade.bitstamp.wsclient-pysrc.html#WebSocketClient.__init__">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+
+.. code-block:: python
+
+    from tornado import ioloop
+
+    class MyClient(TornadoWebSocketClient):
+        def opened(self):
+            for i in range(0, 200, 25):
+                self.send(&quot;*&quot; * i)
+
+        def received_message(self, m):
+            print((m, len(str(m))))
+
+        def closed(self, code, reason=None):
+            ioloop.IOLoop.instance().stop()
+
+    ws = MyClient('ws://localhost:9000/echo', protocols=['http-only', 'chat'])
+    ws.connect()
+
+    ioloop.IOLoop.instance().start()
+
+</pre>
+  <dl class="fields">
+    <dt>Overrides:
+        object.__init__
+        <dd><em class="note">(inherited documentation)</em></dd>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="onMessage"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">onMessage</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">msg</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyalgotrade.bitstamp.wsclient-pysrc.html#WebSocketClient.onMessage">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  
+  <dl class="fields">
+    <dt>Overrides:
+        <a href="pyalgotrade.websocket.client.WebSocketClientBase-class.html#onMessage">websocket.client.WebSocketClientBase.onMessage</a>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="onOpened"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">onOpened</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyalgotrade.bitstamp.wsclient-pysrc.html#WebSocketClient.onOpened">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  
+  <dl class="fields">
+    <dt>Overrides:
+        <a href="pyalgotrade.websocket.client.WebSocketClientBase-class.html#onOpened">websocket.client.WebSocketClientBase.onOpened</a>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="onClosed"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">onClosed</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">code</span>,
+        <span class="sig-arg">reason</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyalgotrade.bitstamp.wsclient-pysrc.html#WebSocketClient.onClosed">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  
+  <dl class="fields">
+    <dt>Overrides:
+        <a href="pyalgotrade.websocket.client.WebSocketClientBase-class.html#onClosed">websocket.client.WebSocketClientBase.onClosed</a>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="onDisconnectionDetected"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">onDisconnectionDetected</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyalgotrade.bitstamp.wsclient-pysrc.html#WebSocketClient.onDisconnectionDetected">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  
+  <dl class="fields">
+    <dt>Overrides:
+        <a href="pyalgotrade.websocket.client.WebSocketClientBase-class.html#onDisconnectionDetected">websocket.client.WebSocketClientBase.onDisconnectionDetected</a>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="onConnectionEstablished"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">onConnectionEstablished</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">event</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyalgotrade.bitstamp.wsclient-pysrc.html#WebSocketClient.onConnectionEstablished">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  
+  <dl class="fields">
+    <dt>Overrides:
+        <a href="pyalgotrade.websocket.pusher.WebSocketClient-class.html#onConnectionEstablished">websocket.pusher.WebSocketClient.onConnectionEstablished</a>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="onError"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">onError</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">event</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyalgotrade.bitstamp.wsclient-pysrc.html#WebSocketClient.onError">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  
+  <dl class="fields">
+    <dt>Overrides:
+        <a href="pyalgotrade.websocket.pusher.WebSocketClient-class.html#onError">websocket.pusher.WebSocketClient.onError</a>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="onUnknownEvent"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">onUnknownEvent</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">event</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyalgotrade.bitstamp.wsclient-pysrc.html#WebSocketClient.onUnknownEvent">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  
+  <dl class="fields">
+    <dt>Overrides:
+        <a href="pyalgotrade.websocket.pusher.WebSocketClient-class.html#onUnknownEvent">websocket.pusher.WebSocketClient.onUnknownEvent</a>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="pyalgotrade-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Sat Oct 15 14:17:43 2016
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

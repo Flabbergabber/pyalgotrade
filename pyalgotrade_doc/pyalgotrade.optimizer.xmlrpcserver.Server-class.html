@@ -1,0 +1,443 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>pyalgotrade.optimizer.xmlrpcserver.Server</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="pyalgotrade-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="pyalgotrade-module.html">Package&nbsp;pyalgotrade</a> ::
+        <a href="pyalgotrade.optimizer-module.html">Package&nbsp;optimizer</a> ::
+        <a href="pyalgotrade.optimizer.xmlrpcserver-module.html">Module&nbsp;xmlrpcserver</a> ::
+        Class&nbsp;Server
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="pyalgotrade.optimizer.xmlrpcserver.Server-class.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS DESCRIPTION ==================== -->
+<h1 class="epydoc">Class Server</h1><p class="nomargin-top"><span class="codelink"><a href="pyalgotrade.optimizer.xmlrpcserver-pysrc.html#Server">source&nbsp;code</a></span></p>
+<center>
+<center>  <map id="uml_class_diagram_for_pyalgotr_146" name="uml_class_diagram_for_pyalgotr_146">
+<area shape="rect" id="node1_37" href="pyalgotrade.optimizer.xmlrpcserver.Server-class.html#defaultBatchSize" title="pyalgotrade.optimizer.xmlrpcserver.Server.defaultBatchSize" alt="" coords="88,591,552,611"/>
+<area shape="rect" id="node1_38" href="pyalgotrade.optimizer.xmlrpcserver.Server-class.html#__init__" title="Constructor." alt="" coords="88,613,552,633"/>
+<area shape="rect" id="node1_39" href="pyalgotrade.optimizer.xmlrpcserver.Server-class.html#getInstrumentsAndBars" title="pyalgotrade.optimizer.xmlrpcserver.Server.getInstrumentsAndBars" alt="" coords="88,633,552,653"/>
+<area shape="rect" id="node1_40" href="pyalgotrade.optimizer.xmlrpcserver.Server-class.html#getBarsFrequency" title="pyalgotrade.optimizer.xmlrpcserver.Server.getBarsFrequency" alt="" coords="88,653,552,673"/>
+<area shape="rect" id="node1_41" href="pyalgotrade.optimizer.xmlrpcserver.Server-class.html#getNextJob" title="pyalgotrade.optimizer.xmlrpcserver.Server.getNextJob" alt="" coords="88,673,552,693"/>
+<area shape="rect" id="node1_42" href="pyalgotrade.optimizer.xmlrpcserver.Server-class.html#jobsPending" title="pyalgotrade.optimizer.xmlrpcserver.Server.jobsPending" alt="" coords="88,693,552,713"/>
+<area shape="rect" id="node1_43" href="pyalgotrade.optimizer.xmlrpcserver.Server-class.html#pushJobResults" title="pyalgotrade.optimizer.xmlrpcserver.Server.pushJobResults" alt="" coords="88,713,552,733"/>
+<area shape="rect" id="node1_44" href="pyalgotrade.optimizer.xmlrpcserver.Server-class.html#stop" title="pyalgotrade.optimizer.xmlrpcserver.Server.stop" alt="" coords="88,733,552,753"/>
+<area shape="rect" id="node1_45" href="pyalgotrade.optimizer.xmlrpcserver.Server-class.html#serve" title="pyalgotrade.optimizer.xmlrpcserver.Server.serve" alt="" coords="88,753,552,773"/>
+<area shape="rect" id="node1" href="pyalgotrade.optimizer.xmlrpcserver.Server-class.html" title="pyalgotrade.optimizer.xmlrpcserver.Server" alt="" coords="76,567,564,780"/>
+<area shape="rect" id="node2_46" href="javascript:void(0);" title="SimpleXMLRPCServer.SimpleXMLRPCServer.allow_reuse_address" alt="" coords="183,513,456,533"/>
+<area shape="rect" id="node2" href="javascript:void(0);" title="Simple XML&#45;RPC server." alt="" coords="170,489,467,548"/>
+<area shape="rect" id="node3_47" href="javascript:void(0);" title="SocketServer.TCPServer.address_family" alt="" coords="59,262,251,282"/>
+<area shape="rect" id="node3_48" href="javascript:void(0);" title="SocketServer.TCPServer.socket_type" alt="" coords="59,282,251,302"/>
+<area shape="rect" id="node3_49" href="javascript:void(0);" title="SocketServer.TCPServer.request_queue_size" alt="" coords="59,302,251,322"/>
+<area shape="rect" id="node3_50" href="javascript:void(0);" title="Called by constructor to bind the socket." alt="" coords="59,325,251,345"/>
+<area shape="rect" id="node3_51" href="javascript:void(0);" title="Called by constructor to activate the server." alt="" coords="59,345,251,365"/>
+<area shape="rect" id="node3_52" href="javascript:void(0);" title="Called to clean&#45;up the server." alt="" coords="59,365,251,385"/>
+<area shape="rect" id="node3_53" href="javascript:void(0);" title="Return socket file number." alt="" coords="59,385,251,405"/>
+<area shape="rect" id="node3_54" href="javascript:void(0);" title="Get the request and client address from the socket." alt="" coords="59,405,251,425"/>
+<area shape="rect" id="node3_55" href="javascript:void(0);" title="Called to shutdown and close an individual request." alt="" coords="59,425,251,445"/>
+<area shape="rect" id="node3_56" href="javascript:void(0);" title="Called to clean up an individual request." alt="" coords="59,445,251,465"/>
+<area shape="rect" id="node3" href="javascript:void(0);" title="Base class for various socket&#45;based server classes." alt="" coords="47,237,263,471"/>
+<area shape="rect" id="node4_57" href="javascript:void(0);" title="Registers an instance to respond to XML&#45;RPC requests." alt="" coords="305,287,664,307"/>
+<area shape="rect" id="node4_58" href="javascript:void(0);" title="Registers a function to respond to XML&#45;RPC requests." alt="" coords="305,307,664,327"/>
+<area shape="rect" id="node4_59" href="javascript:void(0);" title="Registers the XML&#45;RPC introspection methods in the system namespace." alt="" coords="305,327,664,347"/>
+<area shape="rect" id="node4_60" href="javascript:void(0);" title="Registers the XML&#45;RPC multicall method in the system namespace." alt="" coords="305,347,664,367"/>
+<area shape="rect" id="node4_61" href="javascript:void(0);" title="system.listMethods() =&gt; [&#39;add&#39;, &#39;subtract&#39;, &#39;multiple&#39;]" alt="" coords="305,367,664,387"/>
+<area shape="rect" id="node4_62" href="javascript:void(0);" title="system.methodSignature(&#39;add&#39;) =&gt; [double, int, int]" alt="" coords="305,387,664,407"/>
+<area shape="rect" id="node4_63" href="javascript:void(0);" title="system.methodHelp(&#39;add&#39;) =&gt; &quot;Adds two integers together&quot;" alt="" coords="305,407,664,427"/>
+<area shape="rect" id="node4_64" href="javascript:void(0);" title="system.multicall([{&#39;methodName&#39;: &#39;add&#39;, &#39;params&#39;: [2, 2]}, ...]) =&gt; [[4], &#160;...]" alt="" coords="305,427,664,447"/>
+<area shape="rect" id="node4" href="javascript:void(0);" title="Mix&#45;in class that dispatches XML&#45;RPC requests." alt="" coords="293,255,675,453"/>
+<area shape="rect" id="node5_65" href="javascript:void(0);" title="SocketServer.BaseServer.timeout" alt="" coords="17,29,292,49"/>
+<area shape="rect" id="node5_66" href="javascript:void(0);" title="Handle one request at a time until shutdown." alt="" coords="17,52,292,72"/>
+<area shape="rect" id="node5_67" href="javascript:void(0);" title="Stops the serve_forever loop." alt="" coords="17,72,292,92"/>
+<area shape="rect" id="node5_68" href="javascript:void(0);" title="Handle one request, possibly blocking." alt="" coords="17,92,292,112"/>
+<area shape="rect" id="node5_69" href="javascript:void(0);" title="Called if no new request arrives within self.timeout." alt="" coords="17,112,292,132"/>
+<area shape="rect" id="node5_70" href="javascript:void(0);" title="Verify the request." alt="" coords="17,132,292,152"/>
+<area shape="rect" id="node5_71" href="javascript:void(0);" title="Call finish_request." alt="" coords="17,152,292,172"/>
+<area shape="rect" id="node5_72" href="javascript:void(0);" title="Finish one request by instantiating RequestHandlerClass." alt="" coords="17,172,292,192"/>
+<area shape="rect" id="node5_73" href="javascript:void(0);" title="Handle an error gracefully." alt="" coords="17,192,292,212"/>
+<area shape="rect" id="node5" href="javascript:void(0);" title="Base class for server classes." alt="" coords="5,5,304,219"/>
+</map>
+  <img src="uml_class_diagram_for_pyalgotr_146.gif" alt='' usemap="#uml_class_diagram_for_pyalgotr_146" ismap="ismap" class="graph-without-title" />
+</center>
+</center>
+<hr />
+<!-- ==================== INSTANCE METHODS ==================== -->
+<a name="section-InstanceMethods"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Instance Methods</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-InstanceMethods"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyalgotrade.optimizer.xmlrpcserver.Server-class.html#__init__" class="summary-sig-name">__init__</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">paramSource</span>,
+        <span class="summary-sig-arg">resultSinc</span>,
+        <span class="summary-sig-arg">barFeed</span>,
+        <span class="summary-sig-arg">address</span>,
+        <span class="summary-sig-arg">port</span>,
+        <span class="summary-sig-arg">autoStop</span>=<span class="summary-sig-default">True</span>)</span><br />
+      Constructor.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.optimizer.xmlrpcserver-pysrc.html#Server.__init__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="getInstrumentsAndBars"></a><span class="summary-sig-name">getInstrumentsAndBars</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.optimizer.xmlrpcserver-pysrc.html#Server.getInstrumentsAndBars">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="getBarsFrequency"></a><span class="summary-sig-name">getBarsFrequency</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.optimizer.xmlrpcserver-pysrc.html#Server.getBarsFrequency">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="getNextJob"></a><span class="summary-sig-name">getNextJob</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.optimizer.xmlrpcserver-pysrc.html#Server.getNextJob">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="jobsPending"></a><span class="summary-sig-name">jobsPending</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.optimizer.xmlrpcserver-pysrc.html#Server.jobsPending">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="pushJobResults"></a><span class="summary-sig-name">pushJobResults</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">jobId</span>,
+        <span class="summary-sig-arg">result</span>,
+        <span class="summary-sig-arg">parameters</span>,
+        <span class="summary-sig-arg">workerName</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.optimizer.xmlrpcserver-pysrc.html#Server.pushJobResults">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="stop"></a><span class="summary-sig-name">stop</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.optimizer.xmlrpcserver-pysrc.html#Server.stop">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="serve"></a><span class="summary-sig-name">serve</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.optimizer.xmlrpcserver-pysrc.html#Server.serve">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code>SocketServer.TCPServer</code></b>:
+      <code>close_request</code>,
+      <code>fileno</code>,
+      <code>get_request</code>,
+      <code>server_activate</code>,
+      <code>server_bind</code>,
+      <code>server_close</code>,
+      <code>shutdown_request</code>
+      </p>
+    <p class="indent-wrapped-lines"><b>Inherited from <code>SocketServer.BaseServer</code></b>:
+      <code>finish_request</code>,
+      <code>handle_error</code>,
+      <code>handle_request</code>,
+      <code>handle_timeout</code>,
+      <code>process_request</code>,
+      <code>serve_forever</code>,
+      <code>shutdown</code>,
+      <code>verify_request</code>
+      </p>
+    <div class="private">    <p class="indent-wrapped-lines"><b>Inherited from <code>SocketServer.BaseServer</code></b> (private):
+      <code>_handle_request_noblock</code>
+      </p></div>
+    <p class="indent-wrapped-lines"><b>Inherited from <code>SimpleXMLRPCServer.SimpleXMLRPCDispatcher</code></b>:
+      <code>register_function</code>,
+      <code>register_instance</code>,
+      <code>register_introspection_functions</code>,
+      <code>register_multicall_functions</code>,
+      <code>system_listMethods</code>,
+      <code>system_methodHelp</code>,
+      <code>system_methodSignature</code>,
+      <code>system_multicall</code>
+      </p>
+    <div class="private">    <p class="indent-wrapped-lines"><b>Inherited from <code>SimpleXMLRPCServer.SimpleXMLRPCDispatcher</code></b> (private):
+      <code>_dispatch</code>,
+      <code>_marshaled_dispatch</code>
+      </p></div>
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS VARIABLES ==================== -->
+<a name="section-ClassVariables"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Class Variables</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-ClassVariables"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="defaultBatchSize"></a><span class="summary-name">defaultBatchSize</span> = <code title="200">200</code>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code>SimpleXMLRPCServer.SimpleXMLRPCServer</code></b>:
+      <code>allow_reuse_address</code>
+      </p>
+    <div class="private">    <p class="indent-wrapped-lines"><b>Inherited from <code>SimpleXMLRPCServer.SimpleXMLRPCServer</code></b> (private):
+      <code>_send_traceback_header</code>
+      </p></div>
+    <p class="indent-wrapped-lines"><b>Inherited from <code>SocketServer.TCPServer</code></b>:
+      <code>address_family</code>,
+      <code>request_queue_size</code>,
+      <code>socket_type</code>
+      </p>
+    <p class="indent-wrapped-lines"><b>Inherited from <code>SocketServer.BaseServer</code></b>:
+      <code>timeout</code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== METHOD DETAILS ==================== -->
+<a name="section-MethodDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Method Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-MethodDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="__init__"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__init__</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">paramSource</span>,
+        <span class="sig-arg">resultSinc</span>,
+        <span class="sig-arg">barFeed</span>,
+        <span class="sig-arg">address</span>,
+        <span class="sig-arg">port</span>,
+        <span class="sig-arg">autoStop</span>=<span class="sig-default">True</span>)</span>
+    <br /><em class="fname">(Constructor)</em>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyalgotrade.optimizer.xmlrpcserver-pysrc.html#Server.__init__">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Constructor.  May be extended, do not override.</p>
+  <dl class="fields">
+    <dt>Overrides:
+        SimpleXMLRPCServer.SimpleXMLRPCDispatcher.__init__
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="pyalgotrade-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Sat Oct 15 14:17:50 2016
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

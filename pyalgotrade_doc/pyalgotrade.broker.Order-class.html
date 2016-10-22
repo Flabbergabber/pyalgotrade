@@ -1,0 +1,1198 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>pyalgotrade.broker.Order</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="pyalgotrade-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="pyalgotrade-module.html">Package&nbsp;pyalgotrade</a> ::
+        <a href="pyalgotrade.broker-module.html">Package&nbsp;broker</a> ::
+        Class&nbsp;Order
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="pyalgotrade.broker.Order-class.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS DESCRIPTION ==================== -->
+<h1 class="epydoc">Class Order</h1><p class="nomargin-top"><span class="codelink"><a href="pyalgotrade.broker-pysrc.html#Order">source&nbsp;code</a></span></p>
+<center>
+<center>  <map id="uml_class_diagram_for_pyalgotr_58" name="uml_class_diagram_for_pyalgotr_58">
+<area shape="rect" id="node1" href="pyalgotrade.broker.OptionOrder-class.html" title="Base class for market orders." alt="" coords="221,437,326,476"/>
+<area shape="rect" id="node12" href="pyalgotrade.broker.backtesting.OptionOrder-class.html" title="pyalgotrade.broker.backtesting.OptionOrder" alt="" coords="5,495,181,533"/>
+<area shape="rect" id="node2" href="pyalgotrade.broker.OptionLimitOrder-class.html" title="Base class for limit orders." alt="" coords="536,437,669,476"/>
+<area shape="rect" id="node3" href="pyalgotrade.broker.backtesting.OptionStopOrder-class.html" title="pyalgotrade.broker.backtesting.OptionStopOrder" alt="" coords="211,495,415,533"/>
+<area shape="rect" id="node4" href="pyalgotrade.broker.StopOrder-class.html" title="Base class for stop orders." alt="" coords="699,437,794,476"/>
+<area shape="rect" id="node6" href="pyalgotrade.broker.backtesting_old.StopOrder-class.html" title="pyalgotrade.broker.backtesting_old.StopOrder" alt="" coords="445,495,635,533"/>
+<area shape="rect" id="node20" href="pyalgotrade.broker.backtesting.StopOrder-class.html" title="pyalgotrade.broker.backtesting.StopOrder" alt="" coords="664,495,829,533"/>
+<area shape="rect" id="node5" href="pyalgotrade.broker.backtesting_old.StopLimitOrder-class.html" title="pyalgotrade.broker.backtesting_old.StopLimitOrder" alt="" coords="1299,495,1517,533"/>
+<area shape="rect" id="node7" href="pyalgotrade.broker.backtesting_old.LimitOrder-class.html" title="pyalgotrade.broker.backtesting_old.LimitOrder" alt="" coords="2031,495,2222,533"/>
+<area shape="rect" id="node8_18" href="pyalgotrade.broker.Order.Action-class.html" title="pyalgotrade.broker.Order.Action" alt="" coords="1036,29,1540,49"/>
+<area shape="rect" id="node8_19" href="pyalgotrade.broker.Order.State-class.html" title="pyalgotrade.broker.Order.State" alt="" coords="1036,49,1540,69"/>
+<area shape="rect" id="node8_20" href="pyalgotrade.broker.Order.Type-class.html" title="pyalgotrade.broker.Order.Type" alt="" coords="1036,69,1540,89"/>
+<area shape="rect" id="node8_21" href="pyalgotrade.broker.Order-class.html#VALID_TRANSITIONS" title="pyalgotrade.broker.Order.VALID_TRANSITIONS" alt="" coords="1036,89,1540,109"/>
+<area shape="rect" id="node8_22" href="pyalgotrade.broker.Order-class.html#__init__" title="x.__init__(...) initializes x; see help(type(x)) for signature" alt="" coords="1036,112,1540,132"/>
+<area shape="rect" id="node8_23" href="pyalgotrade.broker.Order-class.html#getInstrumentTraits" title="pyalgotrade.broker.Order.getInstrumentTraits" alt="" coords="1036,132,1540,152"/>
+<area shape="rect" id="node8_24" href="pyalgotrade.broker.Order-class.html#getId" title="Returns the order id." alt="" coords="1036,152,1540,172"/>
+<area shape="rect" id="node8_25" href="pyalgotrade.broker.Order-class.html#getType" title="Returns the order type." alt="" coords="1036,172,1540,192"/>
+<area shape="rect" id="node8_26" href="pyalgotrade.broker.Order-class.html#getSubmitDateTime" title="Returns the datetime when the order was submitted." alt="" coords="1036,192,1540,212"/>
+<area shape="rect" id="node8_27" href="pyalgotrade.broker.Order-class.html#setSubmitted" title="pyalgotrade.broker.Order.setSubmitted" alt="" coords="1036,212,1540,232"/>
+<area shape="rect" id="node8_28" href="pyalgotrade.broker.Order-class.html#getAction" title="Returns the order action." alt="" coords="1036,232,1540,252"/>
+<area shape="rect" id="node8_29" href="pyalgotrade.broker.Order-class.html#getState" title="Returns the order state." alt="" coords="1036,252,1540,272"/>
+<area shape="rect" id="node8_30" href="pyalgotrade.broker.Order-class.html#isActive" title="Returns True if the order is active." alt="" coords="1036,272,1540,292"/>
+<area shape="rect" id="node8_31" href="pyalgotrade.broker.Order-class.html#isInitial" title="Returns True if the order state is Order.State.INITIAL." alt="" coords="1036,292,1540,312"/>
+<area shape="rect" id="node8_32" href="pyalgotrade.broker.Order-class.html#isSubmitted" title="Returns True if the order state is Order.State.SUBMITTED." alt="" coords="1036,312,1540,332"/>
+<area shape="rect" id="node8_33" href="pyalgotrade.broker.Order-class.html#isAccepted" title="Returns True if the order state is Order.State.ACCEPTED." alt="" coords="1036,332,1540,352"/>
+<area shape="rect" id="node8_34" href="pyalgotrade.broker.Order-class.html#isCanceled" title="Returns True if the order state is Order.State.CANCELED." alt="" coords="1036,352,1540,372"/>
+<area shape="rect" id="node8_35" href="pyalgotrade.broker.Order-class.html#setStrike" title="pyalgotrade.broker.Order.setStrike" alt="" coords="1036,392,1540,412"/>
+<area shape="rect" id="node8" href="pyalgotrade.broker.Order-class.html" title="Base class for orders." alt="" coords="1024,5,1552,419"/>
+<area shape="rect" id="node13" href="pyalgotrade.broker.MarketOrder-class.html" title="Base class for market orders." alt="" coords="1114,437,1222,476"/>
+<area shape="rect" id="node14" href="pyalgotrade.broker.StopLimitOrder-class.html" title="Base class for stop limit orders." alt="" coords="1464,437,1587,476"/>
+<area shape="rect" id="node17" href="pyalgotrade.broker.LimitOrder-class.html" title="Base class for limit orders." alt="" coords="1905,437,2001,476"/>
+<area shape="rect" id="node19" href="pyalgotrade.broker.OptionStopOrder-class.html" title="Base class for stop orders." alt="" coords="2031,437,2163,476"/>
+<area shape="rect" id="node21" href="pyalgotrade.broker.OptionStopLimitOrder-class.html" title="Base class for stop limit orders." alt="" coords="2193,437,2353,476"/>
+<area shape="rect" id="node9" href="pyalgotrade.broker.backtesting.MarketOrder-class.html" title="pyalgotrade.broker.backtesting.MarketOrder" alt="" coords="859,495,1037,533"/>
+<area shape="rect" id="node10" href="pyalgotrade.broker.backtesting.OptionLimitOrder-class.html" title="pyalgotrade.broker.backtesting.OptionLimitOrder" alt="" coords="2251,495,2455,533"/>
+<area shape="rect" id="node11" href="pyalgotrade.broker.backtesting.StopLimitOrder-class.html" title="pyalgotrade.broker.backtesting.StopLimitOrder" alt="" coords="1546,495,1739,533"/>
+<area shape="rect" id="node15" href="pyalgotrade.broker.backtesting_old.MarketOrder-class.html" title="pyalgotrade.broker.backtesting_old.MarketOrder" alt="" coords="1067,495,1269,533"/>
+<area shape="rect" id="node18" href="pyalgotrade.broker.backtesting.OptionStopLimitOrder-class.html" title="pyalgotrade.broker.backtesting.OptionStopLimitOrder" alt="" coords="1769,495,2001,533"/>
+<area shape="rect" id="node16" href="pyalgotrade.broker.backtesting.LimitOrder-class.html" title="pyalgotrade.broker.backtesting.LimitOrder" alt="" coords="2485,495,2651,533"/>
+</map>
+  <img src="uml_class_diagram_for_pyalgotr_58.gif" alt='' usemap="#uml_class_diagram_for_pyalgotr_58" ismap="ismap" class="graph-without-title" />
+</center>
+</center>
+<hr />
+<p>Base class for orders.</p>
+  <p>:param type_: The order type :type type_: :class:`Order.Type` :param 
+  action: The order action. :type action: :class:`Order.Action` :param 
+  instrument: Instrument identifier. :type instrument: string. :param 
+  quantity: Order quantity. :type quantity: int/float.</p>
+  <p>.. note:</p>
+<pre class="literalblock">
+   This is a base class and should not be used directly.
+
+   Valid **type** parameter values are:
+
+    * Order.Type.MARKET
+    * Order.Type.LIMIT
+    * Order.Type.STOP
+    * Order.Type.STOP_LIMIT
+
+   Valid **action** parameter values are:
+
+    * Order.Action.BUY
+    * Order.Action.BUY_TO_COVER
+    * Order.Action.SELL
+    * Order.Action.SELL_SHORT
+</pre>
+
+<!-- ==================== NESTED CLASSES ==================== -->
+<a name="section-NestedClasses"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Nested Classes</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-NestedClasses"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pyalgotrade.broker.Order.Action-class.html" class="summary-name">Action</a>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pyalgotrade.broker.Order.State-class.html" class="summary-name">State</a>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pyalgotrade.broker.Order.Type-class.html" class="summary-name">Type</a>
+    </td>
+  </tr>
+</table>
+<!-- ==================== INSTANCE METHODS ==================== -->
+<a name="section-InstanceMethods"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Instance Methods</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-InstanceMethods"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyalgotrade.broker.Order-class.html#__init__" class="summary-sig-name">__init__</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">type_</span>,
+        <span class="summary-sig-arg">action</span>,
+        <span class="summary-sig-arg">instrument</span>,
+        <span class="summary-sig-arg">quantity</span>,
+        <span class="summary-sig-arg">instrumentTraits</span>,
+        <span class="summary-sig-arg">right</span>,
+        <span class="summary-sig-arg">strike</span>,
+        <span class="summary-sig-arg">expiry</span>)</span><br />
+      x.__init__(...) initializes x; see help(type(x)) for signature</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.broker-pysrc.html#Order.__init__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="_setQuantity"></a><span class="summary-sig-name">_setQuantity</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">quantity</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.broker-pysrc.html#Order._setQuantity">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="getInstrumentTraits"></a><span class="summary-sig-name">getInstrumentTraits</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.broker-pysrc.html#Order.getInstrumentTraits">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyalgotrade.broker.Order-class.html#getId" class="summary-sig-name">getId</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Returns the order id.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.broker-pysrc.html#Order.getId">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyalgotrade.broker.Order-class.html#getType" class="summary-sig-name">getType</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Returns the order type.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.broker-pysrc.html#Order.getType">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="getSubmitDateTime"></a><span class="summary-sig-name">getSubmitDateTime</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      Returns the datetime when the order was submitted.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.broker-pysrc.html#Order.getSubmitDateTime">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="setSubmitted"></a><span class="summary-sig-name">setSubmitted</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">orderId</span>,
+        <span class="summary-sig-arg">dateTime</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.broker-pysrc.html#Order.setSubmitted">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyalgotrade.broker.Order-class.html#getAction" class="summary-sig-name">getAction</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Returns the order action.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.broker-pysrc.html#Order.getAction">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyalgotrade.broker.Order-class.html#getState" class="summary-sig-name">getState</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Returns the order state.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.broker-pysrc.html#Order.getState">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="isActive"></a><span class="summary-sig-name">isActive</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      Returns True if the order is active.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.broker-pysrc.html#Order.isActive">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="isInitial"></a><span class="summary-sig-name">isInitial</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      Returns True if the order state is Order.State.INITIAL.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.broker-pysrc.html#Order.isInitial">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="isSubmitted"></a><span class="summary-sig-name">isSubmitted</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      Returns True if the order state is Order.State.SUBMITTED.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.broker-pysrc.html#Order.isSubmitted">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="isAccepted"></a><span class="summary-sig-name">isAccepted</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      Returns True if the order state is Order.State.ACCEPTED.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.broker-pysrc.html#Order.isAccepted">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="isCanceled"></a><span class="summary-sig-name">isCanceled</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      Returns True if the order state is Order.State.CANCELED.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.broker-pysrc.html#Order.isCanceled">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="isPartiallyFilled"></a><span class="summary-sig-name">isPartiallyFilled</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      Returns True if the order state is Order.State.PARTIALLY_FILLED.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.broker-pysrc.html#Order.isPartiallyFilled">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="isFilled"></a><span class="summary-sig-name">isFilled</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      Returns True if the order state is Order.State.FILLED.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.broker-pysrc.html#Order.isFilled">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="getInstrument"></a><span class="summary-sig-name">getInstrument</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      Returns the instrument identifier.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.broker-pysrc.html#Order.getInstrument">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="getQuantity"></a><span class="summary-sig-name">getQuantity</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      Returns the quantity.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.broker-pysrc.html#Order.getQuantity">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="getFilled"></a><span class="summary-sig-name">getFilled</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      Returns the number of shares that have been executed.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.broker-pysrc.html#Order.getFilled">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="getRemaining"></a><span class="summary-sig-name">getRemaining</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      Returns the number of shares still outstanding.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.broker-pysrc.html#Order.getRemaining">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="getAvgFillPrice"></a><span class="summary-sig-name">getAvgFillPrice</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      Returns the average price of the shares that have been executed, or 
+      None if nothing has been filled.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.broker-pysrc.html#Order.getAvgFillPrice">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="getCommissions"></a><span class="summary-sig-name">getCommissions</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.broker-pysrc.html#Order.getCommissions">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="getGoodTillCanceled"></a><span class="summary-sig-name">getGoodTillCanceled</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      Returns True if the order is good till canceled.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.broker-pysrc.html#Order.getGoodTillCanceled">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyalgotrade.broker.Order-class.html#setGoodTillCanceled" class="summary-sig-name">setGoodTillCanceled</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">goodTillCanceled</span>)</span><br />
+      Sets if the order should be good till canceled.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.broker-pysrc.html#Order.setGoodTillCanceled">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="getAllOrNone"></a><span class="summary-sig-name">getAllOrNone</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      Returns True if the order should be completely filled or else 
+      canceled.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.broker-pysrc.html#Order.getAllOrNone">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyalgotrade.broker.Order-class.html#setAllOrNone" class="summary-sig-name">setAllOrNone</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">allOrNone</span>)</span><br />
+      Sets the All-Or-None property for this order.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.broker-pysrc.html#Order.setAllOrNone">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="addExecutionInfo"></a><span class="summary-sig-name">addExecutionInfo</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">orderExecutionInfo</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.broker-pysrc.html#Order.addExecutionInfo">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="switchState"></a><span class="summary-sig-name">switchState</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">newState</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.broker-pysrc.html#Order.switchState">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="setState"></a><span class="summary-sig-name">setState</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">newState</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.broker-pysrc.html#Order.setState">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyalgotrade.broker.Order-class.html#getExecutionInfo" class="summary-sig-name">getExecutionInfo</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Returns the last execution information for this order, or None if 
+      nothing has been filled so far.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.broker-pysrc.html#Order.getExecutionInfo">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="isBuy"></a><span class="summary-sig-name">isBuy</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.broker-pysrc.html#Order.isBuy">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="isSell"></a><span class="summary-sig-name">isSell</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.broker-pysrc.html#Order.isSell">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="getExpiry"></a><span class="summary-sig-name">getExpiry</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.broker-pysrc.html#Order.getExpiry">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="getRight"></a><span class="summary-sig-name">getRight</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.broker-pysrc.html#Order.getRight">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="getStrike"></a><span class="summary-sig-name">getStrike</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.broker-pysrc.html#Order.getStrike">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="setExpiry"></a><span class="summary-sig-name">setExpiry</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">expiry</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.broker-pysrc.html#Order.setExpiry">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="setRight"></a><span class="summary-sig-name">setRight</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">right</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.broker-pysrc.html#Order.setRight">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="setStrike"></a><span class="summary-sig-name">setStrike</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">strike</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.broker-pysrc.html#Order.setStrike">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
+      <code>__delattr__</code>,
+      <code>__format__</code>,
+      <code>__getattribute__</code>,
+      <code>__hash__</code>,
+      <code>__new__</code>,
+      <code>__reduce__</code>,
+      <code>__reduce_ex__</code>,
+      <code>__repr__</code>,
+      <code>__setattr__</code>,
+      <code>__sizeof__</code>,
+      <code>__str__</code>,
+      <code>__subclasshook__</code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS VARIABLES ==================== -->
+<a name="section-ClassVariables"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Class Variables</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-ClassVariables"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pyalgotrade.broker.Order-class.html#VALID_TRANSITIONS" class="summary-name">VALID_TRANSITIONS</a> = <code title="{1: [2, 4], 2: [3, 4], 3: [5, 6, 4], 5: [5, 6, 4]}"><code class="variable-group">{</code>1<code class="variable-op">: </code><code class="variable-group">[</code>2<code class="variable-op">, </code>4<code class="variable-group">]</code><code class="variable-op">, </code>2<code class="variable-op">: </code><code class="variable-group">[</code>3<code class="variable-op">, </code>4<code class="variable-group">]</code><code class="variable-op">, </code>3<code class="variable-op">: </code><code class="variable-group">[</code>5<code class="variable-op">, </code>6<code class="variable-op">, </code>4<code class="variable-group">]</code><code class="variable-op">, </code>5<code class="variable-op">: </code><code class="variable-group">[</code>5<code class="variable-ellipsis">...</code></code>
+    </td>
+  </tr>
+</table>
+<!-- ==================== PROPERTIES ==================== -->
+<a name="section-Properties"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Properties</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Properties"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
+      <code>__class__</code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== METHOD DETAILS ==================== -->
+<a name="section-MethodDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Method Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-MethodDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="__init__"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__init__</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">type_</span>,
+        <span class="sig-arg">action</span>,
+        <span class="sig-arg">instrument</span>,
+        <span class="sig-arg">quantity</span>,
+        <span class="sig-arg">instrumentTraits</span>,
+        <span class="sig-arg">right</span>,
+        <span class="sig-arg">strike</span>,
+        <span class="sig-arg">expiry</span>)</span>
+    <br /><em class="fname">(Constructor)</em>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyalgotrade.broker-pysrc.html#Order.__init__">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>x.__init__(...) initializes x; see help(type(x)) for signature</p>
+  <dl class="fields">
+    <dt>Overrides:
+        object.__init__
+        <dd><em class="note">(inherited documentation)</em></dd>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="getId"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">getId</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyalgotrade.broker-pysrc.html#Order.getId">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Returns the order id.</p>
+  <p>.. note:</p>
+<pre class="literalblock">
+   This will be None if the order was not submitted.
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="getType"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">getType</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyalgotrade.broker-pysrc.html#Order.getType">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Returns the order type. Valid order types are:</p>
+  <p>* Order.Type.MARKET * Order.Type.LIMIT * Order.Type.STOP * 
+  Order.Type.STOP_LIMIT</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="getAction"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">getAction</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyalgotrade.broker-pysrc.html#Order.getAction">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Returns the order action. Valid order actions are:</p>
+  <p>* Order.Action.BUY * Order.Action.BUY_TO_COVER * Order.Action.SELL * 
+  Order.Action.SELL_SHORT</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="getState"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">getState</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyalgotrade.broker-pysrc.html#Order.getState">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Returns the order state. Valid order states are:</p>
+  <p>* Order.State.INITIAL (the initial state). * Order.State.SUBMITTED * 
+  Order.State.ACCEPTED * Order.State.CANCELED * 
+  Order.State.PARTIALLY_FILLED * Order.State.FILLED</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="setGoodTillCanceled"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">setGoodTillCanceled</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">goodTillCanceled</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyalgotrade.broker-pysrc.html#Order.setGoodTillCanceled">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Sets if the order should be good till canceled. Orders that are not 
+  filled by the time the session closes will be will be automatically 
+  canceled if they were not set as good till canceled</p>
+  <p>:param goodTillCanceled: True if the order should be good till 
+  canceled. :type goodTillCanceled: boolean.</p>
+  <p>.. note:: This can't be changed once the order is submitted.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="setAllOrNone"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">setAllOrNone</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">allOrNone</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyalgotrade.broker-pysrc.html#Order.setAllOrNone">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Sets the All-Or-None property for this order.</p>
+  <p>:param allOrNone: True if the order should be completely filled. :type
+  allOrNone: boolean.</p>
+  <p>.. note:: This can't be changed once the order is submitted.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="getExecutionInfo"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">getExecutionInfo</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyalgotrade.broker-pysrc.html#Order.getExecutionInfo">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Returns the last execution information for this order, or None if 
+  nothing has been filled so far. This will be different every time an 
+  order, or part of it, gets filled.</p>
+  <p>:rtype: :class:`OrderExecutionInfo`.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== CLASS VARIABLE DETAILS ==================== -->
+<a name="section-ClassVariableDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Class Variable Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-ClassVariableDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="VALID_TRANSITIONS"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">VALID_TRANSITIONS</h3>
+  
+  <dl class="fields">
+  </dl>
+  <dl class="fields">
+    <dt>Value:</dt>
+      <dd><table><tr><td><pre class="variable">
+<code class="variable-group">{</code>1<code class="variable-op">: </code><code class="variable-group">[</code>2<code class="variable-op">, </code>4<code class="variable-group">]</code><code class="variable-op">, </code>2<code class="variable-op">: </code><code class="variable-group">[</code>3<code class="variable-op">, </code>4<code class="variable-group">]</code><code class="variable-op">, </code>3<code class="variable-op">: </code><code class="variable-group">[</code>5<code class="variable-op">, </code>6<code class="variable-op">, </code>4<code class="variable-group">]</code><code class="variable-op">, </code>5<code class="variable-op">: </code><code class="variable-group">[</code>5<code class="variable-op">, </code>6<code class="variable-op">, </code>4<code class="variable-group">]</code><code class="variable-group">}</code>
+</pre></td></tr></table>
+</dd>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="pyalgotrade-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Sat Oct 15 14:17:44 2016
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

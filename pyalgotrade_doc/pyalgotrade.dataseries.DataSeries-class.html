@@ -1,0 +1,529 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>pyalgotrade.dataseries.DataSeries</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="pyalgotrade-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="pyalgotrade-module.html">Package&nbsp;pyalgotrade</a> ::
+        <a href="pyalgotrade.dataseries-module.html">Package&nbsp;dataseries</a> ::
+        Class&nbsp;DataSeries
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="pyalgotrade.dataseries.DataSeries-class.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS DESCRIPTION ==================== -->
+<h1 class="epydoc">Class DataSeries</h1><p class="nomargin-top"><span class="codelink"><a href="pyalgotrade.dataseries-pysrc.html#DataSeries">source&nbsp;code</a></span></p>
+<center>
+<center>  <map id="uml_class_diagram_for_pyalgotr_96" name="uml_class_diagram_for_pyalgotr_96">
+<area shape="rect" id="node1" href="pyalgotrade.technical.roc.RateOfChange-class.html" title="Rate of change filter as described in http://stockcharts.com/school/doku.php?id=chart_school:technical_indicators:rate_of_change_roc_and_momentum." alt="" coords="5,292,205,331"/>
+<area shape="rect" id="node2" href="pyalgotrade.technical.ma.WMA-class.html" title="Weighted Moving Average filter." alt="" coords="235,292,381,331"/>
+<area shape="rect" id="node3" href="pyalgotrade.technical.linreg.LeastSquaresRegression-class.html" title="Calculates values based on a least&#45;squares regression." alt="" coords="411,292,683,331"/>
+<area shape="rect" id="node4" href="pyalgotrade.dataseries.SequenceDataSeries-class.html" title="A DataSeries that holds values in a sequence in memory." alt="" coords="1987,177,2146,216"/>
+<area shape="rect" id="node10" href="pyalgotrade.technical.linebreak.LineBreak-class.html" title="Line Break filter as described in http://stockcharts.com/school/doku.php?id=chart_school:chart_analysis:three_line_break." alt="" coords="1532,235,1737,273"/>
+<area shape="rect" id="node14" href="pyalgotrade.technical.EventBasedFilter-class.html" title="An EventBasedFilter class is responsible for capturing new values in a :class:`pyalgotrade.dataseries.DataSeries` and using an :class:`EventWindow` to calculate new values." alt="" coords="1767,235,1959,273"/>
+<area shape="rect" id="node19" href="pyalgotrade.dataseries.bards.BarDataSeries-class.html" title="A DataSeries of :class:`pyalgotrade.bar.Bar` instances." alt="" coords="1989,235,2145,273"/>
+<area shape="rect" id="node20" href="pyalgotrade.technical.macd.MACD-class.html" title="Moving Average Convergence&#45;Divergence indicator as described in http://stockcharts.com/school/doku.php?id=chart_school:technical_indicators:moving_average_convergence_divergence_macd." alt="" coords="2175,235,2343,273"/>
+<area shape="rect" id="node26" href="pyalgotrade.dataseries.resampled.ResampledDataSeries-class.html" title="pyalgotrade.dataseries.resampled.ResampledDataSeries" alt="" coords="2373,235,2603,273"/>
+<area shape="rect" id="node5" href="pyalgotrade.technical.stats.ZScore-class.html" title="Z&#45;Score filter." alt="" coords="711,292,878,331"/>
+<area shape="rect" id="node6" href="pyalgotrade.technical.ma.EMA-class.html" title="Exponential Moving Average filter." alt="" coords="907,292,1050,331"/>
+<area shape="rect" id="node7" href="pyalgotrade.technical.ratio.Ratio-class.html" title="pyalgotrade.technical.ratio.Ratio" alt="" coords="1080,292,1232,331"/>
+<area shape="rect" id="node8" href="pyalgotrade.technical.atr.ATR-class.html" title="Average True Range filter as described in http://stockcharts.com/school/doku.php?id=chart_school:technical_indicators:average_true_range_atr" alt="" coords="1262,292,1399,331"/>
+<area shape="rect" id="node9" href="pyalgotrade.technical.linreg.Trend-class.html" title="pyalgotrade.technical.linreg.Trend" alt="" coords="1429,292,1589,331"/>
+<area shape="rect" id="node11" href="pyalgotrade.technical.rsi.RSI-class.html" title="Relative Strength Index filter as described in http://stockcharts.com/school/doku.php?id=chart_school:technical_indicators:relative_strength_index_rsi." alt="" coords="1619,292,1751,331"/>
+<area shape="rect" id="node12" href="pyalgotrade.technical.highlow.Low-class.html" title="This filter calculates the lowest value." alt="" coords="1781,292,1945,331"/>
+<area shape="rect" id="node13" href="pyalgotrade.technical.vwap.VWAP-class.html" title="Volume Weighted Average Price filter." alt="" coords="1974,292,2141,331"/>
+<area shape="rect" id="node15" href="pyalgotrade.technical.stoch.StochasticOscillator-class.html" title="Fast Stochastic Oscillator filter as described in http://stockcharts.com/school/doku.php?st=stochastic+oscillator&amp;id=chart_school:technical_indicators:stochastic_oscillator_fast_slow_and_full." alt="" coords="2170,292,2414,331"/>
+<area shape="rect" id="node16" href="pyalgotrade.technical.stats.StdDev-class.html" title="Standard deviation filter." alt="" coords="2444,292,2612,331"/>
+<area shape="rect" id="node17" href="pyalgotrade.technical.highlow.High-class.html" title="This filter calculates the highest value." alt="" coords="2642,292,2809,331"/>
+<area shape="rect" id="node18" href="pyalgotrade.technical.cumret.CumulativeReturn-class.html" title="This filter calculates cumulative returns over another dataseries." alt="" coords="2839,292,3079,331"/>
+<area shape="rect" id="node21" href="pyalgotrade.technical.hurst.HurstExponent-class.html" title="Hurst exponent filter." alt="" coords="3109,292,3321,331"/>
+<area shape="rect" id="node22" href="pyalgotrade.technical.ma.SMA-class.html" title="Simple Moving Average filter." alt="" coords="3350,292,3493,331"/>
+<area shape="rect" id="node25" href="pyalgotrade.technical.linreg.Slope-class.html" title="The Slope filter calculates the slope of a least&#45;squares regression line." alt="" coords="3523,292,3683,331"/>
+<area shape="rect" id="node23" href="pyalgotrade.dataseries.resampled.ResampledBarDataSeries-class.html" title="A BarDataSeries that will build on top of another, higher frequency, BarDataSeries." alt="" coords="3712,292,3963,331"/>
+<area shape="rect" id="node24_6" href="abc.ABCMeta-class.html" title="Metaclass for defining Abstract Base Classes (ABCs)." alt="" coords="1983,30,2149,50"/>
+<area shape="rect" id="node24_7" href="pyalgotrade.dataseries.DataSeries-class.html#__abstractmethods__" title="pyalgotrade.dataseries.DataSeries.__abstractmethods__" alt="" coords="1983,50,2149,70"/>
+<area shape="rect" id="node24_8" href="pyalgotrade.dataseries.DataSeries-class.html#__len__" title="Returns the number of elements in the data series." alt="" coords="1983,73,2149,93"/>
+<area shape="rect" id="node24_9" href="pyalgotrade.dataseries.DataSeries-class.html#__getitem__" title="Returns the value at a given position/slice." alt="" coords="1983,93,2149,113"/>
+<area shape="rect" id="node24_10" href="pyalgotrade.dataseries.DataSeries-class.html#getValueAbsolute" title="pyalgotrade.dataseries.DataSeries.getValueAbsolute" alt="" coords="1983,113,2149,133"/>
+<area shape="rect" id="node24_11" href="pyalgotrade.dataseries.DataSeries-class.html#getDateTimes" title="Returns a list of :class:`datetime.datetime` associated with each value." alt="" coords="1983,133,2149,153"/>
+<area shape="rect" id="node24" href="pyalgotrade.dataseries.DataSeries-class.html" title="Base class for data series." alt="" coords="1970,5,2161,159"/>
+</map>
+  <img src="uml_class_diagram_for_pyalgotr_96.gif" alt='' usemap="#uml_class_diagram_for_pyalgotr_96" ismap="ismap" class="graph-without-title" />
+</center>
+</center>
+<hr />
+<p>Base class for data series.</p>
+  <p>.. note:</p>
+<pre class="literalblock">
+   This is a base class and should not be used directly.
+</pre>
+
+<!-- ==================== NESTED CLASSES ==================== -->
+<a name="section-NestedClasses"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Nested Classes</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-NestedClasses"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="abc.ABCMeta-class.html" class="summary-name">__metaclass__</a><br />
+      Metaclass for defining Abstract Base Classes (ABCs).
+    </td>
+  </tr>
+</table>
+<!-- ==================== INSTANCE METHODS ==================== -->
+<a name="section-InstanceMethods"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Instance Methods</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-InstanceMethods"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyalgotrade.dataseries.DataSeries-class.html#__len__" class="summary-sig-name">__len__</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Returns the number of elements in the data series.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.dataseries-pysrc.html#DataSeries.__len__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyalgotrade.dataseries.DataSeries-class.html#__getitem__" class="summary-sig-name">__getitem__</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">key</span>)</span><br />
+      Returns the value at a given position/slice.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.dataseries-pysrc.html#DataSeries.__getitem__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyalgotrade.dataseries.DataSeries-class.html#getValueAbsolute" class="summary-sig-name">getValueAbsolute</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">pos</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.dataseries-pysrc.html#DataSeries.getValueAbsolute">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyalgotrade.dataseries.DataSeries-class.html#getDateTimes" class="summary-sig-name">getDateTimes</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Returns a list of :class:`datetime.datetime` associated with each 
+      value.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.dataseries-pysrc.html#DataSeries.getDateTimes">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
+      <code>__delattr__</code>,
+      <code>__format__</code>,
+      <code>__getattribute__</code>,
+      <code>__hash__</code>,
+      <code>__init__</code>,
+      <code>__new__</code>,
+      <code>__reduce__</code>,
+      <code>__reduce_ex__</code>,
+      <code>__repr__</code>,
+      <code>__setattr__</code>,
+      <code>__sizeof__</code>,
+      <code>__str__</code>,
+      <code>__subclasshook__</code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS VARIABLES ==================== -->
+<a name="section-ClassVariables"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Class Variables</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-ClassVariables"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pyalgotrade.dataseries.DataSeries-class.html#__abstractmethods__" class="summary-name">__abstractmethods__</a> = <code title="frozenset(['__len__', 'getDateTimes', 'getValueAbsolute'])"><code class="variable-group">frozenset([</code><code class="variable-quote">'</code><code class="variable-string">__len__</code><code class="variable-quote">'</code><code class="variable-op">, </code><code class="variable-quote">'</code><code class="variable-string">getDateTimes</code><code class="variable-quote">'</code><code class="variable-op">, </code><code class="variable-quote">'</code><code class="variable-string">g</code><code class="variable-ellipsis">...</code></code>
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="_abc_cache"></a><span class="summary-name">_abc_cache</span> = <code title="&lt;_weakrefset.WeakSet object at 0x7f5b2e067590&gt;">&lt;_weakrefset.WeakSet object at 0x7f5b2e067590&gt;</code>
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pyalgotrade.dataseries.DataSeries-class.html#_abc_negative_cache" class="summary-name" onclick="show_private();">_abc_negative_cache</a> = <code title="&lt;_weakrefset.WeakSet object at 0x7f5b2e067610&gt;">&lt;_weakrefset.WeakSet object at 0x7f5b2e0<code class="variable-ellipsis">...</code></code>
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="_abc_negative_cache_version"></a><span class="summary-name">_abc_negative_cache_version</span> = <code title="31">31</code>
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="_abc_registry"></a><span class="summary-name">_abc_registry</span> = <code title="&lt;_weakrefset.WeakSet object at 0x7f5b2e0674d0&gt;">&lt;_weakrefset.WeakSet object at 0x7f5b2e0674d0&gt;</code>
+    </td>
+  </tr>
+</table>
+<!-- ==================== PROPERTIES ==================== -->
+<a name="section-Properties"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Properties</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Properties"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
+      <code>__class__</code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== METHOD DETAILS ==================== -->
+<a name="section-MethodDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Method Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-MethodDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="__len__"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__len__</span>(<span class="sig-arg">self</span>)</span>
+    <br /><em class="fname">(Length operator)</em>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyalgotrade.dataseries-pysrc.html#DataSeries.__len__">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Returns the number of elements in the data series.</p>
+  <dl class="fields">
+    <dt>Decorators:</dt>
+    <dd><ul class="nomargin-top">
+        <li><code>@abc.abstractmethod</code></li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="__getitem__"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__getitem__</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">key</span>)</span>
+    <br /><em class="fname">(Indexing operator)</em>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyalgotrade.dataseries-pysrc.html#DataSeries.__getitem__">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Returns the value at a given position/slice. It raises IndexError if 
+  the position is invalid, or TypeError if the key type is invalid.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="getValueAbsolute"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">getValueAbsolute</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">pos</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyalgotrade.dataseries-pysrc.html#DataSeries.getValueAbsolute">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  
+  <dl class="fields">
+    <dt>Decorators:</dt>
+    <dd><ul class="nomargin-top">
+        <li><code>@abc.abstractmethod</code></li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="getDateTimes"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">getDateTimes</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyalgotrade.dataseries-pysrc.html#DataSeries.getDateTimes">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Returns a list of :class:`datetime.datetime` associated with each 
+  value.</p>
+  <dl class="fields">
+    <dt>Decorators:</dt>
+    <dd><ul class="nomargin-top">
+        <li><code>@abc.abstractmethod</code></li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== CLASS VARIABLE DETAILS ==================== -->
+<a name="section-ClassVariableDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Class Variable Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-ClassVariableDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="__abstractmethods__"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">__abstractmethods__</h3>
+  
+  <dl class="fields">
+  </dl>
+  <dl class="fields">
+    <dt>Value:</dt>
+      <dd><table><tr><td><pre class="variable">
+<code class="variable-group">frozenset([</code><code class="variable-quote">'</code><code class="variable-string">__len__</code><code class="variable-quote">'</code><code class="variable-op">, </code><code class="variable-quote">'</code><code class="variable-string">getDateTimes</code><code class="variable-quote">'</code><code class="variable-op">, </code><code class="variable-quote">'</code><code class="variable-string">getValueAbsolute</code><code class="variable-quote">'</code><code class="variable-group">])</code>
+</pre></td></tr></table>
+</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="_abc_negative_cache"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">_abc_negative_cache</h3>
+  
+  <dl class="fields">
+  </dl>
+  <dl class="fields">
+    <dt>Value:</dt>
+      <dd><table><tr><td><pre class="variable">
+&lt;_weakrefset.WeakSet object at 0x7f5b2e067610&gt;
+</pre></td></tr></table>
+</dd>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="pyalgotrade-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Sat Oct 15 14:17:47 2016
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

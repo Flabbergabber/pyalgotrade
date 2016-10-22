@@ -1,0 +1,742 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>pyalgotrade.bitstamp.broker.BacktestingBroker</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="pyalgotrade-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="pyalgotrade-module.html">Package&nbsp;pyalgotrade</a> ::
+        <a href="pyalgotrade.bitstamp-module.html">Package&nbsp;bitstamp</a> ::
+        <a href="pyalgotrade.bitstamp.broker-module.html">Module&nbsp;broker</a> ::
+        Class&nbsp;BacktestingBroker
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="pyalgotrade.bitstamp.broker.BacktestingBroker-class.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS DESCRIPTION ==================== -->
+<h1 class="epydoc">Class BacktestingBroker</h1><p class="nomargin-top"><span class="codelink"><a href="pyalgotrade.bitstamp.broker-pysrc.html#BacktestingBroker">source&nbsp;code</a></span></p>
+<center>
+<center>  <map id="uml_class_diagram_for_pyalgotr_34" name="uml_class_diagram_for_pyalgotr_34">
+<area shape="rect" id="node1_30" href="pyalgotrade.bitstamp.broker.BacktestingBroker-class.html#MIN_TRADE_USD" title="A Bitstamp backtesting broker." alt="" coords="18,651,467,671"/>
+<area shape="rect" id="node1_31" href="pyalgotrade.bitstamp.broker.BacktestingBroker-class.html#__init__" title="x.__init__(...) initializes x; see help(type(x)) for signature" alt="" coords="18,674,467,694"/>
+<area shape="rect" id="node1_32" href="pyalgotrade.bitstamp.broker.BacktestingBroker-class.html#getInstrumentTraits" title="pyalgotrade.bitstamp.broker.BacktestingBroker.getInstrumentTraits" alt="" coords="18,694,467,714"/>
+<area shape="rect" id="node1_33" href="pyalgotrade.bitstamp.broker.BacktestingBroker-class.html#submitOrder" title="Submits an order." alt="" coords="18,714,467,734"/>
+<area shape="rect" id="node1_34" href="pyalgotrade.bitstamp.broker.BacktestingBroker-class.html#createMarketOrder" title="Creates a Market order." alt="" coords="18,734,467,754"/>
+<area shape="rect" id="node1_35" href="pyalgotrade.bitstamp.broker.BacktestingBroker-class.html#createLimitOrder" title="Creates a Limit order." alt="" coords="18,754,467,774"/>
+<area shape="rect" id="node1_36" href="pyalgotrade.bitstamp.broker.BacktestingBroker-class.html#createStopOrder" title="Creates a Stop order." alt="" coords="18,774,467,794"/>
+<area shape="rect" id="node1_37" href="pyalgotrade.bitstamp.broker.BacktestingBroker-class.html#createStopLimitOrder" title="Creates a Stop&#45;Limit order." alt="" coords="18,794,467,814"/>
+<area shape="rect" id="node1" href="pyalgotrade.bitstamp.broker.BacktestingBroker-class.html" title="pyalgotrade.bitstamp.broker.BacktestingBroker" alt="" coords="5,627,479,820"/>
+<area shape="rect" id="node5" href="pyalgotrade.bitstamp.broker.PaperTradingBroker-class.html" title="A Bitstamp paper trading broker." alt="" coords="168,839,319,877"/>
+<area shape="rect" id="node2_38" href="pyalgotrade.broker.backtesting.Broker-class.html#LOGGER_NAME" title="pyalgotrade.broker.backtesting.Broker.LOGGER_NAME" alt="" coords="98,259,387,279"/>
+<area shape="rect" id="node2_39" href="pyalgotrade.broker.backtesting.Broker-class.html#__abstractmethods__" title="pyalgotrade.broker.backtesting.Broker.__abstractmethods__" alt="" coords="98,279,387,299"/>
+<area shape="rect" id="node2_40" href="pyalgotrade.broker.backtesting.Broker-class.html#getLogger" title="pyalgotrade.broker.backtesting.Broker.getLogger" alt="" coords="98,301,387,321"/>
+<area shape="rect" id="node2_41" href="pyalgotrade.broker.backtesting.Broker-class.html#setAllowNegativeCash" title="pyalgotrade.broker.backtesting.Broker.setAllowNegativeCash" alt="" coords="98,321,387,341"/>
+<area shape="rect" id="node2_42" href="pyalgotrade.broker.backtesting.Broker-class.html#getCash" title="Returns the available cash." alt="" coords="98,341,387,361"/>
+<area shape="rect" id="node2_43" href="pyalgotrade.broker.backtesting.Broker-class.html#setCash" title="pyalgotrade.broker.backtesting.Broker.setCash" alt="" coords="98,361,387,381"/>
+<area shape="rect" id="node2_44" href="pyalgotrade.broker.backtesting.Broker-class.html#getCommission" title="Returns the strategy used to calculate order commissions." alt="" coords="98,381,387,401"/>
+<area shape="rect" id="node2_45" href="pyalgotrade.broker.backtesting.Broker-class.html#setCommission" title="Sets the strategy to use to calculate order commissions." alt="" coords="98,401,387,421"/>
+<area shape="rect" id="node2_46" href="pyalgotrade.broker.backtesting.Broker-class.html#setFillStrategy" title="Sets the :class:`pyalgotrade.broker.fillstrategy.FillStrategy` to use." alt="" coords="98,421,387,441"/>
+<area shape="rect" id="node2_47" href="pyalgotrade.broker.backtesting.Broker-class.html#getFillStrategy" title="Returns the :class:`pyalgotrade.broker.fillstrategy.FillStrategy` currently set." alt="" coords="98,441,387,461"/>
+<area shape="rect" id="node2_48" href="pyalgotrade.broker.backtesting.Broker-class.html#getUseAdjustedValues" title="pyalgotrade.broker.backtesting.Broker.getUseAdjustedValues" alt="" coords="98,461,387,481"/>
+<area shape="rect" id="node2_49" href="pyalgotrade.broker.backtesting.Broker-class.html#setUseAdjustedValues" title="pyalgotrade.broker.backtesting.Broker.setUseAdjustedValues" alt="" coords="98,481,387,501"/>
+<area shape="rect" id="node2_50" href="pyalgotrade.broker.backtesting.Broker-class.html#getActiveOrders" title="Returns a sequence with the orders that are still active." alt="" coords="98,501,387,521"/>
+<area shape="rect" id="node2_51" href="pyalgotrade.broker.backtesting.Broker-class.html#getShares" title="Returns the number of shares for an instrument." alt="" coords="98,521,387,541"/>
+<area shape="rect" id="node2_52" href="pyalgotrade.broker.backtesting.Broker-class.html#getPositions" title="Returns a dictionary that maps instruments to shares." alt="" coords="98,541,387,561"/>
+<area shape="rect" id="node2_53" href="pyalgotrade.broker.backtesting.Broker-class.html#cancelOrder" title="Requests an order to be canceled." alt="" coords="98,581,387,601"/>
+<area shape="rect" id="node2" href="pyalgotrade.broker.backtesting.Broker-class.html" title="Backtesting broker." alt="" coords="85,235,399,608"/>
+<area shape="rect" id="node3_54" href="pyalgotrade.broker.Broker-class.html#__metaclass__" title="Metaclass for defining Abstract Base Classes (ABCs)." alt="" coords="141,127,345,147"/>
+<area shape="rect" id="node3_55" href="pyalgotrade.broker.Broker-class.html#getDispatchPriority" title="pyalgotrade.broker.Broker.getDispatchPriority" alt="" coords="141,150,345,170"/>
+<area shape="rect" id="node3_56" href="pyalgotrade.broker.Broker-class.html#notifyOrderEvent" title="pyalgotrade.broker.Broker.notifyOrderEvent" alt="" coords="141,170,345,190"/>
+<area shape="rect" id="node3_57" href="pyalgotrade.broker.Broker-class.html#getOrderUpdatedEvent" title="pyalgotrade.broker.Broker.getOrderUpdatedEvent" alt="" coords="141,190,345,210"/>
+<area shape="rect" id="node3" href="pyalgotrade.broker.Broker-class.html" title="Base class for brokers." alt="" coords="128,103,356,216"/>
+<area shape="rect" id="node4_58" href="pyalgotrade.observer.Subject-class.html#setDispatchPriority" title="pyalgotrade.observer.Subject.setDispatchPriority" alt="" coords="122,38,365,58"/>
+<area shape="rect" id="node4_59" href="pyalgotrade.observer.Subject-class.html#onDispatcherRegistered" title="pyalgotrade.observer.Subject.onDispatcherRegistered" alt="" coords="122,58,365,78"/>
+<area shape="rect" id="node4" href="pyalgotrade.observer.Subject-class.html" title="pyalgotrade.observer.Subject" alt="" coords="110,5,377,84"/>
+</map>
+  <img src="uml_class_diagram_for_pyalgotr_34.gif" alt='' usemap="#uml_class_diagram_for_pyalgotr_34" ismap="ismap" class="graph-without-title" />
+</center>
+</center>
+<hr />
+<!-- ==================== INSTANCE METHODS ==================== -->
+<a name="section-InstanceMethods"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Instance Methods</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-InstanceMethods"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyalgotrade.bitstamp.broker.BacktestingBroker-class.html#__init__" class="summary-sig-name">__init__</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">cash</span>,
+        <span class="summary-sig-arg">barFeed</span>,
+        <span class="summary-sig-arg">fee</span>=<span class="summary-sig-default">0.0025</span>)</span><br />
+      x.__init__(...) initializes x; see help(type(x)) for signature</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.bitstamp.broker-pysrc.html#BacktestingBroker.__init__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyalgotrade.bitstamp.broker.BacktestingBroker-class.html#getInstrumentTraits" class="summary-sig-name">getInstrumentTraits</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">instrument</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.bitstamp.broker-pysrc.html#BacktestingBroker.getInstrumentTraits">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyalgotrade.bitstamp.broker.BacktestingBroker-class.html#submitOrder" class="summary-sig-name">submitOrder</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">order</span>)</span><br />
+      Submits an order.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.bitstamp.broker-pysrc.html#BacktestingBroker.submitOrder">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyalgotrade.bitstamp.broker.BacktestingBroker-class.html#createMarketOrder" class="summary-sig-name">createMarketOrder</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">action</span>,
+        <span class="summary-sig-arg">instrument</span>,
+        <span class="summary-sig-arg">quantity</span>,
+        <span class="summary-sig-arg">onClose</span>=<span class="summary-sig-default">False</span>)</span><br />
+      Creates a Market order.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.bitstamp.broker-pysrc.html#BacktestingBroker.createMarketOrder">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyalgotrade.bitstamp.broker.BacktestingBroker-class.html#createLimitOrder" class="summary-sig-name">createLimitOrder</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">action</span>,
+        <span class="summary-sig-arg">instrument</span>,
+        <span class="summary-sig-arg">limitPrice</span>,
+        <span class="summary-sig-arg">quantity</span>)</span><br />
+      Creates a Limit order.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.bitstamp.broker-pysrc.html#BacktestingBroker.createLimitOrder">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyalgotrade.bitstamp.broker.BacktestingBroker-class.html#createStopOrder" class="summary-sig-name">createStopOrder</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">action</span>,
+        <span class="summary-sig-arg">instrument</span>,
+        <span class="summary-sig-arg">stopPrice</span>,
+        <span class="summary-sig-arg">quantity</span>)</span><br />
+      Creates a Stop order.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.bitstamp.broker-pysrc.html#BacktestingBroker.createStopOrder">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyalgotrade.bitstamp.broker.BacktestingBroker-class.html#createStopLimitOrder" class="summary-sig-name">createStopLimitOrder</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">action</span>,
+        <span class="summary-sig-arg">instrument</span>,
+        <span class="summary-sig-arg">stopPrice</span>,
+        <span class="summary-sig-arg">limitPrice</span>,
+        <span class="summary-sig-arg">quantity</span>)</span><br />
+      Creates a Stop-Limit order.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.bitstamp.broker-pysrc.html#BacktestingBroker.createStopLimitOrder">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="pyalgotrade.broker.backtesting.Broker-class.html">broker.backtesting.Broker</a></code></b>:
+      <code><a href="pyalgotrade.broker.backtesting.Broker-class.html#cancelOrder">cancelOrder</a></code>,
+      <code><a href="pyalgotrade.broker.backtesting.Broker-class.html#commitOrderExecution">commitOrderExecution</a></code>,
+      <code><a href="pyalgotrade.broker.backtesting.Broker-class.html#createOptionLimitOrder">createOptionLimitOrder</a></code>,
+      <code><a href="pyalgotrade.broker.backtesting.Broker-class.html#createOptionOrder">createOptionOrder</a></code>,
+      <code><a href="pyalgotrade.broker.backtesting.Broker-class.html#createOptionStopLimitOrder">createOptionStopLimitOrder</a></code>,
+      <code><a href="pyalgotrade.broker.backtesting.Broker-class.html#createOptionStopOrder">createOptionStopOrder</a></code>,
+      <code><a href="pyalgotrade.broker.backtesting.Broker-class.html#dispatch">dispatch</a></code>,
+      <code><a href="pyalgotrade.broker.backtesting.Broker-class.html#eof">eof</a></code>,
+      <code><a href="pyalgotrade.broker.backtesting.Broker-class.html#getActiveInstruments">getActiveInstruments</a></code>,
+      <code><a href="pyalgotrade.broker.backtesting.Broker-class.html#getActiveOrders">getActiveOrders</a></code>,
+      <code><a href="pyalgotrade.broker.backtesting.Broker-class.html#getCash">getCash</a></code>,
+      <code><a href="pyalgotrade.broker.backtesting.Broker-class.html#getCommission">getCommission</a></code>,
+      <code><a href="pyalgotrade.broker.backtesting.Broker-class.html#getEquity">getEquity</a></code>,
+      <code><a href="pyalgotrade.broker.backtesting.Broker-class.html#getFillStrategy">getFillStrategy</a></code>,
+      <code><a href="pyalgotrade.broker.backtesting.Broker-class.html#getLogger">getLogger</a></code>,
+      <code><a href="pyalgotrade.broker.backtesting.Broker-class.html#getPositions">getPositions</a></code>,
+      <code><a href="pyalgotrade.broker.backtesting.Broker-class.html#getShares">getShares</a></code>,
+      <code><a href="pyalgotrade.broker.backtesting.Broker-class.html#getUseAdjustedValues">getUseAdjustedValues</a></code>,
+      <code><a href="pyalgotrade.broker.backtesting.Broker-class.html#join">join</a></code>,
+      <code><a href="pyalgotrade.broker.backtesting.Broker-class.html#onBars">onBars</a></code>,
+      <code><a href="pyalgotrade.broker.backtesting.Broker-class.html#peekDateTime">peekDateTime</a></code>,
+      <code><a href="pyalgotrade.broker.backtesting.Broker-class.html#setAllowNegativeCash">setAllowNegativeCash</a></code>,
+      <code><a href="pyalgotrade.broker.backtesting.Broker-class.html#setCash">setCash</a></code>,
+      <code><a href="pyalgotrade.broker.backtesting.Broker-class.html#setCommission">setCommission</a></code>,
+      <code><a href="pyalgotrade.broker.backtesting.Broker-class.html#setFillStrategy">setFillStrategy</a></code>,
+      <code><a href="pyalgotrade.broker.backtesting.Broker-class.html#setUseAdjustedValues">setUseAdjustedValues</a></code>,
+      <code><a href="pyalgotrade.broker.backtesting.Broker-class.html#start">start</a></code>,
+      <code><a href="pyalgotrade.broker.backtesting.Broker-class.html#stop">stop</a></code>
+      </p>
+    <div class="private">    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="pyalgotrade.broker.backtesting.Broker-class.html">broker.backtesting.Broker</a></code></b> (private):
+      <code><a href="pyalgotrade.broker.backtesting.Broker-class.html#_getBar" onclick="show_private();">_getBar</a></code>,
+      <code><a href="pyalgotrade.broker.backtesting.Broker-class.html#_getCurrentDateTime" onclick="show_private();">_getCurrentDateTime</a></code>,
+      <code><a href="pyalgotrade.broker.backtesting.Broker-class.html#_getNextOrderId" onclick="show_private();">_getNextOrderId</a></code>,
+      <code><a href="pyalgotrade.broker.backtesting.Broker-class.html#_registerOrder" onclick="show_private();">_registerOrder</a></code>,
+      <code><a href="pyalgotrade.broker.backtesting.Broker-class.html#_unregisterOrder" onclick="show_private();">_unregisterOrder</a></code>
+      </p></div>
+    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="pyalgotrade.broker.Broker-class.html">broker.Broker</a></code></b>:
+      <code><a href="pyalgotrade.broker.Broker-class.html#getDispatchPriority">getDispatchPriority</a></code>,
+      <code><a href="pyalgotrade.broker.Broker-class.html#getOrderUpdatedEvent">getOrderUpdatedEvent</a></code>,
+      <code><a href="pyalgotrade.broker.Broker-class.html#notifyOrderEvent">notifyOrderEvent</a></code>
+      </p>
+    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="pyalgotrade.observer.Subject-class.html">observer.Subject</a></code></b>:
+      <code><a href="pyalgotrade.observer.Subject-class.html#onDispatcherRegistered">onDispatcherRegistered</a></code>,
+      <code><a href="pyalgotrade.observer.Subject-class.html#setDispatchPriority">setDispatchPriority</a></code>
+      </p>
+    <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
+      <code>__delattr__</code>,
+      <code>__format__</code>,
+      <code>__getattribute__</code>,
+      <code>__hash__</code>,
+      <code>__new__</code>,
+      <code>__reduce__</code>,
+      <code>__reduce_ex__</code>,
+      <code>__repr__</code>,
+      <code>__setattr__</code>,
+      <code>__sizeof__</code>,
+      <code>__str__</code>,
+      <code>__subclasshook__</code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS VARIABLES ==================== -->
+<a name="section-ClassVariables"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Class Variables</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-ClassVariables"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pyalgotrade.bitstamp.broker.BacktestingBroker-class.html#MIN_TRADE_USD" class="summary-name">MIN_TRADE_USD</a> = <code title="5">5</code><br />
+      A Bitstamp backtesting broker.
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="pyalgotrade.broker.backtesting.Broker-class.html">broker.backtesting.Broker</a></code></b>:
+      <code><a href="pyalgotrade.broker.backtesting.Broker-class.html#LOGGER_NAME">LOGGER_NAME</a></code>,
+      <code><a href="pyalgotrade.broker.backtesting.Broker-class.html#__abstractmethods__">__abstractmethods__</a></code>
+      </p>
+    <div class="private">    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="pyalgotrade.broker.backtesting.Broker-class.html">broker.backtesting.Broker</a></code></b> (private):
+      <code><a href="pyalgotrade.broker.backtesting.Broker-class.html#_abc_negative_cache_version" onclick="show_private();">_abc_negative_cache_version</a></code>
+      </p></div>
+    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="pyalgotrade.broker.Broker-class.html">broker.Broker</a></code></b>:
+      <code><a href="pyalgotrade.broker.Broker-class.html#__metaclass__">__metaclass__</a></code>
+      </p>
+    <div class="private">    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="pyalgotrade.observer.Subject-class.html">observer.Subject</a></code></b> (private):
+      <code><a href="pyalgotrade.observer.Subject-class.html#_abc_cache" onclick="show_private();">_abc_cache</a></code>,
+      <code><a href="pyalgotrade.observer.Subject-class.html#_abc_negative_cache" onclick="show_private();">_abc_negative_cache</a></code>,
+      <code><a href="pyalgotrade.observer.Subject-class.html#_abc_registry" onclick="show_private();">_abc_registry</a></code>
+      </p></div>
+    </td>
+  </tr>
+</table>
+<!-- ==================== PROPERTIES ==================== -->
+<a name="section-Properties"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Properties</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Properties"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
+      <code>__class__</code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== METHOD DETAILS ==================== -->
+<a name="section-MethodDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Method Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-MethodDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="__init__"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__init__</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">cash</span>,
+        <span class="sig-arg">barFeed</span>,
+        <span class="sig-arg">fee</span>=<span class="sig-default">0.0025</span>)</span>
+    <br /><em class="fname">(Constructor)</em>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyalgotrade.bitstamp.broker-pysrc.html#BacktestingBroker.__init__">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>x.__init__(...) initializes x; see help(type(x)) for signature</p>
+  <dl class="fields">
+    <dt>Overrides:
+        object.__init__
+        <dd><em class="note">(inherited documentation)</em></dd>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="getInstrumentTraits"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">getInstrumentTraits</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">instrument</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyalgotrade.bitstamp.broker-pysrc.html#BacktestingBroker.getInstrumentTraits">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  
+  <dl class="fields">
+    <dt>Overrides:
+        <a href="pyalgotrade.broker.Broker-class.html#getInstrumentTraits">broker.Broker.getInstrumentTraits</a>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="submitOrder"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">submitOrder</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">order</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyalgotrade.bitstamp.broker-pysrc.html#BacktestingBroker.submitOrder">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Submits an order.</p>
+  <p>:param order: The order to submit. :type order: :class:`Order`.</p>
+  <p>.. note:</p>
+<pre class="literalblock">
+   * After this call the order is in SUBMITTED state and an event is not triggered for this transition.
+   * Calling this twice on the same order will raise an exception.
+</pre>
+  <dl class="fields">
+    <dt>Overrides:
+        <a href="pyalgotrade.broker.Broker-class.html#submitOrder">broker.Broker.submitOrder</a>
+        <dd><em class="note">(inherited documentation)</em></dd>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="createMarketOrder"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">createMarketOrder</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">action</span>,
+        <span class="sig-arg">instrument</span>,
+        <span class="sig-arg">quantity</span>,
+        <span class="sig-arg">onClose</span>=<span class="sig-default">False</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyalgotrade.bitstamp.broker-pysrc.html#BacktestingBroker.createMarketOrder">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Creates a Market order. A market order is an order to buy or sell a 
+  stock at the best available price. Generally, this type of order will be 
+  executed immediately. However, the price at which a market order will be 
+  executed is not guaranteed.</p>
+  <p>:param action: The order action. :type action: Order.Action.BUY, or 
+  Order.Action.BUY_TO_COVER, or Order.Action.SELL or 
+  Order.Action.SELL_SHORT. :param instrument: Instrument identifier. :type 
+  instrument: string. :param quantity: Order quantity. :type quantity: 
+  int/float. :param onClose: True if the order should be filled as close to
+  the closing price as possible (Market-On-Close order). Default is False. 
+  :type onClose: boolean. :rtype: A :class:`MarketOrder` subclass.</p>
+  <dl class="fields">
+    <dt>Overrides:
+        <a href="pyalgotrade.broker.Broker-class.html#createMarketOrder">broker.Broker.createMarketOrder</a>
+        <dd><em class="note">(inherited documentation)</em></dd>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="createLimitOrder"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">createLimitOrder</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">action</span>,
+        <span class="sig-arg">instrument</span>,
+        <span class="sig-arg">limitPrice</span>,
+        <span class="sig-arg">quantity</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyalgotrade.bitstamp.broker-pysrc.html#BacktestingBroker.createLimitOrder">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Creates a Limit order. A limit order is an order to buy or sell a 
+  stock at a specific price or better. A buy limit order can only be 
+  executed at the limit price or lower, and a sell limit order can only be 
+  executed at the limit price or higher.</p>
+  <p>:param action: The order action. :type action: Order.Action.BUY, or 
+  Order.Action.BUY_TO_COVER, or Order.Action.SELL or 
+  Order.Action.SELL_SHORT. :param instrument: Instrument identifier. :type 
+  instrument: string. :param limitPrice: The order price. :type limitPrice:
+  float :param quantity: Order quantity. :type quantity: int/float. :rtype:
+  A :class:`LimitOrder` subclass.</p>
+  <dl class="fields">
+    <dt>Overrides:
+        <a href="pyalgotrade.broker.Broker-class.html#createLimitOrder">broker.Broker.createLimitOrder</a>
+        <dd><em class="note">(inherited documentation)</em></dd>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="createStopOrder"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">createStopOrder</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">action</span>,
+        <span class="sig-arg">instrument</span>,
+        <span class="sig-arg">stopPrice</span>,
+        <span class="sig-arg">quantity</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyalgotrade.bitstamp.broker-pysrc.html#BacktestingBroker.createStopOrder">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Creates a Stop order. A stop order, also referred to as a stop-loss 
+  order, is an order to buy or sell a stock once the price of the stock 
+  reaches a specified price, known as the stop price. When the stop price 
+  is reached, a stop order becomes a market order. A buy stop order is 
+  entered at a stop price above the current market price. Investors 
+  generally use a buy stop order to limit a loss or to protect a profit on 
+  a stock that they have sold short. A sell stop order is entered at a stop
+  price below the current market price. Investors generally use a sell stop
+  order to limit a loss or to protect a profit on a stock that they 
+  own.</p>
+  <p>:param action: The order action. :type action: Order.Action.BUY, or 
+  Order.Action.BUY_TO_COVER, or Order.Action.SELL or 
+  Order.Action.SELL_SHORT. :param instrument: Instrument identifier. :type 
+  instrument: string. :param stopPrice: The trigger price. :type stopPrice:
+  float :param quantity: Order quantity. :type quantity: int/float. :rtype:
+  A :class:`StopOrder` subclass.</p>
+  <dl class="fields">
+    <dt>Overrides:
+        <a href="pyalgotrade.broker.Broker-class.html#createStopOrder">broker.Broker.createStopOrder</a>
+        <dd><em class="note">(inherited documentation)</em></dd>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="createStopLimitOrder"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">createStopLimitOrder</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">action</span>,
+        <span class="sig-arg">instrument</span>,
+        <span class="sig-arg">stopPrice</span>,
+        <span class="sig-arg">limitPrice</span>,
+        <span class="sig-arg">quantity</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyalgotrade.bitstamp.broker-pysrc.html#BacktestingBroker.createStopLimitOrder">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Creates a Stop-Limit order. A stop-limit order is an order to buy or 
+  sell a stock that combines the features of a stop order and a limit 
+  order. Once the stop price is reached, a stop-limit order becomes a limit
+  order that will be executed at a specified price (or better). The benefit
+  of a stop-limit order is that the investor can control the price at which
+  the order can be executed.</p>
+  <p>:param action: The order action. :type action: Order.Action.BUY, or 
+  Order.Action.BUY_TO_COVER, or Order.Action.SELL or 
+  Order.Action.SELL_SHORT. :param instrument: Instrument identifier. :type 
+  instrument: string. :param stopPrice: The trigger price. :type stopPrice:
+  float :param limitPrice: The price for the limit order. :type limitPrice:
+  float :param quantity: Order quantity. :type quantity: int/float. :rtype:
+  A :class:`StopLimitOrder` subclass.</p>
+  <dl class="fields">
+    <dt>Overrides:
+        <a href="pyalgotrade.broker.Broker-class.html#createStopLimitOrder">broker.Broker.createStopLimitOrder</a>
+        <dd><em class="note">(inherited documentation)</em></dd>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== CLASS VARIABLE DETAILS ==================== -->
+<a name="section-ClassVariableDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Class Variable Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-ClassVariableDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="MIN_TRADE_USD"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">MIN_TRADE_USD</h3>
+  <p>A Bitstamp backtesting broker.</p>
+  <p>:param cash: The initial amount of cash. :type cash: int/float. :param
+  barFeed: The bar feed that will provide the bars. :type barFeed: 
+  :class:`pyalgotrade.barfeed.BarFeed` :param fee: The fee percentage for 
+  each order. Defaults to 0.25%. :type fee: float.</p>
+  <p>.. note:</p>
+<pre class="literalblock">
+   * Only limit orders are supported.
+   * Orders are automatically set as **goodTillCanceled=True** and  **allOrNone=False**.
+   * BUY_TO_COVER orders are mapped to BUY orders.
+   * SELL_SHORT orders are mapped to SELL orders.
+</pre>
+  <dl class="fields">
+  </dl>
+  <dl class="fields">
+    <dt>Value:</dt>
+      <dd><table><tr><td><pre class="variable">
+5
+</pre></td></tr></table>
+</dd>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="pyalgotrade-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Sat Oct 15 14:17:42 2016
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

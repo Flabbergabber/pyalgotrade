@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>pyalgotrade.bitstamp.broker.PaperTradingBroker</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="pyalgotrade-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="pyalgotrade-module.html">Package&nbsp;pyalgotrade</a> ::
+        <a href="pyalgotrade.bitstamp-module.html">Package&nbsp;bitstamp</a> ::
+        <a href="pyalgotrade.bitstamp.broker-module.html">Module&nbsp;broker</a> ::
+        Class&nbsp;PaperTradingBroker
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="pyalgotrade.bitstamp.broker.PaperTradingBroker-class.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS DESCRIPTION ==================== -->
+<h1 class="epydoc">Class PaperTradingBroker</h1><p class="nomargin-top"><span class="codelink"><a href="pyalgotrade.bitstamp.broker-pysrc.html#PaperTradingBroker">source&nbsp;code</a></span></p>
+<center>
+<center>  <map id="uml_class_diagram_for_pyalgotr_35" name="uml_class_diagram_for_pyalgotr_35">
+<area shape="rect" id="node1" href="pyalgotrade.bitstamp.broker.PaperTradingBroker-class.html" title="A Bitstamp paper trading broker." alt="" coords="172,839,312,883"/>
+<area shape="rect" id="node2_30" href="pyalgotrade.bitstamp.broker.BacktestingBroker-class.html#MIN_TRADE_USD" title="A Bitstamp backtesting broker." alt="" coords="18,651,467,671"/>
+<area shape="rect" id="node2_31" href="pyalgotrade.bitstamp.broker.BacktestingBroker-class.html#__init__" title="x.__init__(...) initializes x; see help(type(x)) for signature" alt="" coords="18,674,467,694"/>
+<area shape="rect" id="node2_32" href="pyalgotrade.bitstamp.broker.BacktestingBroker-class.html#getInstrumentTraits" title="pyalgotrade.bitstamp.broker.BacktestingBroker.getInstrumentTraits" alt="" coords="18,694,467,714"/>
+<area shape="rect" id="node2_33" href="pyalgotrade.bitstamp.broker.BacktestingBroker-class.html#submitOrder" title="Submits an order." alt="" coords="18,714,467,734"/>
+<area shape="rect" id="node2_34" href="pyalgotrade.bitstamp.broker.BacktestingBroker-class.html#createMarketOrder" title="Creates a Market order." alt="" coords="18,734,467,754"/>
+<area shape="rect" id="node2_35" href="pyalgotrade.bitstamp.broker.BacktestingBroker-class.html#createLimitOrder" title="Creates a Limit order." alt="" coords="18,754,467,774"/>
+<area shape="rect" id="node2_36" href="pyalgotrade.bitstamp.broker.BacktestingBroker-class.html#createStopOrder" title="Creates a Stop order." alt="" coords="18,774,467,794"/>
+<area shape="rect" id="node2_37" href="pyalgotrade.bitstamp.broker.BacktestingBroker-class.html#createStopLimitOrder" title="Creates a Stop&#45;Limit order." alt="" coords="18,794,467,814"/>
+<area shape="rect" id="node2" href="pyalgotrade.bitstamp.broker.BacktestingBroker-class.html" title="pyalgotrade.bitstamp.broker.BacktestingBroker" alt="" coords="5,627,479,820"/>
+<area shape="rect" id="node3_38" href="pyalgotrade.broker.Broker-class.html#__metaclass__" title="Metaclass for defining Abstract Base Classes (ABCs)." alt="" coords="141,127,345,147"/>
+<area shape="rect" id="node3_39" href="pyalgotrade.broker.Broker-class.html#getDispatchPriority" title="pyalgotrade.broker.Broker.getDispatchPriority" alt="" coords="141,150,345,170"/>
+<area shape="rect" id="node3_40" href="pyalgotrade.broker.Broker-class.html#notifyOrderEvent" title="pyalgotrade.broker.Broker.notifyOrderEvent" alt="" coords="141,170,345,190"/>
+<area shape="rect" id="node3_41" href="pyalgotrade.broker.Broker-class.html#getOrderUpdatedEvent" title="pyalgotrade.broker.Broker.getOrderUpdatedEvent" alt="" coords="141,190,345,210"/>
+<area shape="rect" id="node3" href="pyalgotrade.broker.Broker-class.html" title="Base class for brokers." alt="" coords="128,103,356,216"/>
+<area shape="rect" id="node4_42" href="pyalgotrade.broker.backtesting.Broker-class.html#LOGGER_NAME" title="pyalgotrade.broker.backtesting.Broker.LOGGER_NAME" alt="" coords="98,259,387,279"/>
+<area shape="rect" id="node4_43" href="pyalgotrade.broker.backtesting.Broker-class.html#__abstractmethods__" title="pyalgotrade.broker.backtesting.Broker.__abstractmethods__" alt="" coords="98,279,387,299"/>
+<area shape="rect" id="node4_44" href="pyalgotrade.broker.backtesting.Broker-class.html#getLogger" title="pyalgotrade.broker.backtesting.Broker.getLogger" alt="" coords="98,301,387,321"/>
+<area shape="rect" id="node4_45" href="pyalgotrade.broker.backtesting.Broker-class.html#setAllowNegativeCash" title="pyalgotrade.broker.backtesting.Broker.setAllowNegativeCash" alt="" coords="98,321,387,341"/>
+<area shape="rect" id="node4_46" href="pyalgotrade.broker.backtesting.Broker-class.html#getCash" title="Returns the available cash." alt="" coords="98,341,387,361"/>
+<area shape="rect" id="node4_47" href="pyalgotrade.broker.backtesting.Broker-class.html#setCash" title="pyalgotrade.broker.backtesting.Broker.setCash" alt="" coords="98,361,387,381"/>
+<area shape="rect" id="node4_48" href="pyalgotrade.broker.backtesting.Broker-class.html#getCommission" title="Returns the strategy used to calculate order commissions." alt="" coords="98,381,387,401"/>
+<area shape="rect" id="node4_49" href="pyalgotrade.broker.backtesting.Broker-class.html#setCommission" title="Sets the strategy to use to calculate order commissions." alt="" coords="98,401,387,421"/>
+<area shape="rect" id="node4_50" href="pyalgotrade.broker.backtesting.Broker-class.html#setFillStrategy" title="Sets the :class:`pyalgotrade.broker.fillstrategy.FillStrategy` to use." alt="" coords="98,421,387,441"/>
+<area shape="rect" id="node4_51" href="pyalgotrade.broker.backtesting.Broker-class.html#getFillStrategy" title="Returns the :class:`pyalgotrade.broker.fillstrategy.FillStrategy` currently set." alt="" coords="98,441,387,461"/>
+<area shape="rect" id="node4_52" href="pyalgotrade.broker.backtesting.Broker-class.html#getUseAdjustedValues" title="pyalgotrade.broker.backtesting.Broker.getUseAdjustedValues" alt="" coords="98,461,387,481"/>
+<area shape="rect" id="node4_53" href="pyalgotrade.broker.backtesting.Broker-class.html#setUseAdjustedValues" title="pyalgotrade.broker.backtesting.Broker.setUseAdjustedValues" alt="" coords="98,481,387,501"/>
+<area shape="rect" id="node4_54" href="pyalgotrade.broker.backtesting.Broker-class.html#getActiveOrders" title="Returns a sequence with the orders that are still active." alt="" coords="98,501,387,521"/>
+<area shape="rect" id="node4_55" href="pyalgotrade.broker.backtesting.Broker-class.html#getShares" title="Returns the number of shares for an instrument." alt="" coords="98,521,387,541"/>
+<area shape="rect" id="node4_56" href="pyalgotrade.broker.backtesting.Broker-class.html#getPositions" title="Returns a dictionary that maps instruments to shares." alt="" coords="98,541,387,561"/>
+<area shape="rect" id="node4_57" href="pyalgotrade.broker.backtesting.Broker-class.html#cancelOrder" title="Requests an order to be canceled." alt="" coords="98,581,387,601"/>
+<area shape="rect" id="node4" href="pyalgotrade.broker.backtesting.Broker-class.html" title="Backtesting broker." alt="" coords="85,235,399,608"/>
+<area shape="rect" id="node5_58" href="pyalgotrade.observer.Subject-class.html#setDispatchPriority" title="pyalgotrade.observer.Subject.setDispatchPriority" alt="" coords="122,38,365,58"/>
+<area shape="rect" id="node5_59" href="pyalgotrade.observer.Subject-class.html#onDispatcherRegistered" title="pyalgotrade.observer.Subject.onDispatcherRegistered" alt="" coords="122,58,365,78"/>
+<area shape="rect" id="node5" href="pyalgotrade.observer.Subject-class.html" title="pyalgotrade.observer.Subject" alt="" coords="110,5,377,84"/>
+</map>
+  <img src="uml_class_diagram_for_pyalgotr_35.gif" alt='' usemap="#uml_class_diagram_for_pyalgotr_35" ismap="ismap" class="graph-without-title" />
+</center>
+</center>
+<hr />
+<p>A Bitstamp paper trading broker.</p>
+  <p>:param cash: The initial amount of cash. :type cash: int/float. :param
+  barFeed: The bar feed that will provide the bars. :type barFeed: 
+  :class:`pyalgotrade.barfeed.BarFeed` :param fee: The fee percentage for 
+  each order. Defaults to 0.5%. :type fee: float.</p>
+  <p>.. note:</p>
+<pre class="literalblock">
+   * Only limit orders are supported.
+   * Orders are automatically set as **goodTillCanceled=True** and  **allOrNone=False**.
+   * BUY_TO_COVER orders are mapped to BUY orders.
+   * SELL_SHORT orders are mapped to SELL orders.
+</pre>
+
+<!-- ==================== INSTANCE METHODS ==================== -->
+<a name="section-InstanceMethods"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Instance Methods</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-InstanceMethods"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="pyalgotrade.bitstamp.broker.BacktestingBroker-class.html">BacktestingBroker</a></code></b>:
+      <code><a href="pyalgotrade.bitstamp.broker.BacktestingBroker-class.html#__init__">__init__</a></code>,
+      <code><a href="pyalgotrade.bitstamp.broker.BacktestingBroker-class.html#createLimitOrder">createLimitOrder</a></code>,
+      <code><a href="pyalgotrade.bitstamp.broker.BacktestingBroker-class.html#createMarketOrder">createMarketOrder</a></code>,
+      <code><a href="pyalgotrade.bitstamp.broker.BacktestingBroker-class.html#createStopLimitOrder">createStopLimitOrder</a></code>,
+      <code><a href="pyalgotrade.bitstamp.broker.BacktestingBroker-class.html#createStopOrder">createStopOrder</a></code>,
+      <code><a href="pyalgotrade.bitstamp.broker.BacktestingBroker-class.html#getInstrumentTraits">getInstrumentTraits</a></code>,
+      <code><a href="pyalgotrade.bitstamp.broker.BacktestingBroker-class.html#submitOrder">submitOrder</a></code>
+      </p>
+    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="pyalgotrade.broker.backtesting.Broker-class.html">broker.backtesting.Broker</a></code></b>:
+      <code><a href="pyalgotrade.broker.backtesting.Broker-class.html#cancelOrder">cancelOrder</a></code>,
+      <code><a href="pyalgotrade.broker.backtesting.Broker-class.html#commitOrderExecution">commitOrderExecution</a></code>,
+      <code><a href="pyalgotrade.broker.backtesting.Broker-class.html#createOptionLimitOrder">createOptionLimitOrder</a></code>,
+      <code><a href="pyalgotrade.broker.backtesting.Broker-class.html#createOptionOrder">createOptionOrder</a></code>,
+      <code><a href="pyalgotrade.broker.backtesting.Broker-class.html#createOptionStopLimitOrder">createOptionStopLimitOrder</a></code>,
+      <code><a href="pyalgotrade.broker.backtesting.Broker-class.html#createOptionStopOrder">createOptionStopOrder</a></code>,
+      <code><a href="pyalgotrade.broker.backtesting.Broker-class.html#dispatch">dispatch</a></code>,
+      <code><a href="pyalgotrade.broker.backtesting.Broker-class.html#eof">eof</a></code>,
+      <code><a href="pyalgotrade.broker.backtesting.Broker-class.html#getActiveInstruments">getActiveInstruments</a></code>,
+      <code><a href="pyalgotrade.broker.backtesting.Broker-class.html#getActiveOrders">getActiveOrders</a></code>,
+      <code><a href="pyalgotrade.broker.backtesting.Broker-class.html#getCash">getCash</a></code>,
+      <code><a href="pyalgotrade.broker.backtesting.Broker-class.html#getCommission">getCommission</a></code>,
+      <code><a href="pyalgotrade.broker.backtesting.Broker-class.html#getEquity">getEquity</a></code>,
+      <code><a href="pyalgotrade.broker.backtesting.Broker-class.html#getFillStrategy">getFillStrategy</a></code>,
+      <code><a href="pyalgotrade.broker.backtesting.Broker-class.html#getLogger">getLogger</a></code>,
+      <code><a href="pyalgotrade.broker.backtesting.Broker-class.html#getPositions">getPositions</a></code>,
+      <code><a href="pyalgotrade.broker.backtesting.Broker-class.html#getShares">getShares</a></code>,
+      <code><a href="pyalgotrade.broker.backtesting.Broker-class.html#getUseAdjustedValues">getUseAdjustedValues</a></code>,
+      <code><a href="pyalgotrade.broker.backtesting.Broker-class.html#join">join</a></code>,
+      <code><a href="pyalgotrade.broker.backtesting.Broker-class.html#onBars">onBars</a></code>,
+      <code><a href="pyalgotrade.broker.backtesting.Broker-class.html#peekDateTime">peekDateTime</a></code>,
+      <code><a href="pyalgotrade.broker.backtesting.Broker-class.html#setAllowNegativeCash">setAllowNegativeCash</a></code>,
+      <code><a href="pyalgotrade.broker.backtesting.Broker-class.html#setCash">setCash</a></code>,
+      <code><a href="pyalgotrade.broker.backtesting.Broker-class.html#setCommission">setCommission</a></code>,
+      <code><a href="pyalgotrade.broker.backtesting.Broker-class.html#setFillStrategy">setFillStrategy</a></code>,
+      <code><a href="pyalgotrade.broker.backtesting.Broker-class.html#setUseAdjustedValues">setUseAdjustedValues</a></code>,
+      <code><a href="pyalgotrade.broker.backtesting.Broker-class.html#start">start</a></code>,
+      <code><a href="pyalgotrade.broker.backtesting.Broker-class.html#stop">stop</a></code>
+      </p>
+    <div class="private">    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="pyalgotrade.broker.backtesting.Broker-class.html">broker.backtesting.Broker</a></code></b> (private):
+      <code><a href="pyalgotrade.broker.backtesting.Broker-class.html#_getBar" onclick="show_private();">_getBar</a></code>,
+      <code><a href="pyalgotrade.broker.backtesting.Broker-class.html#_getCurrentDateTime" onclick="show_private();">_getCurrentDateTime</a></code>,
+      <code><a href="pyalgotrade.broker.backtesting.Broker-class.html#_getNextOrderId" onclick="show_private();">_getNextOrderId</a></code>,
+      <code><a href="pyalgotrade.broker.backtesting.Broker-class.html#_registerOrder" onclick="show_private();">_registerOrder</a></code>,
+      <code><a href="pyalgotrade.broker.backtesting.Broker-class.html#_unregisterOrder" onclick="show_private();">_unregisterOrder</a></code>
+      </p></div>
+    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="pyalgotrade.broker.Broker-class.html">broker.Broker</a></code></b>:
+      <code><a href="pyalgotrade.broker.Broker-class.html#getDispatchPriority">getDispatchPriority</a></code>,
+      <code><a href="pyalgotrade.broker.Broker-class.html#getOrderUpdatedEvent">getOrderUpdatedEvent</a></code>,
+      <code><a href="pyalgotrade.broker.Broker-class.html#notifyOrderEvent">notifyOrderEvent</a></code>
+      </p>
+    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="pyalgotrade.observer.Subject-class.html">observer.Subject</a></code></b>:
+      <code><a href="pyalgotrade.observer.Subject-class.html#onDispatcherRegistered">onDispatcherRegistered</a></code>,
+      <code><a href="pyalgotrade.observer.Subject-class.html#setDispatchPriority">setDispatchPriority</a></code>
+      </p>
+    <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
+      <code>__delattr__</code>,
+      <code>__format__</code>,
+      <code>__getattribute__</code>,
+      <code>__hash__</code>,
+      <code>__new__</code>,
+      <code>__reduce__</code>,
+      <code>__reduce_ex__</code>,
+      <code>__repr__</code>,
+      <code>__setattr__</code>,
+      <code>__sizeof__</code>,
+      <code>__str__</code>,
+      <code>__subclasshook__</code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS VARIABLES ==================== -->
+<a name="section-ClassVariables"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Class Variables</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-ClassVariables"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="pyalgotrade.bitstamp.broker.BacktestingBroker-class.html">BacktestingBroker</a></code></b>:
+      <code><a href="pyalgotrade.bitstamp.broker.BacktestingBroker-class.html#MIN_TRADE_USD">MIN_TRADE_USD</a></code>
+      </p>
+    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="pyalgotrade.broker.backtesting.Broker-class.html">broker.backtesting.Broker</a></code></b>:
+      <code><a href="pyalgotrade.broker.backtesting.Broker-class.html#LOGGER_NAME">LOGGER_NAME</a></code>,
+      <code><a href="pyalgotrade.broker.backtesting.Broker-class.html#__abstractmethods__">__abstractmethods__</a></code>
+      </p>
+    <div class="private">    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="pyalgotrade.broker.backtesting.Broker-class.html">broker.backtesting.Broker</a></code></b> (private):
+      <code><a href="pyalgotrade.broker.backtesting.Broker-class.html#_abc_negative_cache_version" onclick="show_private();">_abc_negative_cache_version</a></code>
+      </p></div>
+    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="pyalgotrade.broker.Broker-class.html">broker.Broker</a></code></b>:
+      <code><a href="pyalgotrade.broker.Broker-class.html#__metaclass__">__metaclass__</a></code>
+      </p>
+    <div class="private">    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="pyalgotrade.observer.Subject-class.html">observer.Subject</a></code></b> (private):
+      <code><a href="pyalgotrade.observer.Subject-class.html#_abc_cache" onclick="show_private();">_abc_cache</a></code>,
+      <code><a href="pyalgotrade.observer.Subject-class.html#_abc_negative_cache" onclick="show_private();">_abc_negative_cache</a></code>,
+      <code><a href="pyalgotrade.observer.Subject-class.html#_abc_registry" onclick="show_private();">_abc_registry</a></code>
+      </p></div>
+    </td>
+  </tr>
+</table>
+<!-- ==================== PROPERTIES ==================== -->
+<a name="section-Properties"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Properties</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Properties"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
+      <code>__class__</code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="pyalgotrade-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Sat Oct 15 14:17:42 2016
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

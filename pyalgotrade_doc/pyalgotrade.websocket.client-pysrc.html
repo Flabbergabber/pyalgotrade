@@ -1,0 +1,619 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>pyalgotrade.websocket.client</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="pyalgotrade-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="pyalgotrade-module.html">Package&nbsp;pyalgotrade</a> ::
+        <a href="pyalgotrade.websocket-module.html">Package&nbsp;websocket</a> ::
+        Module&nbsp;client
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="pyalgotrade.websocket.client-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="pyalgotrade.websocket.client-module.html">Module pyalgotrade.websocket.client</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno">  1</tt>  <tt class="py-line"><tt class="py-comment"># PyAlgoTrade</tt> </tt>
+<a name="L2"></a><tt class="py-lineno">  2</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L3"></a><tt class="py-lineno">  3</tt>  <tt class="py-line"><tt class="py-comment"># Copyright 2011-2015 Gabriel Martin Becedillas Ruiz</tt> </tt>
+<a name="L4"></a><tt class="py-lineno">  4</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L5"></a><tt class="py-lineno">  5</tt>  <tt class="py-line"><tt class="py-comment"># Licensed under the Apache License, Version 2.0 (the "License");</tt> </tt>
+<a name="L6"></a><tt class="py-lineno">  6</tt>  <tt class="py-line"><tt class="py-comment"># you may not use this file except in compliance with the License.</tt> </tt>
+<a name="L7"></a><tt class="py-lineno">  7</tt>  <tt class="py-line"><tt class="py-comment"># You may obtain a copy of the License at</tt> </tt>
+<a name="L8"></a><tt class="py-lineno">  8</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L9"></a><tt class="py-lineno">  9</tt>  <tt class="py-line"><tt class="py-comment">#   http://www.apache.org/licenses/LICENSE-2.0</tt> </tt>
+<a name="L10"></a><tt class="py-lineno"> 10</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L11"></a><tt class="py-lineno"> 11</tt>  <tt class="py-line"><tt class="py-comment"># Unless required by applicable law or agreed to in writing, software</tt> </tt>
+<a name="L12"></a><tt class="py-lineno"> 12</tt>  <tt class="py-line"><tt class="py-comment"># distributed under the License is distributed on an "AS IS" BASIS,</tt> </tt>
+<a name="L13"></a><tt class="py-lineno"> 13</tt>  <tt class="py-line"><tt class="py-comment"># WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</tt> </tt>
+<a name="L14"></a><tt class="py-lineno"> 14</tt>  <tt class="py-line"><tt class="py-comment"># See the License for the specific language governing permissions and</tt> </tt>
+<a name="L15"></a><tt class="py-lineno"> 15</tt>  <tt class="py-line"><tt class="py-comment"># limitations under the License.</tt> </tt>
+<a name="L16"></a><tt class="py-lineno"> 16</tt>  <tt class="py-line"> </tt>
+<a name="L17"></a><tt class="py-lineno"> 17</tt>  <tt class="py-line"><tt class="py-docstring">"""</tt> </tt>
+<a name="L18"></a><tt class="py-lineno"> 18</tt>  <tt class="py-line"><tt class="py-docstring">.. moduleauthor:: Gabriel Martin Becedillas Ruiz &lt;gabriel.becedillas@gmail.com&gt;</tt> </tt>
+<a name="L19"></a><tt class="py-lineno"> 19</tt>  <tt class="py-line"><tt class="py-docstring">"""</tt> </tt>
+<a name="L20"></a><tt class="py-lineno"> 20</tt>  <tt class="py-line"> </tt>
+<a name="L21"></a><tt class="py-lineno"> 21</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">json</tt> </tt>
+<a name="L22"></a><tt class="py-lineno"> 22</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">time</tt> </tt>
+<a name="L23"></a><tt class="py-lineno"> 23</tt>  <tt class="py-line"> </tt>
+<a name="L24"></a><tt class="py-lineno"> 24</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">ws4py</tt><tt class="py-op">.</tt><tt id="link-0" class="py-name" targets="Module pyalgotrade.websocket.client=pyalgotrade.websocket.client-module.html"><a title="pyalgotrade.websocket.client" class="py-name" href="#" onclick="return doclink('link-0', 'client', 'link-0');">client</a></tt> <tt class="py-keyword">import</tt> <tt class="py-name">tornadoclient</tt> </tt>
+<a name="L25"></a><tt class="py-lineno"> 25</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">tornado</tt> </tt>
+<a name="L26"></a><tt class="py-lineno"> 26</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt id="link-1" class="py-name" targets="Package pyalgotrade=pyalgotrade-module.html"><a title="pyalgotrade" class="py-name" href="#" onclick="return doclink('link-1', 'pyalgotrade', 'link-1');">pyalgotrade</a></tt><tt class="py-op">.</tt><tt id="link-2" class="py-name" targets="Variable pyalgotrade.bitstamp.common.logger=pyalgotrade.bitstamp.common-module.html#logger,Module pyalgotrade.logger=pyalgotrade.logger-module.html,Variable pyalgotrade.optimizer.local.logger=pyalgotrade.optimizer.local-module.html#logger,Variable pyalgotrade.optimizer.server.logger=pyalgotrade.optimizer.server-module.html#logger,Variable pyalgotrade.optimizer.xmlrpcserver.logger=pyalgotrade.optimizer.xmlrpcserver-module.html#logger,Variable pyalgotrade.twitter.feed.logger=pyalgotrade.twitter.feed-module.html#logger,Variable pyalgotrade.websocket.client.logger=pyalgotrade.websocket.client-module.html#logger,Variable pyalgotrade.websocket.pusher.logger=pyalgotrade.websocket.pusher-module.html#logger"><a title="pyalgotrade.bitstamp.common.logger
+pyalgotrade.logger
+pyalgotrade.optimizer.local.logger
+pyalgotrade.optimizer.server.logger
+pyalgotrade.optimizer.xmlrpcserver.logger
+pyalgotrade.twitter.feed.logger
+pyalgotrade.websocket.client.logger
+pyalgotrade.websocket.pusher.logger" class="py-name" href="#" onclick="return doclink('link-2', 'logger', 'link-2');">logger</a></tt> </tt>
+<a name="L27"></a><tt class="py-lineno"> 27</tt>  <tt class="py-line"> </tt>
+<a name="L28"></a><tt class="py-lineno"> 28</tt>  <tt class="py-line"> </tt>
+<a name="L29"></a><tt class="py-lineno"> 29</tt>  <tt class="py-line"><tt id="link-3" class="py-name"><a title="pyalgotrade.bitstamp.common.logger
+pyalgotrade.logger
+pyalgotrade.optimizer.local.logger
+pyalgotrade.optimizer.server.logger
+pyalgotrade.optimizer.xmlrpcserver.logger
+pyalgotrade.twitter.feed.logger
+pyalgotrade.websocket.client.logger
+pyalgotrade.websocket.pusher.logger" class="py-name" href="#" onclick="return doclink('link-3', 'logger', 'link-2');">logger</a></tt> <tt class="py-op">=</tt> <tt id="link-4" class="py-name"><a title="pyalgotrade" class="py-name" href="#" onclick="return doclink('link-4', 'pyalgotrade', 'link-1');">pyalgotrade</a></tt><tt class="py-op">.</tt><tt id="link-5" class="py-name"><a title="pyalgotrade.bitstamp.common.logger
+pyalgotrade.logger
+pyalgotrade.optimizer.local.logger
+pyalgotrade.optimizer.server.logger
+pyalgotrade.optimizer.xmlrpcserver.logger
+pyalgotrade.twitter.feed.logger
+pyalgotrade.websocket.client.logger
+pyalgotrade.websocket.pusher.logger" class="py-name" href="#" onclick="return doclink('link-5', 'logger', 'link-2');">logger</a></tt><tt class="py-op">.</tt><tt id="link-6" class="py-name" targets="Method pyalgotrade.broker.backtesting.Broker.getLogger()=pyalgotrade.broker.backtesting.Broker-class.html#getLogger,Method pyalgotrade.broker.backtesting_old.Broker.getLogger()=pyalgotrade.broker.backtesting_old.Broker-class.html#getLogger,Method pyalgotrade.optimizer.worker.Worker.getLogger()=pyalgotrade.optimizer.worker.Worker-class.html#getLogger,Method pyalgotrade.strategy.BaseStrategy.getLogger()=pyalgotrade.strategy.BaseStrategy-class.html#getLogger"><a title="pyalgotrade.broker.backtesting.Broker.getLogger
+pyalgotrade.broker.backtesting_old.Broker.getLogger
+pyalgotrade.optimizer.worker.Worker.getLogger
+pyalgotrade.strategy.BaseStrategy.getLogger" class="py-name" href="#" onclick="return doclink('link-6', 'getLogger', 'link-6');">getLogger</a></tt><tt class="py-op">(</tt><tt class="py-string">"websocket.client"</tt><tt class="py-op">)</tt> </tt>
+<a name="L30"></a><tt class="py-lineno"> 30</tt>  <tt class="py-line"> </tt>
+<a name="L31"></a><tt class="py-lineno"> 31</tt>  <tt class="py-line"> </tt>
+<a name="L32"></a><tt class="py-lineno"> 32</tt>  <tt class="py-line"><tt class="py-comment"># This class is responsible for sending keep alive messages and detecting disconnections</tt> </tt>
+<a name="L33"></a><tt class="py-lineno"> 33</tt>  <tt class="py-line"><tt class="py-comment"># from the server.</tt> </tt>
+<a name="KeepAliveMgr"></a><div id="KeepAliveMgr-def"><a name="L34"></a><tt class="py-lineno"> 34</tt> <a class="py-toggle" href="#" id="KeepAliveMgr-toggle" onclick="return toggle('KeepAliveMgr');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="pyalgotrade.websocket.client.KeepAliveMgr-class.html">KeepAliveMgr</a><tt class="py-op">(</tt><tt class="py-base-class">object</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="KeepAliveMgr-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="KeepAliveMgr-expanded"><a name="KeepAliveMgr.__init__"></a><div id="KeepAliveMgr.__init__-def"><a name="L35"></a><tt class="py-lineno"> 35</tt> <a class="py-toggle" href="#" id="KeepAliveMgr.__init__-toggle" onclick="return toggle('KeepAliveMgr.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pyalgotrade.websocket.client.KeepAliveMgr-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">wsClient</tt><tt class="py-op">,</tt> <tt class="py-param">maxInactivity</tt><tt class="py-op">,</tt> <tt class="py-param">responseTimeout</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="KeepAliveMgr.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="KeepAliveMgr.__init__-expanded"><a name="L36"></a><tt class="py-lineno"> 36</tt>  <tt class="py-line">        <tt class="py-keyword">assert</tt><tt class="py-op">(</tt><tt class="py-name">maxInactivity</tt> <tt class="py-op">&gt;</tt> <tt class="py-number">0</tt><tt class="py-op">)</tt> </tt>
+<a name="L37"></a><tt class="py-lineno"> 37</tt>  <tt class="py-line">        <tt class="py-keyword">assert</tt><tt class="py-op">(</tt><tt class="py-name">responseTimeout</tt> <tt class="py-op">&gt;</tt> <tt class="py-number">0</tt><tt class="py-op">)</tt> </tt>
+<a name="L38"></a><tt class="py-lineno"> 38</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__callback</tt> <tt class="py-op">=</tt> <tt class="py-name">None</tt> </tt>
+<a name="L39"></a><tt class="py-lineno"> 39</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__wsClient</tt> <tt class="py-op">=</tt> <tt class="py-name">wsClient</tt> </tt>
+<a name="L40"></a><tt class="py-lineno"> 40</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__activityTimeout</tt> <tt class="py-op">=</tt> <tt class="py-name">maxInactivity</tt> </tt>
+<a name="L41"></a><tt class="py-lineno"> 41</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__responseTimeout</tt> <tt class="py-op">=</tt> <tt class="py-name">responseTimeout</tt> </tt>
+<a name="L42"></a><tt class="py-lineno"> 42</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__lastSeen</tt> <tt class="py-op">=</tt> <tt class="py-name">None</tt> </tt>
+<a name="L43"></a><tt class="py-lineno"> 43</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__kaSent</tt> <tt class="py-op">=</tt> <tt class="py-name">None</tt>  <tt class="py-comment"># timestamp when the last keep alive was sent.</tt> </tt>
+</div><a name="L44"></a><tt class="py-lineno"> 44</tt>  <tt class="py-line"> </tt>
+<a name="KeepAliveMgr._keepAlive"></a><div id="KeepAliveMgr._keepAlive-def"><a name="L45"></a><tt class="py-lineno"> 45</tt> <a class="py-toggle" href="#" id="KeepAliveMgr._keepAlive-toggle" onclick="return toggle('KeepAliveMgr._keepAlive');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pyalgotrade.websocket.client.KeepAliveMgr-class.html#_keepAlive">_keepAlive</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="KeepAliveMgr._keepAlive-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="KeepAliveMgr._keepAlive-expanded"><a name="L46"></a><tt class="py-lineno"> 46</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__lastSeen</tt> <tt class="py-keyword">is</tt> <tt class="py-name">None</tt><tt class="py-op">:</tt> </tt>
+<a name="L47"></a><tt class="py-lineno"> 47</tt>  <tt class="py-line">            <tt class="py-keyword">return</tt> </tt>
+<a name="L48"></a><tt class="py-lineno"> 48</tt>  <tt class="py-line"> </tt>
+<a name="L49"></a><tt class="py-lineno"> 49</tt>  <tt class="py-line">        <tt class="py-comment"># Check if we're under the inactivity threshold.</tt> </tt>
+<a name="L50"></a><tt class="py-lineno"> 50</tt>  <tt class="py-line">        <tt class="py-name">inactivity</tt> <tt class="py-op">=</tt> <tt class="py-op">(</tt><tt class="py-name">time</tt><tt class="py-op">.</tt><tt class="py-name">time</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> <tt class="py-op">-</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__lastSeen</tt><tt class="py-op">)</tt> </tt>
+<a name="L51"></a><tt class="py-lineno"> 51</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">inactivity</tt> <tt class="py-op">&lt;=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__activityTimeout</tt><tt class="py-op">:</tt> </tt>
+<a name="L52"></a><tt class="py-lineno"> 52</tt>  <tt class="py-line">            <tt class="py-keyword">return</tt> </tt>
+<a name="L53"></a><tt class="py-lineno"> 53</tt>  <tt class="py-line"> </tt>
+<a name="L54"></a><tt class="py-lineno"> 54</tt>  <tt class="py-line">        <tt class="py-comment"># Send keep alive if it was not sent,</tt> </tt>
+<a name="L55"></a><tt class="py-lineno"> 55</tt>  <tt class="py-line">        <tt class="py-comment"># or check if we have to timeout waiting for the keep alive response.</tt> </tt>
+<a name="L56"></a><tt class="py-lineno"> 56</tt>  <tt class="py-line">        <tt class="py-keyword">try</tt><tt class="py-op">:</tt> </tt>
+<a name="L57"></a><tt class="py-lineno"> 57</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__kaSent</tt> <tt class="py-keyword">is</tt> <tt class="py-name">None</tt><tt class="py-op">:</tt> </tt>
+<a name="L58"></a><tt class="py-lineno"> 58</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-7" class="py-name" targets="Method pyalgotrade.websocket.client.KeepAliveMgr.sendKeepAlive()=pyalgotrade.websocket.client.KeepAliveMgr-class.html#sendKeepAlive,Method pyalgotrade.websocket.pusher.PingKeepAliveMgr.sendKeepAlive()=pyalgotrade.websocket.pusher.PingKeepAliveMgr-class.html#sendKeepAlive"><a title="pyalgotrade.websocket.client.KeepAliveMgr.sendKeepAlive
+pyalgotrade.websocket.pusher.PingKeepAliveMgr.sendKeepAlive" class="py-name" href="#" onclick="return doclink('link-7', 'sendKeepAlive', 'link-7');">sendKeepAlive</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L59"></a><tt class="py-lineno"> 59</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__kaSent</tt> <tt class="py-op">=</tt> <tt class="py-name">time</tt><tt class="py-op">.</tt><tt class="py-name">time</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L60"></a><tt class="py-lineno"> 60</tt>  <tt class="py-line">            <tt class="py-keyword">elif</tt> <tt class="py-op">(</tt><tt class="py-name">time</tt><tt class="py-op">.</tt><tt class="py-name">time</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> <tt class="py-op">-</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__kaSent</tt><tt class="py-op">)</tt> <tt class="py-op">&gt;</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__responseTimeout</tt><tt class="py-op">:</tt> </tt>
+<a name="L61"></a><tt class="py-lineno"> 61</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__wsClient</tt><tt class="py-op">.</tt><tt id="link-8" class="py-name" targets="Method pyalgotrade.bitstamp.wsclient.WebSocketClient.onDisconnectionDetected()=pyalgotrade.bitstamp.wsclient.WebSocketClient-class.html#onDisconnectionDetected,Method pyalgotrade.websocket.client.WebSocketClientBase.onDisconnectionDetected()=pyalgotrade.websocket.client.WebSocketClientBase-class.html#onDisconnectionDetected"><a title="pyalgotrade.bitstamp.wsclient.WebSocketClient.onDisconnectionDetected
+pyalgotrade.websocket.client.WebSocketClientBase.onDisconnectionDetected" class="py-name" href="#" onclick="return doclink('link-8', 'onDisconnectionDetected', 'link-8');">onDisconnectionDetected</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L62"></a><tt class="py-lineno"> 62</tt>  <tt class="py-line">        <tt class="py-keyword">except</tt> <tt class="py-name">Exception</tt><tt class="py-op">:</tt> </tt>
+<a name="L63"></a><tt class="py-lineno"> 63</tt>  <tt class="py-line">            <tt class="py-comment"># Treat an error sending the keep-alive as a diconnection.</tt> </tt>
+<a name="L64"></a><tt class="py-lineno"> 64</tt>  <tt class="py-line">            <tt class="py-comment"># print "Error sending keep alive", e</tt> </tt>
+<a name="L65"></a><tt class="py-lineno"> 65</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__wsClient</tt><tt class="py-op">.</tt><tt id="link-9" class="py-name"><a title="pyalgotrade.bitstamp.wsclient.WebSocketClient.onDisconnectionDetected
+pyalgotrade.websocket.client.WebSocketClientBase.onDisconnectionDetected" class="py-name" href="#" onclick="return doclink('link-9', 'onDisconnectionDetected', 'link-8');">onDisconnectionDetected</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L66"></a><tt class="py-lineno"> 66</tt>  <tt class="py-line"> </tt>
+<a name="KeepAliveMgr.getWSClient"></a><div id="KeepAliveMgr.getWSClient-def"><a name="L67"></a><tt class="py-lineno"> 67</tt> <a class="py-toggle" href="#" id="KeepAliveMgr.getWSClient-toggle" onclick="return toggle('KeepAliveMgr.getWSClient');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pyalgotrade.websocket.client.KeepAliveMgr-class.html#getWSClient">getWSClient</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="KeepAliveMgr.getWSClient-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="KeepAliveMgr.getWSClient-expanded"><a name="L68"></a><tt class="py-lineno"> 68</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__wsClient</tt> </tt>
+</div><a name="L69"></a><tt class="py-lineno"> 69</tt>  <tt class="py-line"> </tt>
+<a name="KeepAliveMgr.setAlive"></a><div id="KeepAliveMgr.setAlive-def"><a name="L70"></a><tt class="py-lineno"> 70</tt> <a class="py-toggle" href="#" id="KeepAliveMgr.setAlive-toggle" onclick="return toggle('KeepAliveMgr.setAlive');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pyalgotrade.websocket.client.KeepAliveMgr-class.html#setAlive">setAlive</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="KeepAliveMgr.setAlive-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="KeepAliveMgr.setAlive-expanded"><a name="L71"></a><tt class="py-lineno"> 71</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__lastSeen</tt> <tt class="py-op">=</tt> <tt class="py-name">time</tt><tt class="py-op">.</tt><tt class="py-name">time</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L72"></a><tt class="py-lineno"> 72</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__kaSent</tt> <tt class="py-op">=</tt> <tt class="py-name">None</tt> </tt>
+</div><a name="L73"></a><tt class="py-lineno"> 73</tt>  <tt class="py-line"> </tt>
+<a name="KeepAliveMgr.start"></a><div id="KeepAliveMgr.start-def"><a name="L74"></a><tt class="py-lineno"> 74</tt> <a class="py-toggle" href="#" id="KeepAliveMgr.start-toggle" onclick="return toggle('KeepAliveMgr.start');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pyalgotrade.websocket.client.KeepAliveMgr-class.html#start">start</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="KeepAliveMgr.start-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="KeepAliveMgr.start-expanded"><a name="L75"></a><tt class="py-lineno"> 75</tt>  <tt class="py-line">        <tt class="py-comment"># Check every second.</tt> </tt>
+<a name="L76"></a><tt class="py-lineno"> 76</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__callback</tt> <tt class="py-op">=</tt> <tt class="py-name">tornado</tt><tt class="py-op">.</tt><tt class="py-name">ioloop</tt><tt class="py-op">.</tt><tt class="py-name">PeriodicCallback</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-10" class="py-name" targets="Method pyalgotrade.websocket.client.KeepAliveMgr._keepAlive()=pyalgotrade.websocket.client.KeepAliveMgr-class.html#_keepAlive"><a title="pyalgotrade.websocket.client.KeepAliveMgr._keepAlive" class="py-name" href="#" onclick="return doclink('link-10', '_keepAlive', 'link-10');">_keepAlive</a></tt><tt class="py-op">,</tt> <tt class="py-number">1000</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__wsClient</tt><tt class="py-op">.</tt><tt id="link-11" class="py-name" targets="Method pyalgotrade.websocket.client.WebSocketClientBase.getIOLoop()=pyalgotrade.websocket.client.WebSocketClientBase-class.html#getIOLoop"><a title="pyalgotrade.websocket.client.WebSocketClientBase.getIOLoop" class="py-name" href="#" onclick="return doclink('link-11', 'getIOLoop', 'link-11');">getIOLoop</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L77"></a><tt class="py-lineno"> 77</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__callback</tt><tt class="py-op">.</tt><tt id="link-12" class="py-name" targets="Method pyalgotrade.barfeed.OptimizerBarFeed.start()=pyalgotrade.barfeed.OptimizerBarFeed-class.html#start,Method pyalgotrade.barfeed.membf.BarFeed.start()=pyalgotrade.barfeed.membf.BarFeed-class.html#start,Method pyalgotrade.barfeed.resampled.ResampledBarFeed.start()=pyalgotrade.barfeed.resampled.ResampledBarFeed-class.html#start,Method pyalgotrade.bitstamp.livebroker.LiveBroker.start()=pyalgotrade.bitstamp.livebroker.LiveBroker-class.html#start,Method pyalgotrade.bitstamp.livebroker.TradeMonitor.start()=pyalgotrade.bitstamp.livebroker.TradeMonitor-class.html#start,Method pyalgotrade.bitstamp.livefeed.LiveTradeFeed.start()=pyalgotrade.bitstamp.livefeed.LiveTradeFeed-class.html#start,Method pyalgotrade.bitstamp.wsclient.WebSocketClientThread.start()=pyalgotrade.bitstamp.wsclient.WebSocketClientThread-class.html#start,Method pyalgotrade.broker.backtesting.Broker.start()=pyalgotrade.broker.backtesting.Broker-class.html#start,Method pyalgotrade.broker.backtesting_old.Broker.start()=pyalgotrade.broker.backtesting_old.Broker-class.html#start,Method pyalgotrade.feed.memfeed.MemFeed.start()=pyalgotrade.feed.memfeed.MemFeed-class.html#start,Method pyalgotrade.ib.barfeed.LiveFeed.start()=pyalgotrade.ib.barfeed.LiveFeed-class.html#start,Method pyalgotrade.ib.livebroker.LiveBroker.start()=pyalgotrade.ib.livebroker.LiveBroker-class.html#start,Method pyalgotrade.observer.Subject.start()=pyalgotrade.observer.Subject-class.html#start,Method pyalgotrade.twitter.feed.TwitterFeed.start()=pyalgotrade.twitter.feed.TwitterFeed-class.html#start,Method pyalgotrade.websocket.client.KeepAliveMgr.start()=pyalgotrade.websocket.client.KeepAliveMgr-class.html#start"><a title="pyalgotrade.barfeed.OptimizerBarFeed.start
+pyalgotrade.barfeed.membf.BarFeed.start
+pyalgotrade.barfeed.resampled.ResampledBarFeed.start
+pyalgotrade.bitstamp.livebroker.LiveBroker.start
+pyalgotrade.bitstamp.livebroker.TradeMonitor.start
+pyalgotrade.bitstamp.livefeed.LiveTradeFeed.start
+pyalgotrade.bitstamp.wsclient.WebSocketClientThread.start
+pyalgotrade.broker.backtesting.Broker.start
+pyalgotrade.broker.backtesting_old.Broker.start
+pyalgotrade.feed.memfeed.MemFeed.start
+pyalgotrade.ib.barfeed.LiveFeed.start
+pyalgotrade.ib.livebroker.LiveBroker.start
+pyalgotrade.observer.Subject.start
+pyalgotrade.twitter.feed.TwitterFeed.start
+pyalgotrade.websocket.client.KeepAliveMgr.start" class="py-name" href="#" onclick="return doclink('link-12', 'start', 'link-12');">start</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L78"></a><tt class="py-lineno"> 78</tt>  <tt class="py-line"> </tt>
+<a name="KeepAliveMgr.stop"></a><div id="KeepAliveMgr.stop-def"><a name="L79"></a><tt class="py-lineno"> 79</tt> <a class="py-toggle" href="#" id="KeepAliveMgr.stop-toggle" onclick="return toggle('KeepAliveMgr.stop');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pyalgotrade.websocket.client.KeepAliveMgr-class.html#stop">stop</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="KeepAliveMgr.stop-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="KeepAliveMgr.stop-expanded"><a name="L80"></a><tt class="py-lineno"> 80</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__callback</tt> <tt class="py-keyword">is</tt> <tt class="py-keyword">not</tt> <tt class="py-name">None</tt><tt class="py-op">:</tt> </tt>
+<a name="L81"></a><tt class="py-lineno"> 81</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__callback</tt><tt class="py-op">.</tt><tt id="link-13" class="py-name" targets="Method pyalgotrade.barfeed.OptimizerBarFeed.stop()=pyalgotrade.barfeed.OptimizerBarFeed-class.html#stop,Method pyalgotrade.barfeed.membf.BarFeed.stop()=pyalgotrade.barfeed.membf.BarFeed-class.html#stop,Method pyalgotrade.barfeed.resampled.ResampledBarFeed.stop()=pyalgotrade.barfeed.resampled.ResampledBarFeed-class.html#stop,Method pyalgotrade.bitstamp.livebroker.LiveBroker.stop()=pyalgotrade.bitstamp.livebroker.LiveBroker-class.html#stop,Method pyalgotrade.bitstamp.livebroker.TradeMonitor.stop()=pyalgotrade.bitstamp.livebroker.TradeMonitor-class.html#stop,Method pyalgotrade.bitstamp.livefeed.LiveTradeFeed.stop()=pyalgotrade.bitstamp.livefeed.LiveTradeFeed-class.html#stop,Method pyalgotrade.bitstamp.wsclient.WebSocketClientThread.stop()=pyalgotrade.bitstamp.wsclient.WebSocketClientThread-class.html#stop,Method pyalgotrade.broker.backtesting.Broker.stop()=pyalgotrade.broker.backtesting.Broker-class.html#stop,Method pyalgotrade.broker.backtesting_old.Broker.stop()=pyalgotrade.broker.backtesting_old.Broker-class.html#stop,Method pyalgotrade.dispatcher.Dispatcher.stop()=pyalgotrade.dispatcher.Dispatcher-class.html#stop,Method pyalgotrade.feed.memfeed.MemFeed.stop()=pyalgotrade.feed.memfeed.MemFeed-class.html#stop,Method pyalgotrade.ib.barfeed.LiveFeed.stop()=pyalgotrade.ib.barfeed.LiveFeed-class.html#stop,Method pyalgotrade.ib.livebroker.LiveBroker.stop()=pyalgotrade.ib.livebroker.LiveBroker-class.html#stop,Method pyalgotrade.observer.Subject.stop()=pyalgotrade.observer.Subject-class.html#stop,Method pyalgotrade.optimizer.xmlrpcserver.Server.stop()=pyalgotrade.optimizer.xmlrpcserver.Server-class.html#stop,Method pyalgotrade.strategy.BaseStrategy.stop()=pyalgotrade.strategy.BaseStrategy-class.html#stop,Method pyalgotrade.twitter.feed.TwitterFeed.stop()=pyalgotrade.twitter.feed.TwitterFeed-class.html#stop,Method pyalgotrade.websocket.client.KeepAliveMgr.stop()=pyalgotrade.websocket.client.KeepAliveMgr-class.html#stop"><a title="pyalgotrade.barfeed.OptimizerBarFeed.stop
+pyalgotrade.barfeed.membf.BarFeed.stop
+pyalgotrade.barfeed.resampled.ResampledBarFeed.stop
+pyalgotrade.bitstamp.livebroker.LiveBroker.stop
+pyalgotrade.bitstamp.livebroker.TradeMonitor.stop
+pyalgotrade.bitstamp.livefeed.LiveTradeFeed.stop
+pyalgotrade.bitstamp.wsclient.WebSocketClientThread.stop
+pyalgotrade.broker.backtesting.Broker.stop
+pyalgotrade.broker.backtesting_old.Broker.stop
+pyalgotrade.dispatcher.Dispatcher.stop
+pyalgotrade.feed.memfeed.MemFeed.stop
+pyalgotrade.ib.barfeed.LiveFeed.stop
+pyalgotrade.ib.livebroker.LiveBroker.stop
+pyalgotrade.observer.Subject.stop
+pyalgotrade.optimizer.xmlrpcserver.Server.stop
+pyalgotrade.strategy.BaseStrategy.stop
+pyalgotrade.twitter.feed.TwitterFeed.stop
+pyalgotrade.websocket.client.KeepAliveMgr.stop" class="py-name" href="#" onclick="return doclink('link-13', 'stop', 'link-13');">stop</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L82"></a><tt class="py-lineno"> 82</tt>  <tt class="py-line"> </tt>
+<a name="L83"></a><tt class="py-lineno"> 83</tt>  <tt class="py-line">    <tt class="py-comment"># Override to send the keep alive msg.</tt> </tt>
+<a name="KeepAliveMgr.sendKeepAlive"></a><div id="KeepAliveMgr.sendKeepAlive-def"><a name="L84"></a><tt class="py-lineno"> 84</tt> <a class="py-toggle" href="#" id="KeepAliveMgr.sendKeepAlive-toggle" onclick="return toggle('KeepAliveMgr.sendKeepAlive');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pyalgotrade.websocket.client.KeepAliveMgr-class.html#sendKeepAlive">sendKeepAlive</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="KeepAliveMgr.sendKeepAlive-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="KeepAliveMgr.sendKeepAlive-expanded"><a name="L85"></a><tt class="py-lineno"> 85</tt>  <tt class="py-line">        <tt class="py-keyword">raise</tt> <tt class="py-name">NotImplementedError</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L86"></a><tt class="py-lineno"> 86</tt>  <tt class="py-line"> </tt>
+<a name="L87"></a><tt class="py-lineno"> 87</tt>  <tt class="py-line">    <tt class="py-comment"># Return True if the response belongs to a keep alive message, False otherwise.</tt> </tt>
+<a name="KeepAliveMgr.handleResponse"></a><div id="KeepAliveMgr.handleResponse-def"><a name="L88"></a><tt class="py-lineno"> 88</tt> <a class="py-toggle" href="#" id="KeepAliveMgr.handleResponse-toggle" onclick="return toggle('KeepAliveMgr.handleResponse');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pyalgotrade.websocket.client.KeepAliveMgr-class.html#handleResponse">handleResponse</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">msg</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="KeepAliveMgr.handleResponse-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="KeepAliveMgr.handleResponse-expanded"><a name="L89"></a><tt class="py-lineno"> 89</tt>  <tt class="py-line">        <tt class="py-keyword">raise</tt> <tt class="py-name">NotImplementedError</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L90"></a><tt class="py-lineno"> 90</tt>  <tt class="py-line"> </tt>
+<a name="L91"></a><tt class="py-lineno"> 91</tt>  <tt class="py-line"> </tt>
+<a name="L92"></a><tt class="py-lineno"> 92</tt>  <tt class="py-line"><tt class="py-comment"># Base clase for websocket clients.</tt> </tt>
+<a name="L93"></a><tt class="py-lineno"> 93</tt>  <tt class="py-line"><tt class="py-comment"># To use it call connect and startClient, and stopClient.</tt> </tt>
+<a name="WebSocketClientBase"></a><div id="WebSocketClientBase-def"><a name="L94"></a><tt class="py-lineno"> 94</tt> <a class="py-toggle" href="#" id="WebSocketClientBase-toggle" onclick="return toggle('WebSocketClientBase');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="pyalgotrade.websocket.client.WebSocketClientBase-class.html">WebSocketClientBase</a><tt class="py-op">(</tt><tt class="py-base-class">tornadoclient</tt><tt class="py-op">.</tt><tt class="py-base-class">TornadoWebSocketClient</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="WebSocketClientBase-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="WebSocketClientBase-expanded"><a name="WebSocketClientBase.__init__"></a><div id="WebSocketClientBase.__init__-def"><a name="L95"></a><tt class="py-lineno"> 95</tt> <a class="py-toggle" href="#" id="WebSocketClientBase.__init__-toggle" onclick="return toggle('WebSocketClientBase.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pyalgotrade.websocket.client.WebSocketClientBase-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">url</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="WebSocketClientBase.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="WebSocketClientBase.__init__-expanded"><a name="L96"></a><tt class="py-lineno"> 96</tt>  <tt class="py-line">        <tt class="py-name">super</tt><tt class="py-op">(</tt><tt id="link-14" class="py-name" targets="Class pyalgotrade.websocket.client.WebSocketClientBase=pyalgotrade.websocket.client.WebSocketClientBase-class.html"><a title="pyalgotrade.websocket.client.WebSocketClientBase" class="py-name" href="#" onclick="return doclink('link-14', 'WebSocketClientBase', 'link-14');">WebSocketClientBase</a></tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt id="link-15" class="py-name" targets="Method pyalgotrade.bar.Bars.__init__()=pyalgotrade.bar.Bars-class.html#__init__,Method pyalgotrade.bar.BasicBar.__init__()=pyalgotrade.bar.BasicBar-class.html#__init__,Method pyalgotrade.barfeed.BaseBarFeed.__init__()=pyalgotrade.barfeed.BaseBarFeed-class.html#__init__,Method pyalgotrade.barfeed.OptimizerBarFeed.__init__()=pyalgotrade.barfeed.OptimizerBarFeed-class.html#__init__,Method pyalgotrade.barfeed.csvfeed.BarFeed.__init__()=pyalgotrade.barfeed.csvfeed.BarFeed-class.html#__init__,Method pyalgotrade.barfeed.csvfeed.DateRangeFilter.__init__()=pyalgotrade.barfeed.csvfeed.DateRangeFilter-class.html#__init__,Method pyalgotrade.barfeed.csvfeed.GenericBarFeed.__init__()=pyalgotrade.barfeed.csvfeed.GenericBarFeed-class.html#__init__,Method pyalgotrade.barfeed.csvfeed.GenericRowParser.__init__()=pyalgotrade.barfeed.csvfeed.GenericRowParser-class.html#__init__,Method pyalgotrade.barfeed.csvfeed.USEquitiesRTH.__init__()=pyalgotrade.barfeed.csvfeed.USEquitiesRTH-class.html#__init__,Method pyalgotrade.barfeed.googlefeed.Feed.__init__()=pyalgotrade.barfeed.googlefeed.Feed-class.html#__init__,Method pyalgotrade.barfeed.googlefeed.RowParser.__init__()=pyalgotrade.barfeed.googlefeed.RowParser-class.html#__init__,Method pyalgotrade.barfeed.ibfeed.Feed.__init__()=pyalgotrade.barfeed.ibfeed.Feed-class.html#__init__,Method pyalgotrade.barfeed.ibfeed.RowParser.__init__()=pyalgotrade.barfeed.ibfeed.RowParser-class.html#__init__,Method pyalgotrade.barfeed.membf.BarFeed.__init__()=pyalgotrade.barfeed.membf.BarFeed-class.html#__init__,Method pyalgotrade.barfeed.ninjatraderfeed.Feed.__init__()=pyalgotrade.barfeed.ninjatraderfeed.Feed-class.html#__init__,Method pyalgotrade.barfeed.ninjatraderfeed.RowParser.__init__()=pyalgotrade.barfeed.ninjatraderfeed.RowParser-class.html#__init__,Method pyalgotrade.barfeed.quandlfeed.Feed.__init__()=pyalgotrade.barfeed.quandlfeed.Feed-class.html#__init__,Method pyalgotrade.barfeed.resampled.BarsGrouper.__init__()=pyalgotrade.barfeed.resampled.BarsGrouper-class.html#__init__,Method pyalgotrade.barfeed.resampled.ResampledBarFeed.__init__()=pyalgotrade.barfeed.resampled.ResampledBarFeed-class.html#__init__,Method pyalgotrade.barfeed.sqlitefeed.Database.__init__()=pyalgotrade.barfeed.sqlitefeed.Database-class.html#__init__,Method pyalgotrade.barfeed.sqlitefeed.Feed.__init__()=pyalgotrade.barfeed.sqlitefeed.Feed-class.html#__init__,Method pyalgotrade.barfeed.yahoofeed.Feed.__init__()=pyalgotrade.barfeed.yahoofeed.Feed-class.html#__init__,Method pyalgotrade.barfeed.yahoofeed.RowParser.__init__()=pyalgotrade.barfeed.yahoofeed.RowParser-class.html#__init__,Method pyalgotrade.bitcoincharts.barfeed.CSVTradeFeed.__init__()=pyalgotrade.bitcoincharts.barfeed.CSVTradeFeed-class.html#__init__,Method pyalgotrade.bitcoincharts.barfeed.RowParser.__init__()=pyalgotrade.bitcoincharts.barfeed.RowParser-class.html#__init__,Method pyalgotrade.bitcoincharts.barfeed.TradeBar.__init__()=pyalgotrade.bitcoincharts.barfeed.TradeBar-class.html#__init__,Method pyalgotrade.bitcoincharts.barfeed.UnixTimeFix.__init__()=pyalgotrade.bitcoincharts.barfeed.UnixTimeFix-class.html#__init__,Method pyalgotrade.bitstamp.broker.BacktestingBroker.__init__()=pyalgotrade.bitstamp.broker.BacktestingBroker-class.html#__init__,Method pyalgotrade.bitstamp.httpclient.AccountBalance.__init__()=pyalgotrade.bitstamp.httpclient.AccountBalance-class.html#__init__,Method pyalgotrade.bitstamp.httpclient.HTTPClient.__init__()=pyalgotrade.bitstamp.httpclient.HTTPClient-class.html#__init__,Method pyalgotrade.bitstamp.httpclient.Order.__init__()=pyalgotrade.bitstamp.httpclient.Order-class.html#__init__,Method pyalgotrade.bitstamp.httpclient.UserTransaction.__init__()=pyalgotrade.bitstamp.httpclient.UserTransaction-class.html#__init__,Method pyalgotrade.bitstamp.livebroker.LiveBroker.__init__()=pyalgotrade.bitstamp.livebroker.LiveBroker-class.html#__init__,Method pyalgotrade.bitstamp.livebroker.TradeMonitor.__init__()=pyalgotrade.bitstamp.livebroker.TradeMonitor-class.html#__init__,Method pyalgotrade.bitstamp.livefeed.LiveTradeFeed.__init__()=pyalgotrade.bitstamp.livefeed.LiveTradeFeed-class.html#__init__,Method pyalgotrade.bitstamp.livefeed.TradeBar.__init__()=pyalgotrade.bitstamp.livefeed.TradeBar-class.html#__init__,Method pyalgotrade.bitstamp.wsclient.OrderBookUpdate.__init__()=pyalgotrade.bitstamp.wsclient.OrderBookUpdate-class.html#__init__,Method pyalgotrade.bitstamp.wsclient.Trade.__init__()=pyalgotrade.bitstamp.wsclient.Trade-class.html#__init__,Method pyalgotrade.bitstamp.wsclient.WebSocketClient.__init__()=pyalgotrade.bitstamp.wsclient.WebSocketClient-class.html#__init__,Method pyalgotrade.bitstamp.wsclient.WebSocketClientThread.__init__()=pyalgotrade.bitstamp.wsclient.WebSocketClientThread-class.html#__init__,Method pyalgotrade.broker.Broker.__init__()=pyalgotrade.broker.Broker-class.html#__init__,Method pyalgotrade.broker.LimitOrder.__init__()=pyalgotrade.broker.LimitOrder-class.html#__init__,Method pyalgotrade.broker.MarketOrder.__init__()=pyalgotrade.broker.MarketOrder-class.html#__init__,Method pyalgotrade.broker.OptionLimitOrder.__init__()=pyalgotrade.broker.OptionLimitOrder-class.html#__init__,Method pyalgotrade.broker.OptionOrder.__init__()=pyalgotrade.broker.OptionOrder-class.html#__init__,Method pyalgotrade.broker.OptionStopLimitOrder.__init__()=pyalgotrade.broker.OptionStopLimitOrder-class.html#__init__,Method pyalgotrade.broker.OptionStopOrder.__init__()=pyalgotrade.broker.OptionStopOrder-class.html#__init__,Method pyalgotrade.broker.Order.__init__()=pyalgotrade.broker.Order-class.html#__init__,Method pyalgotrade.broker.OrderEvent.__init__()=pyalgotrade.broker.OrderEvent-class.html#__init__,Method pyalgotrade.broker.OrderExecutionInfo.__init__()=pyalgotrade.broker.OrderExecutionInfo-class.html#__init__,Method pyalgotrade.broker.StopLimitOrder.__init__()=pyalgotrade.broker.StopLimitOrder-class.html#__init__,Method pyalgotrade.broker.StopOrder.__init__()=pyalgotrade.broker.StopOrder-class.html#__init__,Method pyalgotrade.broker.backtesting.BacktestingOrder.__init__()=pyalgotrade.broker.backtesting.BacktestingOrder-class.html#__init__,Method pyalgotrade.broker.backtesting.Broker.__init__()=pyalgotrade.broker.backtesting.Broker-class.html#__init__,Method pyalgotrade.broker.backtesting.FixedPerTrade.__init__()=pyalgotrade.broker.backtesting.FixedPerTrade-class.html#__init__,Method pyalgotrade.broker.backtesting.LimitOrder.__init__()=pyalgotrade.broker.backtesting.LimitOrder-class.html#__init__,Method pyalgotrade.broker.backtesting.MarketOrder.__init__()=pyalgotrade.broker.backtesting.MarketOrder-class.html#__init__,Method pyalgotrade.broker.backtesting.OptionLimitOrder.__init__()=pyalgotrade.broker.backtesting.OptionLimitOrder-class.html#__init__,Method pyalgotrade.broker.backtesting.OptionOrder.__init__()=pyalgotrade.broker.backtesting.OptionOrder-class.html#__init__,Method pyalgotrade.broker.backtesting.OptionStopLimitOrder.__init__()=pyalgotrade.broker.backtesting.OptionStopLimitOrder-class.html#__init__,Method pyalgotrade.broker.backtesting.OptionStopOrder.__init__()=pyalgotrade.broker.backtesting.OptionStopOrder-class.html#__init__,Method pyalgotrade.broker.backtesting.StopLimitOrder.__init__()=pyalgotrade.broker.backtesting.StopLimitOrder-class.html#__init__,Method pyalgotrade.broker.backtesting.StopOrder.__init__()=pyalgotrade.broker.backtesting.StopOrder-class.html#__init__,Method pyalgotrade.broker.backtesting.TradePercentage.__init__()=pyalgotrade.broker.backtesting.TradePercentage-class.html#__init__,Method pyalgotrade.broker.backtesting_old.BacktestingOrder.__init__()=pyalgotrade.broker.backtesting_old.BacktestingOrder-class.html#__init__,Method pyalgotrade.broker.backtesting_old.Broker.__init__()=pyalgotrade.broker.backtesting_old.Broker-class.html#__init__,Method pyalgotrade.broker.backtesting_old.FixedPerTrade.__init__()=pyalgotrade.broker.backtesting_old.FixedPerTrade-class.html#__init__,Method pyalgotrade.broker.backtesting_old.LimitOrder.__init__()=pyalgotrade.broker.backtesting_old.LimitOrder-class.html#__init__,Method pyalgotrade.broker.backtesting_old.MarketOrder.__init__()=pyalgotrade.broker.backtesting_old.MarketOrder-class.html#__init__,Method pyalgotrade.broker.backtesting_old.StopLimitOrder.__init__()=pyalgotrade.broker.backtesting_old.StopLimitOrder-class.html#__init__,Method pyalgotrade.broker.backtesting_old.StopOrder.__init__()=pyalgotrade.broker.backtesting_old.StopOrder-class.html#__init__,Method pyalgotrade.broker.backtesting_old.TradePercentage.__init__()=pyalgotrade.broker.backtesting_old.TradePercentage-class.html#__init__,Method pyalgotrade.broker.fillstrategy.DefaultStrategy.__init__()=pyalgotrade.broker.fillstrategy.DefaultStrategy-class.html#__init__,Method pyalgotrade.broker.fillstrategy.FillInfo.__init__()=pyalgotrade.broker.fillstrategy.FillInfo-class.html#__init__,Method pyalgotrade.broker.slippage.VolumeShareSlippage.__init__()=pyalgotrade.broker.slippage.VolumeShareSlippage-class.html#__init__,Method pyalgotrade.dataseries.SequenceDataSeries.__init__()=pyalgotrade.dataseries.SequenceDataSeries-class.html#__init__,Method pyalgotrade.dataseries.aligned.Syncer.__init__()=pyalgotrade.dataseries.aligned.Syncer-class.html#__init__,Method pyalgotrade.dataseries.bards.BarDataSeries.__init__()=pyalgotrade.dataseries.bards.BarDataSeries-class.html#__init__,Method pyalgotrade.dataseries.resampled.AggFunGrouper.__init__()=pyalgotrade.dataseries.resampled.AggFunGrouper-class.html#__init__,Method pyalgotrade.dataseries.resampled.BarGrouper.__init__()=pyalgotrade.dataseries.resampled.BarGrouper-class.html#__init__,Method pyalgotrade.dataseries.resampled.ResampledBarDataSeries.__init__()=pyalgotrade.dataseries.resampled.ResampledBarDataSeries-class.html#__init__,Method pyalgotrade.dataseries.resampled.ResampledDataSeries.__init__()=pyalgotrade.dataseries.resampled.ResampledDataSeries-class.html#__init__,Method pyalgotrade.dispatcher.Dispatcher.__init__()=pyalgotrade.dispatcher.Dispatcher-class.html#__init__,Method pyalgotrade.eventprofiler.Event.__init__()=pyalgotrade.eventprofiler.Event-class.html#__init__,Method pyalgotrade.eventprofiler.Profiler.__init__()=pyalgotrade.eventprofiler.Profiler-class.html#__init__,Method pyalgotrade.eventprofiler.Results.__init__()=pyalgotrade.eventprofiler.Results-class.html#__init__,Method pyalgotrade.feed.BaseFeed.__init__()=pyalgotrade.feed.BaseFeed-class.html#__init__,Method pyalgotrade.feed.csvfeed.BaseFeed.__init__()=pyalgotrade.feed.csvfeed.BaseFeed-class.html#__init__,Method pyalgotrade.feed.csvfeed.BasicRowParser.__init__()=pyalgotrade.feed.csvfeed.BasicRowParser-class.html#__init__,Method pyalgotrade.feed.csvfeed.DateRangeFilter.__init__()=pyalgotrade.feed.csvfeed.DateRangeFilter-class.html#__init__,Method pyalgotrade.feed.csvfeed.Feed.__init__()=pyalgotrade.feed.csvfeed.Feed-class.html#__init__,Method pyalgotrade.feed.memfeed.MemFeed.__init__()=pyalgotrade.feed.memfeed.MemFeed-class.html#__init__,Method pyalgotrade.ib.barfeed.LiveFeed.__init__()=pyalgotrade.ib.barfeed.LiveFeed-class.html#__init__,Method pyalgotrade.ib.livebroker.LimitOrder.__init__()=pyalgotrade.ib.livebroker.LimitOrder-class.html#__init__,Method pyalgotrade.ib.livebroker.LiveBroker.__init__()=pyalgotrade.ib.livebroker.LiveBroker-class.html#__init__,Method pyalgotrade.ib.livebroker.LiveOrder.__init__()=pyalgotrade.ib.livebroker.LiveOrder-class.html#__init__,Method pyalgotrade.ib.livebroker.MarketOrder.__init__()=pyalgotrade.ib.livebroker.MarketOrder-class.html#__init__,Method pyalgotrade.ib.livebroker.StopLimitOrder.__init__()=pyalgotrade.ib.livebroker.StopLimitOrder-class.html#__init__,Method pyalgotrade.ib.livebroker.StopOrder.__init__()=pyalgotrade.ib.livebroker.StopOrder-class.html#__init__,Method pyalgotrade.observer.Event.__init__()=pyalgotrade.observer.Event-class.html#__init__,Method pyalgotrade.observer.Subject.__init__()=pyalgotrade.observer.Subject-class.html#__init__,Method pyalgotrade.optimizer.base.ParameterSource.__init__()=pyalgotrade.optimizer.base.ParameterSource-class.html#__init__,Method pyalgotrade.optimizer.base.Parameters.__init__()=pyalgotrade.optimizer.base.Parameters-class.html#__init__,Method pyalgotrade.optimizer.base.ResultSinc.__init__()=pyalgotrade.optimizer.base.ResultSinc-class.html#__init__,Method pyalgotrade.optimizer.local.ServerThread.__init__()=pyalgotrade.optimizer.local.ServerThread-class.html#__init__,Method pyalgotrade.optimizer.server.Results.__init__()=pyalgotrade.optimizer.server.Results-class.html#__init__,Method pyalgotrade.optimizer.worker.Worker.__init__()=pyalgotrade.optimizer.worker.Worker-class.html#__init__,Method pyalgotrade.optimizer.xmlrpcserver.AutoStopThread.__init__()=pyalgotrade.optimizer.xmlrpcserver.AutoStopThread-class.html#__init__,Method pyalgotrade.optimizer.xmlrpcserver.Job.__init__()=pyalgotrade.optimizer.xmlrpcserver.Job-class.html#__init__,Method pyalgotrade.optimizer.xmlrpcserver.Server.__init__()=pyalgotrade.optimizer.xmlrpcserver.Server-class.html#__init__,Method pyalgotrade.plotter.CustomMarker.__init__()=pyalgotrade.plotter.CustomMarker-class.html#__init__,Method pyalgotrade.plotter.InstrumentMarker.__init__()=pyalgotrade.plotter.InstrumentMarker-class.html#__init__,Method pyalgotrade.plotter.InstrumentSubplot.__init__()=pyalgotrade.plotter.InstrumentSubplot-class.html#__init__,Method pyalgotrade.plotter.LineMarker.__init__()=pyalgotrade.plotter.LineMarker-class.html#__init__,Method pyalgotrade.plotter.Series.__init__()=pyalgotrade.plotter.Series-class.html#__init__,Method pyalgotrade.plotter.StrategyPlotter.__init__()=pyalgotrade.plotter.StrategyPlotter-class.html#__init__,Method pyalgotrade.plotter.Subplot.__init__()=pyalgotrade.plotter.Subplot-class.html#__init__,Method pyalgotrade.resamplebase.DayRange.__init__()=pyalgotrade.resamplebase.DayRange-class.html#__init__,Method pyalgotrade.resamplebase.Grouper.__init__()=pyalgotrade.resamplebase.Grouper-class.html#__init__,Method pyalgotrade.resamplebase.IntraDayRange.__init__()=pyalgotrade.resamplebase.IntraDayRange-class.html#__init__,Method pyalgotrade.resamplebase.MonthRange.__init__()=pyalgotrade.resamplebase.MonthRange-class.html#__init__,Method pyalgotrade.stratanalyzer.drawdown.DrawDown.__init__()=pyalgotrade.stratanalyzer.drawdown.DrawDown-class.html#__init__,Method pyalgotrade.stratanalyzer.drawdown.DrawDownHelper.__init__()=pyalgotrade.stratanalyzer.drawdown.DrawDownHelper-class.html#__init__,Method pyalgotrade.stratanalyzer.returns.PositionTracker.__init__()=pyalgotrade.stratanalyzer.returns.PositionTracker-class.html#__init__,Method pyalgotrade.stratanalyzer.returns.Returns.__init__()=pyalgotrade.stratanalyzer.returns.Returns-class.html#__init__,Method pyalgotrade.stratanalyzer.returns.ReturnsAnalyzerBase.__init__()=pyalgotrade.stratanalyzer.returns.ReturnsAnalyzerBase-class.html#__init__,Method pyalgotrade.stratanalyzer.returns.TimeWeightedReturns.__init__()=pyalgotrade.stratanalyzer.returns.TimeWeightedReturns-class.html#__init__,Method pyalgotrade.stratanalyzer.sharpe.SharpeRatio.__init__()=pyalgotrade.stratanalyzer.sharpe.SharpeRatio-class.html#__init__,Method pyalgotrade.stratanalyzer.trades.Trades.__init__()=pyalgotrade.stratanalyzer.trades.Trades-class.html#__init__,Method pyalgotrade.strategy.BacktestingStrategy.__init__()=pyalgotrade.strategy.BacktestingStrategy-class.html#__init__,Method pyalgotrade.strategy.BaseStrategy.__init__()=pyalgotrade.strategy.BaseStrategy-class.html#__init__,Method pyalgotrade.strategy.position.LongOptionPosition.__init__()=pyalgotrade.strategy.position.LongOptionPosition-class.html#__init__,Method pyalgotrade.strategy.position.LongPosition.__init__()=pyalgotrade.strategy.position.LongPosition-class.html#__init__,Method pyalgotrade.strategy.position.Position.__init__()=pyalgotrade.strategy.position.Position-class.html#__init__,Method pyalgotrade.strategy.position.ShortOptionPosition.__init__()=pyalgotrade.strategy.position.ShortOptionPosition-class.html#__init__,Method pyalgotrade.strategy.position.ShortPosition.__init__()=pyalgotrade.strategy.position.ShortPosition-class.html#__init__,Method pyalgotrade.technical.EventBasedFilter.__init__()=pyalgotrade.technical.EventBasedFilter-class.html#__init__,Method pyalgotrade.technical.EventWindow.__init__()=pyalgotrade.technical.EventWindow-class.html#__init__,Method pyalgotrade.technical.atr.ATR.__init__()=pyalgotrade.technical.atr.ATR-class.html#__init__,Method pyalgotrade.technical.atr.ATREventWindow.__init__()=pyalgotrade.technical.atr.ATREventWindow-class.html#__init__,Method pyalgotrade.technical.bollinger.BollingerBands.__init__()=pyalgotrade.technical.bollinger.BollingerBands-class.html#__init__,Method pyalgotrade.technical.cumret.CumRetEventWindow.__init__()=pyalgotrade.technical.cumret.CumRetEventWindow-class.html#__init__,Method pyalgotrade.technical.cumret.CumulativeReturn.__init__()=pyalgotrade.technical.cumret.CumulativeReturn-class.html#__init__,Method pyalgotrade.technical.highlow.High.__init__()=pyalgotrade.technical.highlow.High-class.html#__init__,Method pyalgotrade.technical.highlow.HighLowEventWindow.__init__()=pyalgotrade.technical.highlow.HighLowEventWindow-class.html#__init__,Method pyalgotrade.technical.highlow.Low.__init__()=pyalgotrade.technical.highlow.Low-class.html#__init__,Method pyalgotrade.technical.hurst.HurstExponent.__init__()=pyalgotrade.technical.hurst.HurstExponent-class.html#__init__,Method pyalgotrade.technical.hurst.HurstExponentEventWindow.__init__()=pyalgotrade.technical.hurst.HurstExponentEventWindow-class.html#__init__,Method pyalgotrade.technical.linebreak.Line.__init__()=pyalgotrade.technical.linebreak.Line-class.html#__init__,Method pyalgotrade.technical.linebreak.LineBreak.__init__()=pyalgotrade.technical.linebreak.LineBreak-class.html#__init__,Method pyalgotrade.technical.linreg.LeastSquaresRegression.__init__()=pyalgotrade.technical.linreg.LeastSquaresRegression-class.html#__init__,Method pyalgotrade.technical.linreg.LeastSquaresRegressionWindow.__init__()=pyalgotrade.technical.linreg.LeastSquaresRegressionWindow-class.html#__init__,Method pyalgotrade.technical.linreg.Slope.__init__()=pyalgotrade.technical.linreg.Slope-class.html#__init__,Method pyalgotrade.technical.linreg.SlopeEventWindow.__init__()=pyalgotrade.technical.linreg.SlopeEventWindow-class.html#__init__,Method pyalgotrade.technical.linreg.Trend.__init__()=pyalgotrade.technical.linreg.Trend-class.html#__init__,Method pyalgotrade.technical.linreg.TrendEventWindow.__init__()=pyalgotrade.technical.linreg.TrendEventWindow-class.html#__init__,Method pyalgotrade.technical.ma.EMA.__init__()=pyalgotrade.technical.ma.EMA-class.html#__init__,Method pyalgotrade.technical.ma.EMAEventWindow.__init__()=pyalgotrade.technical.ma.EMAEventWindow-class.html#__init__,Method pyalgotrade.technical.ma.SMA.__init__()=pyalgotrade.technical.ma.SMA-class.html#__init__,Method pyalgotrade.technical.ma.SMAEventWindow.__init__()=pyalgotrade.technical.ma.SMAEventWindow-class.html#__init__,Method pyalgotrade.technical.ma.WMA.__init__()=pyalgotrade.technical.ma.WMA-class.html#__init__,Method pyalgotrade.technical.ma.WMAEventWindow.__init__()=pyalgotrade.technical.ma.WMAEventWindow-class.html#__init__,Method pyalgotrade.technical.macd.MACD.__init__()=pyalgotrade.technical.macd.MACD-class.html#__init__,Method pyalgotrade.technical.ratio.Ratio.__init__()=pyalgotrade.technical.ratio.Ratio-class.html#__init__,Method pyalgotrade.technical.ratio.RatioEventWindow.__init__()=pyalgotrade.technical.ratio.RatioEventWindow-class.html#__init__,Method pyalgotrade.technical.roc.ROCEventWindow.__init__()=pyalgotrade.technical.roc.ROCEventWindow-class.html#__init__,Method pyalgotrade.technical.roc.RateOfChange.__init__()=pyalgotrade.technical.roc.RateOfChange-class.html#__init__,Method pyalgotrade.technical.rsi.RSI.__init__()=pyalgotrade.technical.rsi.RSI-class.html#__init__,Method pyalgotrade.technical.rsi.RSIEventWindow.__init__()=pyalgotrade.technical.rsi.RSIEventWindow-class.html#__init__,Method pyalgotrade.technical.stats.StdDev.__init__()=pyalgotrade.technical.stats.StdDev-class.html#__init__,Method pyalgotrade.technical.stats.StdDevEventWindow.__init__()=pyalgotrade.technical.stats.StdDevEventWindow-class.html#__init__,Method pyalgotrade.technical.stats.ZScore.__init__()=pyalgotrade.technical.stats.ZScore-class.html#__init__,Method pyalgotrade.technical.stats.ZScoreEventWindow.__init__()=pyalgotrade.technical.stats.ZScoreEventWindow-class.html#__init__,Method pyalgotrade.technical.stoch.SOEventWindow.__init__()=pyalgotrade.technical.stoch.SOEventWindow-class.html#__init__,Method pyalgotrade.technical.stoch.StochasticOscillator.__init__()=pyalgotrade.technical.stoch.StochasticOscillator-class.html#__init__,Method pyalgotrade.technical.vwap.VWAP.__init__()=pyalgotrade.technical.vwap.VWAP-class.html#__init__,Method pyalgotrade.technical.vwap.VWAPEventWindow.__init__()=pyalgotrade.technical.vwap.VWAPEventWindow-class.html#__init__,Method pyalgotrade.tools.resample.CSVFileWriter.__init__()=pyalgotrade.tools.resample.CSVFileWriter-class.html#__init__,Method pyalgotrade.twitter.feed.Listener.__init__()=pyalgotrade.twitter.feed.Listener-class.html#__init__,Method pyalgotrade.twitter.feed.TwitterFeed.__init__()=pyalgotrade.twitter.feed.TwitterFeed-class.html#__init__,Method pyalgotrade.utils.collections.ListDeque.__init__()=pyalgotrade.utils.collections.ListDeque-class.html#__init__,Method pyalgotrade.utils.collections.NumPyDeque.__init__()=pyalgotrade.utils.collections.NumPyDeque-class.html#__init__,Method pyalgotrade.utils.csvutils.FastDictReader.__init__()=pyalgotrade.utils.csvutils.FastDictReader-class.html#__init__,Method pyalgotrade.websocket.client.KeepAliveMgr.__init__()=pyalgotrade.websocket.client.KeepAliveMgr-class.html#__init__,Method pyalgotrade.websocket.client.WebSocketClientBase.__init__()=pyalgotrade.websocket.client.WebSocketClientBase-class.html#__init__,Method pyalgotrade.websocket.pusher.Event.__init__()=pyalgotrade.websocket.pusher.Event-class.html#__init__,Method pyalgotrade.websocket.pusher.PingKeepAliveMgr.__init__()=pyalgotrade.websocket.pusher.PingKeepAliveMgr-class.html#__init__,Method pyalgotrade.websocket.pusher.WebSocketClient.__init__()=pyalgotrade.websocket.pusher.WebSocketClient-class.html#__init__"><a title="pyalgotrade.bar.Bars.__init__
+pyalgotrade.bar.BasicBar.__init__
+pyalgotrade.barfeed.BaseBarFeed.__init__
+pyalgotrade.barfeed.OptimizerBarFeed.__init__
+pyalgotrade.barfeed.csvfeed.BarFeed.__init__
+pyalgotrade.barfeed.csvfeed.DateRangeFilter.__init__
+pyalgotrade.barfeed.csvfeed.GenericBarFeed.__init__
+pyalgotrade.barfeed.csvfeed.GenericRowParser.__init__
+pyalgotrade.barfeed.csvfeed.USEquitiesRTH.__init__
+pyalgotrade.barfeed.googlefeed.Feed.__init__
+pyalgotrade.barfeed.googlefeed.RowParser.__init__
+pyalgotrade.barfeed.ibfeed.Feed.__init__
+pyalgotrade.barfeed.ibfeed.RowParser.__init__
+pyalgotrade.barfeed.membf.BarFeed.__init__
+pyalgotrade.barfeed.ninjatraderfeed.Feed.__init__
+pyalgotrade.barfeed.ninjatraderfeed.RowParser.__init__
+pyalgotrade.barfeed.quandlfeed.Feed.__init__
+pyalgotrade.barfeed.resampled.BarsGrouper.__init__
+pyalgotrade.barfeed.resampled.ResampledBarFeed.__init__
+pyalgotrade.barfeed.sqlitefeed.Database.__init__
+pyalgotrade.barfeed.sqlitefeed.Feed.__init__
+pyalgotrade.barfeed.yahoofeed.Feed.__init__
+pyalgotrade.barfeed.yahoofeed.RowParser.__init__
+pyalgotrade.bitcoincharts.barfeed.CSVTradeFeed.__init__
+pyalgotrade.bitcoincharts.barfeed.RowParser.__init__
+pyalgotrade.bitcoincharts.barfeed.TradeBar.__init__
+pyalgotrade.bitcoincharts.barfeed.UnixTimeFix.__init__
+pyalgotrade.bitstamp.broker.BacktestingBroker.__init__
+pyalgotrade.bitstamp.httpclient.AccountBalance.__init__
+pyalgotrade.bitstamp.httpclient.HTTPClient.__init__
+pyalgotrade.bitstamp.httpclient.Order.__init__
+pyalgotrade.bitstamp.httpclient.UserTransaction.__init__
+pyalgotrade.bitstamp.livebroker.LiveBroker.__init__
+pyalgotrade.bitstamp.livebroker.TradeMonitor.__init__
+pyalgotrade.bitstamp.livefeed.LiveTradeFeed.__init__
+pyalgotrade.bitstamp.livefeed.TradeBar.__init__
+pyalgotrade.bitstamp.wsclient.OrderBookUpdate.__init__
+pyalgotrade.bitstamp.wsclient.Trade.__init__
+pyalgotrade.bitstamp.wsclient.WebSocketClient.__init__
+pyalgotrade.bitstamp.wsclient.WebSocketClientThread.__init__
+pyalgotrade.broker.Broker.__init__
+pyalgotrade.broker.LimitOrder.__init__
+pyalgotrade.broker.MarketOrder.__init__
+pyalgotrade.broker.OptionLimitOrder.__init__
+pyalgotrade.broker.OptionOrder.__init__
+pyalgotrade.broker.OptionStopLimitOrder.__init__
+pyalgotrade.broker.OptionStopOrder.__init__
+pyalgotrade.broker.Order.__init__
+pyalgotrade.broker.OrderEvent.__init__
+pyalgotrade.broker.OrderExecutionInfo.__init__
+pyalgotrade.broker.StopLimitOrder.__init__
+pyalgotrade.broker.StopOrder.__init__
+pyalgotrade.broker.backtesting.BacktestingOrder.__init__
+pyalgotrade.broker.backtesting.Broker.__init__
+pyalgotrade.broker.backtesting.FixedPerTrade.__init__
+pyalgotrade.broker.backtesting.LimitOrder.__init__
+pyalgotrade.broker.backtesting.MarketOrder.__init__
+pyalgotrade.broker.backtesting.OptionLimitOrder.__init__
+pyalgotrade.broker.backtesting.OptionOrder.__init__
+pyalgotrade.broker.backtesting.OptionStopLimitOrder.__init__
+pyalgotrade.broker.backtesting.OptionStopOrder.__init__
+pyalgotrade.broker.backtesting.StopLimitOrder.__init__
+pyalgotrade.broker.backtesting.StopOrder.__init__
+pyalgotrade.broker.backtesting.TradePercentage.__init__
+pyalgotrade.broker.backtesting_old.BacktestingOrder.__init__
+pyalgotrade.broker.backtesting_old.Broker.__init__
+pyalgotrade.broker.backtesting_old.FixedPerTrade.__init__
+pyalgotrade.broker.backtesting_old.LimitOrder.__init__
+pyalgotrade.broker.backtesting_old.MarketOrder.__init__
+pyalgotrade.broker.backtesting_old.StopLimitOrder.__init__
+pyalgotrade.broker.backtesting_old.StopOrder.__init__
+pyalgotrade.broker.backtesting_old.TradePercentage.__init__
+pyalgotrade.broker.fillstrategy.DefaultStrategy.__init__
+pyalgotrade.broker.fillstrategy.FillInfo.__init__
+pyalgotrade.broker.slippage.VolumeShareSlippage.__init__
+pyalgotrade.dataseries.SequenceDataSeries.__init__
+pyalgotrade.dataseries.aligned.Syncer.__init__
+pyalgotrade.dataseries.bards.BarDataSeries.__init__
+pyalgotrade.dataseries.resampled.AggFunGrouper.__init__
+pyalgotrade.dataseries.resampled.BarGrouper.__init__
+pyalgotrade.dataseries.resampled.ResampledBarDataSeries.__init__
+pyalgotrade.dataseries.resampled.ResampledDataSeries.__init__
+pyalgotrade.dispatcher.Dispatcher.__init__
+pyalgotrade.eventprofiler.Event.__init__
+pyalgotrade.eventprofiler.Profiler.__init__
+pyalgotrade.eventprofiler.Results.__init__
+pyalgotrade.feed.BaseFeed.__init__
+pyalgotrade.feed.csvfeed.BaseFeed.__init__
+pyalgotrade.feed.csvfeed.BasicRowParser.__init__
+pyalgotrade.feed.csvfeed.DateRangeFilter.__init__
+pyalgotrade.feed.csvfeed.Feed.__init__
+pyalgotrade.feed.memfeed.MemFeed.__init__
+pyalgotrade.ib.barfeed.LiveFeed.__init__
+pyalgotrade.ib.livebroker.LimitOrder.__init__
+pyalgotrade.ib.livebroker.LiveBroker.__init__
+pyalgotrade.ib.livebroker.LiveOrder.__init__
+pyalgotrade.ib.livebroker.MarketOrder.__init__
+pyalgotrade.ib.livebroker.StopLimitOrder.__init__
+pyalgotrade.ib.livebroker.StopOrder.__init__
+pyalgotrade.observer.Event.__init__
+pyalgotrade.observer.Subject.__init__
+pyalgotrade.optimizer.base.ParameterSource.__init__
+pyalgotrade.optimizer.base.Parameters.__init__
+pyalgotrade.optimizer.base.ResultSinc.__init__
+pyalgotrade.optimizer.local.ServerThread.__init__
+pyalgotrade.optimizer.server.Results.__init__
+pyalgotrade.optimizer.worker.Worker.__init__
+pyalgotrade.optimizer.xmlrpcserver.AutoStopThread.__init__
+pyalgotrade.optimizer.xmlrpcserver.Job.__init__
+pyalgotrade.optimizer.xmlrpcserver.Server.__init__
+pyalgotrade.plotter.CustomMarker.__init__
+pyalgotrade.plotter.InstrumentMarker.__init__
+pyalgotrade.plotter.InstrumentSubplot.__init__
+pyalgotrade.plotter.LineMarker.__init__
+pyalgotrade.plotter.Series.__init__
+pyalgotrade.plotter.StrategyPlotter.__init__
+pyalgotrade.plotter.Subplot.__init__
+pyalgotrade.resamplebase.DayRange.__init__
+pyalgotrade.resamplebase.Grouper.__init__
+pyalgotrade.resamplebase.IntraDayRange.__init__
+pyalgotrade.resamplebase.MonthRange.__init__
+pyalgotrade.stratanalyzer.drawdown.DrawDown.__init__
+pyalgotrade.stratanalyzer.drawdown.DrawDownHelper.__init__
+pyalgotrade.stratanalyzer.returns.PositionTracker.__init__
+pyalgotrade.stratanalyzer.returns.Returns.__init__
+pyalgotrade.stratanalyzer.returns.ReturnsAnalyzerBase.__init__
+pyalgotrade.stratanalyzer.returns.TimeWeightedReturns.__init__
+pyalgotrade.stratanalyzer.sharpe.SharpeRatio.__init__
+pyalgotrade.stratanalyzer.trades.Trades.__init__
+pyalgotrade.strategy.BacktestingStrategy.__init__
+pyalgotrade.strategy.BaseStrategy.__init__
+pyalgotrade.strategy.position.LongOptionPosition.__init__
+pyalgotrade.strategy.position.LongPosition.__init__
+pyalgotrade.strategy.position.Position.__init__
+pyalgotrade.strategy.position.ShortOptionPosition.__init__
+pyalgotrade.strategy.position.ShortPosition.__init__
+pyalgotrade.technical.EventBasedFilter.__init__
+pyalgotrade.technical.EventWindow.__init__
+pyalgotrade.technical.atr.ATR.__init__
+pyalgotrade.technical.atr.ATREventWindow.__init__
+pyalgotrade.technical.bollinger.BollingerBands.__init__
+pyalgotrade.technical.cumret.CumRetEventWindow.__init__
+pyalgotrade.technical.cumret.CumulativeReturn.__init__
+pyalgotrade.technical.highlow.High.__init__
+pyalgotrade.technical.highlow.HighLowEventWindow.__init__
+pyalgotrade.technical.highlow.Low.__init__
+pyalgotrade.technical.hurst.HurstExponent.__init__
+pyalgotrade.technical.hurst.HurstExponentEventWindow.__init__
+pyalgotrade.technical.linebreak.Line.__init__
+pyalgotrade.technical.linebreak.LineBreak.__init__
+pyalgotrade.technical.linreg.LeastSquaresRegression.__init__
+pyalgotrade.technical.linreg.LeastSquaresRegressionWindow.__init__
+pyalgotrade.technical.linreg.Slope.__init__
+pyalgotrade.technical.linreg.SlopeEventWindow.__init__
+pyalgotrade.technical.linreg.Trend.__init__
+pyalgotrade.technical.linreg.TrendEventWindow.__init__
+pyalgotrade.technical.ma.EMA.__init__
+pyalgotrade.technical.ma.EMAEventWindow.__init__
+pyalgotrade.technical.ma.SMA.__init__
+pyalgotrade.technical.ma.SMAEventWindow.__init__
+pyalgotrade.technical.ma.WMA.__init__
+pyalgotrade.technical.ma.WMAEventWindow.__init__
+pyalgotrade.technical.macd.MACD.__init__
+pyalgotrade.technical.ratio.Ratio.__init__
+pyalgotrade.technical.ratio.RatioEventWindow.__init__
+pyalgotrade.technical.roc.ROCEventWindow.__init__
+pyalgotrade.technical.roc.RateOfChange.__init__
+pyalgotrade.technical.rsi.RSI.__init__
+pyalgotrade.technical.rsi.RSIEventWindow.__init__
+pyalgotrade.technical.stats.StdDev.__init__
+pyalgotrade.technical.stats.StdDevEventWindow.__init__
+pyalgotrade.technical.stats.ZScore.__init__
+pyalgotrade.technical.stats.ZScoreEventWindow.__init__
+pyalgotrade.technical.stoch.SOEventWindow.__init__
+pyalgotrade.technical.stoch.StochasticOscillator.__init__
+pyalgotrade.technical.vwap.VWAP.__init__
+pyalgotrade.technical.vwap.VWAPEventWindow.__init__
+pyalgotrade.tools.resample.CSVFileWriter.__init__
+pyalgotrade.twitter.feed.Listener.__init__
+pyalgotrade.twitter.feed.TwitterFeed.__init__
+pyalgotrade.utils.collections.ListDeque.__init__
+pyalgotrade.utils.collections.NumPyDeque.__init__
+pyalgotrade.utils.csvutils.FastDictReader.__init__
+pyalgotrade.websocket.client.KeepAliveMgr.__init__
+pyalgotrade.websocket.client.WebSocketClientBase.__init__
+pyalgotrade.websocket.pusher.Event.__init__
+pyalgotrade.websocket.pusher.PingKeepAliveMgr.__init__
+pyalgotrade.websocket.pusher.WebSocketClient.__init__" class="py-name" href="#" onclick="return doclink('link-15', '__init__', 'link-15');">__init__</a></tt><tt class="py-op">(</tt><tt class="py-name">url</tt><tt class="py-op">)</tt> </tt>
+<a name="L97"></a><tt class="py-lineno"> 97</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__keepAliveMgr</tt> <tt class="py-op">=</tt> <tt class="py-name">None</tt> </tt>
+<a name="L98"></a><tt class="py-lineno"> 98</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__connected</tt> <tt class="py-op">=</tt> <tt class="py-name">False</tt> </tt>
+</div><a name="L99"></a><tt class="py-lineno"> 99</tt>  <tt class="py-line"> </tt>
+<a name="L100"></a><tt class="py-lineno">100</tt>  <tt class="py-line">    <tt class="py-comment"># This is to avoid a stack trace because TornadoWebSocketClient is not implementing _cleanup.</tt> </tt>
+<a name="WebSocketClientBase._cleanup"></a><div id="WebSocketClientBase._cleanup-def"><a name="L101"></a><tt class="py-lineno">101</tt> <a class="py-toggle" href="#" id="WebSocketClientBase._cleanup-toggle" onclick="return toggle('WebSocketClientBase._cleanup');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pyalgotrade.websocket.client.WebSocketClientBase-class.html#_cleanup">_cleanup</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="WebSocketClientBase._cleanup-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="WebSocketClientBase._cleanup-expanded"><a name="L102"></a><tt class="py-lineno">102</tt>  <tt class="py-line">        <tt class="py-name">ret</tt> <tt class="py-op">=</tt> <tt class="py-name">None</tt> </tt>
+<a name="L103"></a><tt class="py-lineno">103</tt>  <tt class="py-line">        <tt class="py-keyword">try</tt><tt class="py-op">:</tt> </tt>
+<a name="L104"></a><tt class="py-lineno">104</tt>  <tt class="py-line">            <tt class="py-name">ret</tt> <tt class="py-op">=</tt> <tt class="py-name">super</tt><tt class="py-op">(</tt><tt id="link-16" class="py-name"><a title="pyalgotrade.websocket.client.WebSocketClientBase" class="py-name" href="#" onclick="return doclink('link-16', 'WebSocketClientBase', 'link-14');">WebSocketClientBase</a></tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt id="link-17" class="py-name" targets="Method pyalgotrade.websocket.client.WebSocketClientBase._cleanup()=pyalgotrade.websocket.client.WebSocketClientBase-class.html#_cleanup"><a title="pyalgotrade.websocket.client.WebSocketClientBase._cleanup" class="py-name" href="#" onclick="return doclink('link-17', '_cleanup', 'link-17');">_cleanup</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L105"></a><tt class="py-lineno">105</tt>  <tt class="py-line">        <tt class="py-keyword">except</tt> <tt class="py-name">Exception</tt><tt class="py-op">:</tt> </tt>
+<a name="L106"></a><tt class="py-lineno">106</tt>  <tt class="py-line">            <tt class="py-keyword">pass</tt> </tt>
+<a name="L107"></a><tt class="py-lineno">107</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">ret</tt> </tt>
+</div><a name="L108"></a><tt class="py-lineno">108</tt>  <tt class="py-line"> </tt>
+<a name="WebSocketClientBase.getIOLoop"></a><div id="WebSocketClientBase.getIOLoop-def"><a name="L109"></a><tt class="py-lineno">109</tt> <a class="py-toggle" href="#" id="WebSocketClientBase.getIOLoop-toggle" onclick="return toggle('WebSocketClientBase.getIOLoop');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pyalgotrade.websocket.client.WebSocketClientBase-class.html#getIOLoop">getIOLoop</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="WebSocketClientBase.getIOLoop-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="WebSocketClientBase.getIOLoop-expanded"><a name="L110"></a><tt class="py-lineno">110</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">tornado</tt><tt class="py-op">.</tt><tt class="py-name">ioloop</tt><tt class="py-op">.</tt><tt class="py-name">IOLoop</tt><tt class="py-op">.</tt><tt class="py-name">instance</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L111"></a><tt class="py-lineno">111</tt>  <tt class="py-line"> </tt>
+<a name="L112"></a><tt class="py-lineno">112</tt>  <tt class="py-line">    <tt class="py-comment"># Must be set before calling startClient().</tt> </tt>
+<a name="WebSocketClientBase.setKeepAliveMgr"></a><div id="WebSocketClientBase.setKeepAliveMgr-def"><a name="L113"></a><tt class="py-lineno">113</tt> <a class="py-toggle" href="#" id="WebSocketClientBase.setKeepAliveMgr-toggle" onclick="return toggle('WebSocketClientBase.setKeepAliveMgr');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pyalgotrade.websocket.client.WebSocketClientBase-class.html#setKeepAliveMgr">setKeepAliveMgr</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">keepAliveMgr</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="WebSocketClientBase.setKeepAliveMgr-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="WebSocketClientBase.setKeepAliveMgr-expanded"><a name="L114"></a><tt class="py-lineno">114</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__keepAliveMgr</tt> <tt class="py-keyword">is</tt> <tt class="py-keyword">not</tt> <tt class="py-name">None</tt><tt class="py-op">:</tt> </tt>
+<a name="L115"></a><tt class="py-lineno">115</tt>  <tt class="py-line">            <tt class="py-keyword">raise</tt> <tt class="py-name">Exception</tt><tt class="py-op">(</tt><tt class="py-string">"KeepAliveMgr already set"</tt><tt class="py-op">)</tt> </tt>
+<a name="L116"></a><tt class="py-lineno">116</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__keepAliveMgr</tt> <tt class="py-op">=</tt> <tt class="py-name">keepAliveMgr</tt> </tt>
+</div><a name="L117"></a><tt class="py-lineno">117</tt>  <tt class="py-line"> </tt>
+<a name="WebSocketClientBase.received_message"></a><div id="WebSocketClientBase.received_message-def"><a name="L118"></a><tt class="py-lineno">118</tt> <a class="py-toggle" href="#" id="WebSocketClientBase.received_message-toggle" onclick="return toggle('WebSocketClientBase.received_message');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pyalgotrade.websocket.client.WebSocketClientBase-class.html#received_message">received_message</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">message</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="WebSocketClientBase.received_message-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="WebSocketClientBase.received_message-expanded"><a name="L119"></a><tt class="py-lineno">119</tt>  <tt class="py-line">        <tt class="py-keyword">try</tt><tt class="py-op">:</tt> </tt>
+<a name="L120"></a><tt class="py-lineno">120</tt>  <tt class="py-line">            <tt class="py-name">msg</tt> <tt class="py-op">=</tt> <tt class="py-name">json</tt><tt class="py-op">.</tt><tt class="py-name">loads</tt><tt class="py-op">(</tt><tt class="py-name">message</tt><tt class="py-op">.</tt><tt id="link-18" class="py-name" targets="Method pyalgotrade.utils.collections.ListDeque.data()=pyalgotrade.utils.collections.ListDeque-class.html#data,Method pyalgotrade.utils.collections.NumPyDeque.data()=pyalgotrade.utils.collections.NumPyDeque-class.html#data"><a title="pyalgotrade.utils.collections.ListDeque.data
+pyalgotrade.utils.collections.NumPyDeque.data" class="py-name" href="#" onclick="return doclink('link-18', 'data', 'link-18');">data</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L121"></a><tt class="py-lineno">121</tt>  <tt class="py-line"> </tt>
+<a name="L122"></a><tt class="py-lineno">122</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__keepAliveMgr</tt> <tt class="py-keyword">is</tt> <tt class="py-keyword">not</tt> <tt class="py-name">None</tt><tt class="py-op">:</tt> </tt>
+<a name="L123"></a><tt class="py-lineno">123</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__keepAliveMgr</tt><tt class="py-op">.</tt><tt id="link-19" class="py-name" targets="Method pyalgotrade.websocket.client.KeepAliveMgr.setAlive()=pyalgotrade.websocket.client.KeepAliveMgr-class.html#setAlive"><a title="pyalgotrade.websocket.client.KeepAliveMgr.setAlive" class="py-name" href="#" onclick="return doclink('link-19', 'setAlive', 'link-19');">setAlive</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L124"></a><tt class="py-lineno">124</tt>  <tt class="py-line">                <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__keepAliveMgr</tt><tt class="py-op">.</tt><tt id="link-20" class="py-name" targets="Method pyalgotrade.websocket.client.KeepAliveMgr.handleResponse()=pyalgotrade.websocket.client.KeepAliveMgr-class.html#handleResponse,Method pyalgotrade.websocket.pusher.PingKeepAliveMgr.handleResponse()=pyalgotrade.websocket.pusher.PingKeepAliveMgr-class.html#handleResponse"><a title="pyalgotrade.websocket.client.KeepAliveMgr.handleResponse
+pyalgotrade.websocket.pusher.PingKeepAliveMgr.handleResponse" class="py-name" href="#" onclick="return doclink('link-20', 'handleResponse', 'link-20');">handleResponse</a></tt><tt class="py-op">(</tt><tt class="py-name">msg</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L125"></a><tt class="py-lineno">125</tt>  <tt class="py-line">                    <tt class="py-keyword">return</tt> </tt>
+<a name="L126"></a><tt class="py-lineno">126</tt>  <tt class="py-line"> </tt>
+<a name="L127"></a><tt class="py-lineno">127</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-21" class="py-name" targets="Method pyalgotrade.bitstamp.wsclient.WebSocketClient.onMessage()=pyalgotrade.bitstamp.wsclient.WebSocketClient-class.html#onMessage,Method pyalgotrade.websocket.client.WebSocketClientBase.onMessage()=pyalgotrade.websocket.client.WebSocketClientBase-class.html#onMessage,Method pyalgotrade.websocket.pusher.WebSocketClient.onMessage()=pyalgotrade.websocket.pusher.WebSocketClient-class.html#onMessage"><a title="pyalgotrade.bitstamp.wsclient.WebSocketClient.onMessage
+pyalgotrade.websocket.client.WebSocketClientBase.onMessage
+pyalgotrade.websocket.pusher.WebSocketClient.onMessage" class="py-name" href="#" onclick="return doclink('link-21', 'onMessage', 'link-21');">onMessage</a></tt><tt class="py-op">(</tt><tt class="py-name">msg</tt><tt class="py-op">)</tt> </tt>
+<a name="L128"></a><tt class="py-lineno">128</tt>  <tt class="py-line">        <tt class="py-keyword">except</tt> <tt class="py-name">Exception</tt><tt class="py-op">,</tt> <tt class="py-name">e</tt><tt class="py-op">:</tt> </tt>
+<a name="L129"></a><tt class="py-lineno">129</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-22" class="py-name" targets="Method pyalgotrade.websocket.client.WebSocketClientBase.onUnhandledException()=pyalgotrade.websocket.client.WebSocketClientBase-class.html#onUnhandledException"><a title="pyalgotrade.websocket.client.WebSocketClientBase.onUnhandledException" class="py-name" href="#" onclick="return doclink('link-22', 'onUnhandledException', 'link-22');">onUnhandledException</a></tt><tt class="py-op">(</tt><tt class="py-name">e</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L130"></a><tt class="py-lineno">130</tt>  <tt class="py-line"> </tt>
+<a name="WebSocketClientBase.opened"></a><div id="WebSocketClientBase.opened-def"><a name="L131"></a><tt class="py-lineno">131</tt> <a class="py-toggle" href="#" id="WebSocketClientBase.opened-toggle" onclick="return toggle('WebSocketClientBase.opened');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pyalgotrade.websocket.client.WebSocketClientBase-class.html#opened">opened</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="WebSocketClientBase.opened-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="WebSocketClientBase.opened-expanded"><a name="L132"></a><tt class="py-lineno">132</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__connected</tt> <tt class="py-op">=</tt> <tt class="py-name">True</tt> </tt>
+<a name="L133"></a><tt class="py-lineno">133</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__keepAliveMgr</tt> <tt class="py-keyword">is</tt> <tt class="py-keyword">not</tt> <tt class="py-name">None</tt><tt class="py-op">:</tt> </tt>
+<a name="L134"></a><tt class="py-lineno">134</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__keepAliveMgr</tt><tt class="py-op">.</tt><tt id="link-23" class="py-name"><a title="pyalgotrade.barfeed.OptimizerBarFeed.start
+pyalgotrade.barfeed.membf.BarFeed.start
+pyalgotrade.barfeed.resampled.ResampledBarFeed.start
+pyalgotrade.bitstamp.livebroker.LiveBroker.start
+pyalgotrade.bitstamp.livebroker.TradeMonitor.start
+pyalgotrade.bitstamp.livefeed.LiveTradeFeed.start
+pyalgotrade.bitstamp.wsclient.WebSocketClientThread.start
+pyalgotrade.broker.backtesting.Broker.start
+pyalgotrade.broker.backtesting_old.Broker.start
+pyalgotrade.feed.memfeed.MemFeed.start
+pyalgotrade.ib.barfeed.LiveFeed.start
+pyalgotrade.ib.livebroker.LiveBroker.start
+pyalgotrade.observer.Subject.start
+pyalgotrade.twitter.feed.TwitterFeed.start
+pyalgotrade.websocket.client.KeepAliveMgr.start" class="py-name" href="#" onclick="return doclink('link-23', 'start', 'link-12');">start</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L135"></a><tt class="py-lineno">135</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__keepAliveMgr</tt><tt class="py-op">.</tt><tt id="link-24" class="py-name"><a title="pyalgotrade.websocket.client.KeepAliveMgr.setAlive" class="py-name" href="#" onclick="return doclink('link-24', 'setAlive', 'link-19');">setAlive</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L136"></a><tt class="py-lineno">136</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-25" class="py-name" targets="Method pyalgotrade.bitstamp.wsclient.WebSocketClient.onOpened()=pyalgotrade.bitstamp.wsclient.WebSocketClient-class.html#onOpened,Method pyalgotrade.websocket.client.WebSocketClientBase.onOpened()=pyalgotrade.websocket.client.WebSocketClientBase-class.html#onOpened"><a title="pyalgotrade.bitstamp.wsclient.WebSocketClient.onOpened
+pyalgotrade.websocket.client.WebSocketClientBase.onOpened" class="py-name" href="#" onclick="return doclink('link-25', 'onOpened', 'link-25');">onOpened</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L137"></a><tt class="py-lineno">137</tt>  <tt class="py-line"> </tt>
+<a name="WebSocketClientBase.closed"></a><div id="WebSocketClientBase.closed-def"><a name="L138"></a><tt class="py-lineno">138</tt> <a class="py-toggle" href="#" id="WebSocketClientBase.closed-toggle" onclick="return toggle('WebSocketClientBase.closed');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pyalgotrade.websocket.client.WebSocketClientBase-class.html#closed">closed</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">code</tt><tt class="py-op">,</tt> <tt class="py-param">reason</tt><tt class="py-op">=</tt><tt class="py-name">None</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="WebSocketClientBase.closed-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="WebSocketClientBase.closed-expanded"><a name="L139"></a><tt class="py-lineno">139</tt>  <tt class="py-line">        <tt class="py-name">wasConnected</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__connected</tt> </tt>
+<a name="L140"></a><tt class="py-lineno">140</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__connected</tt> <tt class="py-op">=</tt> <tt class="py-name">False</tt> </tt>
+<a name="L141"></a><tt class="py-lineno">141</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__keepAliveMgr</tt><tt class="py-op">:</tt> </tt>
+<a name="L142"></a><tt class="py-lineno">142</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__keepAliveMgr</tt><tt class="py-op">.</tt><tt id="link-26" class="py-name"><a title="pyalgotrade.barfeed.OptimizerBarFeed.stop
+pyalgotrade.barfeed.membf.BarFeed.stop
+pyalgotrade.barfeed.resampled.ResampledBarFeed.stop
+pyalgotrade.bitstamp.livebroker.LiveBroker.stop
+pyalgotrade.bitstamp.livebroker.TradeMonitor.stop
+pyalgotrade.bitstamp.livefeed.LiveTradeFeed.stop
+pyalgotrade.bitstamp.wsclient.WebSocketClientThread.stop
+pyalgotrade.broker.backtesting.Broker.stop
+pyalgotrade.broker.backtesting_old.Broker.stop
+pyalgotrade.dispatcher.Dispatcher.stop
+pyalgotrade.feed.memfeed.MemFeed.stop
+pyalgotrade.ib.barfeed.LiveFeed.stop
+pyalgotrade.ib.livebroker.LiveBroker.stop
+pyalgotrade.observer.Subject.stop
+pyalgotrade.optimizer.xmlrpcserver.Server.stop
+pyalgotrade.strategy.BaseStrategy.stop
+pyalgotrade.twitter.feed.TwitterFeed.stop
+pyalgotrade.websocket.client.KeepAliveMgr.stop" class="py-name" href="#" onclick="return doclink('link-26', 'stop', 'link-13');">stop</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L143"></a><tt class="py-lineno">143</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__keepAliveMgr</tt> <tt class="py-op">=</tt> <tt class="py-name">None</tt> </tt>
+<a name="L144"></a><tt class="py-lineno">144</tt>  <tt class="py-line">        <tt class="py-name">tornado</tt><tt class="py-op">.</tt><tt class="py-name">ioloop</tt><tt class="py-op">.</tt><tt class="py-name">IOLoop</tt><tt class="py-op">.</tt><tt class="py-name">instance</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt id="link-27" class="py-name"><a title="pyalgotrade.barfeed.OptimizerBarFeed.stop
+pyalgotrade.barfeed.membf.BarFeed.stop
+pyalgotrade.barfeed.resampled.ResampledBarFeed.stop
+pyalgotrade.bitstamp.livebroker.LiveBroker.stop
+pyalgotrade.bitstamp.livebroker.TradeMonitor.stop
+pyalgotrade.bitstamp.livefeed.LiveTradeFeed.stop
+pyalgotrade.bitstamp.wsclient.WebSocketClientThread.stop
+pyalgotrade.broker.backtesting.Broker.stop
+pyalgotrade.broker.backtesting_old.Broker.stop
+pyalgotrade.dispatcher.Dispatcher.stop
+pyalgotrade.feed.memfeed.MemFeed.stop
+pyalgotrade.ib.barfeed.LiveFeed.stop
+pyalgotrade.ib.livebroker.LiveBroker.stop
+pyalgotrade.observer.Subject.stop
+pyalgotrade.optimizer.xmlrpcserver.Server.stop
+pyalgotrade.strategy.BaseStrategy.stop
+pyalgotrade.twitter.feed.TwitterFeed.stop
+pyalgotrade.websocket.client.KeepAliveMgr.stop" class="py-name" href="#" onclick="return doclink('link-27', 'stop', 'link-13');">stop</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L145"></a><tt class="py-lineno">145</tt>  <tt class="py-line"> </tt>
+<a name="L146"></a><tt class="py-lineno">146</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">wasConnected</tt><tt class="py-op">:</tt> </tt>
+<a name="L147"></a><tt class="py-lineno">147</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-28" class="py-name" targets="Method pyalgotrade.bitstamp.wsclient.WebSocketClient.onClosed()=pyalgotrade.bitstamp.wsclient.WebSocketClient-class.html#onClosed,Method pyalgotrade.websocket.client.WebSocketClientBase.onClosed()=pyalgotrade.websocket.client.WebSocketClientBase-class.html#onClosed"><a title="pyalgotrade.bitstamp.wsclient.WebSocketClient.onClosed
+pyalgotrade.websocket.client.WebSocketClientBase.onClosed" class="py-name" href="#" onclick="return doclink('link-28', 'onClosed', 'link-28');">onClosed</a></tt><tt class="py-op">(</tt><tt class="py-name">code</tt><tt class="py-op">,</tt> <tt class="py-name">reason</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L148"></a><tt class="py-lineno">148</tt>  <tt class="py-line"> </tt>
+<a name="WebSocketClientBase.isConnected"></a><div id="WebSocketClientBase.isConnected-def"><a name="L149"></a><tt class="py-lineno">149</tt> <a class="py-toggle" href="#" id="WebSocketClientBase.isConnected-toggle" onclick="return toggle('WebSocketClientBase.isConnected');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pyalgotrade.websocket.client.WebSocketClientBase-class.html#isConnected">isConnected</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="WebSocketClientBase.isConnected-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="WebSocketClientBase.isConnected-expanded"><a name="L150"></a><tt class="py-lineno">150</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__connected</tt> </tt>
+</div><a name="L151"></a><tt class="py-lineno">151</tt>  <tt class="py-line"> </tt>
+<a name="WebSocketClientBase.startClient"></a><div id="WebSocketClientBase.startClient-def"><a name="L152"></a><tt class="py-lineno">152</tt> <a class="py-toggle" href="#" id="WebSocketClientBase.startClient-toggle" onclick="return toggle('WebSocketClientBase.startClient');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pyalgotrade.websocket.client.WebSocketClientBase-class.html#startClient">startClient</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="WebSocketClientBase.startClient-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="WebSocketClientBase.startClient-expanded"><a name="L153"></a><tt class="py-lineno">153</tt>  <tt class="py-line">        <tt class="py-name">tornado</tt><tt class="py-op">.</tt><tt class="py-name">ioloop</tt><tt class="py-op">.</tt><tt class="py-name">IOLoop</tt><tt class="py-op">.</tt><tt class="py-name">instance</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt id="link-29" class="py-name"><a title="pyalgotrade.barfeed.OptimizerBarFeed.start
+pyalgotrade.barfeed.membf.BarFeed.start
+pyalgotrade.barfeed.resampled.ResampledBarFeed.start
+pyalgotrade.bitstamp.livebroker.LiveBroker.start
+pyalgotrade.bitstamp.livebroker.TradeMonitor.start
+pyalgotrade.bitstamp.livefeed.LiveTradeFeed.start
+pyalgotrade.bitstamp.wsclient.WebSocketClientThread.start
+pyalgotrade.broker.backtesting.Broker.start
+pyalgotrade.broker.backtesting_old.Broker.start
+pyalgotrade.feed.memfeed.MemFeed.start
+pyalgotrade.ib.barfeed.LiveFeed.start
+pyalgotrade.ib.livebroker.LiveBroker.start
+pyalgotrade.observer.Subject.start
+pyalgotrade.twitter.feed.TwitterFeed.start
+pyalgotrade.websocket.client.KeepAliveMgr.start" class="py-name" href="#" onclick="return doclink('link-29', 'start', 'link-12');">start</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L154"></a><tt class="py-lineno">154</tt>  <tt class="py-line"> </tt>
+<a name="WebSocketClientBase.stopClient"></a><div id="WebSocketClientBase.stopClient-def"><a name="L155"></a><tt class="py-lineno">155</tt> <a class="py-toggle" href="#" id="WebSocketClientBase.stopClient-toggle" onclick="return toggle('WebSocketClientBase.stopClient');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pyalgotrade.websocket.client.WebSocketClientBase-class.html#stopClient">stopClient</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="WebSocketClientBase.stopClient-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="WebSocketClientBase.stopClient-expanded"><a name="L156"></a><tt class="py-lineno">156</tt>  <tt class="py-line">        <tt class="py-keyword">try</tt><tt class="py-op">:</tt> </tt>
+<a name="L157"></a><tt class="py-lineno">157</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__connected</tt><tt class="py-op">:</tt> </tt>
+<a name="L158"></a><tt class="py-lineno">158</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-30" class="py-name" targets="Method pyalgotrade.tools.resample.CSVFileWriter.close()=pyalgotrade.tools.resample.CSVFileWriter-class.html#close"><a title="pyalgotrade.tools.resample.CSVFileWriter.close" class="py-name" href="#" onclick="return doclink('link-30', 'close', 'link-30');">close</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L159"></a><tt class="py-lineno">159</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">close_connection</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L160"></a><tt class="py-lineno">160</tt>  <tt class="py-line">        <tt class="py-keyword">except</tt> <tt class="py-name">Exception</tt><tt class="py-op">,</tt> <tt class="py-name">e</tt><tt class="py-op">:</tt> </tt>
+<a name="L161"></a><tt class="py-lineno">161</tt>  <tt class="py-line">            <tt id="link-31" class="py-name"><a title="pyalgotrade.bitstamp.common.logger
+pyalgotrade.logger
+pyalgotrade.optimizer.local.logger
+pyalgotrade.optimizer.server.logger
+pyalgotrade.optimizer.xmlrpcserver.logger
+pyalgotrade.twitter.feed.logger
+pyalgotrade.websocket.client.logger
+pyalgotrade.websocket.pusher.logger" class="py-name" href="#" onclick="return doclink('link-31', 'logger', 'link-2');">logger</a></tt><tt class="py-op">.</tt><tt id="link-32" class="py-name" targets="Method pyalgotrade.strategy.BaseStrategy.warning()=pyalgotrade.strategy.BaseStrategy-class.html#warning"><a title="pyalgotrade.strategy.BaseStrategy.warning" class="py-name" href="#" onclick="return doclink('link-32', 'warning', 'link-32');">warning</a></tt><tt class="py-op">(</tt><tt class="py-string">"Failed to close connection: %s"</tt> <tt class="py-op">%</tt> <tt class="py-op">(</tt><tt class="py-name">e</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L162"></a><tt class="py-lineno">162</tt>  <tt class="py-line"> </tt>
+<a name="L163"></a><tt class="py-lineno">163</tt>  <tt class="py-line">    <tt class="py-comment">######################################################################</tt> </tt>
+<a name="L164"></a><tt class="py-lineno">164</tt>  <tt class="py-line">    <tt class="py-comment"># Overrides</tt> </tt>
+<a name="L165"></a><tt class="py-lineno">165</tt>  <tt class="py-line"> </tt>
+<a name="WebSocketClientBase.onUnhandledException"></a><div id="WebSocketClientBase.onUnhandledException-def"><a name="L166"></a><tt class="py-lineno">166</tt> <a class="py-toggle" href="#" id="WebSocketClientBase.onUnhandledException-toggle" onclick="return toggle('WebSocketClientBase.onUnhandledException');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pyalgotrade.websocket.client.WebSocketClientBase-class.html#onUnhandledException">onUnhandledException</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">exception</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="WebSocketClientBase.onUnhandledException-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="WebSocketClientBase.onUnhandledException-expanded"><a name="L167"></a><tt class="py-lineno">167</tt>  <tt class="py-line">        <tt id="link-33" class="py-name"><a title="pyalgotrade.bitstamp.common.logger
+pyalgotrade.logger
+pyalgotrade.optimizer.local.logger
+pyalgotrade.optimizer.server.logger
+pyalgotrade.optimizer.xmlrpcserver.logger
+pyalgotrade.twitter.feed.logger
+pyalgotrade.websocket.client.logger
+pyalgotrade.websocket.pusher.logger" class="py-name" href="#" onclick="return doclink('link-33', 'logger', 'link-2');">logger</a></tt><tt class="py-op">.</tt><tt id="link-34" class="py-name" targets="Method pyalgotrade.strategy.BaseStrategy.critical()=pyalgotrade.strategy.BaseStrategy-class.html#critical"><a title="pyalgotrade.strategy.BaseStrategy.critical" class="py-name" href="#" onclick="return doclink('link-34', 'critical', 'link-34');">critical</a></tt><tt class="py-op">(</tt><tt class="py-string">"Unhandled exception"</tt><tt class="py-op">,</tt> <tt class="py-name">exc_info</tt><tt class="py-op">=</tt><tt class="py-name">exception</tt><tt class="py-op">)</tt> </tt>
+<a name="L168"></a><tt class="py-lineno">168</tt>  <tt class="py-line">        <tt class="py-keyword">raise</tt> </tt>
+</div><a name="L169"></a><tt class="py-lineno">169</tt>  <tt class="py-line"> </tt>
+<a name="WebSocketClientBase.onOpened"></a><div id="WebSocketClientBase.onOpened-def"><a name="L170"></a><tt class="py-lineno">170</tt> <a class="py-toggle" href="#" id="WebSocketClientBase.onOpened-toggle" onclick="return toggle('WebSocketClientBase.onOpened');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pyalgotrade.websocket.client.WebSocketClientBase-class.html#onOpened">onOpened</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="WebSocketClientBase.onOpened-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="WebSocketClientBase.onOpened-expanded"><a name="L171"></a><tt class="py-lineno">171</tt>  <tt class="py-line">        <tt class="py-keyword">pass</tt> </tt>
+</div><a name="L172"></a><tt class="py-lineno">172</tt>  <tt class="py-line"> </tt>
+<a name="WebSocketClientBase.onMessage"></a><div id="WebSocketClientBase.onMessage-def"><a name="L173"></a><tt class="py-lineno">173</tt> <a class="py-toggle" href="#" id="WebSocketClientBase.onMessage-toggle" onclick="return toggle('WebSocketClientBase.onMessage');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pyalgotrade.websocket.client.WebSocketClientBase-class.html#onMessage">onMessage</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">msg</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="WebSocketClientBase.onMessage-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="WebSocketClientBase.onMessage-expanded"><a name="L174"></a><tt class="py-lineno">174</tt>  <tt class="py-line">        <tt class="py-keyword">raise</tt> <tt class="py-name">NotImplementedError</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L175"></a><tt class="py-lineno">175</tt>  <tt class="py-line"> </tt>
+<a name="WebSocketClientBase.onClosed"></a><div id="WebSocketClientBase.onClosed-def"><a name="L176"></a><tt class="py-lineno">176</tt> <a class="py-toggle" href="#" id="WebSocketClientBase.onClosed-toggle" onclick="return toggle('WebSocketClientBase.onClosed');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pyalgotrade.websocket.client.WebSocketClientBase-class.html#onClosed">onClosed</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">code</tt><tt class="py-op">,</tt> <tt class="py-param">reason</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="WebSocketClientBase.onClosed-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="WebSocketClientBase.onClosed-expanded"><a name="L177"></a><tt class="py-lineno">177</tt>  <tt class="py-line">        <tt class="py-keyword">pass</tt> </tt>
+</div><a name="L178"></a><tt class="py-lineno">178</tt>  <tt class="py-line"> </tt>
+<a name="WebSocketClientBase.onDisconnectionDetected"></a><div id="WebSocketClientBase.onDisconnectionDetected-def"><a name="L179"></a><tt class="py-lineno">179</tt> <a class="py-toggle" href="#" id="WebSocketClientBase.onDisconnectionDetected-toggle" onclick="return toggle('WebSocketClientBase.onDisconnectionDetected');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pyalgotrade.websocket.client.WebSocketClientBase-class.html#onDisconnectionDetected">onDisconnectionDetected</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="WebSocketClientBase.onDisconnectionDetected-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="WebSocketClientBase.onDisconnectionDetected-expanded"><a name="L180"></a><tt class="py-lineno">180</tt>  <tt class="py-line">        <tt class="py-keyword">pass</tt> </tt>
+</div></div><a name="L181"></a><tt class="py-lineno">181</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="pyalgotrade-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Sat Oct 15 14:17:57 2016
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

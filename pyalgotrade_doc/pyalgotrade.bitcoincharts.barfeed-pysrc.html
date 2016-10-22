@@ -1,0 +1,569 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>pyalgotrade.bitcoincharts.barfeed</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="pyalgotrade-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="pyalgotrade-module.html">Package&nbsp;pyalgotrade</a> ::
+        <a href="pyalgotrade.bitcoincharts-module.html">Package&nbsp;bitcoincharts</a> ::
+        Module&nbsp;barfeed
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="pyalgotrade.bitcoincharts.barfeed-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="pyalgotrade.bitcoincharts.barfeed-module.html">Module pyalgotrade.bitcoincharts.barfeed</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno">  1</tt>  <tt class="py-line"><tt class="py-comment"># PyAlgoTrade</tt> </tt>
+<a name="L2"></a><tt class="py-lineno">  2</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L3"></a><tt class="py-lineno">  3</tt>  <tt class="py-line"><tt class="py-comment"># Copyright 2011-2015 Gabriel Martin Becedillas Ruiz</tt> </tt>
+<a name="L4"></a><tt class="py-lineno">  4</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L5"></a><tt class="py-lineno">  5</tt>  <tt class="py-line"><tt class="py-comment"># Licensed under the Apache License, Version 2.0 (the "License");</tt> </tt>
+<a name="L6"></a><tt class="py-lineno">  6</tt>  <tt class="py-line"><tt class="py-comment"># you may not use this file except in compliance with the License.</tt> </tt>
+<a name="L7"></a><tt class="py-lineno">  7</tt>  <tt class="py-line"><tt class="py-comment"># You may obtain a copy of the License at</tt> </tt>
+<a name="L8"></a><tt class="py-lineno">  8</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L9"></a><tt class="py-lineno">  9</tt>  <tt class="py-line"><tt class="py-comment">#   http://www.apache.org/licenses/LICENSE-2.0</tt> </tt>
+<a name="L10"></a><tt class="py-lineno"> 10</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L11"></a><tt class="py-lineno"> 11</tt>  <tt class="py-line"><tt class="py-comment"># Unless required by applicable law or agreed to in writing, software</tt> </tt>
+<a name="L12"></a><tt class="py-lineno"> 12</tt>  <tt class="py-line"><tt class="py-comment"># distributed under the License is distributed on an "AS IS" BASIS,</tt> </tt>
+<a name="L13"></a><tt class="py-lineno"> 13</tt>  <tt class="py-line"><tt class="py-comment"># WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</tt> </tt>
+<a name="L14"></a><tt class="py-lineno"> 14</tt>  <tt class="py-line"><tt class="py-comment"># See the License for the specific language governing permissions and</tt> </tt>
+<a name="L15"></a><tt class="py-lineno"> 15</tt>  <tt class="py-line"><tt class="py-comment"># limitations under the License.</tt> </tt>
+<a name="L16"></a><tt class="py-lineno"> 16</tt>  <tt class="py-line"> </tt>
+<a name="L17"></a><tt class="py-lineno"> 17</tt>  <tt class="py-line"><tt class="py-docstring">"""</tt> </tt>
+<a name="L18"></a><tt class="py-lineno"> 18</tt>  <tt class="py-line"><tt class="py-docstring">.. moduleauthor:: Gabriel Martin Becedillas Ruiz &lt;gabriel.becedillas@gmail.com&gt;</tt> </tt>
+<a name="L19"></a><tt class="py-lineno"> 19</tt>  <tt class="py-line"><tt class="py-docstring">"""</tt> </tt>
+<a name="L20"></a><tt class="py-lineno"> 20</tt>  <tt class="py-line"> </tt>
+<a name="L21"></a><tt class="py-lineno"> 21</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-0" class="py-name" targets="Package pyalgotrade=pyalgotrade-module.html"><a title="pyalgotrade" class="py-name" href="#" onclick="return doclink('link-0', 'pyalgotrade', 'link-0');">pyalgotrade</a></tt> <tt class="py-keyword">import</tt> <tt id="link-1" class="py-name" targets="Package pyalgotrade.barfeed=pyalgotrade.barfeed-module.html,Module pyalgotrade.bitcoincharts.barfeed=pyalgotrade.bitcoincharts.barfeed-module.html,Module pyalgotrade.bitstamp.barfeed=pyalgotrade.bitstamp.barfeed-module.html,Module pyalgotrade.ib.barfeed=pyalgotrade.ib.barfeed-module.html"><a title="pyalgotrade.barfeed
+pyalgotrade.bitcoincharts.barfeed
+pyalgotrade.bitstamp.barfeed
+pyalgotrade.ib.barfeed" class="py-name" href="#" onclick="return doclink('link-1', 'barfeed', 'link-1');">barfeed</a></tt> </tt>
+<a name="L22"></a><tt class="py-lineno"> 22</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-2" class="py-name"><a title="pyalgotrade" class="py-name" href="#" onclick="return doclink('link-2', 'pyalgotrade', 'link-0');">pyalgotrade</a></tt> <tt class="py-keyword">import</tt> <tt id="link-3" class="py-name" targets="Module pyalgotrade.bar=pyalgotrade.bar-module.html"><a title="pyalgotrade.bar" class="py-name" href="#" onclick="return doclink('link-3', 'bar', 'link-3');">bar</a></tt> </tt>
+<a name="L23"></a><tt class="py-lineno"> 23</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-4" class="py-name"><a title="pyalgotrade" class="py-name" href="#" onclick="return doclink('link-4', 'pyalgotrade', 'link-0');">pyalgotrade</a></tt><tt class="py-op">.</tt><tt id="link-5" class="py-name"><a title="pyalgotrade.barfeed
+pyalgotrade.bitcoincharts.barfeed
+pyalgotrade.bitstamp.barfeed
+pyalgotrade.ib.barfeed" class="py-name" href="#" onclick="return doclink('link-5', 'barfeed', 'link-1');">barfeed</a></tt> <tt class="py-keyword">import</tt> <tt id="link-6" class="py-name" targets="Module pyalgotrade.barfeed.csvfeed=pyalgotrade.barfeed.csvfeed-module.html,Module pyalgotrade.feed.csvfeed=pyalgotrade.feed.csvfeed-module.html"><a title="pyalgotrade.barfeed.csvfeed
+pyalgotrade.feed.csvfeed" class="py-name" href="#" onclick="return doclink('link-6', 'csvfeed', 'link-6');">csvfeed</a></tt> </tt>
+<a name="L24"></a><tt class="py-lineno"> 24</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-7" class="py-name"><a title="pyalgotrade" class="py-name" href="#" onclick="return doclink('link-7', 'pyalgotrade', 'link-0');">pyalgotrade</a></tt><tt class="py-op">.</tt><tt id="link-8" class="py-name" targets="Package pyalgotrade.utils=pyalgotrade.utils-module.html"><a title="pyalgotrade.utils" class="py-name" href="#" onclick="return doclink('link-8', 'utils', 'link-8');">utils</a></tt> <tt class="py-keyword">import</tt> <tt id="link-9" class="py-name" targets="Module pyalgotrade.utils.dt=pyalgotrade.utils.dt-module.html"><a title="pyalgotrade.utils.dt" class="py-name" href="#" onclick="return doclink('link-9', 'dt', 'link-9');">dt</a></tt> </tt>
+<a name="L25"></a><tt class="py-lineno"> 25</tt>  <tt class="py-line"> </tt>
+<a name="L26"></a><tt class="py-lineno"> 26</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">datetime</tt> </tt>
+<a name="L27"></a><tt class="py-lineno"> 27</tt>  <tt class="py-line"> </tt>
+<a name="L28"></a><tt class="py-lineno"> 28</tt>  <tt class="py-line"> </tt>
+<a name="to_utc_if_naive"></a><div id="to_utc_if_naive-def"><a name="L29"></a><tt class="py-lineno"> 29</tt> <a class="py-toggle" href="#" id="to_utc_if_naive-toggle" onclick="return toggle('to_utc_if_naive');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="pyalgotrade.bitcoincharts.barfeed-module.html#to_utc_if_naive">to_utc_if_naive</a><tt class="py-op">(</tt><tt class="py-param">dateTime</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="to_utc_if_naive-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="to_utc_if_naive-expanded"><a name="L30"></a><tt class="py-lineno"> 30</tt>  <tt class="py-line">    <tt class="py-keyword">if</tt> <tt class="py-name">dateTime</tt> <tt class="py-keyword">is</tt> <tt class="py-keyword">not</tt> <tt class="py-name">None</tt> <tt class="py-keyword">and</tt> <tt id="link-10" class="py-name"><a title="pyalgotrade.utils.dt" class="py-name" href="#" onclick="return doclink('link-10', 'dt', 'link-9');">dt</a></tt><tt class="py-op">.</tt><tt id="link-11" class="py-name" targets="Function pyalgotrade.utils.dt.datetime_is_naive()=pyalgotrade.utils.dt-module.html#datetime_is_naive"><a title="pyalgotrade.utils.dt.datetime_is_naive" class="py-name" href="#" onclick="return doclink('link-11', 'datetime_is_naive', 'link-11');">datetime_is_naive</a></tt><tt class="py-op">(</tt><tt class="py-name">dateTime</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L31"></a><tt class="py-lineno"> 31</tt>  <tt class="py-line">        <tt class="py-name">dateTime</tt> <tt class="py-op">=</tt> <tt id="link-12" class="py-name"><a title="pyalgotrade.utils.dt" class="py-name" href="#" onclick="return doclink('link-12', 'dt', 'link-9');">dt</a></tt><tt class="py-op">.</tt><tt id="link-13" class="py-name" targets="Function pyalgotrade.utils.dt.as_utc()=pyalgotrade.utils.dt-module.html#as_utc"><a title="pyalgotrade.utils.dt.as_utc" class="py-name" href="#" onclick="return doclink('link-13', 'as_utc', 'link-13');">as_utc</a></tt><tt class="py-op">(</tt><tt class="py-name">dateTime</tt><tt class="py-op">)</tt> </tt>
+<a name="L32"></a><tt class="py-lineno"> 32</tt>  <tt class="py-line">    <tt class="py-keyword">return</tt> <tt class="py-name">dateTime</tt> </tt>
+</div><a name="L33"></a><tt class="py-lineno"> 33</tt>  <tt class="py-line"> </tt>
+<a name="L34"></a><tt class="py-lineno"> 34</tt>  <tt class="py-line"> </tt>
+<a name="TradeBar"></a><div id="TradeBar-def"><a name="L35"></a><tt class="py-lineno"> 35</tt> <a class="py-toggle" href="#" id="TradeBar-toggle" onclick="return toggle('TradeBar');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="pyalgotrade.bitcoincharts.barfeed.TradeBar-class.html">TradeBar</a><tt class="py-op">(</tt><tt class="py-base-class">bar</tt><tt class="py-op">.</tt><tt class="py-base-class">Bar</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="TradeBar-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="TradeBar-expanded"><a name="L36"></a><tt class="py-lineno"> 36</tt>  <tt class="py-line">    <tt class="py-comment"># Optimization to reduce memory footprint.</tt> </tt>
+<a name="L37"></a><tt class="py-lineno"> 37</tt>  <tt class="py-line">    <tt class="py-name">__slots__</tt> <tt class="py-op">=</tt> <tt class="py-op">(</tt><tt class="py-string">'__dateTime'</tt><tt class="py-op">,</tt> <tt class="py-string">'__price'</tt><tt class="py-op">,</tt> <tt class="py-string">'__amount'</tt><tt class="py-op">)</tt> </tt>
+<a name="L38"></a><tt class="py-lineno"> 38</tt>  <tt class="py-line"> </tt>
+<a name="TradeBar.__init__"></a><div id="TradeBar.__init__-def"><a name="L39"></a><tt class="py-lineno"> 39</tt> <a class="py-toggle" href="#" id="TradeBar.__init__-toggle" onclick="return toggle('TradeBar.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pyalgotrade.bitcoincharts.barfeed.TradeBar-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">dateTime</tt><tt class="py-op">,</tt> <tt class="py-param">price</tt><tt class="py-op">,</tt> <tt class="py-param">amount</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="TradeBar.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="TradeBar.__init__-expanded"><a name="L40"></a><tt class="py-lineno"> 40</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-14" class="py-name" targets="Variable pyalgotrade.bar.BasicBar.__dateTime=pyalgotrade.bar.BasicBar-class.html#__dateTime,Variable pyalgotrade.bitcoincharts.barfeed.TradeBar.__dateTime=pyalgotrade.bitcoincharts.barfeed.TradeBar-class.html#__dateTime,Variable pyalgotrade.bitstamp.livefeed.TradeBar.__dateTime=pyalgotrade.bitstamp.livefeed.TradeBar-class.html#__dateTime"><a title="pyalgotrade.bar.BasicBar.__dateTime
+pyalgotrade.bitcoincharts.barfeed.TradeBar.__dateTime
+pyalgotrade.bitstamp.livefeed.TradeBar.__dateTime" class="py-name" href="#" onclick="return doclink('link-14', '__dateTime', 'link-14');">__dateTime</a></tt> <tt class="py-op">=</tt> <tt class="py-name">dateTime</tt> </tt>
+<a name="L41"></a><tt class="py-lineno"> 41</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-15" class="py-name" targets="Variable pyalgotrade.bitcoincharts.barfeed.TradeBar.__price=pyalgotrade.bitcoincharts.barfeed.TradeBar-class.html#__price,Variable pyalgotrade.bitstamp.livefeed.TradeBar.__price=pyalgotrade.bitstamp.livefeed.TradeBar-class.html#__price"><a title="pyalgotrade.bitcoincharts.barfeed.TradeBar.__price
+pyalgotrade.bitstamp.livefeed.TradeBar.__price" class="py-name" href="#" onclick="return doclink('link-15', '__price', 'link-15');">__price</a></tt> <tt class="py-op">=</tt> <tt class="py-name">price</tt> </tt>
+<a name="L42"></a><tt class="py-lineno"> 42</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-16" class="py-name" targets="Variable pyalgotrade.bitcoincharts.barfeed.TradeBar.__amount=pyalgotrade.bitcoincharts.barfeed.TradeBar-class.html#__amount,Variable pyalgotrade.bitstamp.livefeed.TradeBar.__amount=pyalgotrade.bitstamp.livefeed.TradeBar-class.html#__amount"><a title="pyalgotrade.bitcoincharts.barfeed.TradeBar.__amount
+pyalgotrade.bitstamp.livefeed.TradeBar.__amount" class="py-name" href="#" onclick="return doclink('link-16', '__amount', 'link-16');">__amount</a></tt> <tt class="py-op">=</tt> <tt class="py-name">amount</tt> </tt>
+</div><a name="L43"></a><tt class="py-lineno"> 43</tt>  <tt class="py-line"> </tt>
+<a name="TradeBar.__setstate__"></a><div id="TradeBar.__setstate__-def"><a name="L44"></a><tt class="py-lineno"> 44</tt> <a class="py-toggle" href="#" id="TradeBar.__setstate__-toggle" onclick="return toggle('TradeBar.__setstate__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pyalgotrade.bitcoincharts.barfeed.TradeBar-class.html#__setstate__">__setstate__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">state</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="TradeBar.__setstate__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="TradeBar.__setstate__-expanded"><a name="L45"></a><tt class="py-lineno"> 45</tt>  <tt class="py-line">        <tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-17" class="py-name"><a title="pyalgotrade.bar.BasicBar.__dateTime
+pyalgotrade.bitcoincharts.barfeed.TradeBar.__dateTime
+pyalgotrade.bitstamp.livefeed.TradeBar.__dateTime" class="py-name" href="#" onclick="return doclink('link-17', '__dateTime', 'link-14');">__dateTime</a></tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-18" class="py-name"><a title="pyalgotrade.bitcoincharts.barfeed.TradeBar.__price
+pyalgotrade.bitstamp.livefeed.TradeBar.__price" class="py-name" href="#" onclick="return doclink('link-18', '__price', 'link-15');">__price</a></tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-19" class="py-name"><a title="pyalgotrade.bitcoincharts.barfeed.TradeBar.__amount
+pyalgotrade.bitstamp.livefeed.TradeBar.__amount" class="py-name" href="#" onclick="return doclink('link-19', '__amount', 'link-16');">__amount</a></tt><tt class="py-op">)</tt> <tt class="py-op">=</tt> <tt class="py-name">state</tt> </tt>
+</div><a name="L46"></a><tt class="py-lineno"> 46</tt>  <tt class="py-line"> </tt>
+<a name="TradeBar.__getstate__"></a><div id="TradeBar.__getstate__-def"><a name="L47"></a><tt class="py-lineno"> 47</tt> <a class="py-toggle" href="#" id="TradeBar.__getstate__-toggle" onclick="return toggle('TradeBar.__getstate__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pyalgotrade.bitcoincharts.barfeed.TradeBar-class.html#__getstate__">__getstate__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="TradeBar.__getstate__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="TradeBar.__getstate__-expanded"><a name="L48"></a><tt class="py-lineno"> 48</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-20" class="py-name"><a title="pyalgotrade.bar.BasicBar.__dateTime
+pyalgotrade.bitcoincharts.barfeed.TradeBar.__dateTime
+pyalgotrade.bitstamp.livefeed.TradeBar.__dateTime" class="py-name" href="#" onclick="return doclink('link-20', '__dateTime', 'link-14');">__dateTime</a></tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-21" class="py-name"><a title="pyalgotrade.bitcoincharts.barfeed.TradeBar.__price
+pyalgotrade.bitstamp.livefeed.TradeBar.__price" class="py-name" href="#" onclick="return doclink('link-21', '__price', 'link-15');">__price</a></tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-22" class="py-name"><a title="pyalgotrade.bitcoincharts.barfeed.TradeBar.__amount
+pyalgotrade.bitstamp.livefeed.TradeBar.__amount" class="py-name" href="#" onclick="return doclink('link-22', '__amount', 'link-16');">__amount</a></tt><tt class="py-op">)</tt> </tt>
+</div><a name="L49"></a><tt class="py-lineno"> 49</tt>  <tt class="py-line"> </tt>
+<a name="TradeBar.setUseAdjustedValue"></a><div id="TradeBar.setUseAdjustedValue-def"><a name="L50"></a><tt class="py-lineno"> 50</tt> <a class="py-toggle" href="#" id="TradeBar.setUseAdjustedValue-toggle" onclick="return toggle('TradeBar.setUseAdjustedValue');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pyalgotrade.bitcoincharts.barfeed.TradeBar-class.html#setUseAdjustedValue">setUseAdjustedValue</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">useAdjusted</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="TradeBar.setUseAdjustedValue-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="TradeBar.setUseAdjustedValue-expanded"><a name="L51"></a><tt class="py-lineno"> 51</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">useAdjusted</tt><tt class="py-op">:</tt> </tt>
+<a name="L52"></a><tt class="py-lineno"> 52</tt>  <tt class="py-line">            <tt class="py-keyword">raise</tt> <tt class="py-name">Exception</tt><tt class="py-op">(</tt><tt class="py-string">"Adjusted close is not available"</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L53"></a><tt class="py-lineno"> 53</tt>  <tt class="py-line"> </tt>
+<a name="TradeBar.getUseAdjValue"></a><div id="TradeBar.getUseAdjValue-def"><a name="L54"></a><tt class="py-lineno"> 54</tt> <a class="py-toggle" href="#" id="TradeBar.getUseAdjValue-toggle" onclick="return toggle('TradeBar.getUseAdjValue');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pyalgotrade.bitcoincharts.barfeed.TradeBar-class.html#getUseAdjValue">getUseAdjValue</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="TradeBar.getUseAdjValue-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="TradeBar.getUseAdjValue-expanded"><a name="L55"></a><tt class="py-lineno"> 55</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">False</tt> </tt>
+</div><a name="L56"></a><tt class="py-lineno"> 56</tt>  <tt class="py-line"> </tt>
+<a name="TradeBar.getDateTime"></a><div id="TradeBar.getDateTime-def"><a name="L57"></a><tt class="py-lineno"> 57</tt> <a class="py-toggle" href="#" id="TradeBar.getDateTime-toggle" onclick="return toggle('TradeBar.getDateTime');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pyalgotrade.bitcoincharts.barfeed.TradeBar-class.html#getDateTime">getDateTime</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="TradeBar.getDateTime-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="TradeBar.getDateTime-expanded"><a name="L58"></a><tt class="py-lineno"> 58</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-23" class="py-name"><a title="pyalgotrade.bar.BasicBar.__dateTime
+pyalgotrade.bitcoincharts.barfeed.TradeBar.__dateTime
+pyalgotrade.bitstamp.livefeed.TradeBar.__dateTime" class="py-name" href="#" onclick="return doclink('link-23', '__dateTime', 'link-14');">__dateTime</a></tt> </tt>
+</div><a name="L59"></a><tt class="py-lineno"> 59</tt>  <tt class="py-line"> </tt>
+<a name="TradeBar.getOpen"></a><div id="TradeBar.getOpen-def"><a name="L60"></a><tt class="py-lineno"> 60</tt> <a class="py-toggle" href="#" id="TradeBar.getOpen-toggle" onclick="return toggle('TradeBar.getOpen');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pyalgotrade.bitcoincharts.barfeed.TradeBar-class.html#getOpen">getOpen</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">adjusted</tt><tt class="py-op">=</tt><tt class="py-name">False</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="TradeBar.getOpen-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="TradeBar.getOpen-expanded"><a name="L61"></a><tt class="py-lineno"> 61</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-24" class="py-name"><a title="pyalgotrade.bitcoincharts.barfeed.TradeBar.__price
+pyalgotrade.bitstamp.livefeed.TradeBar.__price" class="py-name" href="#" onclick="return doclink('link-24', '__price', 'link-15');">__price</a></tt> </tt>
+</div><a name="L62"></a><tt class="py-lineno"> 62</tt>  <tt class="py-line"> </tt>
+<a name="TradeBar.getHigh"></a><div id="TradeBar.getHigh-def"><a name="L63"></a><tt class="py-lineno"> 63</tt> <a class="py-toggle" href="#" id="TradeBar.getHigh-toggle" onclick="return toggle('TradeBar.getHigh');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pyalgotrade.bitcoincharts.barfeed.TradeBar-class.html#getHigh">getHigh</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">adjusted</tt><tt class="py-op">=</tt><tt class="py-name">False</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="TradeBar.getHigh-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="TradeBar.getHigh-expanded"><a name="L64"></a><tt class="py-lineno"> 64</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-25" class="py-name"><a title="pyalgotrade.bitcoincharts.barfeed.TradeBar.__price
+pyalgotrade.bitstamp.livefeed.TradeBar.__price" class="py-name" href="#" onclick="return doclink('link-25', '__price', 'link-15');">__price</a></tt> </tt>
+</div><a name="L65"></a><tt class="py-lineno"> 65</tt>  <tt class="py-line"> </tt>
+<a name="TradeBar.getLow"></a><div id="TradeBar.getLow-def"><a name="L66"></a><tt class="py-lineno"> 66</tt> <a class="py-toggle" href="#" id="TradeBar.getLow-toggle" onclick="return toggle('TradeBar.getLow');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pyalgotrade.bitcoincharts.barfeed.TradeBar-class.html#getLow">getLow</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">adjusted</tt><tt class="py-op">=</tt><tt class="py-name">False</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="TradeBar.getLow-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="TradeBar.getLow-expanded"><a name="L67"></a><tt class="py-lineno"> 67</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-26" class="py-name"><a title="pyalgotrade.bitcoincharts.barfeed.TradeBar.__price
+pyalgotrade.bitstamp.livefeed.TradeBar.__price" class="py-name" href="#" onclick="return doclink('link-26', '__price', 'link-15');">__price</a></tt> </tt>
+</div><a name="L68"></a><tt class="py-lineno"> 68</tt>  <tt class="py-line"> </tt>
+<a name="TradeBar.getClose"></a><div id="TradeBar.getClose-def"><a name="L69"></a><tt class="py-lineno"> 69</tt> <a class="py-toggle" href="#" id="TradeBar.getClose-toggle" onclick="return toggle('TradeBar.getClose');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pyalgotrade.bitcoincharts.barfeed.TradeBar-class.html#getClose">getClose</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">adjusted</tt><tt class="py-op">=</tt><tt class="py-name">False</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="TradeBar.getClose-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="TradeBar.getClose-expanded"><a name="L70"></a><tt class="py-lineno"> 70</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-27" class="py-name"><a title="pyalgotrade.bitcoincharts.barfeed.TradeBar.__price
+pyalgotrade.bitstamp.livefeed.TradeBar.__price" class="py-name" href="#" onclick="return doclink('link-27', '__price', 'link-15');">__price</a></tt> </tt>
+</div><a name="L71"></a><tt class="py-lineno"> 71</tt>  <tt class="py-line"> </tt>
+<a name="TradeBar.getVolume"></a><div id="TradeBar.getVolume-def"><a name="L72"></a><tt class="py-lineno"> 72</tt> <a class="py-toggle" href="#" id="TradeBar.getVolume-toggle" onclick="return toggle('TradeBar.getVolume');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pyalgotrade.bitcoincharts.barfeed.TradeBar-class.html#getVolume">getVolume</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="TradeBar.getVolume-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="TradeBar.getVolume-expanded"><a name="L73"></a><tt class="py-lineno"> 73</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-28" class="py-name"><a title="pyalgotrade.bitcoincharts.barfeed.TradeBar.__amount
+pyalgotrade.bitstamp.livefeed.TradeBar.__amount" class="py-name" href="#" onclick="return doclink('link-28', '__amount', 'link-16');">__amount</a></tt> </tt>
+</div><a name="L74"></a><tt class="py-lineno"> 74</tt>  <tt class="py-line"> </tt>
+<a name="TradeBar.getAdjClose"></a><div id="TradeBar.getAdjClose-def"><a name="L75"></a><tt class="py-lineno"> 75</tt> <a class="py-toggle" href="#" id="TradeBar.getAdjClose-toggle" onclick="return toggle('TradeBar.getAdjClose');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pyalgotrade.bitcoincharts.barfeed.TradeBar-class.html#getAdjClose">getAdjClose</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="TradeBar.getAdjClose-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="TradeBar.getAdjClose-expanded"><a name="L76"></a><tt class="py-lineno"> 76</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">None</tt> </tt>
+</div><a name="L77"></a><tt class="py-lineno"> 77</tt>  <tt class="py-line"> </tt>
+<a name="TradeBar.getFrequency"></a><div id="TradeBar.getFrequency-def"><a name="L78"></a><tt class="py-lineno"> 78</tt> <a class="py-toggle" href="#" id="TradeBar.getFrequency-toggle" onclick="return toggle('TradeBar.getFrequency');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pyalgotrade.bitcoincharts.barfeed.TradeBar-class.html#getFrequency">getFrequency</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="TradeBar.getFrequency-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="TradeBar.getFrequency-expanded"><a name="L79"></a><tt class="py-lineno"> 79</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt id="link-29" class="py-name"><a title="pyalgotrade.bar" class="py-name" href="#" onclick="return doclink('link-29', 'bar', 'link-3');">bar</a></tt><tt class="py-op">.</tt><tt id="link-30" class="py-name" targets="Class pyalgotrade.bar.Frequency=pyalgotrade.bar.Frequency-class.html,Class pyalgotrade.barfeed.ninjatraderfeed.Frequency=pyalgotrade.barfeed.ninjatraderfeed.Frequency-class.html"><a title="pyalgotrade.bar.Frequency
+pyalgotrade.barfeed.ninjatraderfeed.Frequency" class="py-name" href="#" onclick="return doclink('link-30', 'Frequency', 'link-30');">Frequency</a></tt><tt class="py-op">.</tt><tt id="link-31" class="py-name" targets="Variable pyalgotrade.bar.Frequency.TRADE=pyalgotrade.bar.Frequency-class.html#TRADE"><a title="pyalgotrade.bar.Frequency.TRADE" class="py-name" href="#" onclick="return doclink('link-31', 'TRADE', 'link-31');">TRADE</a></tt> </tt>
+</div><a name="L80"></a><tt class="py-lineno"> 80</tt>  <tt class="py-line"> </tt>
+<a name="TradeBar.getPrice"></a><div id="TradeBar.getPrice-def"><a name="L81"></a><tt class="py-lineno"> 81</tt> <a class="py-toggle" href="#" id="TradeBar.getPrice-toggle" onclick="return toggle('TradeBar.getPrice');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pyalgotrade.bitcoincharts.barfeed.TradeBar-class.html#getPrice">getPrice</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="TradeBar.getPrice-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="TradeBar.getPrice-expanded"><a name="L82"></a><tt class="py-lineno"> 82</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-32" class="py-name"><a title="pyalgotrade.bitcoincharts.barfeed.TradeBar.__price
+pyalgotrade.bitstamp.livefeed.TradeBar.__price" class="py-name" href="#" onclick="return doclink('link-32', '__price', 'link-15');">__price</a></tt> </tt>
+</div></div><a name="L83"></a><tt class="py-lineno"> 83</tt>  <tt class="py-line"> </tt>
+<a name="L84"></a><tt class="py-lineno"> 84</tt>  <tt class="py-line"> </tt>
+<a name="L85"></a><tt class="py-lineno"> 85</tt>  <tt class="py-line"><tt class="py-comment"># As described in http://www.bitcoincharts.com/about/markets-api/</tt> </tt>
+<a name="L86"></a><tt class="py-lineno"> 86</tt>  <tt class="py-line"><tt class="py-comment"># unixtime has second precision so more than 1 trade in a second will trigger</tt> </tt>
+<a name="L87"></a><tt class="py-lineno"> 87</tt>  <tt class="py-line"><tt class="py-comment"># duplicate bars checks.</tt> </tt>
+<a name="UnixTimeFix"></a><div id="UnixTimeFix-def"><a name="L88"></a><tt class="py-lineno"> 88</tt> <a class="py-toggle" href="#" id="UnixTimeFix-toggle" onclick="return toggle('UnixTimeFix');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="pyalgotrade.bitcoincharts.barfeed.UnixTimeFix-class.html">UnixTimeFix</a><tt class="py-op">(</tt><tt class="py-base-class">object</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="UnixTimeFix-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="UnixTimeFix-expanded"><a name="UnixTimeFix.__init__"></a><div id="UnixTimeFix.__init__-def"><a name="L89"></a><tt class="py-lineno"> 89</tt> <a class="py-toggle" href="#" id="UnixTimeFix.__init__-toggle" onclick="return toggle('UnixTimeFix.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pyalgotrade.bitcoincharts.barfeed.UnixTimeFix-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="UnixTimeFix.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="UnixTimeFix.__init__-expanded"><a name="L90"></a><tt class="py-lineno"> 90</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__lastDateTime</tt> <tt class="py-op">=</tt> <tt class="py-name">None</tt> </tt>
+<a name="L91"></a><tt class="py-lineno"> 91</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__nextFix</tt> <tt class="py-op">=</tt> <tt class="py-number">1</tt> </tt>
+</div><a name="L92"></a><tt class="py-lineno"> 92</tt>  <tt class="py-line"> </tt>
+<a name="UnixTimeFix.fixDateTime"></a><div id="UnixTimeFix.fixDateTime-def"><a name="L93"></a><tt class="py-lineno"> 93</tt> <a class="py-toggle" href="#" id="UnixTimeFix.fixDateTime-toggle" onclick="return toggle('UnixTimeFix.fixDateTime');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pyalgotrade.bitcoincharts.barfeed.UnixTimeFix-class.html#fixDateTime">fixDateTime</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">dateTime</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="UnixTimeFix.fixDateTime-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="UnixTimeFix.fixDateTime-expanded"><a name="L94"></a><tt class="py-lineno"> 94</tt>  <tt class="py-line">        <tt class="py-name">ret</tt> <tt class="py-op">=</tt> <tt class="py-name">dateTime</tt> </tt>
+<a name="L95"></a><tt class="py-lineno"> 95</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">dateTime</tt> <tt class="py-op">==</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__lastDateTime</tt><tt class="py-op">:</tt> </tt>
+<a name="L96"></a><tt class="py-lineno"> 96</tt>  <tt class="py-line">            <tt class="py-name">ret</tt> <tt class="py-op">=</tt> <tt class="py-name">dateTime</tt> <tt class="py-op">+</tt> <tt class="py-name">datetime</tt><tt class="py-op">.</tt><tt class="py-name">timedelta</tt><tt class="py-op">(</tt><tt class="py-name">microseconds</tt><tt class="py-op">=</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__nextFix</tt><tt class="py-op">)</tt> </tt>
+<a name="L97"></a><tt class="py-lineno"> 97</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__nextFix</tt> <tt class="py-op">+=</tt> <tt class="py-number">1</tt> </tt>
+<a name="L98"></a><tt class="py-lineno"> 98</tt>  <tt class="py-line">        <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L99"></a><tt class="py-lineno"> 99</tt>  <tt class="py-line">            <tt class="py-comment"># Reset self.__nextFix</tt> </tt>
+<a name="L100"></a><tt class="py-lineno">100</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__nextFix</tt> <tt class="py-op">=</tt> <tt class="py-number">1</tt> </tt>
+<a name="L101"></a><tt class="py-lineno">101</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__lastDateTime</tt> <tt class="py-op">=</tt> <tt class="py-name">dateTime</tt> </tt>
+<a name="L102"></a><tt class="py-lineno">102</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">ret</tt> </tt>
+</div></div><a name="L103"></a><tt class="py-lineno">103</tt>  <tt class="py-line"> </tt>
+<a name="L104"></a><tt class="py-lineno">104</tt>  <tt class="py-line"> </tt>
+<a name="RowParser"></a><div id="RowParser-def"><a name="L105"></a><tt class="py-lineno">105</tt> <a class="py-toggle" href="#" id="RowParser-toggle" onclick="return toggle('RowParser');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="pyalgotrade.bitcoincharts.barfeed.RowParser-class.html">RowParser</a><tt class="py-op">(</tt><tt class="py-base-class">csvfeed</tt><tt class="py-op">.</tt><tt class="py-base-class">RowParser</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="RowParser-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="RowParser-expanded"><a name="RowParser.__init__"></a><div id="RowParser.__init__-def"><a name="L106"></a><tt class="py-lineno">106</tt> <a class="py-toggle" href="#" id="RowParser.__init__-toggle" onclick="return toggle('RowParser.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pyalgotrade.bitcoincharts.barfeed.RowParser-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">unixTimeFix</tt><tt class="py-op">,</tt> <tt class="py-param">timezone</tt><tt class="py-op">=</tt><tt class="py-name">None</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="RowParser.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="RowParser.__init__-expanded"><a name="L107"></a><tt class="py-lineno">107</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__unixTimeFix</tt> <tt class="py-op">=</tt> <tt class="py-name">unixTimeFix</tt> </tt>
+<a name="L108"></a><tt class="py-lineno">108</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__timezone</tt> <tt class="py-op">=</tt> <tt id="link-33" class="py-name" targets="Variable pyalgotrade.barfeed.csvfeed.USEquitiesRTH.timezone=pyalgotrade.barfeed.csvfeed.USEquitiesRTH-class.html#timezone,Variable pyalgotrade.marketsession.BOVESPA.timezone=pyalgotrade.marketsession.BOVESPA-class.html#timezone,Variable pyalgotrade.marketsession.FTSE.timezone=pyalgotrade.marketsession.FTSE-class.html#timezone,Variable pyalgotrade.marketsession.MERVAL.timezone=pyalgotrade.marketsession.MERVAL-class.html#timezone,Variable pyalgotrade.marketsession.NASDAQ.timezone=pyalgotrade.marketsession.NASDAQ-class.html#timezone,Variable pyalgotrade.marketsession.NYSE.timezone=pyalgotrade.marketsession.NYSE-class.html#timezone,Variable pyalgotrade.marketsession.TSE.timezone=pyalgotrade.marketsession.TSE-class.html#timezone,Variable pyalgotrade.marketsession.USEquities.timezone=pyalgotrade.marketsession.USEquities-class.html#timezone"><a title="pyalgotrade.barfeed.csvfeed.USEquitiesRTH.timezone
+pyalgotrade.marketsession.BOVESPA.timezone
+pyalgotrade.marketsession.FTSE.timezone
+pyalgotrade.marketsession.MERVAL.timezone
+pyalgotrade.marketsession.NASDAQ.timezone
+pyalgotrade.marketsession.NYSE.timezone
+pyalgotrade.marketsession.TSE.timezone
+pyalgotrade.marketsession.USEquities.timezone" class="py-name" href="#" onclick="return doclink('link-33', 'timezone', 'link-33');">timezone</a></tt> </tt>
+</div><a name="L109"></a><tt class="py-lineno">109</tt>  <tt class="py-line"> </tt>
+<a name="RowParser.parseBar"></a><div id="RowParser.parseBar-def"><a name="L110"></a><tt class="py-lineno">110</tt> <a class="py-toggle" href="#" id="RowParser.parseBar-toggle" onclick="return toggle('RowParser.parseBar');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pyalgotrade.bitcoincharts.barfeed.RowParser-class.html#parseBar">parseBar</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">csvRowDict</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="RowParser.parseBar-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="RowParser.parseBar-expanded"><a name="L111"></a><tt class="py-lineno">111</tt>  <tt class="py-line">        <tt class="py-name">unixTime</tt> <tt class="py-op">=</tt> <tt class="py-name">int</tt><tt class="py-op">(</tt><tt class="py-name">csvRowDict</tt><tt class="py-op">[</tt><tt class="py-string">"unixtime"</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L112"></a><tt class="py-lineno">112</tt>  <tt class="py-line">        <tt class="py-name">price</tt> <tt class="py-op">=</tt> <tt class="py-name">float</tt><tt class="py-op">(</tt><tt class="py-name">csvRowDict</tt><tt class="py-op">[</tt><tt class="py-string">"price"</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L113"></a><tt class="py-lineno">113</tt>  <tt class="py-line">        <tt class="py-name">amount</tt> <tt class="py-op">=</tt> <tt class="py-name">float</tt><tt class="py-op">(</tt><tt class="py-name">csvRowDict</tt><tt class="py-op">[</tt><tt class="py-string">"amount"</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L114"></a><tt class="py-lineno">114</tt>  <tt class="py-line"> </tt>
+<a name="L115"></a><tt class="py-lineno">115</tt>  <tt class="py-line">        <tt class="py-name">dateTime</tt> <tt class="py-op">=</tt> <tt id="link-34" class="py-name"><a title="pyalgotrade.utils.dt" class="py-name" href="#" onclick="return doclink('link-34', 'dt', 'link-9');">dt</a></tt><tt class="py-op">.</tt><tt id="link-35" class="py-name" targets="Function pyalgotrade.utils.dt.timestamp_to_datetime()=pyalgotrade.utils.dt-module.html#timestamp_to_datetime"><a title="pyalgotrade.utils.dt.timestamp_to_datetime" class="py-name" href="#" onclick="return doclink('link-35', 'timestamp_to_datetime', 'link-35');">timestamp_to_datetime</a></tt><tt class="py-op">(</tt><tt class="py-name">unixTime</tt><tt class="py-op">)</tt> </tt>
+<a name="L116"></a><tt class="py-lineno">116</tt>  <tt class="py-line">        <tt class="py-name">dateTime</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__unixTimeFix</tt><tt class="py-op">.</tt><tt id="link-36" class="py-name" targets="Method pyalgotrade.bitcoincharts.barfeed.UnixTimeFix.fixDateTime()=pyalgotrade.bitcoincharts.barfeed.UnixTimeFix-class.html#fixDateTime"><a title="pyalgotrade.bitcoincharts.barfeed.UnixTimeFix.fixDateTime" class="py-name" href="#" onclick="return doclink('link-36', 'fixDateTime', 'link-36');">fixDateTime</a></tt><tt class="py-op">(</tt><tt class="py-name">dateTime</tt><tt class="py-op">)</tt> </tt>
+<a name="L117"></a><tt class="py-lineno">117</tt>  <tt class="py-line"> </tt>
+<a name="L118"></a><tt class="py-lineno">118</tt>  <tt class="py-line">        <tt class="py-comment"># Localize the datetime if a timezone was given.</tt> </tt>
+<a name="L119"></a><tt class="py-lineno">119</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__timezone</tt><tt class="py-op">:</tt> </tt>
+<a name="L120"></a><tt class="py-lineno">120</tt>  <tt class="py-line">            <tt class="py-name">dateTime</tt> <tt class="py-op">=</tt> <tt id="link-37" class="py-name"><a title="pyalgotrade.utils.dt" class="py-name" href="#" onclick="return doclink('link-37', 'dt', 'link-9');">dt</a></tt><tt class="py-op">.</tt><tt id="link-38" class="py-name" targets="Function pyalgotrade.utils.dt.localize()=pyalgotrade.utils.dt-module.html#localize"><a title="pyalgotrade.utils.dt.localize" class="py-name" href="#" onclick="return doclink('link-38', 'localize', 'link-38');">localize</a></tt><tt class="py-op">(</tt><tt class="py-name">dateTime</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__timezone</tt><tt class="py-op">)</tt> </tt>
+<a name="L121"></a><tt class="py-lineno">121</tt>  <tt class="py-line"> </tt>
+<a name="L122"></a><tt class="py-lineno">122</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt id="link-39" class="py-name" targets="Class pyalgotrade.bitcoincharts.barfeed.TradeBar=pyalgotrade.bitcoincharts.barfeed.TradeBar-class.html,Class pyalgotrade.bitstamp.livefeed.TradeBar=pyalgotrade.bitstamp.livefeed.TradeBar-class.html"><a title="pyalgotrade.bitcoincharts.barfeed.TradeBar
+pyalgotrade.bitstamp.livefeed.TradeBar" class="py-name" href="#" onclick="return doclink('link-39', 'TradeBar', 'link-39');">TradeBar</a></tt><tt class="py-op">(</tt><tt class="py-name">dateTime</tt><tt class="py-op">,</tt> <tt class="py-name">price</tt><tt class="py-op">,</tt> <tt class="py-name">amount</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L123"></a><tt class="py-lineno">123</tt>  <tt class="py-line"> </tt>
+<a name="RowParser.getFieldNames"></a><div id="RowParser.getFieldNames-def"><a name="L124"></a><tt class="py-lineno">124</tt> <a class="py-toggle" href="#" id="RowParser.getFieldNames-toggle" onclick="return toggle('RowParser.getFieldNames');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pyalgotrade.bitcoincharts.barfeed.RowParser-class.html#getFieldNames">getFieldNames</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="RowParser.getFieldNames-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="RowParser.getFieldNames-expanded"><a name="L125"></a><tt class="py-lineno">125</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-op">[</tt><tt class="py-string">"unixtime"</tt><tt class="py-op">,</tt> <tt class="py-string">"price"</tt><tt class="py-op">,</tt> <tt class="py-string">"amount"</tt><tt class="py-op">]</tt> </tt>
+</div><a name="L126"></a><tt class="py-lineno">126</tt>  <tt class="py-line"> </tt>
+<a name="RowParser.getDelimiter"></a><div id="RowParser.getDelimiter-def"><a name="L127"></a><tt class="py-lineno">127</tt> <a class="py-toggle" href="#" id="RowParser.getDelimiter-toggle" onclick="return toggle('RowParser.getDelimiter');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pyalgotrade.bitcoincharts.barfeed.RowParser-class.html#getDelimiter">getDelimiter</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="RowParser.getDelimiter-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="RowParser.getDelimiter-expanded"><a name="L128"></a><tt class="py-lineno">128</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-string">","</tt> </tt>
+</div></div><a name="L129"></a><tt class="py-lineno">129</tt>  <tt class="py-line"> </tt>
+<a name="L130"></a><tt class="py-lineno">130</tt>  <tt class="py-line"> </tt>
+<a name="CSVTradeFeed"></a><div id="CSVTradeFeed-def"><a name="L131"></a><tt class="py-lineno">131</tt> <a class="py-toggle" href="#" id="CSVTradeFeed-toggle" onclick="return toggle('CSVTradeFeed');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="pyalgotrade.bitcoincharts.barfeed.CSVTradeFeed-class.html">CSVTradeFeed</a><tt class="py-op">(</tt><tt class="py-base-class">csvfeed</tt><tt class="py-op">.</tt><tt class="py-base-class">BarFeed</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="CSVTradeFeed-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="CSVTradeFeed-expanded"><a name="L132"></a><tt class="py-lineno">132</tt>  <tt class="py-line">    <tt class="py-docstring">"""A BarFeed that builds bars from a Historic Trade Data CSV file as described in http://www.bitcoincharts.com/about/markets-api/.</tt> </tt>
+<a name="L133"></a><tt class="py-lineno">133</tt>  <tt class="py-line"><tt class="py-docstring">    Files can be downloaded from http://api.bitcoincharts.com/v1/csv/.</tt> </tt>
+<a name="L134"></a><tt class="py-lineno">134</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L135"></a><tt class="py-lineno">135</tt>  <tt class="py-line"><tt class="py-docstring">    :param timezone: An optional default timezone to use to localize bars. By default bars are loaded in UTC.</tt> </tt>
+<a name="L136"></a><tt class="py-lineno">136</tt>  <tt class="py-line"><tt class="py-docstring">    :type timezone: A pytz timezone.</tt> </tt>
+<a name="L137"></a><tt class="py-lineno">137</tt>  <tt class="py-line"><tt class="py-docstring">    :param maxLen: The maximum number of values that the :class:`pyalgotrade.dataseries.bards.BarDataSeries` will hold.</tt> </tt>
+<a name="L138"></a><tt class="py-lineno">138</tt>  <tt class="py-line"><tt class="py-docstring">        If not None, it must be greater than 0.</tt> </tt>
+<a name="L139"></a><tt class="py-lineno">139</tt>  <tt class="py-line"><tt class="py-docstring">        Once a bounded length is full, when new items are added, a corresponding number of items are discarded from the</tt> </tt>
+<a name="L140"></a><tt class="py-lineno">140</tt>  <tt class="py-line"><tt class="py-docstring">        opposite end. If None then dataseries.DEFAULT_MAX_LEN is used.</tt> </tt>
+<a name="L141"></a><tt class="py-lineno">141</tt>  <tt class="py-line"><tt class="py-docstring">    :type maxLen: int.</tt> </tt>
+<a name="L142"></a><tt class="py-lineno">142</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L143"></a><tt class="py-lineno">143</tt>  <tt class="py-line"><tt class="py-docstring">    .. note::</tt> </tt>
+<a name="L144"></a><tt class="py-lineno">144</tt>  <tt class="py-line"><tt class="py-docstring">        * A :class:`pyalgotrade.bar.Bar` instance will be created for every trade, so open, high, low and close values will all be the same.</tt> </tt>
+<a name="L145"></a><tt class="py-lineno">145</tt>  <tt class="py-line"><tt class="py-docstring">        * Files must be sorted with the **unixtime** column in ascending order.</tt> </tt>
+<a name="L146"></a><tt class="py-lineno">146</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L147"></a><tt class="py-lineno">147</tt>  <tt class="py-line"> </tt>
+<a name="CSVTradeFeed.__init__"></a><div id="CSVTradeFeed.__init__-def"><a name="L148"></a><tt class="py-lineno">148</tt> <a class="py-toggle" href="#" id="CSVTradeFeed.__init__-toggle" onclick="return toggle('CSVTradeFeed.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pyalgotrade.bitcoincharts.barfeed.CSVTradeFeed-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">timezone</tt><tt class="py-op">=</tt><tt class="py-name">None</tt><tt class="py-op">,</tt> <tt class="py-param">maxLen</tt><tt class="py-op">=</tt><tt class="py-name">None</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="CSVTradeFeed.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="CSVTradeFeed.__init__-expanded"><a name="L149"></a><tt class="py-lineno">149</tt>  <tt class="py-line">        <tt class="py-name">super</tt><tt class="py-op">(</tt><tt id="link-40" class="py-name" targets="Class pyalgotrade.bitcoincharts.barfeed.CSVTradeFeed=pyalgotrade.bitcoincharts.barfeed.CSVTradeFeed-class.html"><a title="pyalgotrade.bitcoincharts.barfeed.CSVTradeFeed" class="py-name" href="#" onclick="return doclink('link-40', 'CSVTradeFeed', 'link-40');">CSVTradeFeed</a></tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt id="link-41" class="py-name" targets="Method pyalgotrade.bar.Bars.__init__()=pyalgotrade.bar.Bars-class.html#__init__,Method pyalgotrade.bar.BasicBar.__init__()=pyalgotrade.bar.BasicBar-class.html#__init__,Method pyalgotrade.barfeed.BaseBarFeed.__init__()=pyalgotrade.barfeed.BaseBarFeed-class.html#__init__,Method pyalgotrade.barfeed.OptimizerBarFeed.__init__()=pyalgotrade.barfeed.OptimizerBarFeed-class.html#__init__,Method pyalgotrade.barfeed.csvfeed.BarFeed.__init__()=pyalgotrade.barfeed.csvfeed.BarFeed-class.html#__init__,Method pyalgotrade.barfeed.csvfeed.DateRangeFilter.__init__()=pyalgotrade.barfeed.csvfeed.DateRangeFilter-class.html#__init__,Method pyalgotrade.barfeed.csvfeed.GenericBarFeed.__init__()=pyalgotrade.barfeed.csvfeed.GenericBarFeed-class.html#__init__,Method pyalgotrade.barfeed.csvfeed.GenericRowParser.__init__()=pyalgotrade.barfeed.csvfeed.GenericRowParser-class.html#__init__,Method pyalgotrade.barfeed.csvfeed.USEquitiesRTH.__init__()=pyalgotrade.barfeed.csvfeed.USEquitiesRTH-class.html#__init__,Method pyalgotrade.barfeed.googlefeed.Feed.__init__()=pyalgotrade.barfeed.googlefeed.Feed-class.html#__init__,Method pyalgotrade.barfeed.googlefeed.RowParser.__init__()=pyalgotrade.barfeed.googlefeed.RowParser-class.html#__init__,Method pyalgotrade.barfeed.ibfeed.Feed.__init__()=pyalgotrade.barfeed.ibfeed.Feed-class.html#__init__,Method pyalgotrade.barfeed.ibfeed.RowParser.__init__()=pyalgotrade.barfeed.ibfeed.RowParser-class.html#__init__,Method pyalgotrade.barfeed.membf.BarFeed.__init__()=pyalgotrade.barfeed.membf.BarFeed-class.html#__init__,Method pyalgotrade.barfeed.ninjatraderfeed.Feed.__init__()=pyalgotrade.barfeed.ninjatraderfeed.Feed-class.html#__init__,Method pyalgotrade.barfeed.ninjatraderfeed.RowParser.__init__()=pyalgotrade.barfeed.ninjatraderfeed.RowParser-class.html#__init__,Method pyalgotrade.barfeed.quandlfeed.Feed.__init__()=pyalgotrade.barfeed.quandlfeed.Feed-class.html#__init__,Method pyalgotrade.barfeed.resampled.BarsGrouper.__init__()=pyalgotrade.barfeed.resampled.BarsGrouper-class.html#__init__,Method pyalgotrade.barfeed.resampled.ResampledBarFeed.__init__()=pyalgotrade.barfeed.resampled.ResampledBarFeed-class.html#__init__,Method pyalgotrade.barfeed.sqlitefeed.Database.__init__()=pyalgotrade.barfeed.sqlitefeed.Database-class.html#__init__,Method pyalgotrade.barfeed.sqlitefeed.Feed.__init__()=pyalgotrade.barfeed.sqlitefeed.Feed-class.html#__init__,Method pyalgotrade.barfeed.yahoofeed.Feed.__init__()=pyalgotrade.barfeed.yahoofeed.Feed-class.html#__init__,Method pyalgotrade.barfeed.yahoofeed.RowParser.__init__()=pyalgotrade.barfeed.yahoofeed.RowParser-class.html#__init__,Method pyalgotrade.bitcoincharts.barfeed.CSVTradeFeed.__init__()=pyalgotrade.bitcoincharts.barfeed.CSVTradeFeed-class.html#__init__,Method pyalgotrade.bitcoincharts.barfeed.RowParser.__init__()=pyalgotrade.bitcoincharts.barfeed.RowParser-class.html#__init__,Method pyalgotrade.bitcoincharts.barfeed.TradeBar.__init__()=pyalgotrade.bitcoincharts.barfeed.TradeBar-class.html#__init__,Method pyalgotrade.bitcoincharts.barfeed.UnixTimeFix.__init__()=pyalgotrade.bitcoincharts.barfeed.UnixTimeFix-class.html#__init__,Method pyalgotrade.bitstamp.broker.BacktestingBroker.__init__()=pyalgotrade.bitstamp.broker.BacktestingBroker-class.html#__init__,Method pyalgotrade.bitstamp.httpclient.AccountBalance.__init__()=pyalgotrade.bitstamp.httpclient.AccountBalance-class.html#__init__,Method pyalgotrade.bitstamp.httpclient.HTTPClient.__init__()=pyalgotrade.bitstamp.httpclient.HTTPClient-class.html#__init__,Method pyalgotrade.bitstamp.httpclient.Order.__init__()=pyalgotrade.bitstamp.httpclient.Order-class.html#__init__,Method pyalgotrade.bitstamp.httpclient.UserTransaction.__init__()=pyalgotrade.bitstamp.httpclient.UserTransaction-class.html#__init__,Method pyalgotrade.bitstamp.livebroker.LiveBroker.__init__()=pyalgotrade.bitstamp.livebroker.LiveBroker-class.html#__init__,Method pyalgotrade.bitstamp.livebroker.TradeMonitor.__init__()=pyalgotrade.bitstamp.livebroker.TradeMonitor-class.html#__init__,Method pyalgotrade.bitstamp.livefeed.LiveTradeFeed.__init__()=pyalgotrade.bitstamp.livefeed.LiveTradeFeed-class.html#__init__,Method pyalgotrade.bitstamp.livefeed.TradeBar.__init__()=pyalgotrade.bitstamp.livefeed.TradeBar-class.html#__init__,Method pyalgotrade.bitstamp.wsclient.OrderBookUpdate.__init__()=pyalgotrade.bitstamp.wsclient.OrderBookUpdate-class.html#__init__,Method pyalgotrade.bitstamp.wsclient.Trade.__init__()=pyalgotrade.bitstamp.wsclient.Trade-class.html#__init__,Method pyalgotrade.bitstamp.wsclient.WebSocketClient.__init__()=pyalgotrade.bitstamp.wsclient.WebSocketClient-class.html#__init__,Method pyalgotrade.bitstamp.wsclient.WebSocketClientThread.__init__()=pyalgotrade.bitstamp.wsclient.WebSocketClientThread-class.html#__init__,Method pyalgotrade.broker.Broker.__init__()=pyalgotrade.broker.Broker-class.html#__init__,Method pyalgotrade.broker.LimitOrder.__init__()=pyalgotrade.broker.LimitOrder-class.html#__init__,Method pyalgotrade.broker.MarketOrder.__init__()=pyalgotrade.broker.MarketOrder-class.html#__init__,Method pyalgotrade.broker.OptionLimitOrder.__init__()=pyalgotrade.broker.OptionLimitOrder-class.html#__init__,Method pyalgotrade.broker.OptionOrder.__init__()=pyalgotrade.broker.OptionOrder-class.html#__init__,Method pyalgotrade.broker.OptionStopLimitOrder.__init__()=pyalgotrade.broker.OptionStopLimitOrder-class.html#__init__,Method pyalgotrade.broker.OptionStopOrder.__init__()=pyalgotrade.broker.OptionStopOrder-class.html#__init__,Method pyalgotrade.broker.Order.__init__()=pyalgotrade.broker.Order-class.html#__init__,Method pyalgotrade.broker.OrderEvent.__init__()=pyalgotrade.broker.OrderEvent-class.html#__init__,Method pyalgotrade.broker.OrderExecutionInfo.__init__()=pyalgotrade.broker.OrderExecutionInfo-class.html#__init__,Method pyalgotrade.broker.StopLimitOrder.__init__()=pyalgotrade.broker.StopLimitOrder-class.html#__init__,Method pyalgotrade.broker.StopOrder.__init__()=pyalgotrade.broker.StopOrder-class.html#__init__,Method pyalgotrade.broker.backtesting.BacktestingOrder.__init__()=pyalgotrade.broker.backtesting.BacktestingOrder-class.html#__init__,Method pyalgotrade.broker.backtesting.Broker.__init__()=pyalgotrade.broker.backtesting.Broker-class.html#__init__,Method pyalgotrade.broker.backtesting.FixedPerTrade.__init__()=pyalgotrade.broker.backtesting.FixedPerTrade-class.html#__init__,Method pyalgotrade.broker.backtesting.LimitOrder.__init__()=pyalgotrade.broker.backtesting.LimitOrder-class.html#__init__,Method pyalgotrade.broker.backtesting.MarketOrder.__init__()=pyalgotrade.broker.backtesting.MarketOrder-class.html#__init__,Method pyalgotrade.broker.backtesting.OptionLimitOrder.__init__()=pyalgotrade.broker.backtesting.OptionLimitOrder-class.html#__init__,Method pyalgotrade.broker.backtesting.OptionOrder.__init__()=pyalgotrade.broker.backtesting.OptionOrder-class.html#__init__,Method pyalgotrade.broker.backtesting.OptionStopLimitOrder.__init__()=pyalgotrade.broker.backtesting.OptionStopLimitOrder-class.html#__init__,Method pyalgotrade.broker.backtesting.OptionStopOrder.__init__()=pyalgotrade.broker.backtesting.OptionStopOrder-class.html#__init__,Method pyalgotrade.broker.backtesting.StopLimitOrder.__init__()=pyalgotrade.broker.backtesting.StopLimitOrder-class.html#__init__,Method pyalgotrade.broker.backtesting.StopOrder.__init__()=pyalgotrade.broker.backtesting.StopOrder-class.html#__init__,Method pyalgotrade.broker.backtesting.TradePercentage.__init__()=pyalgotrade.broker.backtesting.TradePercentage-class.html#__init__,Method pyalgotrade.broker.backtesting_old.BacktestingOrder.__init__()=pyalgotrade.broker.backtesting_old.BacktestingOrder-class.html#__init__,Method pyalgotrade.broker.backtesting_old.Broker.__init__()=pyalgotrade.broker.backtesting_old.Broker-class.html#__init__,Method pyalgotrade.broker.backtesting_old.FixedPerTrade.__init__()=pyalgotrade.broker.backtesting_old.FixedPerTrade-class.html#__init__,Method pyalgotrade.broker.backtesting_old.LimitOrder.__init__()=pyalgotrade.broker.backtesting_old.LimitOrder-class.html#__init__,Method pyalgotrade.broker.backtesting_old.MarketOrder.__init__()=pyalgotrade.broker.backtesting_old.MarketOrder-class.html#__init__,Method pyalgotrade.broker.backtesting_old.StopLimitOrder.__init__()=pyalgotrade.broker.backtesting_old.StopLimitOrder-class.html#__init__,Method pyalgotrade.broker.backtesting_old.StopOrder.__init__()=pyalgotrade.broker.backtesting_old.StopOrder-class.html#__init__,Method pyalgotrade.broker.backtesting_old.TradePercentage.__init__()=pyalgotrade.broker.backtesting_old.TradePercentage-class.html#__init__,Method pyalgotrade.broker.fillstrategy.DefaultStrategy.__init__()=pyalgotrade.broker.fillstrategy.DefaultStrategy-class.html#__init__,Method pyalgotrade.broker.fillstrategy.FillInfo.__init__()=pyalgotrade.broker.fillstrategy.FillInfo-class.html#__init__,Method pyalgotrade.broker.slippage.VolumeShareSlippage.__init__()=pyalgotrade.broker.slippage.VolumeShareSlippage-class.html#__init__,Method pyalgotrade.dataseries.SequenceDataSeries.__init__()=pyalgotrade.dataseries.SequenceDataSeries-class.html#__init__,Method pyalgotrade.dataseries.aligned.Syncer.__init__()=pyalgotrade.dataseries.aligned.Syncer-class.html#__init__,Method pyalgotrade.dataseries.bards.BarDataSeries.__init__()=pyalgotrade.dataseries.bards.BarDataSeries-class.html#__init__,Method pyalgotrade.dataseries.resampled.AggFunGrouper.__init__()=pyalgotrade.dataseries.resampled.AggFunGrouper-class.html#__init__,Method pyalgotrade.dataseries.resampled.BarGrouper.__init__()=pyalgotrade.dataseries.resampled.BarGrouper-class.html#__init__,Method pyalgotrade.dataseries.resampled.ResampledBarDataSeries.__init__()=pyalgotrade.dataseries.resampled.ResampledBarDataSeries-class.html#__init__,Method pyalgotrade.dataseries.resampled.ResampledDataSeries.__init__()=pyalgotrade.dataseries.resampled.ResampledDataSeries-class.html#__init__,Method pyalgotrade.dispatcher.Dispatcher.__init__()=pyalgotrade.dispatcher.Dispatcher-class.html#__init__,Method pyalgotrade.eventprofiler.Event.__init__()=pyalgotrade.eventprofiler.Event-class.html#__init__,Method pyalgotrade.eventprofiler.Profiler.__init__()=pyalgotrade.eventprofiler.Profiler-class.html#__init__,Method pyalgotrade.eventprofiler.Results.__init__()=pyalgotrade.eventprofiler.Results-class.html#__init__,Method pyalgotrade.feed.BaseFeed.__init__()=pyalgotrade.feed.BaseFeed-class.html#__init__,Method pyalgotrade.feed.csvfeed.BaseFeed.__init__()=pyalgotrade.feed.csvfeed.BaseFeed-class.html#__init__,Method pyalgotrade.feed.csvfeed.BasicRowParser.__init__()=pyalgotrade.feed.csvfeed.BasicRowParser-class.html#__init__,Method pyalgotrade.feed.csvfeed.DateRangeFilter.__init__()=pyalgotrade.feed.csvfeed.DateRangeFilter-class.html#__init__,Method pyalgotrade.feed.csvfeed.Feed.__init__()=pyalgotrade.feed.csvfeed.Feed-class.html#__init__,Method pyalgotrade.feed.memfeed.MemFeed.__init__()=pyalgotrade.feed.memfeed.MemFeed-class.html#__init__,Method pyalgotrade.ib.barfeed.LiveFeed.__init__()=pyalgotrade.ib.barfeed.LiveFeed-class.html#__init__,Method pyalgotrade.ib.livebroker.LimitOrder.__init__()=pyalgotrade.ib.livebroker.LimitOrder-class.html#__init__,Method pyalgotrade.ib.livebroker.LiveBroker.__init__()=pyalgotrade.ib.livebroker.LiveBroker-class.html#__init__,Method pyalgotrade.ib.livebroker.LiveOrder.__init__()=pyalgotrade.ib.livebroker.LiveOrder-class.html#__init__,Method pyalgotrade.ib.livebroker.MarketOrder.__init__()=pyalgotrade.ib.livebroker.MarketOrder-class.html#__init__,Method pyalgotrade.ib.livebroker.StopLimitOrder.__init__()=pyalgotrade.ib.livebroker.StopLimitOrder-class.html#__init__,Method pyalgotrade.ib.livebroker.StopOrder.__init__()=pyalgotrade.ib.livebroker.StopOrder-class.html#__init__,Method pyalgotrade.observer.Event.__init__()=pyalgotrade.observer.Event-class.html#__init__,Method pyalgotrade.observer.Subject.__init__()=pyalgotrade.observer.Subject-class.html#__init__,Method pyalgotrade.optimizer.base.ParameterSource.__init__()=pyalgotrade.optimizer.base.ParameterSource-class.html#__init__,Method pyalgotrade.optimizer.base.Parameters.__init__()=pyalgotrade.optimizer.base.Parameters-class.html#__init__,Method pyalgotrade.optimizer.base.ResultSinc.__init__()=pyalgotrade.optimizer.base.ResultSinc-class.html#__init__,Method pyalgotrade.optimizer.local.ServerThread.__init__()=pyalgotrade.optimizer.local.ServerThread-class.html#__init__,Method pyalgotrade.optimizer.server.Results.__init__()=pyalgotrade.optimizer.server.Results-class.html#__init__,Method pyalgotrade.optimizer.worker.Worker.__init__()=pyalgotrade.optimizer.worker.Worker-class.html#__init__,Method pyalgotrade.optimizer.xmlrpcserver.AutoStopThread.__init__()=pyalgotrade.optimizer.xmlrpcserver.AutoStopThread-class.html#__init__,Method pyalgotrade.optimizer.xmlrpcserver.Job.__init__()=pyalgotrade.optimizer.xmlrpcserver.Job-class.html#__init__,Method pyalgotrade.optimizer.xmlrpcserver.Server.__init__()=pyalgotrade.optimizer.xmlrpcserver.Server-class.html#__init__,Method pyalgotrade.plotter.CustomMarker.__init__()=pyalgotrade.plotter.CustomMarker-class.html#__init__,Method pyalgotrade.plotter.InstrumentMarker.__init__()=pyalgotrade.plotter.InstrumentMarker-class.html#__init__,Method pyalgotrade.plotter.InstrumentSubplot.__init__()=pyalgotrade.plotter.InstrumentSubplot-class.html#__init__,Method pyalgotrade.plotter.LineMarker.__init__()=pyalgotrade.plotter.LineMarker-class.html#__init__,Method pyalgotrade.plotter.Series.__init__()=pyalgotrade.plotter.Series-class.html#__init__,Method pyalgotrade.plotter.StrategyPlotter.__init__()=pyalgotrade.plotter.StrategyPlotter-class.html#__init__,Method pyalgotrade.plotter.Subplot.__init__()=pyalgotrade.plotter.Subplot-class.html#__init__,Method pyalgotrade.resamplebase.DayRange.__init__()=pyalgotrade.resamplebase.DayRange-class.html#__init__,Method pyalgotrade.resamplebase.Grouper.__init__()=pyalgotrade.resamplebase.Grouper-class.html#__init__,Method pyalgotrade.resamplebase.IntraDayRange.__init__()=pyalgotrade.resamplebase.IntraDayRange-class.html#__init__,Method pyalgotrade.resamplebase.MonthRange.__init__()=pyalgotrade.resamplebase.MonthRange-class.html#__init__,Method pyalgotrade.stratanalyzer.drawdown.DrawDown.__init__()=pyalgotrade.stratanalyzer.drawdown.DrawDown-class.html#__init__,Method pyalgotrade.stratanalyzer.drawdown.DrawDownHelper.__init__()=pyalgotrade.stratanalyzer.drawdown.DrawDownHelper-class.html#__init__,Method pyalgotrade.stratanalyzer.returns.PositionTracker.__init__()=pyalgotrade.stratanalyzer.returns.PositionTracker-class.html#__init__,Method pyalgotrade.stratanalyzer.returns.Returns.__init__()=pyalgotrade.stratanalyzer.returns.Returns-class.html#__init__,Method pyalgotrade.stratanalyzer.returns.ReturnsAnalyzerBase.__init__()=pyalgotrade.stratanalyzer.returns.ReturnsAnalyzerBase-class.html#__init__,Method pyalgotrade.stratanalyzer.returns.TimeWeightedReturns.__init__()=pyalgotrade.stratanalyzer.returns.TimeWeightedReturns-class.html#__init__,Method pyalgotrade.stratanalyzer.sharpe.SharpeRatio.__init__()=pyalgotrade.stratanalyzer.sharpe.SharpeRatio-class.html#__init__,Method pyalgotrade.stratanalyzer.trades.Trades.__init__()=pyalgotrade.stratanalyzer.trades.Trades-class.html#__init__,Method pyalgotrade.strategy.BacktestingStrategy.__init__()=pyalgotrade.strategy.BacktestingStrategy-class.html#__init__,Method pyalgotrade.strategy.BaseStrategy.__init__()=pyalgotrade.strategy.BaseStrategy-class.html#__init__,Method pyalgotrade.strategy.position.LongOptionPosition.__init__()=pyalgotrade.strategy.position.LongOptionPosition-class.html#__init__,Method pyalgotrade.strategy.position.LongPosition.__init__()=pyalgotrade.strategy.position.LongPosition-class.html#__init__,Method pyalgotrade.strategy.position.Position.__init__()=pyalgotrade.strategy.position.Position-class.html#__init__,Method pyalgotrade.strategy.position.ShortOptionPosition.__init__()=pyalgotrade.strategy.position.ShortOptionPosition-class.html#__init__,Method pyalgotrade.strategy.position.ShortPosition.__init__()=pyalgotrade.strategy.position.ShortPosition-class.html#__init__,Method pyalgotrade.technical.EventBasedFilter.__init__()=pyalgotrade.technical.EventBasedFilter-class.html#__init__,Method pyalgotrade.technical.EventWindow.__init__()=pyalgotrade.technical.EventWindow-class.html#__init__,Method pyalgotrade.technical.atr.ATR.__init__()=pyalgotrade.technical.atr.ATR-class.html#__init__,Method pyalgotrade.technical.atr.ATREventWindow.__init__()=pyalgotrade.technical.atr.ATREventWindow-class.html#__init__,Method pyalgotrade.technical.bollinger.BollingerBands.__init__()=pyalgotrade.technical.bollinger.BollingerBands-class.html#__init__,Method pyalgotrade.technical.cumret.CumRetEventWindow.__init__()=pyalgotrade.technical.cumret.CumRetEventWindow-class.html#__init__,Method pyalgotrade.technical.cumret.CumulativeReturn.__init__()=pyalgotrade.technical.cumret.CumulativeReturn-class.html#__init__,Method pyalgotrade.technical.highlow.High.__init__()=pyalgotrade.technical.highlow.High-class.html#__init__,Method pyalgotrade.technical.highlow.HighLowEventWindow.__init__()=pyalgotrade.technical.highlow.HighLowEventWindow-class.html#__init__,Method pyalgotrade.technical.highlow.Low.__init__()=pyalgotrade.technical.highlow.Low-class.html#__init__,Method pyalgotrade.technical.hurst.HurstExponent.__init__()=pyalgotrade.technical.hurst.HurstExponent-class.html#__init__,Method pyalgotrade.technical.hurst.HurstExponentEventWindow.__init__()=pyalgotrade.technical.hurst.HurstExponentEventWindow-class.html#__init__,Method pyalgotrade.technical.linebreak.Line.__init__()=pyalgotrade.technical.linebreak.Line-class.html#__init__,Method pyalgotrade.technical.linebreak.LineBreak.__init__()=pyalgotrade.technical.linebreak.LineBreak-class.html#__init__,Method pyalgotrade.technical.linreg.LeastSquaresRegression.__init__()=pyalgotrade.technical.linreg.LeastSquaresRegression-class.html#__init__,Method pyalgotrade.technical.linreg.LeastSquaresRegressionWindow.__init__()=pyalgotrade.technical.linreg.LeastSquaresRegressionWindow-class.html#__init__,Method pyalgotrade.technical.linreg.Slope.__init__()=pyalgotrade.technical.linreg.Slope-class.html#__init__,Method pyalgotrade.technical.linreg.SlopeEventWindow.__init__()=pyalgotrade.technical.linreg.SlopeEventWindow-class.html#__init__,Method pyalgotrade.technical.linreg.Trend.__init__()=pyalgotrade.technical.linreg.Trend-class.html#__init__,Method pyalgotrade.technical.linreg.TrendEventWindow.__init__()=pyalgotrade.technical.linreg.TrendEventWindow-class.html#__init__,Method pyalgotrade.technical.ma.EMA.__init__()=pyalgotrade.technical.ma.EMA-class.html#__init__,Method pyalgotrade.technical.ma.EMAEventWindow.__init__()=pyalgotrade.technical.ma.EMAEventWindow-class.html#__init__,Method pyalgotrade.technical.ma.SMA.__init__()=pyalgotrade.technical.ma.SMA-class.html#__init__,Method pyalgotrade.technical.ma.SMAEventWindow.__init__()=pyalgotrade.technical.ma.SMAEventWindow-class.html#__init__,Method pyalgotrade.technical.ma.WMA.__init__()=pyalgotrade.technical.ma.WMA-class.html#__init__,Method pyalgotrade.technical.ma.WMAEventWindow.__init__()=pyalgotrade.technical.ma.WMAEventWindow-class.html#__init__,Method pyalgotrade.technical.macd.MACD.__init__()=pyalgotrade.technical.macd.MACD-class.html#__init__,Method pyalgotrade.technical.ratio.Ratio.__init__()=pyalgotrade.technical.ratio.Ratio-class.html#__init__,Method pyalgotrade.technical.ratio.RatioEventWindow.__init__()=pyalgotrade.technical.ratio.RatioEventWindow-class.html#__init__,Method pyalgotrade.technical.roc.ROCEventWindow.__init__()=pyalgotrade.technical.roc.ROCEventWindow-class.html#__init__,Method pyalgotrade.technical.roc.RateOfChange.__init__()=pyalgotrade.technical.roc.RateOfChange-class.html#__init__,Method pyalgotrade.technical.rsi.RSI.__init__()=pyalgotrade.technical.rsi.RSI-class.html#__init__,Method pyalgotrade.technical.rsi.RSIEventWindow.__init__()=pyalgotrade.technical.rsi.RSIEventWindow-class.html#__init__,Method pyalgotrade.technical.stats.StdDev.__init__()=pyalgotrade.technical.stats.StdDev-class.html#__init__,Method pyalgotrade.technical.stats.StdDevEventWindow.__init__()=pyalgotrade.technical.stats.StdDevEventWindow-class.html#__init__,Method pyalgotrade.technical.stats.ZScore.__init__()=pyalgotrade.technical.stats.ZScore-class.html#__init__,Method pyalgotrade.technical.stats.ZScoreEventWindow.__init__()=pyalgotrade.technical.stats.ZScoreEventWindow-class.html#__init__,Method pyalgotrade.technical.stoch.SOEventWindow.__init__()=pyalgotrade.technical.stoch.SOEventWindow-class.html#__init__,Method pyalgotrade.technical.stoch.StochasticOscillator.__init__()=pyalgotrade.technical.stoch.StochasticOscillator-class.html#__init__,Method pyalgotrade.technical.vwap.VWAP.__init__()=pyalgotrade.technical.vwap.VWAP-class.html#__init__,Method pyalgotrade.technical.vwap.VWAPEventWindow.__init__()=pyalgotrade.technical.vwap.VWAPEventWindow-class.html#__init__,Method pyalgotrade.tools.resample.CSVFileWriter.__init__()=pyalgotrade.tools.resample.CSVFileWriter-class.html#__init__,Method pyalgotrade.twitter.feed.Listener.__init__()=pyalgotrade.twitter.feed.Listener-class.html#__init__,Method pyalgotrade.twitter.feed.TwitterFeed.__init__()=pyalgotrade.twitter.feed.TwitterFeed-class.html#__init__,Method pyalgotrade.utils.collections.ListDeque.__init__()=pyalgotrade.utils.collections.ListDeque-class.html#__init__,Method pyalgotrade.utils.collections.NumPyDeque.__init__()=pyalgotrade.utils.collections.NumPyDeque-class.html#__init__,Method pyalgotrade.utils.csvutils.FastDictReader.__init__()=pyalgotrade.utils.csvutils.FastDictReader-class.html#__init__,Method pyalgotrade.websocket.client.KeepAliveMgr.__init__()=pyalgotrade.websocket.client.KeepAliveMgr-class.html#__init__,Method pyalgotrade.websocket.client.WebSocketClientBase.__init__()=pyalgotrade.websocket.client.WebSocketClientBase-class.html#__init__,Method pyalgotrade.websocket.pusher.Event.__init__()=pyalgotrade.websocket.pusher.Event-class.html#__init__,Method pyalgotrade.websocket.pusher.PingKeepAliveMgr.__init__()=pyalgotrade.websocket.pusher.PingKeepAliveMgr-class.html#__init__,Method pyalgotrade.websocket.pusher.WebSocketClient.__init__()=pyalgotrade.websocket.pusher.WebSocketClient-class.html#__init__"><a title="pyalgotrade.bar.Bars.__init__
+pyalgotrade.bar.BasicBar.__init__
+pyalgotrade.barfeed.BaseBarFeed.__init__
+pyalgotrade.barfeed.OptimizerBarFeed.__init__
+pyalgotrade.barfeed.csvfeed.BarFeed.__init__
+pyalgotrade.barfeed.csvfeed.DateRangeFilter.__init__
+pyalgotrade.barfeed.csvfeed.GenericBarFeed.__init__
+pyalgotrade.barfeed.csvfeed.GenericRowParser.__init__
+pyalgotrade.barfeed.csvfeed.USEquitiesRTH.__init__
+pyalgotrade.barfeed.googlefeed.Feed.__init__
+pyalgotrade.barfeed.googlefeed.RowParser.__init__
+pyalgotrade.barfeed.ibfeed.Feed.__init__
+pyalgotrade.barfeed.ibfeed.RowParser.__init__
+pyalgotrade.barfeed.membf.BarFeed.__init__
+pyalgotrade.barfeed.ninjatraderfeed.Feed.__init__
+pyalgotrade.barfeed.ninjatraderfeed.RowParser.__init__
+pyalgotrade.barfeed.quandlfeed.Feed.__init__
+pyalgotrade.barfeed.resampled.BarsGrouper.__init__
+pyalgotrade.barfeed.resampled.ResampledBarFeed.__init__
+pyalgotrade.barfeed.sqlitefeed.Database.__init__
+pyalgotrade.barfeed.sqlitefeed.Feed.__init__
+pyalgotrade.barfeed.yahoofeed.Feed.__init__
+pyalgotrade.barfeed.yahoofeed.RowParser.__init__
+pyalgotrade.bitcoincharts.barfeed.CSVTradeFeed.__init__
+pyalgotrade.bitcoincharts.barfeed.RowParser.__init__
+pyalgotrade.bitcoincharts.barfeed.TradeBar.__init__
+pyalgotrade.bitcoincharts.barfeed.UnixTimeFix.__init__
+pyalgotrade.bitstamp.broker.BacktestingBroker.__init__
+pyalgotrade.bitstamp.httpclient.AccountBalance.__init__
+pyalgotrade.bitstamp.httpclient.HTTPClient.__init__
+pyalgotrade.bitstamp.httpclient.Order.__init__
+pyalgotrade.bitstamp.httpclient.UserTransaction.__init__
+pyalgotrade.bitstamp.livebroker.LiveBroker.__init__
+pyalgotrade.bitstamp.livebroker.TradeMonitor.__init__
+pyalgotrade.bitstamp.livefeed.LiveTradeFeed.__init__
+pyalgotrade.bitstamp.livefeed.TradeBar.__init__
+pyalgotrade.bitstamp.wsclient.OrderBookUpdate.__init__
+pyalgotrade.bitstamp.wsclient.Trade.__init__
+pyalgotrade.bitstamp.wsclient.WebSocketClient.__init__
+pyalgotrade.bitstamp.wsclient.WebSocketClientThread.__init__
+pyalgotrade.broker.Broker.__init__
+pyalgotrade.broker.LimitOrder.__init__
+pyalgotrade.broker.MarketOrder.__init__
+pyalgotrade.broker.OptionLimitOrder.__init__
+pyalgotrade.broker.OptionOrder.__init__
+pyalgotrade.broker.OptionStopLimitOrder.__init__
+pyalgotrade.broker.OptionStopOrder.__init__
+pyalgotrade.broker.Order.__init__
+pyalgotrade.broker.OrderEvent.__init__
+pyalgotrade.broker.OrderExecutionInfo.__init__
+pyalgotrade.broker.StopLimitOrder.__init__
+pyalgotrade.broker.StopOrder.__init__
+pyalgotrade.broker.backtesting.BacktestingOrder.__init__
+pyalgotrade.broker.backtesting.Broker.__init__
+pyalgotrade.broker.backtesting.FixedPerTrade.__init__
+pyalgotrade.broker.backtesting.LimitOrder.__init__
+pyalgotrade.broker.backtesting.MarketOrder.__init__
+pyalgotrade.broker.backtesting.OptionLimitOrder.__init__
+pyalgotrade.broker.backtesting.OptionOrder.__init__
+pyalgotrade.broker.backtesting.OptionStopLimitOrder.__init__
+pyalgotrade.broker.backtesting.OptionStopOrder.__init__
+pyalgotrade.broker.backtesting.StopLimitOrder.__init__
+pyalgotrade.broker.backtesting.StopOrder.__init__
+pyalgotrade.broker.backtesting.TradePercentage.__init__
+pyalgotrade.broker.backtesting_old.BacktestingOrder.__init__
+pyalgotrade.broker.backtesting_old.Broker.__init__
+pyalgotrade.broker.backtesting_old.FixedPerTrade.__init__
+pyalgotrade.broker.backtesting_old.LimitOrder.__init__
+pyalgotrade.broker.backtesting_old.MarketOrder.__init__
+pyalgotrade.broker.backtesting_old.StopLimitOrder.__init__
+pyalgotrade.broker.backtesting_old.StopOrder.__init__
+pyalgotrade.broker.backtesting_old.TradePercentage.__init__
+pyalgotrade.broker.fillstrategy.DefaultStrategy.__init__
+pyalgotrade.broker.fillstrategy.FillInfo.__init__
+pyalgotrade.broker.slippage.VolumeShareSlippage.__init__
+pyalgotrade.dataseries.SequenceDataSeries.__init__
+pyalgotrade.dataseries.aligned.Syncer.__init__
+pyalgotrade.dataseries.bards.BarDataSeries.__init__
+pyalgotrade.dataseries.resampled.AggFunGrouper.__init__
+pyalgotrade.dataseries.resampled.BarGrouper.__init__
+pyalgotrade.dataseries.resampled.ResampledBarDataSeries.__init__
+pyalgotrade.dataseries.resampled.ResampledDataSeries.__init__
+pyalgotrade.dispatcher.Dispatcher.__init__
+pyalgotrade.eventprofiler.Event.__init__
+pyalgotrade.eventprofiler.Profiler.__init__
+pyalgotrade.eventprofiler.Results.__init__
+pyalgotrade.feed.BaseFeed.__init__
+pyalgotrade.feed.csvfeed.BaseFeed.__init__
+pyalgotrade.feed.csvfeed.BasicRowParser.__init__
+pyalgotrade.feed.csvfeed.DateRangeFilter.__init__
+pyalgotrade.feed.csvfeed.Feed.__init__
+pyalgotrade.feed.memfeed.MemFeed.__init__
+pyalgotrade.ib.barfeed.LiveFeed.__init__
+pyalgotrade.ib.livebroker.LimitOrder.__init__
+pyalgotrade.ib.livebroker.LiveBroker.__init__
+pyalgotrade.ib.livebroker.LiveOrder.__init__
+pyalgotrade.ib.livebroker.MarketOrder.__init__
+pyalgotrade.ib.livebroker.StopLimitOrder.__init__
+pyalgotrade.ib.livebroker.StopOrder.__init__
+pyalgotrade.observer.Event.__init__
+pyalgotrade.observer.Subject.__init__
+pyalgotrade.optimizer.base.ParameterSource.__init__
+pyalgotrade.optimizer.base.Parameters.__init__
+pyalgotrade.optimizer.base.ResultSinc.__init__
+pyalgotrade.optimizer.local.ServerThread.__init__
+pyalgotrade.optimizer.server.Results.__init__
+pyalgotrade.optimizer.worker.Worker.__init__
+pyalgotrade.optimizer.xmlrpcserver.AutoStopThread.__init__
+pyalgotrade.optimizer.xmlrpcserver.Job.__init__
+pyalgotrade.optimizer.xmlrpcserver.Server.__init__
+pyalgotrade.plotter.CustomMarker.__init__
+pyalgotrade.plotter.InstrumentMarker.__init__
+pyalgotrade.plotter.InstrumentSubplot.__init__
+pyalgotrade.plotter.LineMarker.__init__
+pyalgotrade.plotter.Series.__init__
+pyalgotrade.plotter.StrategyPlotter.__init__
+pyalgotrade.plotter.Subplot.__init__
+pyalgotrade.resamplebase.DayRange.__init__
+pyalgotrade.resamplebase.Grouper.__init__
+pyalgotrade.resamplebase.IntraDayRange.__init__
+pyalgotrade.resamplebase.MonthRange.__init__
+pyalgotrade.stratanalyzer.drawdown.DrawDown.__init__
+pyalgotrade.stratanalyzer.drawdown.DrawDownHelper.__init__
+pyalgotrade.stratanalyzer.returns.PositionTracker.__init__
+pyalgotrade.stratanalyzer.returns.Returns.__init__
+pyalgotrade.stratanalyzer.returns.ReturnsAnalyzerBase.__init__
+pyalgotrade.stratanalyzer.returns.TimeWeightedReturns.__init__
+pyalgotrade.stratanalyzer.sharpe.SharpeRatio.__init__
+pyalgotrade.stratanalyzer.trades.Trades.__init__
+pyalgotrade.strategy.BacktestingStrategy.__init__
+pyalgotrade.strategy.BaseStrategy.__init__
+pyalgotrade.strategy.position.LongOptionPosition.__init__
+pyalgotrade.strategy.position.LongPosition.__init__
+pyalgotrade.strategy.position.Position.__init__
+pyalgotrade.strategy.position.ShortOptionPosition.__init__
+pyalgotrade.strategy.position.ShortPosition.__init__
+pyalgotrade.technical.EventBasedFilter.__init__
+pyalgotrade.technical.EventWindow.__init__
+pyalgotrade.technical.atr.ATR.__init__
+pyalgotrade.technical.atr.ATREventWindow.__init__
+pyalgotrade.technical.bollinger.BollingerBands.__init__
+pyalgotrade.technical.cumret.CumRetEventWindow.__init__
+pyalgotrade.technical.cumret.CumulativeReturn.__init__
+pyalgotrade.technical.highlow.High.__init__
+pyalgotrade.technical.highlow.HighLowEventWindow.__init__
+pyalgotrade.technical.highlow.Low.__init__
+pyalgotrade.technical.hurst.HurstExponent.__init__
+pyalgotrade.technical.hurst.HurstExponentEventWindow.__init__
+pyalgotrade.technical.linebreak.Line.__init__
+pyalgotrade.technical.linebreak.LineBreak.__init__
+pyalgotrade.technical.linreg.LeastSquaresRegression.__init__
+pyalgotrade.technical.linreg.LeastSquaresRegressionWindow.__init__
+pyalgotrade.technical.linreg.Slope.__init__
+pyalgotrade.technical.linreg.SlopeEventWindow.__init__
+pyalgotrade.technical.linreg.Trend.__init__
+pyalgotrade.technical.linreg.TrendEventWindow.__init__
+pyalgotrade.technical.ma.EMA.__init__
+pyalgotrade.technical.ma.EMAEventWindow.__init__
+pyalgotrade.technical.ma.SMA.__init__
+pyalgotrade.technical.ma.SMAEventWindow.__init__
+pyalgotrade.technical.ma.WMA.__init__
+pyalgotrade.technical.ma.WMAEventWindow.__init__
+pyalgotrade.technical.macd.MACD.__init__
+pyalgotrade.technical.ratio.Ratio.__init__
+pyalgotrade.technical.ratio.RatioEventWindow.__init__
+pyalgotrade.technical.roc.ROCEventWindow.__init__
+pyalgotrade.technical.roc.RateOfChange.__init__
+pyalgotrade.technical.rsi.RSI.__init__
+pyalgotrade.technical.rsi.RSIEventWindow.__init__
+pyalgotrade.technical.stats.StdDev.__init__
+pyalgotrade.technical.stats.StdDevEventWindow.__init__
+pyalgotrade.technical.stats.ZScore.__init__
+pyalgotrade.technical.stats.ZScoreEventWindow.__init__
+pyalgotrade.technical.stoch.SOEventWindow.__init__
+pyalgotrade.technical.stoch.StochasticOscillator.__init__
+pyalgotrade.technical.vwap.VWAP.__init__
+pyalgotrade.technical.vwap.VWAPEventWindow.__init__
+pyalgotrade.tools.resample.CSVFileWriter.__init__
+pyalgotrade.twitter.feed.Listener.__init__
+pyalgotrade.twitter.feed.TwitterFeed.__init__
+pyalgotrade.utils.collections.ListDeque.__init__
+pyalgotrade.utils.collections.NumPyDeque.__init__
+pyalgotrade.utils.csvutils.FastDictReader.__init__
+pyalgotrade.websocket.client.KeepAliveMgr.__init__
+pyalgotrade.websocket.client.WebSocketClientBase.__init__
+pyalgotrade.websocket.pusher.Event.__init__
+pyalgotrade.websocket.pusher.PingKeepAliveMgr.__init__
+pyalgotrade.websocket.pusher.WebSocketClient.__init__" class="py-name" href="#" onclick="return doclink('link-41', '__init__', 'link-41');">__init__</a></tt><tt class="py-op">(</tt><tt id="link-42" class="py-name"><a title="pyalgotrade.barfeed
+pyalgotrade.bitcoincharts.barfeed
+pyalgotrade.bitstamp.barfeed
+pyalgotrade.ib.barfeed" class="py-name" href="#" onclick="return doclink('link-42', 'barfeed', 'link-1');">barfeed</a></tt><tt class="py-op">.</tt><tt id="link-43" class="py-name"><a title="pyalgotrade.bar.Frequency
+pyalgotrade.barfeed.ninjatraderfeed.Frequency" class="py-name" href="#" onclick="return doclink('link-43', 'Frequency', 'link-30');">Frequency</a></tt><tt class="py-op">.</tt><tt id="link-44" class="py-name"><a title="pyalgotrade.bar.Frequency.TRADE" class="py-name" href="#" onclick="return doclink('link-44', 'TRADE', 'link-31');">TRADE</a></tt><tt class="py-op">,</tt> <tt class="py-name">maxLen</tt><tt class="py-op">)</tt> </tt>
+<a name="L150"></a><tt class="py-lineno">150</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__timezone</tt> <tt class="py-op">=</tt> <tt id="link-45" class="py-name"><a title="pyalgotrade.barfeed.csvfeed.USEquitiesRTH.timezone
+pyalgotrade.marketsession.BOVESPA.timezone
+pyalgotrade.marketsession.FTSE.timezone
+pyalgotrade.marketsession.MERVAL.timezone
+pyalgotrade.marketsession.NASDAQ.timezone
+pyalgotrade.marketsession.NYSE.timezone
+pyalgotrade.marketsession.TSE.timezone
+pyalgotrade.marketsession.USEquities.timezone" class="py-name" href="#" onclick="return doclink('link-45', 'timezone', 'link-33');">timezone</a></tt> </tt>
+<a name="L151"></a><tt class="py-lineno">151</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__unixTimeFix</tt> <tt class="py-op">=</tt> <tt id="link-46" class="py-name" targets="Class pyalgotrade.bitcoincharts.barfeed.UnixTimeFix=pyalgotrade.bitcoincharts.barfeed.UnixTimeFix-class.html"><a title="pyalgotrade.bitcoincharts.barfeed.UnixTimeFix" class="py-name" href="#" onclick="return doclink('link-46', 'UnixTimeFix', 'link-46');">UnixTimeFix</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L152"></a><tt class="py-lineno">152</tt>  <tt class="py-line"> </tt>
+<a name="CSVTradeFeed.barsHaveAdjClose"></a><div id="CSVTradeFeed.barsHaveAdjClose-def"><a name="L153"></a><tt class="py-lineno">153</tt> <a class="py-toggle" href="#" id="CSVTradeFeed.barsHaveAdjClose-toggle" onclick="return toggle('CSVTradeFeed.barsHaveAdjClose');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pyalgotrade.bitcoincharts.barfeed.CSVTradeFeed-class.html#barsHaveAdjClose">barsHaveAdjClose</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="CSVTradeFeed.barsHaveAdjClose-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="CSVTradeFeed.barsHaveAdjClose-expanded"><a name="L154"></a><tt class="py-lineno">154</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">False</tt> </tt>
+</div><a name="L155"></a><tt class="py-lineno">155</tt>  <tt class="py-line"> </tt>
+<a name="CSVTradeFeed.addBarsFromCSV"></a><div id="CSVTradeFeed.addBarsFromCSV-def"><a name="L156"></a><tt class="py-lineno">156</tt> <a class="py-toggle" href="#" id="CSVTradeFeed.addBarsFromCSV-toggle" onclick="return toggle('CSVTradeFeed.addBarsFromCSV');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pyalgotrade.bitcoincharts.barfeed.CSVTradeFeed-class.html#addBarsFromCSV">addBarsFromCSV</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">path</tt><tt class="py-op">,</tt> <tt class="py-param">instrument</tt><tt class="py-op">=</tt><tt class="py-string">"BTC"</tt><tt class="py-op">,</tt> <tt class="py-param">timezone</tt><tt class="py-op">=</tt><tt class="py-name">None</tt><tt class="py-op">,</tt> <tt class="py-param">fromDateTime</tt><tt class="py-op">=</tt><tt class="py-name">None</tt><tt class="py-op">,</tt> <tt class="py-param">toDateTime</tt><tt class="py-op">=</tt><tt class="py-name">None</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="CSVTradeFeed.addBarsFromCSV-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="CSVTradeFeed.addBarsFromCSV-expanded"><a name="L157"></a><tt class="py-lineno">157</tt>  <tt class="py-line">        <tt class="py-docstring">"""Loads bars from a trades CSV formatted file.</tt> </tt>
+<a name="L158"></a><tt class="py-lineno">158</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L159"></a><tt class="py-lineno">159</tt>  <tt class="py-line"><tt class="py-docstring">        :param path: The path to the file.</tt> </tt>
+<a name="L160"></a><tt class="py-lineno">160</tt>  <tt class="py-line"><tt class="py-docstring">        :type path: string.</tt> </tt>
+<a name="L161"></a><tt class="py-lineno">161</tt>  <tt class="py-line"><tt class="py-docstring">        :param instrument: The instrument identifier.</tt> </tt>
+<a name="L162"></a><tt class="py-lineno">162</tt>  <tt class="py-line"><tt class="py-docstring">        :type instrument: string.</tt> </tt>
+<a name="L163"></a><tt class="py-lineno">163</tt>  <tt class="py-line"><tt class="py-docstring">        :param timezone: An optional timezone to use to localize bars. By default bars are loaded in UTC.</tt> </tt>
+<a name="L164"></a><tt class="py-lineno">164</tt>  <tt class="py-line"><tt class="py-docstring">        :type timezone: A pytz timezone.</tt> </tt>
+<a name="L165"></a><tt class="py-lineno">165</tt>  <tt class="py-line"><tt class="py-docstring">        :param fromDateTime: An optional datetime to use to filter bars to load.</tt> </tt>
+<a name="L166"></a><tt class="py-lineno">166</tt>  <tt class="py-line"><tt class="py-docstring">            If supplied only those bars whose datetime is greater than or equal to fromDateTime are loaded.</tt> </tt>
+<a name="L167"></a><tt class="py-lineno">167</tt>  <tt class="py-line"><tt class="py-docstring">        :type fromDateTime: datetime.datetime.</tt> </tt>
+<a name="L168"></a><tt class="py-lineno">168</tt>  <tt class="py-line"><tt class="py-docstring">        :param toDateTime: An optional datetime to use to filter bars to load.</tt> </tt>
+<a name="L169"></a><tt class="py-lineno">169</tt>  <tt class="py-line"><tt class="py-docstring">            If supplied only those bars whose datetime is lower than or equal to toDateTime are loaded.</tt> </tt>
+<a name="L170"></a><tt class="py-lineno">170</tt>  <tt class="py-line"><tt class="py-docstring">        :type toDateTime: datetime.datetime.</tt> </tt>
+<a name="L171"></a><tt class="py-lineno">171</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L172"></a><tt class="py-lineno">172</tt>  <tt class="py-line"><tt class="py-docstring">        .. note::</tt> </tt>
+<a name="L173"></a><tt class="py-lineno">173</tt>  <tt class="py-line"><tt class="py-docstring">            * Every file that you load bars from must have trades in the same currency.</tt> </tt>
+<a name="L174"></a><tt class="py-lineno">174</tt>  <tt class="py-line"><tt class="py-docstring">            * If fromDateTime or toDateTime are naive, they are treated as UTC.</tt> </tt>
+<a name="L175"></a><tt class="py-lineno">175</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L176"></a><tt class="py-lineno">176</tt>  <tt class="py-line"> </tt>
+<a name="L177"></a><tt class="py-lineno">177</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt id="link-47" class="py-name"><a title="pyalgotrade.barfeed.csvfeed.USEquitiesRTH.timezone
+pyalgotrade.marketsession.BOVESPA.timezone
+pyalgotrade.marketsession.FTSE.timezone
+pyalgotrade.marketsession.MERVAL.timezone
+pyalgotrade.marketsession.NASDAQ.timezone
+pyalgotrade.marketsession.NYSE.timezone
+pyalgotrade.marketsession.TSE.timezone
+pyalgotrade.marketsession.USEquities.timezone" class="py-name" href="#" onclick="return doclink('link-47', 'timezone', 'link-33');">timezone</a></tt> <tt class="py-keyword">is</tt> <tt class="py-name">None</tt><tt class="py-op">:</tt> </tt>
+<a name="L178"></a><tt class="py-lineno">178</tt>  <tt class="py-line">            <tt id="link-48" class="py-name"><a title="pyalgotrade.barfeed.csvfeed.USEquitiesRTH.timezone
+pyalgotrade.marketsession.BOVESPA.timezone
+pyalgotrade.marketsession.FTSE.timezone
+pyalgotrade.marketsession.MERVAL.timezone
+pyalgotrade.marketsession.NASDAQ.timezone
+pyalgotrade.marketsession.NYSE.timezone
+pyalgotrade.marketsession.TSE.timezone
+pyalgotrade.marketsession.USEquities.timezone" class="py-name" href="#" onclick="return doclink('link-48', 'timezone', 'link-33');">timezone</a></tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__timezone</tt> </tt>
+<a name="L179"></a><tt class="py-lineno">179</tt>  <tt class="py-line">        <tt class="py-name">rowParser</tt> <tt class="py-op">=</tt> <tt id="link-49" class="py-name" targets="Class pyalgotrade.barfeed.csvfeed.RowParser=pyalgotrade.barfeed.csvfeed.RowParser-class.html,Class pyalgotrade.barfeed.googlefeed.RowParser=pyalgotrade.barfeed.googlefeed.RowParser-class.html,Class pyalgotrade.barfeed.ibfeed.RowParser=pyalgotrade.barfeed.ibfeed.RowParser-class.html,Class pyalgotrade.barfeed.ninjatraderfeed.RowParser=pyalgotrade.barfeed.ninjatraderfeed.RowParser-class.html,Class pyalgotrade.barfeed.yahoofeed.RowParser=pyalgotrade.barfeed.yahoofeed.RowParser-class.html,Class pyalgotrade.bitcoincharts.barfeed.RowParser=pyalgotrade.bitcoincharts.barfeed.RowParser-class.html,Class pyalgotrade.feed.csvfeed.RowParser=pyalgotrade.feed.csvfeed.RowParser-class.html"><a title="pyalgotrade.barfeed.csvfeed.RowParser
+pyalgotrade.barfeed.googlefeed.RowParser
+pyalgotrade.barfeed.ibfeed.RowParser
+pyalgotrade.barfeed.ninjatraderfeed.RowParser
+pyalgotrade.barfeed.yahoofeed.RowParser
+pyalgotrade.bitcoincharts.barfeed.RowParser
+pyalgotrade.feed.csvfeed.RowParser" class="py-name" href="#" onclick="return doclink('link-49', 'RowParser', 'link-49');">RowParser</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__unixTimeFix</tt><tt class="py-op">,</tt> <tt id="link-50" class="py-name"><a title="pyalgotrade.barfeed.csvfeed.USEquitiesRTH.timezone
+pyalgotrade.marketsession.BOVESPA.timezone
+pyalgotrade.marketsession.FTSE.timezone
+pyalgotrade.marketsession.MERVAL.timezone
+pyalgotrade.marketsession.NASDAQ.timezone
+pyalgotrade.marketsession.NYSE.timezone
+pyalgotrade.marketsession.TSE.timezone
+pyalgotrade.marketsession.USEquities.timezone" class="py-name" href="#" onclick="return doclink('link-50', 'timezone', 'link-33');">timezone</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L180"></a><tt class="py-lineno">180</tt>  <tt class="py-line"> </tt>
+<a name="L181"></a><tt class="py-lineno">181</tt>  <tt class="py-line">        <tt class="py-comment"># Save the barfilter to restore it later.</tt> </tt>
+<a name="L182"></a><tt class="py-lineno">182</tt>  <tt class="py-line">        <tt class="py-name">prevBarFilter</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-51" class="py-name" targets="Method pyalgotrade.barfeed.csvfeed.BarFeed.getBarFilter()=pyalgotrade.barfeed.csvfeed.BarFeed-class.html#getBarFilter"><a title="pyalgotrade.barfeed.csvfeed.BarFeed.getBarFilter" class="py-name" href="#" onclick="return doclink('link-51', 'getBarFilter', 'link-51');">getBarFilter</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L183"></a><tt class="py-lineno">183</tt>  <tt class="py-line">        <tt class="py-keyword">try</tt><tt class="py-op">:</tt> </tt>
+<a name="L184"></a><tt class="py-lineno">184</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">fromDateTime</tt> <tt class="py-keyword">or</tt> <tt class="py-name">toDateTime</tt><tt class="py-op">:</tt> </tt>
+<a name="L185"></a><tt class="py-lineno">185</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-52" class="py-name" targets="Method pyalgotrade.barfeed.csvfeed.BarFeed.setBarFilter()=pyalgotrade.barfeed.csvfeed.BarFeed-class.html#setBarFilter"><a title="pyalgotrade.barfeed.csvfeed.BarFeed.setBarFilter" class="py-name" href="#" onclick="return doclink('link-52', 'setBarFilter', 'link-52');">setBarFilter</a></tt><tt class="py-op">(</tt><tt id="link-53" class="py-name"><a title="pyalgotrade.barfeed.csvfeed
+pyalgotrade.feed.csvfeed" class="py-name" href="#" onclick="return doclink('link-53', 'csvfeed', 'link-6');">csvfeed</a></tt><tt class="py-op">.</tt><tt id="link-54" class="py-name" targets="Class pyalgotrade.barfeed.csvfeed.DateRangeFilter=pyalgotrade.barfeed.csvfeed.DateRangeFilter-class.html,Class pyalgotrade.feed.csvfeed.DateRangeFilter=pyalgotrade.feed.csvfeed.DateRangeFilter-class.html"><a title="pyalgotrade.barfeed.csvfeed.DateRangeFilter
+pyalgotrade.feed.csvfeed.DateRangeFilter" class="py-name" href="#" onclick="return doclink('link-54', 'DateRangeFilter', 'link-54');">DateRangeFilter</a></tt><tt class="py-op">(</tt><tt id="link-55" class="py-name" targets="Function pyalgotrade.bitcoincharts.barfeed.to_utc_if_naive()=pyalgotrade.bitcoincharts.barfeed-module.html#to_utc_if_naive"><a title="pyalgotrade.bitcoincharts.barfeed.to_utc_if_naive" class="py-name" href="#" onclick="return doclink('link-55', 'to_utc_if_naive', 'link-55');">to_utc_if_naive</a></tt><tt class="py-op">(</tt><tt class="py-name">fromDateTime</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt id="link-56" class="py-name"><a title="pyalgotrade.bitcoincharts.barfeed.to_utc_if_naive" class="py-name" href="#" onclick="return doclink('link-56', 'to_utc_if_naive', 'link-55');">to_utc_if_naive</a></tt><tt class="py-op">(</tt><tt class="py-name">toDateTime</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L186"></a><tt class="py-lineno">186</tt>  <tt class="py-line">            <tt class="py-name">super</tt><tt class="py-op">(</tt><tt id="link-57" class="py-name"><a title="pyalgotrade.bitcoincharts.barfeed.CSVTradeFeed" class="py-name" href="#" onclick="return doclink('link-57', 'CSVTradeFeed', 'link-40');">CSVTradeFeed</a></tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt id="link-58" class="py-name" targets="Method pyalgotrade.barfeed.csvfeed.BarFeed.addBarsFromCSV()=pyalgotrade.barfeed.csvfeed.BarFeed-class.html#addBarsFromCSV,Method pyalgotrade.barfeed.csvfeed.GenericBarFeed.addBarsFromCSV()=pyalgotrade.barfeed.csvfeed.GenericBarFeed-class.html#addBarsFromCSV,Method pyalgotrade.barfeed.googlefeed.Feed.addBarsFromCSV()=pyalgotrade.barfeed.googlefeed.Feed-class.html#addBarsFromCSV,Method pyalgotrade.barfeed.ibfeed.Feed.addBarsFromCSV()=pyalgotrade.barfeed.ibfeed.Feed-class.html#addBarsFromCSV,Method pyalgotrade.barfeed.ninjatraderfeed.Feed.addBarsFromCSV()=pyalgotrade.barfeed.ninjatraderfeed.Feed-class.html#addBarsFromCSV,Method pyalgotrade.barfeed.yahoofeed.Feed.addBarsFromCSV()=pyalgotrade.barfeed.yahoofeed.Feed-class.html#addBarsFromCSV,Method pyalgotrade.bitcoincharts.barfeed.CSVTradeFeed.addBarsFromCSV()=pyalgotrade.bitcoincharts.barfeed.CSVTradeFeed-class.html#addBarsFromCSV"><a title="pyalgotrade.barfeed.csvfeed.BarFeed.addBarsFromCSV
+pyalgotrade.barfeed.csvfeed.GenericBarFeed.addBarsFromCSV
+pyalgotrade.barfeed.googlefeed.Feed.addBarsFromCSV
+pyalgotrade.barfeed.ibfeed.Feed.addBarsFromCSV
+pyalgotrade.barfeed.ninjatraderfeed.Feed.addBarsFromCSV
+pyalgotrade.barfeed.yahoofeed.Feed.addBarsFromCSV
+pyalgotrade.bitcoincharts.barfeed.CSVTradeFeed.addBarsFromCSV" class="py-name" href="#" onclick="return doclink('link-58', 'addBarsFromCSV', 'link-58');">addBarsFromCSV</a></tt><tt class="py-op">(</tt><tt class="py-name">instrument</tt><tt class="py-op">,</tt> <tt class="py-name">path</tt><tt class="py-op">,</tt> <tt class="py-name">rowParser</tt><tt class="py-op">)</tt> </tt>
+<a name="L187"></a><tt class="py-lineno">187</tt>  <tt class="py-line">        <tt class="py-keyword">finally</tt><tt class="py-op">:</tt> </tt>
+<a name="L188"></a><tt class="py-lineno">188</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-59" class="py-name"><a title="pyalgotrade.barfeed.csvfeed.BarFeed.setBarFilter" class="py-name" href="#" onclick="return doclink('link-59', 'setBarFilter', 'link-52');">setBarFilter</a></tt><tt class="py-op">(</tt><tt class="py-name">prevBarFilter</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L189"></a><tt class="py-lineno">189</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="pyalgotrade-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Sat Oct 15 14:17:56 2016
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

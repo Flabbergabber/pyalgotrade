@@ -1,0 +1,766 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>pyalgotrade.optimizer.xmlrpcserver</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="pyalgotrade-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="pyalgotrade-module.html">Package&nbsp;pyalgotrade</a> ::
+        <a href="pyalgotrade.optimizer-module.html">Package&nbsp;optimizer</a> ::
+        Module&nbsp;xmlrpcserver
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="pyalgotrade.optimizer.xmlrpcserver-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="pyalgotrade.optimizer.xmlrpcserver-module.html">Module pyalgotrade.optimizer.xmlrpcserver</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno">  1</tt>  <tt class="py-line"><tt class="py-comment"># PyAlgoTrade</tt> </tt>
+<a name="L2"></a><tt class="py-lineno">  2</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L3"></a><tt class="py-lineno">  3</tt>  <tt class="py-line"><tt class="py-comment"># Copyright 2011-2015 Gabriel Martin Becedillas Ruiz</tt> </tt>
+<a name="L4"></a><tt class="py-lineno">  4</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L5"></a><tt class="py-lineno">  5</tt>  <tt class="py-line"><tt class="py-comment"># Licensed under the Apache License, Version 2.0 (the "License");</tt> </tt>
+<a name="L6"></a><tt class="py-lineno">  6</tt>  <tt class="py-line"><tt class="py-comment"># you may not use this file except in compliance with the License.</tt> </tt>
+<a name="L7"></a><tt class="py-lineno">  7</tt>  <tt class="py-line"><tt class="py-comment"># You may obtain a copy of the License at</tt> </tt>
+<a name="L8"></a><tt class="py-lineno">  8</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L9"></a><tt class="py-lineno">  9</tt>  <tt class="py-line"><tt class="py-comment">#   http://www.apache.org/licenses/LICENSE-2.0</tt> </tt>
+<a name="L10"></a><tt class="py-lineno"> 10</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L11"></a><tt class="py-lineno"> 11</tt>  <tt class="py-line"><tt class="py-comment"># Unless required by applicable law or agreed to in writing, software</tt> </tt>
+<a name="L12"></a><tt class="py-lineno"> 12</tt>  <tt class="py-line"><tt class="py-comment"># distributed under the License is distributed on an "AS IS" BASIS,</tt> </tt>
+<a name="L13"></a><tt class="py-lineno"> 13</tt>  <tt class="py-line"><tt class="py-comment"># WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</tt> </tt>
+<a name="L14"></a><tt class="py-lineno"> 14</tt>  <tt class="py-line"><tt class="py-comment"># See the License for the specific language governing permissions and</tt> </tt>
+<a name="L15"></a><tt class="py-lineno"> 15</tt>  <tt class="py-line"><tt class="py-comment"># limitations under the License.</tt> </tt>
+<a name="L16"></a><tt class="py-lineno"> 16</tt>  <tt class="py-line"> </tt>
+<a name="L17"></a><tt class="py-lineno"> 17</tt>  <tt class="py-line"><tt class="py-docstring">"""</tt> </tt>
+<a name="L18"></a><tt class="py-lineno"> 18</tt>  <tt class="py-line"><tt class="py-docstring">.. moduleauthor:: Gabriel Martin Becedillas Ruiz &lt;gabriel.becedillas@gmail.com&gt;</tt> </tt>
+<a name="L19"></a><tt class="py-lineno"> 19</tt>  <tt class="py-line"><tt class="py-docstring">"""</tt> </tt>
+<a name="L20"></a><tt class="py-lineno"> 20</tt>  <tt class="py-line"> </tt>
+<a name="L21"></a><tt class="py-lineno"> 21</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">SimpleXMLRPCServer</tt> </tt>
+<a name="L22"></a><tt class="py-lineno"> 22</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">pickle</tt> </tt>
+<a name="L23"></a><tt class="py-lineno"> 23</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">threading</tt> </tt>
+<a name="L24"></a><tt class="py-lineno"> 24</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">time</tt> </tt>
+<a name="L25"></a><tt class="py-lineno"> 25</tt>  <tt class="py-line"> </tt>
+<a name="L26"></a><tt class="py-lineno"> 26</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt id="link-0" class="py-name" targets="Package pyalgotrade=pyalgotrade-module.html"><a title="pyalgotrade" class="py-name" href="#" onclick="return doclink('link-0', 'pyalgotrade', 'link-0');">pyalgotrade</a></tt><tt class="py-op">.</tt><tt id="link-1" class="py-name" targets="Variable pyalgotrade.bitstamp.common.logger=pyalgotrade.bitstamp.common-module.html#logger,Module pyalgotrade.logger=pyalgotrade.logger-module.html,Variable pyalgotrade.optimizer.local.logger=pyalgotrade.optimizer.local-module.html#logger,Variable pyalgotrade.optimizer.server.logger=pyalgotrade.optimizer.server-module.html#logger,Variable pyalgotrade.optimizer.xmlrpcserver.logger=pyalgotrade.optimizer.xmlrpcserver-module.html#logger,Variable pyalgotrade.twitter.feed.logger=pyalgotrade.twitter.feed-module.html#logger,Variable pyalgotrade.websocket.client.logger=pyalgotrade.websocket.client-module.html#logger,Variable pyalgotrade.websocket.pusher.logger=pyalgotrade.websocket.pusher-module.html#logger"><a title="pyalgotrade.bitstamp.common.logger
+pyalgotrade.logger
+pyalgotrade.optimizer.local.logger
+pyalgotrade.optimizer.server.logger
+pyalgotrade.optimizer.xmlrpcserver.logger
+pyalgotrade.twitter.feed.logger
+pyalgotrade.websocket.client.logger
+pyalgotrade.websocket.pusher.logger" class="py-name" href="#" onclick="return doclink('link-1', 'logger', 'link-1');">logger</a></tt> </tt>
+<a name="L27"></a><tt class="py-lineno"> 27</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-2" class="py-name"><a title="pyalgotrade" class="py-name" href="#" onclick="return doclink('link-2', 'pyalgotrade', 'link-0');">pyalgotrade</a></tt><tt class="py-op">.</tt><tt id="link-3" class="py-name" targets="Package pyalgotrade.optimizer=pyalgotrade.optimizer-module.html"><a title="pyalgotrade.optimizer" class="py-name" href="#" onclick="return doclink('link-3', 'optimizer', 'link-3');">optimizer</a></tt> <tt class="py-keyword">import</tt> <tt id="link-4" class="py-name" targets="Module pyalgotrade.optimizer.base=pyalgotrade.optimizer.base-module.html"><a title="pyalgotrade.optimizer.base" class="py-name" href="#" onclick="return doclink('link-4', 'base', 'link-4');">base</a></tt> </tt>
+<a name="L28"></a><tt class="py-lineno"> 28</tt>  <tt class="py-line"> </tt>
+<a name="L29"></a><tt class="py-lineno"> 29</tt>  <tt class="py-line"><tt id="link-5" class="py-name"><a title="pyalgotrade.bitstamp.common.logger
+pyalgotrade.logger
+pyalgotrade.optimizer.local.logger
+pyalgotrade.optimizer.server.logger
+pyalgotrade.optimizer.xmlrpcserver.logger
+pyalgotrade.twitter.feed.logger
+pyalgotrade.websocket.client.logger
+pyalgotrade.websocket.pusher.logger" class="py-name" href="#" onclick="return doclink('link-5', 'logger', 'link-1');">logger</a></tt> <tt class="py-op">=</tt> <tt id="link-6" class="py-name"><a title="pyalgotrade" class="py-name" href="#" onclick="return doclink('link-6', 'pyalgotrade', 'link-0');">pyalgotrade</a></tt><tt class="py-op">.</tt><tt id="link-7" class="py-name"><a title="pyalgotrade.bitstamp.common.logger
+pyalgotrade.logger
+pyalgotrade.optimizer.local.logger
+pyalgotrade.optimizer.server.logger
+pyalgotrade.optimizer.xmlrpcserver.logger
+pyalgotrade.twitter.feed.logger
+pyalgotrade.websocket.client.logger
+pyalgotrade.websocket.pusher.logger" class="py-name" href="#" onclick="return doclink('link-7', 'logger', 'link-1');">logger</a></tt><tt class="py-op">.</tt><tt id="link-8" class="py-name" targets="Method pyalgotrade.broker.backtesting.Broker.getLogger()=pyalgotrade.broker.backtesting.Broker-class.html#getLogger,Method pyalgotrade.broker.backtesting_old.Broker.getLogger()=pyalgotrade.broker.backtesting_old.Broker-class.html#getLogger,Method pyalgotrade.optimizer.worker.Worker.getLogger()=pyalgotrade.optimizer.worker.Worker-class.html#getLogger,Method pyalgotrade.strategy.BaseStrategy.getLogger()=pyalgotrade.strategy.BaseStrategy-class.html#getLogger"><a title="pyalgotrade.broker.backtesting.Broker.getLogger
+pyalgotrade.broker.backtesting_old.Broker.getLogger
+pyalgotrade.optimizer.worker.Worker.getLogger
+pyalgotrade.strategy.BaseStrategy.getLogger" class="py-name" href="#" onclick="return doclink('link-8', 'getLogger', 'link-8');">getLogger</a></tt><tt class="py-op">(</tt><tt class="py-name">__name__</tt><tt class="py-op">)</tt> </tt>
+<a name="L30"></a><tt class="py-lineno"> 30</tt>  <tt class="py-line"> </tt>
+<a name="L31"></a><tt class="py-lineno"> 31</tt>  <tt class="py-line"> </tt>
+<a name="AutoStopThread"></a><div id="AutoStopThread-def"><a name="L32"></a><tt class="py-lineno"> 32</tt> <a class="py-toggle" href="#" id="AutoStopThread-toggle" onclick="return toggle('AutoStopThread');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="pyalgotrade.optimizer.xmlrpcserver.AutoStopThread-class.html">AutoStopThread</a><tt class="py-op">(</tt><tt class="py-base-class">threading</tt><tt class="py-op">.</tt><tt class="py-base-class">Thread</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="AutoStopThread-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="AutoStopThread-expanded"><a name="AutoStopThread.__init__"></a><div id="AutoStopThread.__init__-def"><a name="L33"></a><tt class="py-lineno"> 33</tt> <a class="py-toggle" href="#" id="AutoStopThread.__init__-toggle" onclick="return toggle('AutoStopThread.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pyalgotrade.optimizer.xmlrpcserver.AutoStopThread-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">server</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="AutoStopThread.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="AutoStopThread.__init__-expanded"><a name="L34"></a><tt class="py-lineno"> 34</tt>  <tt class="py-line">        <tt class="py-name">super</tt><tt class="py-op">(</tt><tt id="link-9" class="py-name" targets="Class pyalgotrade.optimizer.xmlrpcserver.AutoStopThread=pyalgotrade.optimizer.xmlrpcserver.AutoStopThread-class.html"><a title="pyalgotrade.optimizer.xmlrpcserver.AutoStopThread" class="py-name" href="#" onclick="return doclink('link-9', 'AutoStopThread', 'link-9');">AutoStopThread</a></tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt id="link-10" class="py-name" targets="Method pyalgotrade.bar.Bars.__init__()=pyalgotrade.bar.Bars-class.html#__init__,Method pyalgotrade.bar.BasicBar.__init__()=pyalgotrade.bar.BasicBar-class.html#__init__,Method pyalgotrade.barfeed.BaseBarFeed.__init__()=pyalgotrade.barfeed.BaseBarFeed-class.html#__init__,Method pyalgotrade.barfeed.OptimizerBarFeed.__init__()=pyalgotrade.barfeed.OptimizerBarFeed-class.html#__init__,Method pyalgotrade.barfeed.csvfeed.BarFeed.__init__()=pyalgotrade.barfeed.csvfeed.BarFeed-class.html#__init__,Method pyalgotrade.barfeed.csvfeed.DateRangeFilter.__init__()=pyalgotrade.barfeed.csvfeed.DateRangeFilter-class.html#__init__,Method pyalgotrade.barfeed.csvfeed.GenericBarFeed.__init__()=pyalgotrade.barfeed.csvfeed.GenericBarFeed-class.html#__init__,Method pyalgotrade.barfeed.csvfeed.GenericRowParser.__init__()=pyalgotrade.barfeed.csvfeed.GenericRowParser-class.html#__init__,Method pyalgotrade.barfeed.csvfeed.USEquitiesRTH.__init__()=pyalgotrade.barfeed.csvfeed.USEquitiesRTH-class.html#__init__,Method pyalgotrade.barfeed.googlefeed.Feed.__init__()=pyalgotrade.barfeed.googlefeed.Feed-class.html#__init__,Method pyalgotrade.barfeed.googlefeed.RowParser.__init__()=pyalgotrade.barfeed.googlefeed.RowParser-class.html#__init__,Method pyalgotrade.barfeed.ibfeed.Feed.__init__()=pyalgotrade.barfeed.ibfeed.Feed-class.html#__init__,Method pyalgotrade.barfeed.ibfeed.RowParser.__init__()=pyalgotrade.barfeed.ibfeed.RowParser-class.html#__init__,Method pyalgotrade.barfeed.membf.BarFeed.__init__()=pyalgotrade.barfeed.membf.BarFeed-class.html#__init__,Method pyalgotrade.barfeed.ninjatraderfeed.Feed.__init__()=pyalgotrade.barfeed.ninjatraderfeed.Feed-class.html#__init__,Method pyalgotrade.barfeed.ninjatraderfeed.RowParser.__init__()=pyalgotrade.barfeed.ninjatraderfeed.RowParser-class.html#__init__,Method pyalgotrade.barfeed.quandlfeed.Feed.__init__()=pyalgotrade.barfeed.quandlfeed.Feed-class.html#__init__,Method pyalgotrade.barfeed.resampled.BarsGrouper.__init__()=pyalgotrade.barfeed.resampled.BarsGrouper-class.html#__init__,Method pyalgotrade.barfeed.resampled.ResampledBarFeed.__init__()=pyalgotrade.barfeed.resampled.ResampledBarFeed-class.html#__init__,Method pyalgotrade.barfeed.sqlitefeed.Database.__init__()=pyalgotrade.barfeed.sqlitefeed.Database-class.html#__init__,Method pyalgotrade.barfeed.sqlitefeed.Feed.__init__()=pyalgotrade.barfeed.sqlitefeed.Feed-class.html#__init__,Method pyalgotrade.barfeed.yahoofeed.Feed.__init__()=pyalgotrade.barfeed.yahoofeed.Feed-class.html#__init__,Method pyalgotrade.barfeed.yahoofeed.RowParser.__init__()=pyalgotrade.barfeed.yahoofeed.RowParser-class.html#__init__,Method pyalgotrade.bitcoincharts.barfeed.CSVTradeFeed.__init__()=pyalgotrade.bitcoincharts.barfeed.CSVTradeFeed-class.html#__init__,Method pyalgotrade.bitcoincharts.barfeed.RowParser.__init__()=pyalgotrade.bitcoincharts.barfeed.RowParser-class.html#__init__,Method pyalgotrade.bitcoincharts.barfeed.TradeBar.__init__()=pyalgotrade.bitcoincharts.barfeed.TradeBar-class.html#__init__,Method pyalgotrade.bitcoincharts.barfeed.UnixTimeFix.__init__()=pyalgotrade.bitcoincharts.barfeed.UnixTimeFix-class.html#__init__,Method pyalgotrade.bitstamp.broker.BacktestingBroker.__init__()=pyalgotrade.bitstamp.broker.BacktestingBroker-class.html#__init__,Method pyalgotrade.bitstamp.httpclient.AccountBalance.__init__()=pyalgotrade.bitstamp.httpclient.AccountBalance-class.html#__init__,Method pyalgotrade.bitstamp.httpclient.HTTPClient.__init__()=pyalgotrade.bitstamp.httpclient.HTTPClient-class.html#__init__,Method pyalgotrade.bitstamp.httpclient.Order.__init__()=pyalgotrade.bitstamp.httpclient.Order-class.html#__init__,Method pyalgotrade.bitstamp.httpclient.UserTransaction.__init__()=pyalgotrade.bitstamp.httpclient.UserTransaction-class.html#__init__,Method pyalgotrade.bitstamp.livebroker.LiveBroker.__init__()=pyalgotrade.bitstamp.livebroker.LiveBroker-class.html#__init__,Method pyalgotrade.bitstamp.livebroker.TradeMonitor.__init__()=pyalgotrade.bitstamp.livebroker.TradeMonitor-class.html#__init__,Method pyalgotrade.bitstamp.livefeed.LiveTradeFeed.__init__()=pyalgotrade.bitstamp.livefeed.LiveTradeFeed-class.html#__init__,Method pyalgotrade.bitstamp.livefeed.TradeBar.__init__()=pyalgotrade.bitstamp.livefeed.TradeBar-class.html#__init__,Method pyalgotrade.bitstamp.wsclient.OrderBookUpdate.__init__()=pyalgotrade.bitstamp.wsclient.OrderBookUpdate-class.html#__init__,Method pyalgotrade.bitstamp.wsclient.Trade.__init__()=pyalgotrade.bitstamp.wsclient.Trade-class.html#__init__,Method pyalgotrade.bitstamp.wsclient.WebSocketClient.__init__()=pyalgotrade.bitstamp.wsclient.WebSocketClient-class.html#__init__,Method pyalgotrade.bitstamp.wsclient.WebSocketClientThread.__init__()=pyalgotrade.bitstamp.wsclient.WebSocketClientThread-class.html#__init__,Method pyalgotrade.broker.Broker.__init__()=pyalgotrade.broker.Broker-class.html#__init__,Method pyalgotrade.broker.LimitOrder.__init__()=pyalgotrade.broker.LimitOrder-class.html#__init__,Method pyalgotrade.broker.MarketOrder.__init__()=pyalgotrade.broker.MarketOrder-class.html#__init__,Method pyalgotrade.broker.OptionLimitOrder.__init__()=pyalgotrade.broker.OptionLimitOrder-class.html#__init__,Method pyalgotrade.broker.OptionOrder.__init__()=pyalgotrade.broker.OptionOrder-class.html#__init__,Method pyalgotrade.broker.OptionStopLimitOrder.__init__()=pyalgotrade.broker.OptionStopLimitOrder-class.html#__init__,Method pyalgotrade.broker.OptionStopOrder.__init__()=pyalgotrade.broker.OptionStopOrder-class.html#__init__,Method pyalgotrade.broker.Order.__init__()=pyalgotrade.broker.Order-class.html#__init__,Method pyalgotrade.broker.OrderEvent.__init__()=pyalgotrade.broker.OrderEvent-class.html#__init__,Method pyalgotrade.broker.OrderExecutionInfo.__init__()=pyalgotrade.broker.OrderExecutionInfo-class.html#__init__,Method pyalgotrade.broker.StopLimitOrder.__init__()=pyalgotrade.broker.StopLimitOrder-class.html#__init__,Method pyalgotrade.broker.StopOrder.__init__()=pyalgotrade.broker.StopOrder-class.html#__init__,Method pyalgotrade.broker.backtesting.BacktestingOrder.__init__()=pyalgotrade.broker.backtesting.BacktestingOrder-class.html#__init__,Method pyalgotrade.broker.backtesting.Broker.__init__()=pyalgotrade.broker.backtesting.Broker-class.html#__init__,Method pyalgotrade.broker.backtesting.FixedPerTrade.__init__()=pyalgotrade.broker.backtesting.FixedPerTrade-class.html#__init__,Method pyalgotrade.broker.backtesting.LimitOrder.__init__()=pyalgotrade.broker.backtesting.LimitOrder-class.html#__init__,Method pyalgotrade.broker.backtesting.MarketOrder.__init__()=pyalgotrade.broker.backtesting.MarketOrder-class.html#__init__,Method pyalgotrade.broker.backtesting.OptionLimitOrder.__init__()=pyalgotrade.broker.backtesting.OptionLimitOrder-class.html#__init__,Method pyalgotrade.broker.backtesting.OptionOrder.__init__()=pyalgotrade.broker.backtesting.OptionOrder-class.html#__init__,Method pyalgotrade.broker.backtesting.OptionStopLimitOrder.__init__()=pyalgotrade.broker.backtesting.OptionStopLimitOrder-class.html#__init__,Method pyalgotrade.broker.backtesting.OptionStopOrder.__init__()=pyalgotrade.broker.backtesting.OptionStopOrder-class.html#__init__,Method pyalgotrade.broker.backtesting.StopLimitOrder.__init__()=pyalgotrade.broker.backtesting.StopLimitOrder-class.html#__init__,Method pyalgotrade.broker.backtesting.StopOrder.__init__()=pyalgotrade.broker.backtesting.StopOrder-class.html#__init__,Method pyalgotrade.broker.backtesting.TradePercentage.__init__()=pyalgotrade.broker.backtesting.TradePercentage-class.html#__init__,Method pyalgotrade.broker.backtesting_old.BacktestingOrder.__init__()=pyalgotrade.broker.backtesting_old.BacktestingOrder-class.html#__init__,Method pyalgotrade.broker.backtesting_old.Broker.__init__()=pyalgotrade.broker.backtesting_old.Broker-class.html#__init__,Method pyalgotrade.broker.backtesting_old.FixedPerTrade.__init__()=pyalgotrade.broker.backtesting_old.FixedPerTrade-class.html#__init__,Method pyalgotrade.broker.backtesting_old.LimitOrder.__init__()=pyalgotrade.broker.backtesting_old.LimitOrder-class.html#__init__,Method pyalgotrade.broker.backtesting_old.MarketOrder.__init__()=pyalgotrade.broker.backtesting_old.MarketOrder-class.html#__init__,Method pyalgotrade.broker.backtesting_old.StopLimitOrder.__init__()=pyalgotrade.broker.backtesting_old.StopLimitOrder-class.html#__init__,Method pyalgotrade.broker.backtesting_old.StopOrder.__init__()=pyalgotrade.broker.backtesting_old.StopOrder-class.html#__init__,Method pyalgotrade.broker.backtesting_old.TradePercentage.__init__()=pyalgotrade.broker.backtesting_old.TradePercentage-class.html#__init__,Method pyalgotrade.broker.fillstrategy.DefaultStrategy.__init__()=pyalgotrade.broker.fillstrategy.DefaultStrategy-class.html#__init__,Method pyalgotrade.broker.fillstrategy.FillInfo.__init__()=pyalgotrade.broker.fillstrategy.FillInfo-class.html#__init__,Method pyalgotrade.broker.slippage.VolumeShareSlippage.__init__()=pyalgotrade.broker.slippage.VolumeShareSlippage-class.html#__init__,Method pyalgotrade.dataseries.SequenceDataSeries.__init__()=pyalgotrade.dataseries.SequenceDataSeries-class.html#__init__,Method pyalgotrade.dataseries.aligned.Syncer.__init__()=pyalgotrade.dataseries.aligned.Syncer-class.html#__init__,Method pyalgotrade.dataseries.bards.BarDataSeries.__init__()=pyalgotrade.dataseries.bards.BarDataSeries-class.html#__init__,Method pyalgotrade.dataseries.resampled.AggFunGrouper.__init__()=pyalgotrade.dataseries.resampled.AggFunGrouper-class.html#__init__,Method pyalgotrade.dataseries.resampled.BarGrouper.__init__()=pyalgotrade.dataseries.resampled.BarGrouper-class.html#__init__,Method pyalgotrade.dataseries.resampled.ResampledBarDataSeries.__init__()=pyalgotrade.dataseries.resampled.ResampledBarDataSeries-class.html#__init__,Method pyalgotrade.dataseries.resampled.ResampledDataSeries.__init__()=pyalgotrade.dataseries.resampled.ResampledDataSeries-class.html#__init__,Method pyalgotrade.dispatcher.Dispatcher.__init__()=pyalgotrade.dispatcher.Dispatcher-class.html#__init__,Method pyalgotrade.eventprofiler.Event.__init__()=pyalgotrade.eventprofiler.Event-class.html#__init__,Method pyalgotrade.eventprofiler.Profiler.__init__()=pyalgotrade.eventprofiler.Profiler-class.html#__init__,Method pyalgotrade.eventprofiler.Results.__init__()=pyalgotrade.eventprofiler.Results-class.html#__init__,Method pyalgotrade.feed.BaseFeed.__init__()=pyalgotrade.feed.BaseFeed-class.html#__init__,Method pyalgotrade.feed.csvfeed.BaseFeed.__init__()=pyalgotrade.feed.csvfeed.BaseFeed-class.html#__init__,Method pyalgotrade.feed.csvfeed.BasicRowParser.__init__()=pyalgotrade.feed.csvfeed.BasicRowParser-class.html#__init__,Method pyalgotrade.feed.csvfeed.DateRangeFilter.__init__()=pyalgotrade.feed.csvfeed.DateRangeFilter-class.html#__init__,Method pyalgotrade.feed.csvfeed.Feed.__init__()=pyalgotrade.feed.csvfeed.Feed-class.html#__init__,Method pyalgotrade.feed.memfeed.MemFeed.__init__()=pyalgotrade.feed.memfeed.MemFeed-class.html#__init__,Method pyalgotrade.ib.barfeed.LiveFeed.__init__()=pyalgotrade.ib.barfeed.LiveFeed-class.html#__init__,Method pyalgotrade.ib.livebroker.LimitOrder.__init__()=pyalgotrade.ib.livebroker.LimitOrder-class.html#__init__,Method pyalgotrade.ib.livebroker.LiveBroker.__init__()=pyalgotrade.ib.livebroker.LiveBroker-class.html#__init__,Method pyalgotrade.ib.livebroker.LiveOrder.__init__()=pyalgotrade.ib.livebroker.LiveOrder-class.html#__init__,Method pyalgotrade.ib.livebroker.MarketOrder.__init__()=pyalgotrade.ib.livebroker.MarketOrder-class.html#__init__,Method pyalgotrade.ib.livebroker.StopLimitOrder.__init__()=pyalgotrade.ib.livebroker.StopLimitOrder-class.html#__init__,Method pyalgotrade.ib.livebroker.StopOrder.__init__()=pyalgotrade.ib.livebroker.StopOrder-class.html#__init__,Method pyalgotrade.observer.Event.__init__()=pyalgotrade.observer.Event-class.html#__init__,Method pyalgotrade.observer.Subject.__init__()=pyalgotrade.observer.Subject-class.html#__init__,Method pyalgotrade.optimizer.base.ParameterSource.__init__()=pyalgotrade.optimizer.base.ParameterSource-class.html#__init__,Method pyalgotrade.optimizer.base.Parameters.__init__()=pyalgotrade.optimizer.base.Parameters-class.html#__init__,Method pyalgotrade.optimizer.base.ResultSinc.__init__()=pyalgotrade.optimizer.base.ResultSinc-class.html#__init__,Method pyalgotrade.optimizer.local.ServerThread.__init__()=pyalgotrade.optimizer.local.ServerThread-class.html#__init__,Method pyalgotrade.optimizer.server.Results.__init__()=pyalgotrade.optimizer.server.Results-class.html#__init__,Method pyalgotrade.optimizer.worker.Worker.__init__()=pyalgotrade.optimizer.worker.Worker-class.html#__init__,Method pyalgotrade.optimizer.xmlrpcserver.AutoStopThread.__init__()=pyalgotrade.optimizer.xmlrpcserver.AutoStopThread-class.html#__init__,Method pyalgotrade.optimizer.xmlrpcserver.Job.__init__()=pyalgotrade.optimizer.xmlrpcserver.Job-class.html#__init__,Method pyalgotrade.optimizer.xmlrpcserver.Server.__init__()=pyalgotrade.optimizer.xmlrpcserver.Server-class.html#__init__,Method pyalgotrade.plotter.CustomMarker.__init__()=pyalgotrade.plotter.CustomMarker-class.html#__init__,Method pyalgotrade.plotter.InstrumentMarker.__init__()=pyalgotrade.plotter.InstrumentMarker-class.html#__init__,Method pyalgotrade.plotter.InstrumentSubplot.__init__()=pyalgotrade.plotter.InstrumentSubplot-class.html#__init__,Method pyalgotrade.plotter.LineMarker.__init__()=pyalgotrade.plotter.LineMarker-class.html#__init__,Method pyalgotrade.plotter.Series.__init__()=pyalgotrade.plotter.Series-class.html#__init__,Method pyalgotrade.plotter.StrategyPlotter.__init__()=pyalgotrade.plotter.StrategyPlotter-class.html#__init__,Method pyalgotrade.plotter.Subplot.__init__()=pyalgotrade.plotter.Subplot-class.html#__init__,Method pyalgotrade.resamplebase.DayRange.__init__()=pyalgotrade.resamplebase.DayRange-class.html#__init__,Method pyalgotrade.resamplebase.Grouper.__init__()=pyalgotrade.resamplebase.Grouper-class.html#__init__,Method pyalgotrade.resamplebase.IntraDayRange.__init__()=pyalgotrade.resamplebase.IntraDayRange-class.html#__init__,Method pyalgotrade.resamplebase.MonthRange.__init__()=pyalgotrade.resamplebase.MonthRange-class.html#__init__,Method pyalgotrade.stratanalyzer.drawdown.DrawDown.__init__()=pyalgotrade.stratanalyzer.drawdown.DrawDown-class.html#__init__,Method pyalgotrade.stratanalyzer.drawdown.DrawDownHelper.__init__()=pyalgotrade.stratanalyzer.drawdown.DrawDownHelper-class.html#__init__,Method pyalgotrade.stratanalyzer.returns.PositionTracker.__init__()=pyalgotrade.stratanalyzer.returns.PositionTracker-class.html#__init__,Method pyalgotrade.stratanalyzer.returns.Returns.__init__()=pyalgotrade.stratanalyzer.returns.Returns-class.html#__init__,Method pyalgotrade.stratanalyzer.returns.ReturnsAnalyzerBase.__init__()=pyalgotrade.stratanalyzer.returns.ReturnsAnalyzerBase-class.html#__init__,Method pyalgotrade.stratanalyzer.returns.TimeWeightedReturns.__init__()=pyalgotrade.stratanalyzer.returns.TimeWeightedReturns-class.html#__init__,Method pyalgotrade.stratanalyzer.sharpe.SharpeRatio.__init__()=pyalgotrade.stratanalyzer.sharpe.SharpeRatio-class.html#__init__,Method pyalgotrade.stratanalyzer.trades.Trades.__init__()=pyalgotrade.stratanalyzer.trades.Trades-class.html#__init__,Method pyalgotrade.strategy.BacktestingStrategy.__init__()=pyalgotrade.strategy.BacktestingStrategy-class.html#__init__,Method pyalgotrade.strategy.BaseStrategy.__init__()=pyalgotrade.strategy.BaseStrategy-class.html#__init__,Method pyalgotrade.strategy.position.LongOptionPosition.__init__()=pyalgotrade.strategy.position.LongOptionPosition-class.html#__init__,Method pyalgotrade.strategy.position.LongPosition.__init__()=pyalgotrade.strategy.position.LongPosition-class.html#__init__,Method pyalgotrade.strategy.position.Position.__init__()=pyalgotrade.strategy.position.Position-class.html#__init__,Method pyalgotrade.strategy.position.ShortOptionPosition.__init__()=pyalgotrade.strategy.position.ShortOptionPosition-class.html#__init__,Method pyalgotrade.strategy.position.ShortPosition.__init__()=pyalgotrade.strategy.position.ShortPosition-class.html#__init__,Method pyalgotrade.technical.EventBasedFilter.__init__()=pyalgotrade.technical.EventBasedFilter-class.html#__init__,Method pyalgotrade.technical.EventWindow.__init__()=pyalgotrade.technical.EventWindow-class.html#__init__,Method pyalgotrade.technical.atr.ATR.__init__()=pyalgotrade.technical.atr.ATR-class.html#__init__,Method pyalgotrade.technical.atr.ATREventWindow.__init__()=pyalgotrade.technical.atr.ATREventWindow-class.html#__init__,Method pyalgotrade.technical.bollinger.BollingerBands.__init__()=pyalgotrade.technical.bollinger.BollingerBands-class.html#__init__,Method pyalgotrade.technical.cumret.CumRetEventWindow.__init__()=pyalgotrade.technical.cumret.CumRetEventWindow-class.html#__init__,Method pyalgotrade.technical.cumret.CumulativeReturn.__init__()=pyalgotrade.technical.cumret.CumulativeReturn-class.html#__init__,Method pyalgotrade.technical.highlow.High.__init__()=pyalgotrade.technical.highlow.High-class.html#__init__,Method pyalgotrade.technical.highlow.HighLowEventWindow.__init__()=pyalgotrade.technical.highlow.HighLowEventWindow-class.html#__init__,Method pyalgotrade.technical.highlow.Low.__init__()=pyalgotrade.technical.highlow.Low-class.html#__init__,Method pyalgotrade.technical.hurst.HurstExponent.__init__()=pyalgotrade.technical.hurst.HurstExponent-class.html#__init__,Method pyalgotrade.technical.hurst.HurstExponentEventWindow.__init__()=pyalgotrade.technical.hurst.HurstExponentEventWindow-class.html#__init__,Method pyalgotrade.technical.linebreak.Line.__init__()=pyalgotrade.technical.linebreak.Line-class.html#__init__,Method pyalgotrade.technical.linebreak.LineBreak.__init__()=pyalgotrade.technical.linebreak.LineBreak-class.html#__init__,Method pyalgotrade.technical.linreg.LeastSquaresRegression.__init__()=pyalgotrade.technical.linreg.LeastSquaresRegression-class.html#__init__,Method pyalgotrade.technical.linreg.LeastSquaresRegressionWindow.__init__()=pyalgotrade.technical.linreg.LeastSquaresRegressionWindow-class.html#__init__,Method pyalgotrade.technical.linreg.Slope.__init__()=pyalgotrade.technical.linreg.Slope-class.html#__init__,Method pyalgotrade.technical.linreg.SlopeEventWindow.__init__()=pyalgotrade.technical.linreg.SlopeEventWindow-class.html#__init__,Method pyalgotrade.technical.linreg.Trend.__init__()=pyalgotrade.technical.linreg.Trend-class.html#__init__,Method pyalgotrade.technical.linreg.TrendEventWindow.__init__()=pyalgotrade.technical.linreg.TrendEventWindow-class.html#__init__,Method pyalgotrade.technical.ma.EMA.__init__()=pyalgotrade.technical.ma.EMA-class.html#__init__,Method pyalgotrade.technical.ma.EMAEventWindow.__init__()=pyalgotrade.technical.ma.EMAEventWindow-class.html#__init__,Method pyalgotrade.technical.ma.SMA.__init__()=pyalgotrade.technical.ma.SMA-class.html#__init__,Method pyalgotrade.technical.ma.SMAEventWindow.__init__()=pyalgotrade.technical.ma.SMAEventWindow-class.html#__init__,Method pyalgotrade.technical.ma.WMA.__init__()=pyalgotrade.technical.ma.WMA-class.html#__init__,Method pyalgotrade.technical.ma.WMAEventWindow.__init__()=pyalgotrade.technical.ma.WMAEventWindow-class.html#__init__,Method pyalgotrade.technical.macd.MACD.__init__()=pyalgotrade.technical.macd.MACD-class.html#__init__,Method pyalgotrade.technical.ratio.Ratio.__init__()=pyalgotrade.technical.ratio.Ratio-class.html#__init__,Method pyalgotrade.technical.ratio.RatioEventWindow.__init__()=pyalgotrade.technical.ratio.RatioEventWindow-class.html#__init__,Method pyalgotrade.technical.roc.ROCEventWindow.__init__()=pyalgotrade.technical.roc.ROCEventWindow-class.html#__init__,Method pyalgotrade.technical.roc.RateOfChange.__init__()=pyalgotrade.technical.roc.RateOfChange-class.html#__init__,Method pyalgotrade.technical.rsi.RSI.__init__()=pyalgotrade.technical.rsi.RSI-class.html#__init__,Method pyalgotrade.technical.rsi.RSIEventWindow.__init__()=pyalgotrade.technical.rsi.RSIEventWindow-class.html#__init__,Method pyalgotrade.technical.stats.StdDev.__init__()=pyalgotrade.technical.stats.StdDev-class.html#__init__,Method pyalgotrade.technical.stats.StdDevEventWindow.__init__()=pyalgotrade.technical.stats.StdDevEventWindow-class.html#__init__,Method pyalgotrade.technical.stats.ZScore.__init__()=pyalgotrade.technical.stats.ZScore-class.html#__init__,Method pyalgotrade.technical.stats.ZScoreEventWindow.__init__()=pyalgotrade.technical.stats.ZScoreEventWindow-class.html#__init__,Method pyalgotrade.technical.stoch.SOEventWindow.__init__()=pyalgotrade.technical.stoch.SOEventWindow-class.html#__init__,Method pyalgotrade.technical.stoch.StochasticOscillator.__init__()=pyalgotrade.technical.stoch.StochasticOscillator-class.html#__init__,Method pyalgotrade.technical.vwap.VWAP.__init__()=pyalgotrade.technical.vwap.VWAP-class.html#__init__,Method pyalgotrade.technical.vwap.VWAPEventWindow.__init__()=pyalgotrade.technical.vwap.VWAPEventWindow-class.html#__init__,Method pyalgotrade.tools.resample.CSVFileWriter.__init__()=pyalgotrade.tools.resample.CSVFileWriter-class.html#__init__,Method pyalgotrade.twitter.feed.Listener.__init__()=pyalgotrade.twitter.feed.Listener-class.html#__init__,Method pyalgotrade.twitter.feed.TwitterFeed.__init__()=pyalgotrade.twitter.feed.TwitterFeed-class.html#__init__,Method pyalgotrade.utils.collections.ListDeque.__init__()=pyalgotrade.utils.collections.ListDeque-class.html#__init__,Method pyalgotrade.utils.collections.NumPyDeque.__init__()=pyalgotrade.utils.collections.NumPyDeque-class.html#__init__,Method pyalgotrade.utils.csvutils.FastDictReader.__init__()=pyalgotrade.utils.csvutils.FastDictReader-class.html#__init__,Method pyalgotrade.websocket.client.KeepAliveMgr.__init__()=pyalgotrade.websocket.client.KeepAliveMgr-class.html#__init__,Method pyalgotrade.websocket.client.WebSocketClientBase.__init__()=pyalgotrade.websocket.client.WebSocketClientBase-class.html#__init__,Method pyalgotrade.websocket.pusher.Event.__init__()=pyalgotrade.websocket.pusher.Event-class.html#__init__,Method pyalgotrade.websocket.pusher.PingKeepAliveMgr.__init__()=pyalgotrade.websocket.pusher.PingKeepAliveMgr-class.html#__init__,Method pyalgotrade.websocket.pusher.WebSocketClient.__init__()=pyalgotrade.websocket.pusher.WebSocketClient-class.html#__init__"><a title="pyalgotrade.bar.Bars.__init__
+pyalgotrade.bar.BasicBar.__init__
+pyalgotrade.barfeed.BaseBarFeed.__init__
+pyalgotrade.barfeed.OptimizerBarFeed.__init__
+pyalgotrade.barfeed.csvfeed.BarFeed.__init__
+pyalgotrade.barfeed.csvfeed.DateRangeFilter.__init__
+pyalgotrade.barfeed.csvfeed.GenericBarFeed.__init__
+pyalgotrade.barfeed.csvfeed.GenericRowParser.__init__
+pyalgotrade.barfeed.csvfeed.USEquitiesRTH.__init__
+pyalgotrade.barfeed.googlefeed.Feed.__init__
+pyalgotrade.barfeed.googlefeed.RowParser.__init__
+pyalgotrade.barfeed.ibfeed.Feed.__init__
+pyalgotrade.barfeed.ibfeed.RowParser.__init__
+pyalgotrade.barfeed.membf.BarFeed.__init__
+pyalgotrade.barfeed.ninjatraderfeed.Feed.__init__
+pyalgotrade.barfeed.ninjatraderfeed.RowParser.__init__
+pyalgotrade.barfeed.quandlfeed.Feed.__init__
+pyalgotrade.barfeed.resampled.BarsGrouper.__init__
+pyalgotrade.barfeed.resampled.ResampledBarFeed.__init__
+pyalgotrade.barfeed.sqlitefeed.Database.__init__
+pyalgotrade.barfeed.sqlitefeed.Feed.__init__
+pyalgotrade.barfeed.yahoofeed.Feed.__init__
+pyalgotrade.barfeed.yahoofeed.RowParser.__init__
+pyalgotrade.bitcoincharts.barfeed.CSVTradeFeed.__init__
+pyalgotrade.bitcoincharts.barfeed.RowParser.__init__
+pyalgotrade.bitcoincharts.barfeed.TradeBar.__init__
+pyalgotrade.bitcoincharts.barfeed.UnixTimeFix.__init__
+pyalgotrade.bitstamp.broker.BacktestingBroker.__init__
+pyalgotrade.bitstamp.httpclient.AccountBalance.__init__
+pyalgotrade.bitstamp.httpclient.HTTPClient.__init__
+pyalgotrade.bitstamp.httpclient.Order.__init__
+pyalgotrade.bitstamp.httpclient.UserTransaction.__init__
+pyalgotrade.bitstamp.livebroker.LiveBroker.__init__
+pyalgotrade.bitstamp.livebroker.TradeMonitor.__init__
+pyalgotrade.bitstamp.livefeed.LiveTradeFeed.__init__
+pyalgotrade.bitstamp.livefeed.TradeBar.__init__
+pyalgotrade.bitstamp.wsclient.OrderBookUpdate.__init__
+pyalgotrade.bitstamp.wsclient.Trade.__init__
+pyalgotrade.bitstamp.wsclient.WebSocketClient.__init__
+pyalgotrade.bitstamp.wsclient.WebSocketClientThread.__init__
+pyalgotrade.broker.Broker.__init__
+pyalgotrade.broker.LimitOrder.__init__
+pyalgotrade.broker.MarketOrder.__init__
+pyalgotrade.broker.OptionLimitOrder.__init__
+pyalgotrade.broker.OptionOrder.__init__
+pyalgotrade.broker.OptionStopLimitOrder.__init__
+pyalgotrade.broker.OptionStopOrder.__init__
+pyalgotrade.broker.Order.__init__
+pyalgotrade.broker.OrderEvent.__init__
+pyalgotrade.broker.OrderExecutionInfo.__init__
+pyalgotrade.broker.StopLimitOrder.__init__
+pyalgotrade.broker.StopOrder.__init__
+pyalgotrade.broker.backtesting.BacktestingOrder.__init__
+pyalgotrade.broker.backtesting.Broker.__init__
+pyalgotrade.broker.backtesting.FixedPerTrade.__init__
+pyalgotrade.broker.backtesting.LimitOrder.__init__
+pyalgotrade.broker.backtesting.MarketOrder.__init__
+pyalgotrade.broker.backtesting.OptionLimitOrder.__init__
+pyalgotrade.broker.backtesting.OptionOrder.__init__
+pyalgotrade.broker.backtesting.OptionStopLimitOrder.__init__
+pyalgotrade.broker.backtesting.OptionStopOrder.__init__
+pyalgotrade.broker.backtesting.StopLimitOrder.__init__
+pyalgotrade.broker.backtesting.StopOrder.__init__
+pyalgotrade.broker.backtesting.TradePercentage.__init__
+pyalgotrade.broker.backtesting_old.BacktestingOrder.__init__
+pyalgotrade.broker.backtesting_old.Broker.__init__
+pyalgotrade.broker.backtesting_old.FixedPerTrade.__init__
+pyalgotrade.broker.backtesting_old.LimitOrder.__init__
+pyalgotrade.broker.backtesting_old.MarketOrder.__init__
+pyalgotrade.broker.backtesting_old.StopLimitOrder.__init__
+pyalgotrade.broker.backtesting_old.StopOrder.__init__
+pyalgotrade.broker.backtesting_old.TradePercentage.__init__
+pyalgotrade.broker.fillstrategy.DefaultStrategy.__init__
+pyalgotrade.broker.fillstrategy.FillInfo.__init__
+pyalgotrade.broker.slippage.VolumeShareSlippage.__init__
+pyalgotrade.dataseries.SequenceDataSeries.__init__
+pyalgotrade.dataseries.aligned.Syncer.__init__
+pyalgotrade.dataseries.bards.BarDataSeries.__init__
+pyalgotrade.dataseries.resampled.AggFunGrouper.__init__
+pyalgotrade.dataseries.resampled.BarGrouper.__init__
+pyalgotrade.dataseries.resampled.ResampledBarDataSeries.__init__
+pyalgotrade.dataseries.resampled.ResampledDataSeries.__init__
+pyalgotrade.dispatcher.Dispatcher.__init__
+pyalgotrade.eventprofiler.Event.__init__
+pyalgotrade.eventprofiler.Profiler.__init__
+pyalgotrade.eventprofiler.Results.__init__
+pyalgotrade.feed.BaseFeed.__init__
+pyalgotrade.feed.csvfeed.BaseFeed.__init__
+pyalgotrade.feed.csvfeed.BasicRowParser.__init__
+pyalgotrade.feed.csvfeed.DateRangeFilter.__init__
+pyalgotrade.feed.csvfeed.Feed.__init__
+pyalgotrade.feed.memfeed.MemFeed.__init__
+pyalgotrade.ib.barfeed.LiveFeed.__init__
+pyalgotrade.ib.livebroker.LimitOrder.__init__
+pyalgotrade.ib.livebroker.LiveBroker.__init__
+pyalgotrade.ib.livebroker.LiveOrder.__init__
+pyalgotrade.ib.livebroker.MarketOrder.__init__
+pyalgotrade.ib.livebroker.StopLimitOrder.__init__
+pyalgotrade.ib.livebroker.StopOrder.__init__
+pyalgotrade.observer.Event.__init__
+pyalgotrade.observer.Subject.__init__
+pyalgotrade.optimizer.base.ParameterSource.__init__
+pyalgotrade.optimizer.base.Parameters.__init__
+pyalgotrade.optimizer.base.ResultSinc.__init__
+pyalgotrade.optimizer.local.ServerThread.__init__
+pyalgotrade.optimizer.server.Results.__init__
+pyalgotrade.optimizer.worker.Worker.__init__
+pyalgotrade.optimizer.xmlrpcserver.AutoStopThread.__init__
+pyalgotrade.optimizer.xmlrpcserver.Job.__init__
+pyalgotrade.optimizer.xmlrpcserver.Server.__init__
+pyalgotrade.plotter.CustomMarker.__init__
+pyalgotrade.plotter.InstrumentMarker.__init__
+pyalgotrade.plotter.InstrumentSubplot.__init__
+pyalgotrade.plotter.LineMarker.__init__
+pyalgotrade.plotter.Series.__init__
+pyalgotrade.plotter.StrategyPlotter.__init__
+pyalgotrade.plotter.Subplot.__init__
+pyalgotrade.resamplebase.DayRange.__init__
+pyalgotrade.resamplebase.Grouper.__init__
+pyalgotrade.resamplebase.IntraDayRange.__init__
+pyalgotrade.resamplebase.MonthRange.__init__
+pyalgotrade.stratanalyzer.drawdown.DrawDown.__init__
+pyalgotrade.stratanalyzer.drawdown.DrawDownHelper.__init__
+pyalgotrade.stratanalyzer.returns.PositionTracker.__init__
+pyalgotrade.stratanalyzer.returns.Returns.__init__
+pyalgotrade.stratanalyzer.returns.ReturnsAnalyzerBase.__init__
+pyalgotrade.stratanalyzer.returns.TimeWeightedReturns.__init__
+pyalgotrade.stratanalyzer.sharpe.SharpeRatio.__init__
+pyalgotrade.stratanalyzer.trades.Trades.__init__
+pyalgotrade.strategy.BacktestingStrategy.__init__
+pyalgotrade.strategy.BaseStrategy.__init__
+pyalgotrade.strategy.position.LongOptionPosition.__init__
+pyalgotrade.strategy.position.LongPosition.__init__
+pyalgotrade.strategy.position.Position.__init__
+pyalgotrade.strategy.position.ShortOptionPosition.__init__
+pyalgotrade.strategy.position.ShortPosition.__init__
+pyalgotrade.technical.EventBasedFilter.__init__
+pyalgotrade.technical.EventWindow.__init__
+pyalgotrade.technical.atr.ATR.__init__
+pyalgotrade.technical.atr.ATREventWindow.__init__
+pyalgotrade.technical.bollinger.BollingerBands.__init__
+pyalgotrade.technical.cumret.CumRetEventWindow.__init__
+pyalgotrade.technical.cumret.CumulativeReturn.__init__
+pyalgotrade.technical.highlow.High.__init__
+pyalgotrade.technical.highlow.HighLowEventWindow.__init__
+pyalgotrade.technical.highlow.Low.__init__
+pyalgotrade.technical.hurst.HurstExponent.__init__
+pyalgotrade.technical.hurst.HurstExponentEventWindow.__init__
+pyalgotrade.technical.linebreak.Line.__init__
+pyalgotrade.technical.linebreak.LineBreak.__init__
+pyalgotrade.technical.linreg.LeastSquaresRegression.__init__
+pyalgotrade.technical.linreg.LeastSquaresRegressionWindow.__init__
+pyalgotrade.technical.linreg.Slope.__init__
+pyalgotrade.technical.linreg.SlopeEventWindow.__init__
+pyalgotrade.technical.linreg.Trend.__init__
+pyalgotrade.technical.linreg.TrendEventWindow.__init__
+pyalgotrade.technical.ma.EMA.__init__
+pyalgotrade.technical.ma.EMAEventWindow.__init__
+pyalgotrade.technical.ma.SMA.__init__
+pyalgotrade.technical.ma.SMAEventWindow.__init__
+pyalgotrade.technical.ma.WMA.__init__
+pyalgotrade.technical.ma.WMAEventWindow.__init__
+pyalgotrade.technical.macd.MACD.__init__
+pyalgotrade.technical.ratio.Ratio.__init__
+pyalgotrade.technical.ratio.RatioEventWindow.__init__
+pyalgotrade.technical.roc.ROCEventWindow.__init__
+pyalgotrade.technical.roc.RateOfChange.__init__
+pyalgotrade.technical.rsi.RSI.__init__
+pyalgotrade.technical.rsi.RSIEventWindow.__init__
+pyalgotrade.technical.stats.StdDev.__init__
+pyalgotrade.technical.stats.StdDevEventWindow.__init__
+pyalgotrade.technical.stats.ZScore.__init__
+pyalgotrade.technical.stats.ZScoreEventWindow.__init__
+pyalgotrade.technical.stoch.SOEventWindow.__init__
+pyalgotrade.technical.stoch.StochasticOscillator.__init__
+pyalgotrade.technical.vwap.VWAP.__init__
+pyalgotrade.technical.vwap.VWAPEventWindow.__init__
+pyalgotrade.tools.resample.CSVFileWriter.__init__
+pyalgotrade.twitter.feed.Listener.__init__
+pyalgotrade.twitter.feed.TwitterFeed.__init__
+pyalgotrade.utils.collections.ListDeque.__init__
+pyalgotrade.utils.collections.NumPyDeque.__init__
+pyalgotrade.utils.csvutils.FastDictReader.__init__
+pyalgotrade.websocket.client.KeepAliveMgr.__init__
+pyalgotrade.websocket.client.WebSocketClientBase.__init__
+pyalgotrade.websocket.pusher.Event.__init__
+pyalgotrade.websocket.pusher.PingKeepAliveMgr.__init__
+pyalgotrade.websocket.pusher.WebSocketClient.__init__" class="py-name" href="#" onclick="return doclink('link-10', '__init__', 'link-10');">__init__</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L35"></a><tt class="py-lineno"> 35</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__server</tt> <tt class="py-op">=</tt> <tt id="link-11" class="py-name" targets="Module pyalgotrade.optimizer.server=pyalgotrade.optimizer.server-module.html"><a title="pyalgotrade.optimizer.server" class="py-name" href="#" onclick="return doclink('link-11', 'server', 'link-11');">server</a></tt> </tt>
+</div><a name="L36"></a><tt class="py-lineno"> 36</tt>  <tt class="py-line"> </tt>
+<a name="AutoStopThread.run"></a><div id="AutoStopThread.run-def"><a name="L37"></a><tt class="py-lineno"> 37</tt> <a class="py-toggle" href="#" id="AutoStopThread.run-toggle" onclick="return toggle('AutoStopThread.run');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pyalgotrade.optimizer.xmlrpcserver.AutoStopThread-class.html#run">run</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="AutoStopThread.run-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="AutoStopThread.run-expanded"><a name="L38"></a><tt class="py-lineno"> 38</tt>  <tt class="py-line">        <tt class="py-keyword">while</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__server</tt><tt class="py-op">.</tt><tt id="link-12" class="py-name" targets="Method pyalgotrade.optimizer.xmlrpcserver.Server.jobsPending()=pyalgotrade.optimizer.xmlrpcserver.Server-class.html#jobsPending"><a title="pyalgotrade.optimizer.xmlrpcserver.Server.jobsPending" class="py-name" href="#" onclick="return doclink('link-12', 'jobsPending', 'link-12');">jobsPending</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L39"></a><tt class="py-lineno"> 39</tt>  <tt class="py-line">            <tt class="py-name">time</tt><tt class="py-op">.</tt><tt class="py-name">sleep</tt><tt class="py-op">(</tt><tt class="py-number">1</tt><tt class="py-op">)</tt> </tt>
+<a name="L40"></a><tt class="py-lineno"> 40</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__server</tt><tt class="py-op">.</tt><tt id="link-13" class="py-name" targets="Method pyalgotrade.barfeed.OptimizerBarFeed.stop()=pyalgotrade.barfeed.OptimizerBarFeed-class.html#stop,Method pyalgotrade.barfeed.membf.BarFeed.stop()=pyalgotrade.barfeed.membf.BarFeed-class.html#stop,Method pyalgotrade.barfeed.resampled.ResampledBarFeed.stop()=pyalgotrade.barfeed.resampled.ResampledBarFeed-class.html#stop,Method pyalgotrade.bitstamp.livebroker.LiveBroker.stop()=pyalgotrade.bitstamp.livebroker.LiveBroker-class.html#stop,Method pyalgotrade.bitstamp.livebroker.TradeMonitor.stop()=pyalgotrade.bitstamp.livebroker.TradeMonitor-class.html#stop,Method pyalgotrade.bitstamp.livefeed.LiveTradeFeed.stop()=pyalgotrade.bitstamp.livefeed.LiveTradeFeed-class.html#stop,Method pyalgotrade.bitstamp.wsclient.WebSocketClientThread.stop()=pyalgotrade.bitstamp.wsclient.WebSocketClientThread-class.html#stop,Method pyalgotrade.broker.backtesting.Broker.stop()=pyalgotrade.broker.backtesting.Broker-class.html#stop,Method pyalgotrade.broker.backtesting_old.Broker.stop()=pyalgotrade.broker.backtesting_old.Broker-class.html#stop,Method pyalgotrade.dispatcher.Dispatcher.stop()=pyalgotrade.dispatcher.Dispatcher-class.html#stop,Method pyalgotrade.feed.memfeed.MemFeed.stop()=pyalgotrade.feed.memfeed.MemFeed-class.html#stop,Method pyalgotrade.ib.barfeed.LiveFeed.stop()=pyalgotrade.ib.barfeed.LiveFeed-class.html#stop,Method pyalgotrade.ib.livebroker.LiveBroker.stop()=pyalgotrade.ib.livebroker.LiveBroker-class.html#stop,Method pyalgotrade.observer.Subject.stop()=pyalgotrade.observer.Subject-class.html#stop,Method pyalgotrade.optimizer.xmlrpcserver.Server.stop()=pyalgotrade.optimizer.xmlrpcserver.Server-class.html#stop,Method pyalgotrade.strategy.BaseStrategy.stop()=pyalgotrade.strategy.BaseStrategy-class.html#stop,Method pyalgotrade.twitter.feed.TwitterFeed.stop()=pyalgotrade.twitter.feed.TwitterFeed-class.html#stop,Method pyalgotrade.websocket.client.KeepAliveMgr.stop()=pyalgotrade.websocket.client.KeepAliveMgr-class.html#stop"><a title="pyalgotrade.barfeed.OptimizerBarFeed.stop
+pyalgotrade.barfeed.membf.BarFeed.stop
+pyalgotrade.barfeed.resampled.ResampledBarFeed.stop
+pyalgotrade.bitstamp.livebroker.LiveBroker.stop
+pyalgotrade.bitstamp.livebroker.TradeMonitor.stop
+pyalgotrade.bitstamp.livefeed.LiveTradeFeed.stop
+pyalgotrade.bitstamp.wsclient.WebSocketClientThread.stop
+pyalgotrade.broker.backtesting.Broker.stop
+pyalgotrade.broker.backtesting_old.Broker.stop
+pyalgotrade.dispatcher.Dispatcher.stop
+pyalgotrade.feed.memfeed.MemFeed.stop
+pyalgotrade.ib.barfeed.LiveFeed.stop
+pyalgotrade.ib.livebroker.LiveBroker.stop
+pyalgotrade.observer.Subject.stop
+pyalgotrade.optimizer.xmlrpcserver.Server.stop
+pyalgotrade.strategy.BaseStrategy.stop
+pyalgotrade.twitter.feed.TwitterFeed.stop
+pyalgotrade.websocket.client.KeepAliveMgr.stop" class="py-name" href="#" onclick="return doclink('link-13', 'stop', 'link-13');">stop</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L41"></a><tt class="py-lineno"> 41</tt>  <tt class="py-line"> </tt>
+<a name="L42"></a><tt class="py-lineno"> 42</tt>  <tt class="py-line"> </tt>
+<a name="Job"></a><div id="Job-def"><a name="L43"></a><tt class="py-lineno"> 43</tt> <a class="py-toggle" href="#" id="Job-toggle" onclick="return toggle('Job');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="pyalgotrade.optimizer.xmlrpcserver.Job-class.html">Job</a><tt class="py-op">(</tt><tt class="py-base-class">object</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Job-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="Job-expanded"><a name="Job.__init__"></a><div id="Job.__init__-def"><a name="L44"></a><tt class="py-lineno"> 44</tt> <a class="py-toggle" href="#" id="Job.__init__-toggle" onclick="return toggle('Job.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pyalgotrade.optimizer.xmlrpcserver.Job-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">strategyParameters</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Job.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Job.__init__-expanded"><a name="L45"></a><tt class="py-lineno"> 45</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__strategyParameters</tt> <tt class="py-op">=</tt> <tt class="py-name">strategyParameters</tt> </tt>
+<a name="L46"></a><tt class="py-lineno"> 46</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__bestResult</tt> <tt class="py-op">=</tt> <tt class="py-name">None</tt> </tt>
+<a name="L47"></a><tt class="py-lineno"> 47</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__bestParameters</tt> <tt class="py-op">=</tt> <tt class="py-name">None</tt> </tt>
+<a name="L48"></a><tt class="py-lineno"> 48</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__id</tt> <tt class="py-op">=</tt> <tt class="py-name">id</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L49"></a><tt class="py-lineno"> 49</tt>  <tt class="py-line"> </tt>
+<a name="Job.getId"></a><div id="Job.getId-def"><a name="L50"></a><tt class="py-lineno"> 50</tt> <a class="py-toggle" href="#" id="Job.getId-toggle" onclick="return toggle('Job.getId');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pyalgotrade.optimizer.xmlrpcserver.Job-class.html#getId">getId</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Job.getId-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Job.getId-expanded"><a name="L51"></a><tt class="py-lineno"> 51</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__id</tt> </tt>
+</div><a name="L52"></a><tt class="py-lineno"> 52</tt>  <tt class="py-line"> </tt>
+<a name="Job.getNextParameters"></a><div id="Job.getNextParameters-def"><a name="L53"></a><tt class="py-lineno"> 53</tt> <a class="py-toggle" href="#" id="Job.getNextParameters-toggle" onclick="return toggle('Job.getNextParameters');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pyalgotrade.optimizer.xmlrpcserver.Job-class.html#getNextParameters">getNextParameters</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Job.getNextParameters-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Job.getNextParameters-expanded"><a name="L54"></a><tt class="py-lineno"> 54</tt>  <tt class="py-line">        <tt class="py-name">ret</tt> <tt class="py-op">=</tt> <tt class="py-name">None</tt> </tt>
+<a name="L55"></a><tt class="py-lineno"> 55</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">len</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__strategyParameters</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L56"></a><tt class="py-lineno"> 56</tt>  <tt class="py-line">            <tt class="py-name">ret</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__strategyParameters</tt><tt class="py-op">.</tt><tt class="py-name">pop</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L57"></a><tt class="py-lineno"> 57</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">ret</tt> </tt>
+</div></div><a name="L58"></a><tt class="py-lineno"> 58</tt>  <tt class="py-line"> </tt>
+<a name="L59"></a><tt class="py-lineno"> 59</tt>  <tt class="py-line"> </tt>
+<a name="L60"></a><tt class="py-lineno"> 60</tt>  <tt class="py-line"><tt class="py-comment"># Restrict to a particular path.</tt> </tt>
+<a name="RequestHandler"></a><div id="RequestHandler-def"><a name="L61"></a><tt class="py-lineno"> 61</tt> <a class="py-toggle" href="#" id="RequestHandler-toggle" onclick="return toggle('RequestHandler');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="pyalgotrade.optimizer.xmlrpcserver.RequestHandler-class.html">RequestHandler</a><tt class="py-op">(</tt><tt class="py-base-class">SimpleXMLRPCServer</tt><tt class="py-op">.</tt><tt class="py-base-class">SimpleXMLRPCRequestHandler</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="RequestHandler-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="RequestHandler-expanded"><a name="L62"></a><tt class="py-lineno"> 62</tt>  <tt class="py-line">    <tt id="link-14" class="py-name" targets="Variable pyalgotrade.optimizer.xmlrpcserver.RequestHandler.rpc_paths=pyalgotrade.optimizer.xmlrpcserver.RequestHandler-class.html#rpc_paths"><a title="pyalgotrade.optimizer.xmlrpcserver.RequestHandler.rpc_paths" class="py-name" href="#" onclick="return doclink('link-14', 'rpc_paths', 'link-14');">rpc_paths</a></tt> <tt class="py-op">=</tt> <tt class="py-op">(</tt><tt class="py-string">'/PyAlgoTradeRPC'</tt><tt class="py-op">,</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L63"></a><tt class="py-lineno"> 63</tt>  <tt class="py-line"> </tt>
+<a name="L64"></a><tt class="py-lineno"> 64</tt>  <tt class="py-line"> </tt>
+<a name="Server"></a><div id="Server-def"><a name="L65"></a><tt class="py-lineno"> 65</tt> <a class="py-toggle" href="#" id="Server-toggle" onclick="return toggle('Server');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="pyalgotrade.optimizer.xmlrpcserver.Server-class.html">Server</a><tt class="py-op">(</tt><tt class="py-base-class">SimpleXMLRPCServer</tt><tt class="py-op">.</tt><tt class="py-base-class">SimpleXMLRPCServer</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Server-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="Server-expanded"><a name="L66"></a><tt class="py-lineno"> 66</tt>  <tt class="py-line">    <tt id="link-15" class="py-name" targets="Variable pyalgotrade.optimizer.xmlrpcserver.Server.defaultBatchSize=pyalgotrade.optimizer.xmlrpcserver.Server-class.html#defaultBatchSize"><a title="pyalgotrade.optimizer.xmlrpcserver.Server.defaultBatchSize" class="py-name" href="#" onclick="return doclink('link-15', 'defaultBatchSize', 'link-15');">defaultBatchSize</a></tt> <tt class="py-op">=</tt> <tt class="py-number">200</tt> </tt>
+<a name="L67"></a><tt class="py-lineno"> 67</tt>  <tt class="py-line"> </tt>
+<a name="Server.__init__"></a><div id="Server.__init__-def"><a name="L68"></a><tt class="py-lineno"> 68</tt> <a class="py-toggle" href="#" id="Server.__init__-toggle" onclick="return toggle('Server.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pyalgotrade.optimizer.xmlrpcserver.Server-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">paramSource</tt><tt class="py-op">,</tt> <tt class="py-param">resultSinc</tt><tt class="py-op">,</tt> <tt class="py-param">barFeed</tt><tt class="py-op">,</tt> <tt class="py-param">address</tt><tt class="py-op">,</tt> <tt class="py-param">port</tt><tt class="py-op">,</tt> <tt class="py-param">autoStop</tt><tt class="py-op">=</tt><tt class="py-name">True</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Server.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Server.__init__-expanded"><a name="L69"></a><tt class="py-lineno"> 69</tt>  <tt class="py-line">        <tt class="py-name">SimpleXMLRPCServer</tt><tt class="py-op">.</tt><tt class="py-name">SimpleXMLRPCServer</tt><tt class="py-op">.</tt><tt id="link-16" class="py-name"><a title="pyalgotrade.bar.Bars.__init__
+pyalgotrade.bar.BasicBar.__init__
+pyalgotrade.barfeed.BaseBarFeed.__init__
+pyalgotrade.barfeed.OptimizerBarFeed.__init__
+pyalgotrade.barfeed.csvfeed.BarFeed.__init__
+pyalgotrade.barfeed.csvfeed.DateRangeFilter.__init__
+pyalgotrade.barfeed.csvfeed.GenericBarFeed.__init__
+pyalgotrade.barfeed.csvfeed.GenericRowParser.__init__
+pyalgotrade.barfeed.csvfeed.USEquitiesRTH.__init__
+pyalgotrade.barfeed.googlefeed.Feed.__init__
+pyalgotrade.barfeed.googlefeed.RowParser.__init__
+pyalgotrade.barfeed.ibfeed.Feed.__init__
+pyalgotrade.barfeed.ibfeed.RowParser.__init__
+pyalgotrade.barfeed.membf.BarFeed.__init__
+pyalgotrade.barfeed.ninjatraderfeed.Feed.__init__
+pyalgotrade.barfeed.ninjatraderfeed.RowParser.__init__
+pyalgotrade.barfeed.quandlfeed.Feed.__init__
+pyalgotrade.barfeed.resampled.BarsGrouper.__init__
+pyalgotrade.barfeed.resampled.ResampledBarFeed.__init__
+pyalgotrade.barfeed.sqlitefeed.Database.__init__
+pyalgotrade.barfeed.sqlitefeed.Feed.__init__
+pyalgotrade.barfeed.yahoofeed.Feed.__init__
+pyalgotrade.barfeed.yahoofeed.RowParser.__init__
+pyalgotrade.bitcoincharts.barfeed.CSVTradeFeed.__init__
+pyalgotrade.bitcoincharts.barfeed.RowParser.__init__
+pyalgotrade.bitcoincharts.barfeed.TradeBar.__init__
+pyalgotrade.bitcoincharts.barfeed.UnixTimeFix.__init__
+pyalgotrade.bitstamp.broker.BacktestingBroker.__init__
+pyalgotrade.bitstamp.httpclient.AccountBalance.__init__
+pyalgotrade.bitstamp.httpclient.HTTPClient.__init__
+pyalgotrade.bitstamp.httpclient.Order.__init__
+pyalgotrade.bitstamp.httpclient.UserTransaction.__init__
+pyalgotrade.bitstamp.livebroker.LiveBroker.__init__
+pyalgotrade.bitstamp.livebroker.TradeMonitor.__init__
+pyalgotrade.bitstamp.livefeed.LiveTradeFeed.__init__
+pyalgotrade.bitstamp.livefeed.TradeBar.__init__
+pyalgotrade.bitstamp.wsclient.OrderBookUpdate.__init__
+pyalgotrade.bitstamp.wsclient.Trade.__init__
+pyalgotrade.bitstamp.wsclient.WebSocketClient.__init__
+pyalgotrade.bitstamp.wsclient.WebSocketClientThread.__init__
+pyalgotrade.broker.Broker.__init__
+pyalgotrade.broker.LimitOrder.__init__
+pyalgotrade.broker.MarketOrder.__init__
+pyalgotrade.broker.OptionLimitOrder.__init__
+pyalgotrade.broker.OptionOrder.__init__
+pyalgotrade.broker.OptionStopLimitOrder.__init__
+pyalgotrade.broker.OptionStopOrder.__init__
+pyalgotrade.broker.Order.__init__
+pyalgotrade.broker.OrderEvent.__init__
+pyalgotrade.broker.OrderExecutionInfo.__init__
+pyalgotrade.broker.StopLimitOrder.__init__
+pyalgotrade.broker.StopOrder.__init__
+pyalgotrade.broker.backtesting.BacktestingOrder.__init__
+pyalgotrade.broker.backtesting.Broker.__init__
+pyalgotrade.broker.backtesting.FixedPerTrade.__init__
+pyalgotrade.broker.backtesting.LimitOrder.__init__
+pyalgotrade.broker.backtesting.MarketOrder.__init__
+pyalgotrade.broker.backtesting.OptionLimitOrder.__init__
+pyalgotrade.broker.backtesting.OptionOrder.__init__
+pyalgotrade.broker.backtesting.OptionStopLimitOrder.__init__
+pyalgotrade.broker.backtesting.OptionStopOrder.__init__
+pyalgotrade.broker.backtesting.StopLimitOrder.__init__
+pyalgotrade.broker.backtesting.StopOrder.__init__
+pyalgotrade.broker.backtesting.TradePercentage.__init__
+pyalgotrade.broker.backtesting_old.BacktestingOrder.__init__
+pyalgotrade.broker.backtesting_old.Broker.__init__
+pyalgotrade.broker.backtesting_old.FixedPerTrade.__init__
+pyalgotrade.broker.backtesting_old.LimitOrder.__init__
+pyalgotrade.broker.backtesting_old.MarketOrder.__init__
+pyalgotrade.broker.backtesting_old.StopLimitOrder.__init__
+pyalgotrade.broker.backtesting_old.StopOrder.__init__
+pyalgotrade.broker.backtesting_old.TradePercentage.__init__
+pyalgotrade.broker.fillstrategy.DefaultStrategy.__init__
+pyalgotrade.broker.fillstrategy.FillInfo.__init__
+pyalgotrade.broker.slippage.VolumeShareSlippage.__init__
+pyalgotrade.dataseries.SequenceDataSeries.__init__
+pyalgotrade.dataseries.aligned.Syncer.__init__
+pyalgotrade.dataseries.bards.BarDataSeries.__init__
+pyalgotrade.dataseries.resampled.AggFunGrouper.__init__
+pyalgotrade.dataseries.resampled.BarGrouper.__init__
+pyalgotrade.dataseries.resampled.ResampledBarDataSeries.__init__
+pyalgotrade.dataseries.resampled.ResampledDataSeries.__init__
+pyalgotrade.dispatcher.Dispatcher.__init__
+pyalgotrade.eventprofiler.Event.__init__
+pyalgotrade.eventprofiler.Profiler.__init__
+pyalgotrade.eventprofiler.Results.__init__
+pyalgotrade.feed.BaseFeed.__init__
+pyalgotrade.feed.csvfeed.BaseFeed.__init__
+pyalgotrade.feed.csvfeed.BasicRowParser.__init__
+pyalgotrade.feed.csvfeed.DateRangeFilter.__init__
+pyalgotrade.feed.csvfeed.Feed.__init__
+pyalgotrade.feed.memfeed.MemFeed.__init__
+pyalgotrade.ib.barfeed.LiveFeed.__init__
+pyalgotrade.ib.livebroker.LimitOrder.__init__
+pyalgotrade.ib.livebroker.LiveBroker.__init__
+pyalgotrade.ib.livebroker.LiveOrder.__init__
+pyalgotrade.ib.livebroker.MarketOrder.__init__
+pyalgotrade.ib.livebroker.StopLimitOrder.__init__
+pyalgotrade.ib.livebroker.StopOrder.__init__
+pyalgotrade.observer.Event.__init__
+pyalgotrade.observer.Subject.__init__
+pyalgotrade.optimizer.base.ParameterSource.__init__
+pyalgotrade.optimizer.base.Parameters.__init__
+pyalgotrade.optimizer.base.ResultSinc.__init__
+pyalgotrade.optimizer.local.ServerThread.__init__
+pyalgotrade.optimizer.server.Results.__init__
+pyalgotrade.optimizer.worker.Worker.__init__
+pyalgotrade.optimizer.xmlrpcserver.AutoStopThread.__init__
+pyalgotrade.optimizer.xmlrpcserver.Job.__init__
+pyalgotrade.optimizer.xmlrpcserver.Server.__init__
+pyalgotrade.plotter.CustomMarker.__init__
+pyalgotrade.plotter.InstrumentMarker.__init__
+pyalgotrade.plotter.InstrumentSubplot.__init__
+pyalgotrade.plotter.LineMarker.__init__
+pyalgotrade.plotter.Series.__init__
+pyalgotrade.plotter.StrategyPlotter.__init__
+pyalgotrade.plotter.Subplot.__init__
+pyalgotrade.resamplebase.DayRange.__init__
+pyalgotrade.resamplebase.Grouper.__init__
+pyalgotrade.resamplebase.IntraDayRange.__init__
+pyalgotrade.resamplebase.MonthRange.__init__
+pyalgotrade.stratanalyzer.drawdown.DrawDown.__init__
+pyalgotrade.stratanalyzer.drawdown.DrawDownHelper.__init__
+pyalgotrade.stratanalyzer.returns.PositionTracker.__init__
+pyalgotrade.stratanalyzer.returns.Returns.__init__
+pyalgotrade.stratanalyzer.returns.ReturnsAnalyzerBase.__init__
+pyalgotrade.stratanalyzer.returns.TimeWeightedReturns.__init__
+pyalgotrade.stratanalyzer.sharpe.SharpeRatio.__init__
+pyalgotrade.stratanalyzer.trades.Trades.__init__
+pyalgotrade.strategy.BacktestingStrategy.__init__
+pyalgotrade.strategy.BaseStrategy.__init__
+pyalgotrade.strategy.position.LongOptionPosition.__init__
+pyalgotrade.strategy.position.LongPosition.__init__
+pyalgotrade.strategy.position.Position.__init__
+pyalgotrade.strategy.position.ShortOptionPosition.__init__
+pyalgotrade.strategy.position.ShortPosition.__init__
+pyalgotrade.technical.EventBasedFilter.__init__
+pyalgotrade.technical.EventWindow.__init__
+pyalgotrade.technical.atr.ATR.__init__
+pyalgotrade.technical.atr.ATREventWindow.__init__
+pyalgotrade.technical.bollinger.BollingerBands.__init__
+pyalgotrade.technical.cumret.CumRetEventWindow.__init__
+pyalgotrade.technical.cumret.CumulativeReturn.__init__
+pyalgotrade.technical.highlow.High.__init__
+pyalgotrade.technical.highlow.HighLowEventWindow.__init__
+pyalgotrade.technical.highlow.Low.__init__
+pyalgotrade.technical.hurst.HurstExponent.__init__
+pyalgotrade.technical.hurst.HurstExponentEventWindow.__init__
+pyalgotrade.technical.linebreak.Line.__init__
+pyalgotrade.technical.linebreak.LineBreak.__init__
+pyalgotrade.technical.linreg.LeastSquaresRegression.__init__
+pyalgotrade.technical.linreg.LeastSquaresRegressionWindow.__init__
+pyalgotrade.technical.linreg.Slope.__init__
+pyalgotrade.technical.linreg.SlopeEventWindow.__init__
+pyalgotrade.technical.linreg.Trend.__init__
+pyalgotrade.technical.linreg.TrendEventWindow.__init__
+pyalgotrade.technical.ma.EMA.__init__
+pyalgotrade.technical.ma.EMAEventWindow.__init__
+pyalgotrade.technical.ma.SMA.__init__
+pyalgotrade.technical.ma.SMAEventWindow.__init__
+pyalgotrade.technical.ma.WMA.__init__
+pyalgotrade.technical.ma.WMAEventWindow.__init__
+pyalgotrade.technical.macd.MACD.__init__
+pyalgotrade.technical.ratio.Ratio.__init__
+pyalgotrade.technical.ratio.RatioEventWindow.__init__
+pyalgotrade.technical.roc.ROCEventWindow.__init__
+pyalgotrade.technical.roc.RateOfChange.__init__
+pyalgotrade.technical.rsi.RSI.__init__
+pyalgotrade.technical.rsi.RSIEventWindow.__init__
+pyalgotrade.technical.stats.StdDev.__init__
+pyalgotrade.technical.stats.StdDevEventWindow.__init__
+pyalgotrade.technical.stats.ZScore.__init__
+pyalgotrade.technical.stats.ZScoreEventWindow.__init__
+pyalgotrade.technical.stoch.SOEventWindow.__init__
+pyalgotrade.technical.stoch.StochasticOscillator.__init__
+pyalgotrade.technical.vwap.VWAP.__init__
+pyalgotrade.technical.vwap.VWAPEventWindow.__init__
+pyalgotrade.tools.resample.CSVFileWriter.__init__
+pyalgotrade.twitter.feed.Listener.__init__
+pyalgotrade.twitter.feed.TwitterFeed.__init__
+pyalgotrade.utils.collections.ListDeque.__init__
+pyalgotrade.utils.collections.NumPyDeque.__init__
+pyalgotrade.utils.csvutils.FastDictReader.__init__
+pyalgotrade.websocket.client.KeepAliveMgr.__init__
+pyalgotrade.websocket.client.WebSocketClientBase.__init__
+pyalgotrade.websocket.pusher.Event.__init__
+pyalgotrade.websocket.pusher.PingKeepAliveMgr.__init__
+pyalgotrade.websocket.pusher.WebSocketClient.__init__" class="py-name" href="#" onclick="return doclink('link-16', '__init__', 'link-10');">__init__</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">,</tt> <tt class="py-op">(</tt><tt class="py-name">address</tt><tt class="py-op">,</tt> <tt class="py-name">port</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-name">requestHandler</tt><tt class="py-op">=</tt><tt id="link-17" class="py-name" targets="Class pyalgotrade.optimizer.xmlrpcserver.RequestHandler=pyalgotrade.optimizer.xmlrpcserver.RequestHandler-class.html"><a title="pyalgotrade.optimizer.xmlrpcserver.RequestHandler" class="py-name" href="#" onclick="return doclink('link-17', 'RequestHandler', 'link-17');">RequestHandler</a></tt><tt class="py-op">,</tt> <tt class="py-name">logRequests</tt><tt class="py-op">=</tt><tt class="py-name">False</tt><tt class="py-op">,</tt> <tt class="py-name">allow_none</tt><tt class="py-op">=</tt><tt class="py-name">True</tt><tt class="py-op">)</tt> </tt>
+<a name="L70"></a><tt class="py-lineno"> 70</tt>  <tt class="py-line">        <tt class="py-comment"># super(Server, self).__init__((address, port), requestHandler=RequestHandler, logRequests=False, allow_none=True)</tt> </tt>
+<a name="L71"></a><tt class="py-lineno"> 71</tt>  <tt class="py-line"> </tt>
+<a name="L72"></a><tt class="py-lineno"> 72</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__paramSource</tt> <tt class="py-op">=</tt> <tt class="py-name">paramSource</tt> </tt>
+<a name="L73"></a><tt class="py-lineno"> 73</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__resultSinc</tt> <tt class="py-op">=</tt> <tt class="py-name">resultSinc</tt> </tt>
+<a name="L74"></a><tt class="py-lineno"> 74</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__barFeed</tt> <tt class="py-op">=</tt> <tt class="py-name">barFeed</tt> </tt>
+<a name="L75"></a><tt class="py-lineno"> 75</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__instrumentsAndBars</tt> <tt class="py-op">=</tt> <tt class="py-name">None</tt>  <tt class="py-comment"># Pickle'd instruments and bars for faster retrieval.</tt> </tt>
+<a name="L76"></a><tt class="py-lineno"> 76</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__barsFreq</tt> <tt class="py-op">=</tt> <tt class="py-name">None</tt> </tt>
+<a name="L77"></a><tt class="py-lineno"> 77</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__activeJobs</tt> <tt class="py-op">=</tt> <tt class="py-op">{</tt><tt class="py-op">}</tt> </tt>
+<a name="L78"></a><tt class="py-lineno"> 78</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__activeJobsLock</tt> <tt class="py-op">=</tt> <tt class="py-name">threading</tt><tt class="py-op">.</tt><tt class="py-name">Lock</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L79"></a><tt class="py-lineno"> 79</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__forcedStop</tt> <tt class="py-op">=</tt> <tt class="py-name">False</tt> </tt>
+<a name="L80"></a><tt class="py-lineno"> 80</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__bestResult</tt> <tt class="py-op">=</tt> <tt class="py-name">None</tt> </tt>
+<a name="L81"></a><tt class="py-lineno"> 81</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">autoStop</tt><tt class="py-op">:</tt> </tt>
+<a name="L82"></a><tt class="py-lineno"> 82</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__autoStopThread</tt> <tt class="py-op">=</tt> <tt id="link-18" class="py-name"><a title="pyalgotrade.optimizer.xmlrpcserver.AutoStopThread" class="py-name" href="#" onclick="return doclink('link-18', 'AutoStopThread', 'link-9');">AutoStopThread</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">)</tt> </tt>
+<a name="L83"></a><tt class="py-lineno"> 83</tt>  <tt class="py-line">        <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L84"></a><tt class="py-lineno"> 84</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__autoStopThread</tt> <tt class="py-op">=</tt> <tt class="py-name">None</tt> </tt>
+<a name="L85"></a><tt class="py-lineno"> 85</tt>  <tt class="py-line"> </tt>
+<a name="L86"></a><tt class="py-lineno"> 86</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">register_introspection_functions</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L87"></a><tt class="py-lineno"> 87</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">register_function</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-19" class="py-name" targets="Method pyalgotrade.optimizer.worker.Worker.getInstrumentsAndBars()=pyalgotrade.optimizer.worker.Worker-class.html#getInstrumentsAndBars,Method pyalgotrade.optimizer.xmlrpcserver.Server.getInstrumentsAndBars()=pyalgotrade.optimizer.xmlrpcserver.Server-class.html#getInstrumentsAndBars"><a title="pyalgotrade.optimizer.worker.Worker.getInstrumentsAndBars
+pyalgotrade.optimizer.xmlrpcserver.Server.getInstrumentsAndBars" class="py-name" href="#" onclick="return doclink('link-19', 'getInstrumentsAndBars', 'link-19');">getInstrumentsAndBars</a></tt><tt class="py-op">,</tt> <tt class="py-string">'getInstrumentsAndBars'</tt><tt class="py-op">)</tt> </tt>
+<a name="L88"></a><tt class="py-lineno"> 88</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">register_function</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-20" class="py-name" targets="Method pyalgotrade.optimizer.worker.Worker.getBarsFrequency()=pyalgotrade.optimizer.worker.Worker-class.html#getBarsFrequency,Method pyalgotrade.optimizer.xmlrpcserver.Server.getBarsFrequency()=pyalgotrade.optimizer.xmlrpcserver.Server-class.html#getBarsFrequency"><a title="pyalgotrade.optimizer.worker.Worker.getBarsFrequency
+pyalgotrade.optimizer.xmlrpcserver.Server.getBarsFrequency" class="py-name" href="#" onclick="return doclink('link-20', 'getBarsFrequency', 'link-20');">getBarsFrequency</a></tt><tt class="py-op">,</tt> <tt class="py-string">'getBarsFrequency'</tt><tt class="py-op">)</tt> </tt>
+<a name="L89"></a><tt class="py-lineno"> 89</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">register_function</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-21" class="py-name" targets="Method pyalgotrade.optimizer.worker.Worker.getNextJob()=pyalgotrade.optimizer.worker.Worker-class.html#getNextJob,Method pyalgotrade.optimizer.xmlrpcserver.Server.getNextJob()=pyalgotrade.optimizer.xmlrpcserver.Server-class.html#getNextJob"><a title="pyalgotrade.optimizer.worker.Worker.getNextJob
+pyalgotrade.optimizer.xmlrpcserver.Server.getNextJob" class="py-name" href="#" onclick="return doclink('link-21', 'getNextJob', 'link-21');">getNextJob</a></tt><tt class="py-op">,</tt> <tt class="py-string">'getNextJob'</tt><tt class="py-op">)</tt> </tt>
+<a name="L90"></a><tt class="py-lineno"> 90</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">register_function</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-22" class="py-name" targets="Method pyalgotrade.optimizer.worker.Worker.pushJobResults()=pyalgotrade.optimizer.worker.Worker-class.html#pushJobResults,Method pyalgotrade.optimizer.xmlrpcserver.Server.pushJobResults()=pyalgotrade.optimizer.xmlrpcserver.Server-class.html#pushJobResults"><a title="pyalgotrade.optimizer.worker.Worker.pushJobResults
+pyalgotrade.optimizer.xmlrpcserver.Server.pushJobResults" class="py-name" href="#" onclick="return doclink('link-22', 'pushJobResults', 'link-22');">pushJobResults</a></tt><tt class="py-op">,</tt> <tt class="py-string">'pushJobResults'</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L91"></a><tt class="py-lineno"> 91</tt>  <tt class="py-line"> </tt>
+<a name="Server.getInstrumentsAndBars"></a><div id="Server.getInstrumentsAndBars-def"><a name="L92"></a><tt class="py-lineno"> 92</tt> <a class="py-toggle" href="#" id="Server.getInstrumentsAndBars-toggle" onclick="return toggle('Server.getInstrumentsAndBars');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pyalgotrade.optimizer.xmlrpcserver.Server-class.html#getInstrumentsAndBars">getInstrumentsAndBars</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Server.getInstrumentsAndBars-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Server.getInstrumentsAndBars-expanded"><a name="L93"></a><tt class="py-lineno"> 93</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__instrumentsAndBars</tt> </tt>
+</div><a name="L94"></a><tt class="py-lineno"> 94</tt>  <tt class="py-line"> </tt>
+<a name="Server.getBarsFrequency"></a><div id="Server.getBarsFrequency-def"><a name="L95"></a><tt class="py-lineno"> 95</tt> <a class="py-toggle" href="#" id="Server.getBarsFrequency-toggle" onclick="return toggle('Server.getBarsFrequency');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pyalgotrade.optimizer.xmlrpcserver.Server-class.html#getBarsFrequency">getBarsFrequency</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Server.getBarsFrequency-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Server.getBarsFrequency-expanded"><a name="L96"></a><tt class="py-lineno"> 96</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__barsFreq</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L97"></a><tt class="py-lineno"> 97</tt>  <tt class="py-line"> </tt>
+<a name="Server.getNextJob"></a><div id="Server.getNextJob-def"><a name="L98"></a><tt class="py-lineno"> 98</tt> <a class="py-toggle" href="#" id="Server.getNextJob-toggle" onclick="return toggle('Server.getNextJob');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pyalgotrade.optimizer.xmlrpcserver.Server-class.html#getNextJob">getNextJob</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Server.getNextJob-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Server.getNextJob-expanded"><a name="L99"></a><tt class="py-lineno"> 99</tt>  <tt class="py-line">        <tt class="py-name">ret</tt> <tt class="py-op">=</tt> <tt class="py-name">None</tt> </tt>
+<a name="L100"></a><tt class="py-lineno">100</tt>  <tt class="py-line"> </tt>
+<a name="L101"></a><tt class="py-lineno">101</tt>  <tt class="py-line">        <tt class="py-comment"># Get the next set of parameters.</tt> </tt>
+<a name="L102"></a><tt class="py-lineno">102</tt>  <tt class="py-line">        <tt class="py-name">params</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__paramSource</tt><tt class="py-op">.</tt><tt id="link-23" class="py-name" targets="Method pyalgotrade.optimizer.base.ParameterSource.getNext()=pyalgotrade.optimizer.base.ParameterSource-class.html#getNext"><a title="pyalgotrade.optimizer.base.ParameterSource.getNext" class="py-name" href="#" onclick="return doclink('link-23', 'getNext', 'link-23');">getNext</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-24" class="py-name"><a title="pyalgotrade.optimizer.xmlrpcserver.Server.defaultBatchSize" class="py-name" href="#" onclick="return doclink('link-24', 'defaultBatchSize', 'link-15');">defaultBatchSize</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L103"></a><tt class="py-lineno">103</tt>  <tt class="py-line">        <tt class="py-name">params</tt> <tt class="py-op">=</tt> <tt class="py-name">map</tt><tt class="py-op">(</tt><tt class="py-keyword">lambda</tt> <tt class="py-name">p</tt><tt class="py-op">:</tt> <tt class="py-name">p</tt><tt class="py-op">.</tt><tt class="py-name">args</tt><tt class="py-op">,</tt> <tt class="py-name">params</tt><tt class="py-op">)</tt> </tt>
+<a name="L104"></a><tt class="py-lineno">104</tt>  <tt class="py-line"> </tt>
+<a name="L105"></a><tt class="py-lineno">105</tt>  <tt class="py-line">        <tt class="py-comment"># Map the active job</tt> </tt>
+<a name="L106"></a><tt class="py-lineno">106</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">len</tt><tt class="py-op">(</tt><tt class="py-name">params</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L107"></a><tt class="py-lineno">107</tt>  <tt class="py-line">            <tt class="py-name">ret</tt> <tt class="py-op">=</tt> <tt id="link-25" class="py-name" targets="Class pyalgotrade.optimizer.xmlrpcserver.Job=pyalgotrade.optimizer.xmlrpcserver.Job-class.html"><a title="pyalgotrade.optimizer.xmlrpcserver.Job" class="py-name" href="#" onclick="return doclink('link-25', 'Job', 'link-25');">Job</a></tt><tt class="py-op">(</tt><tt class="py-name">params</tt><tt class="py-op">)</tt> </tt>
+<a name="L108"></a><tt class="py-lineno">108</tt>  <tt class="py-line">            <tt class="py-keyword">with</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__activeJobsLock</tt><tt class="py-op">:</tt> </tt>
+<a name="L109"></a><tt class="py-lineno">109</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__activeJobs</tt><tt class="py-op">[</tt><tt class="py-name">ret</tt><tt class="py-op">.</tt><tt id="link-26" class="py-name" targets="Method pyalgotrade.bitstamp.httpclient.Order.getId()=pyalgotrade.bitstamp.httpclient.Order-class.html#getId,Method pyalgotrade.bitstamp.httpclient.UserTransaction.getId()=pyalgotrade.bitstamp.httpclient.UserTransaction-class.html#getId,Method pyalgotrade.bitstamp.wsclient.Trade.getId()=pyalgotrade.bitstamp.wsclient.Trade-class.html#getId,Method pyalgotrade.broker.Order.getId()=pyalgotrade.broker.Order-class.html#getId,Method pyalgotrade.optimizer.xmlrpcserver.Job.getId()=pyalgotrade.optimizer.xmlrpcserver.Job-class.html#getId"><a title="pyalgotrade.bitstamp.httpclient.Order.getId
+pyalgotrade.bitstamp.httpclient.UserTransaction.getId
+pyalgotrade.bitstamp.wsclient.Trade.getId
+pyalgotrade.broker.Order.getId
+pyalgotrade.optimizer.xmlrpcserver.Job.getId" class="py-name" href="#" onclick="return doclink('link-26', 'getId', 'link-26');">getId</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">]</tt> <tt class="py-op">=</tt> <tt class="py-name">ret</tt> </tt>
+<a name="L110"></a><tt class="py-lineno">110</tt>  <tt class="py-line"> </tt>
+<a name="L111"></a><tt class="py-lineno">111</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">pickle</tt><tt class="py-op">.</tt><tt class="py-name">dumps</tt><tt class="py-op">(</tt><tt class="py-name">ret</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L112"></a><tt class="py-lineno">112</tt>  <tt class="py-line"> </tt>
+<a name="Server.jobsPending"></a><div id="Server.jobsPending-def"><a name="L113"></a><tt class="py-lineno">113</tt> <a class="py-toggle" href="#" id="Server.jobsPending-toggle" onclick="return toggle('Server.jobsPending');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pyalgotrade.optimizer.xmlrpcserver.Server-class.html#jobsPending">jobsPending</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Server.jobsPending-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Server.jobsPending-expanded"><a name="L114"></a><tt class="py-lineno">114</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__forcedStop</tt><tt class="py-op">:</tt> </tt>
+<a name="L115"></a><tt class="py-lineno">115</tt>  <tt class="py-line">            <tt class="py-keyword">return</tt> <tt class="py-name">False</tt> </tt>
+<a name="L116"></a><tt class="py-lineno">116</tt>  <tt class="py-line"> </tt>
+<a name="L117"></a><tt class="py-lineno">117</tt>  <tt class="py-line">        <tt id="link-27" class="py-name"><a title="pyalgotrade.optimizer.xmlrpcserver.Server.jobsPending" class="py-name" href="#" onclick="return doclink('link-27', 'jobsPending', 'link-12');">jobsPending</a></tt> <tt class="py-op">=</tt> <tt class="py-keyword">not</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__paramSource</tt><tt class="py-op">.</tt><tt id="link-28" class="py-name" targets="Method pyalgotrade.barfeed.OptimizerBarFeed.eof()=pyalgotrade.barfeed.OptimizerBarFeed-class.html#eof,Method pyalgotrade.barfeed.membf.BarFeed.eof()=pyalgotrade.barfeed.membf.BarFeed-class.html#eof,Method pyalgotrade.barfeed.resampled.ResampledBarFeed.eof()=pyalgotrade.barfeed.resampled.ResampledBarFeed-class.html#eof,Method pyalgotrade.bitstamp.livebroker.LiveBroker.eof()=pyalgotrade.bitstamp.livebroker.LiveBroker-class.html#eof,Method pyalgotrade.bitstamp.livefeed.LiveTradeFeed.eof()=pyalgotrade.bitstamp.livefeed.LiveTradeFeed-class.html#eof,Method pyalgotrade.broker.backtesting.Broker.eof()=pyalgotrade.broker.backtesting.Broker-class.html#eof,Method pyalgotrade.broker.backtesting_old.Broker.eof()=pyalgotrade.broker.backtesting_old.Broker-class.html#eof,Method pyalgotrade.feed.memfeed.MemFeed.eof()=pyalgotrade.feed.memfeed.MemFeed-class.html#eof,Method pyalgotrade.ib.barfeed.LiveFeed.eof()=pyalgotrade.ib.barfeed.LiveFeed-class.html#eof,Method pyalgotrade.ib.livebroker.LiveBroker.eof()=pyalgotrade.ib.livebroker.LiveBroker-class.html#eof,Method pyalgotrade.observer.Subject.eof()=pyalgotrade.observer.Subject-class.html#eof,Method pyalgotrade.optimizer.base.ParameterSource.eof()=pyalgotrade.optimizer.base.ParameterSource-class.html#eof,Method pyalgotrade.twitter.feed.TwitterFeed.eof()=pyalgotrade.twitter.feed.TwitterFeed-class.html#eof"><a title="pyalgotrade.barfeed.OptimizerBarFeed.eof
+pyalgotrade.barfeed.membf.BarFeed.eof
+pyalgotrade.barfeed.resampled.ResampledBarFeed.eof
+pyalgotrade.bitstamp.livebroker.LiveBroker.eof
+pyalgotrade.bitstamp.livefeed.LiveTradeFeed.eof
+pyalgotrade.broker.backtesting.Broker.eof
+pyalgotrade.broker.backtesting_old.Broker.eof
+pyalgotrade.feed.memfeed.MemFeed.eof
+pyalgotrade.ib.barfeed.LiveFeed.eof
+pyalgotrade.ib.livebroker.LiveBroker.eof
+pyalgotrade.observer.Subject.eof
+pyalgotrade.optimizer.base.ParameterSource.eof
+pyalgotrade.twitter.feed.TwitterFeed.eof" class="py-name" href="#" onclick="return doclink('link-28', 'eof', 'link-28');">eof</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L118"></a><tt class="py-lineno">118</tt>  <tt class="py-line"> </tt>
+<a name="L119"></a><tt class="py-lineno">119</tt>  <tt class="py-line">        <tt class="py-keyword">with</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__activeJobsLock</tt><tt class="py-op">:</tt> </tt>
+<a name="L120"></a><tt class="py-lineno">120</tt>  <tt class="py-line">            <tt class="py-name">activeJobs</tt> <tt class="py-op">=</tt> <tt class="py-name">len</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__activeJobs</tt><tt class="py-op">)</tt> <tt class="py-op">&gt;</tt> <tt class="py-number">0</tt> </tt>
+<a name="L121"></a><tt class="py-lineno">121</tt>  <tt class="py-line"> </tt>
+<a name="L122"></a><tt class="py-lineno">122</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt id="link-29" class="py-name"><a title="pyalgotrade.optimizer.xmlrpcserver.Server.jobsPending" class="py-name" href="#" onclick="return doclink('link-29', 'jobsPending', 'link-12');">jobsPending</a></tt> <tt class="py-keyword">or</tt> <tt class="py-name">activeJobs</tt> </tt>
+</div><a name="L123"></a><tt class="py-lineno">123</tt>  <tt class="py-line"> </tt>
+<a name="Server.pushJobResults"></a><div id="Server.pushJobResults-def"><a name="L124"></a><tt class="py-lineno">124</tt> <a class="py-toggle" href="#" id="Server.pushJobResults-toggle" onclick="return toggle('Server.pushJobResults');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pyalgotrade.optimizer.xmlrpcserver.Server-class.html#pushJobResults">pushJobResults</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">jobId</tt><tt class="py-op">,</tt> <tt class="py-param">result</tt><tt class="py-op">,</tt> <tt class="py-param">parameters</tt><tt class="py-op">,</tt> <tt class="py-param">workerName</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Server.pushJobResults-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Server.pushJobResults-expanded"><a name="L125"></a><tt class="py-lineno">125</tt>  <tt class="py-line">        <tt class="py-name">jobId</tt> <tt class="py-op">=</tt> <tt class="py-name">pickle</tt><tt class="py-op">.</tt><tt class="py-name">loads</tt><tt class="py-op">(</tt><tt class="py-name">jobId</tt><tt class="py-op">)</tt> </tt>
+<a name="L126"></a><tt class="py-lineno">126</tt>  <tt class="py-line">        <tt class="py-name">result</tt> <tt class="py-op">=</tt> <tt class="py-name">pickle</tt><tt class="py-op">.</tt><tt class="py-name">loads</tt><tt class="py-op">(</tt><tt class="py-name">result</tt><tt class="py-op">)</tt> </tt>
+<a name="L127"></a><tt class="py-lineno">127</tt>  <tt class="py-line">        <tt class="py-name">parameters</tt> <tt class="py-op">=</tt> <tt class="py-name">pickle</tt><tt class="py-op">.</tt><tt class="py-name">loads</tt><tt class="py-op">(</tt><tt class="py-name">parameters</tt><tt class="py-op">)</tt> </tt>
+<a name="L128"></a><tt class="py-lineno">128</tt>  <tt class="py-line"> </tt>
+<a name="L129"></a><tt class="py-lineno">129</tt>  <tt class="py-line">        <tt class="py-comment"># Remove the job mapping.</tt> </tt>
+<a name="L130"></a><tt class="py-lineno">130</tt>  <tt class="py-line">        <tt class="py-keyword">with</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__activeJobsLock</tt><tt class="py-op">:</tt> </tt>
+<a name="L131"></a><tt class="py-lineno">131</tt>  <tt class="py-line">            <tt class="py-keyword">try</tt><tt class="py-op">:</tt> </tt>
+<a name="L132"></a><tt class="py-lineno">132</tt>  <tt class="py-line">                <tt class="py-keyword">del</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__activeJobs</tt><tt class="py-op">[</tt><tt class="py-name">jobId</tt><tt class="py-op">]</tt> </tt>
+<a name="L133"></a><tt class="py-lineno">133</tt>  <tt class="py-line">            <tt class="py-keyword">except</tt> <tt class="py-name">KeyError</tt><tt class="py-op">:</tt> </tt>
+<a name="L134"></a><tt class="py-lineno">134</tt>  <tt class="py-line">                <tt class="py-comment"># The job's results were already submitted.</tt> </tt>
+<a name="L135"></a><tt class="py-lineno">135</tt>  <tt class="py-line">                <tt class="py-keyword">return</tt> </tt>
+<a name="L136"></a><tt class="py-lineno">136</tt>  <tt class="py-line"> </tt>
+<a name="L137"></a><tt class="py-lineno">137</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">result</tt> <tt class="py-keyword">is</tt> <tt class="py-name">None</tt> <tt class="py-keyword">or</tt> <tt class="py-name">result</tt> <tt class="py-op">&gt;</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__bestResult</tt><tt class="py-op">:</tt> </tt>
+<a name="L138"></a><tt class="py-lineno">138</tt>  <tt class="py-line">            <tt id="link-30" class="py-name"><a title="pyalgotrade.bitstamp.common.logger
+pyalgotrade.logger
+pyalgotrade.optimizer.local.logger
+pyalgotrade.optimizer.server.logger
+pyalgotrade.optimizer.xmlrpcserver.logger
+pyalgotrade.twitter.feed.logger
+pyalgotrade.websocket.client.logger
+pyalgotrade.websocket.pusher.logger" class="py-name" href="#" onclick="return doclink('link-30', 'logger', 'link-1');">logger</a></tt><tt class="py-op">.</tt><tt id="link-31" class="py-name" targets="Method pyalgotrade.strategy.BaseStrategy.info()=pyalgotrade.strategy.BaseStrategy-class.html#info"><a title="pyalgotrade.strategy.BaseStrategy.info" class="py-name" href="#" onclick="return doclink('link-31', 'info', 'link-31');">info</a></tt><tt class="py-op">(</tt><tt class="py-string">"Best result so far %s with parameters %s"</tt> <tt class="py-op">%</tt> <tt class="py-op">(</tt><tt class="py-name">result</tt><tt class="py-op">,</tt> <tt class="py-name">parameters</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L139"></a><tt class="py-lineno">139</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__bestResult</tt> <tt class="py-op">=</tt> <tt class="py-name">result</tt> </tt>
+<a name="L140"></a><tt class="py-lineno">140</tt>  <tt class="py-line"> </tt>
+<a name="L141"></a><tt class="py-lineno">141</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__resultSinc</tt><tt class="py-op">.</tt><tt id="link-32" class="py-name" targets="Method pyalgotrade.optimizer.base.ResultSinc.push()=pyalgotrade.optimizer.base.ResultSinc-class.html#push"><a title="pyalgotrade.optimizer.base.ResultSinc.push" class="py-name" href="#" onclick="return doclink('link-32', 'push', 'link-32');">push</a></tt><tt class="py-op">(</tt><tt class="py-name">result</tt><tt class="py-op">,</tt> <tt id="link-33" class="py-name"><a title="pyalgotrade.optimizer.base" class="py-name" href="#" onclick="return doclink('link-33', 'base', 'link-4');">base</a></tt><tt class="py-op">.</tt><tt id="link-34" class="py-name" targets="Class pyalgotrade.optimizer.base.Parameters=pyalgotrade.optimizer.base.Parameters-class.html"><a title="pyalgotrade.optimizer.base.Parameters" class="py-name" href="#" onclick="return doclink('link-34', 'Parameters', 'link-34');">Parameters</a></tt><tt class="py-op">(</tt><tt class="py-op">*</tt><tt class="py-name">parameters</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L142"></a><tt class="py-lineno">142</tt>  <tt class="py-line"> </tt>
+<a name="Server.stop"></a><div id="Server.stop-def"><a name="L143"></a><tt class="py-lineno">143</tt> <a class="py-toggle" href="#" id="Server.stop-toggle" onclick="return toggle('Server.stop');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pyalgotrade.optimizer.xmlrpcserver.Server-class.html#stop">stop</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Server.stop-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Server.stop-expanded"><a name="L144"></a><tt class="py-lineno">144</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">shutdown</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L145"></a><tt class="py-lineno">145</tt>  <tt class="py-line"> </tt>
+<a name="Server.serve"></a><div id="Server.serve-def"><a name="L146"></a><tt class="py-lineno">146</tt> <a class="py-toggle" href="#" id="Server.serve-toggle" onclick="return toggle('Server.serve');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pyalgotrade.optimizer.xmlrpcserver.Server-class.html#serve">serve</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Server.serve-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Server.serve-expanded"><a name="L147"></a><tt class="py-lineno">147</tt>  <tt class="py-line">        <tt class="py-keyword">try</tt><tt class="py-op">:</tt> </tt>
+<a name="L148"></a><tt class="py-lineno">148</tt>  <tt class="py-line">            <tt class="py-comment"># Initialize instruments, bars and parameters.</tt> </tt>
+<a name="L149"></a><tt class="py-lineno">149</tt>  <tt class="py-line">            <tt id="link-35" class="py-name"><a title="pyalgotrade.bitstamp.common.logger
+pyalgotrade.logger
+pyalgotrade.optimizer.local.logger
+pyalgotrade.optimizer.server.logger
+pyalgotrade.optimizer.xmlrpcserver.logger
+pyalgotrade.twitter.feed.logger
+pyalgotrade.websocket.client.logger
+pyalgotrade.websocket.pusher.logger" class="py-name" href="#" onclick="return doclink('link-35', 'logger', 'link-1');">logger</a></tt><tt class="py-op">.</tt><tt id="link-36" class="py-name"><a title="pyalgotrade.strategy.BaseStrategy.info" class="py-name" href="#" onclick="return doclink('link-36', 'info', 'link-31');">info</a></tt><tt class="py-op">(</tt><tt class="py-string">"Loading bars"</tt><tt class="py-op">)</tt> </tt>
+<a name="L150"></a><tt class="py-lineno">150</tt>  <tt class="py-line">            <tt class="py-name">loadedBars</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
+<a name="L151"></a><tt class="py-lineno">151</tt>  <tt class="py-line">            <tt class="py-keyword">for</tt> <tt class="py-name">dateTime</tt><tt class="py-op">,</tt> <tt class="py-name">bars</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__barFeed</tt><tt class="py-op">:</tt> </tt>
+<a name="L152"></a><tt class="py-lineno">152</tt>  <tt class="py-line">                <tt class="py-name">loadedBars</tt><tt class="py-op">.</tt><tt id="link-37" class="py-name" targets="Method pyalgotrade.dataseries.SequenceDataSeries.append()=pyalgotrade.dataseries.SequenceDataSeries-class.html#append,Method pyalgotrade.dataseries.bards.BarDataSeries.append()=pyalgotrade.dataseries.bards.BarDataSeries-class.html#append,Method pyalgotrade.utils.collections.ListDeque.append()=pyalgotrade.utils.collections.ListDeque-class.html#append,Method pyalgotrade.utils.collections.NumPyDeque.append()=pyalgotrade.utils.collections.NumPyDeque-class.html#append"><a title="pyalgotrade.dataseries.SequenceDataSeries.append
+pyalgotrade.dataseries.bards.BarDataSeries.append
+pyalgotrade.utils.collections.ListDeque.append
+pyalgotrade.utils.collections.NumPyDeque.append" class="py-name" href="#" onclick="return doclink('link-37', 'append', 'link-37');">append</a></tt><tt class="py-op">(</tt><tt class="py-name">bars</tt><tt class="py-op">)</tt> </tt>
+<a name="L153"></a><tt class="py-lineno">153</tt>  <tt class="py-line">            <tt class="py-name">instruments</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__barFeed</tt><tt class="py-op">.</tt><tt id="link-38" class="py-name" targets="Method pyalgotrade.barfeed.BaseBarFeed.getRegisteredInstruments()=pyalgotrade.barfeed.BaseBarFeed-class.html#getRegisteredInstruments"><a title="pyalgotrade.barfeed.BaseBarFeed.getRegisteredInstruments" class="py-name" href="#" onclick="return doclink('link-38', 'getRegisteredInstruments', 'link-38');">getRegisteredInstruments</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L154"></a><tt class="py-lineno">154</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__instrumentsAndBars</tt> <tt class="py-op">=</tt> <tt class="py-name">pickle</tt><tt class="py-op">.</tt><tt class="py-name">dumps</tt><tt class="py-op">(</tt><tt class="py-op">(</tt><tt class="py-name">instruments</tt><tt class="py-op">,</tt> <tt class="py-name">loadedBars</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L155"></a><tt class="py-lineno">155</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__barsFreq</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__barFeed</tt><tt class="py-op">.</tt><tt id="link-39" class="py-name" targets="Method pyalgotrade.bar.Bar.getFrequency()=pyalgotrade.bar.Bar-class.html#getFrequency,Method pyalgotrade.bar.BasicBar.getFrequency()=pyalgotrade.bar.BasicBar-class.html#getFrequency,Method pyalgotrade.barfeed.BaseBarFeed.getFrequency()=pyalgotrade.barfeed.BaseBarFeed-class.html#getFrequency,Method pyalgotrade.bitcoincharts.barfeed.TradeBar.getFrequency()=pyalgotrade.bitcoincharts.barfeed.TradeBar-class.html#getFrequency,Method pyalgotrade.bitstamp.livefeed.TradeBar.getFrequency()=pyalgotrade.bitstamp.livefeed.TradeBar-class.html#getFrequency"><a title="pyalgotrade.bar.Bar.getFrequency
+pyalgotrade.bar.BasicBar.getFrequency
+pyalgotrade.barfeed.BaseBarFeed.getFrequency
+pyalgotrade.bitcoincharts.barfeed.TradeBar.getFrequency
+pyalgotrade.bitstamp.livefeed.TradeBar.getFrequency" class="py-name" href="#" onclick="return doclink('link-39', 'getFrequency', 'link-39');">getFrequency</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L156"></a><tt class="py-lineno">156</tt>  <tt class="py-line"> </tt>
+<a name="L157"></a><tt class="py-lineno">157</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__autoStopThread</tt><tt class="py-op">:</tt> </tt>
+<a name="L158"></a><tt class="py-lineno">158</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__autoStopThread</tt><tt class="py-op">.</tt><tt id="link-40" class="py-name" targets="Method pyalgotrade.barfeed.OptimizerBarFeed.start()=pyalgotrade.barfeed.OptimizerBarFeed-class.html#start,Method pyalgotrade.barfeed.membf.BarFeed.start()=pyalgotrade.barfeed.membf.BarFeed-class.html#start,Method pyalgotrade.barfeed.resampled.ResampledBarFeed.start()=pyalgotrade.barfeed.resampled.ResampledBarFeed-class.html#start,Method pyalgotrade.bitstamp.livebroker.LiveBroker.start()=pyalgotrade.bitstamp.livebroker.LiveBroker-class.html#start,Method pyalgotrade.bitstamp.livebroker.TradeMonitor.start()=pyalgotrade.bitstamp.livebroker.TradeMonitor-class.html#start,Method pyalgotrade.bitstamp.livefeed.LiveTradeFeed.start()=pyalgotrade.bitstamp.livefeed.LiveTradeFeed-class.html#start,Method pyalgotrade.bitstamp.wsclient.WebSocketClientThread.start()=pyalgotrade.bitstamp.wsclient.WebSocketClientThread-class.html#start,Method pyalgotrade.broker.backtesting.Broker.start()=pyalgotrade.broker.backtesting.Broker-class.html#start,Method pyalgotrade.broker.backtesting_old.Broker.start()=pyalgotrade.broker.backtesting_old.Broker-class.html#start,Method pyalgotrade.feed.memfeed.MemFeed.start()=pyalgotrade.feed.memfeed.MemFeed-class.html#start,Method pyalgotrade.ib.barfeed.LiveFeed.start()=pyalgotrade.ib.barfeed.LiveFeed-class.html#start,Method pyalgotrade.ib.livebroker.LiveBroker.start()=pyalgotrade.ib.livebroker.LiveBroker-class.html#start,Method pyalgotrade.observer.Subject.start()=pyalgotrade.observer.Subject-class.html#start,Method pyalgotrade.twitter.feed.TwitterFeed.start()=pyalgotrade.twitter.feed.TwitterFeed-class.html#start,Method pyalgotrade.websocket.client.KeepAliveMgr.start()=pyalgotrade.websocket.client.KeepAliveMgr-class.html#start"><a title="pyalgotrade.barfeed.OptimizerBarFeed.start
+pyalgotrade.barfeed.membf.BarFeed.start
+pyalgotrade.barfeed.resampled.ResampledBarFeed.start
+pyalgotrade.bitstamp.livebroker.LiveBroker.start
+pyalgotrade.bitstamp.livebroker.TradeMonitor.start
+pyalgotrade.bitstamp.livefeed.LiveTradeFeed.start
+pyalgotrade.bitstamp.wsclient.WebSocketClientThread.start
+pyalgotrade.broker.backtesting.Broker.start
+pyalgotrade.broker.backtesting_old.Broker.start
+pyalgotrade.feed.memfeed.MemFeed.start
+pyalgotrade.ib.barfeed.LiveFeed.start
+pyalgotrade.ib.livebroker.LiveBroker.start
+pyalgotrade.observer.Subject.start
+pyalgotrade.twitter.feed.TwitterFeed.start
+pyalgotrade.websocket.client.KeepAliveMgr.start" class="py-name" href="#" onclick="return doclink('link-40', 'start', 'link-40');">start</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L159"></a><tt class="py-lineno">159</tt>  <tt class="py-line"> </tt>
+<a name="L160"></a><tt class="py-lineno">160</tt>  <tt class="py-line">            <tt id="link-41" class="py-name"><a title="pyalgotrade.bitstamp.common.logger
+pyalgotrade.logger
+pyalgotrade.optimizer.local.logger
+pyalgotrade.optimizer.server.logger
+pyalgotrade.optimizer.xmlrpcserver.logger
+pyalgotrade.twitter.feed.logger
+pyalgotrade.websocket.client.logger
+pyalgotrade.websocket.pusher.logger" class="py-name" href="#" onclick="return doclink('link-41', 'logger', 'link-1');">logger</a></tt><tt class="py-op">.</tt><tt id="link-42" class="py-name"><a title="pyalgotrade.strategy.BaseStrategy.info" class="py-name" href="#" onclick="return doclink('link-42', 'info', 'link-31');">info</a></tt><tt class="py-op">(</tt><tt class="py-string">"Waiting for workers"</tt><tt class="py-op">)</tt> </tt>
+<a name="L161"></a><tt class="py-lineno">161</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">serve_forever</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L162"></a><tt class="py-lineno">162</tt>  <tt class="py-line"> </tt>
+<a name="L163"></a><tt class="py-lineno">163</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__autoStopThread</tt><tt class="py-op">:</tt> </tt>
+<a name="L164"></a><tt class="py-lineno">164</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__autoStopThread</tt><tt class="py-op">.</tt><tt id="link-43" class="py-name" targets="Method pyalgotrade.barfeed.OptimizerBarFeed.join()=pyalgotrade.barfeed.OptimizerBarFeed-class.html#join,Method pyalgotrade.barfeed.membf.BarFeed.join()=pyalgotrade.barfeed.membf.BarFeed-class.html#join,Method pyalgotrade.barfeed.resampled.ResampledBarFeed.join()=pyalgotrade.barfeed.resampled.ResampledBarFeed-class.html#join,Method pyalgotrade.bitstamp.livebroker.LiveBroker.join()=pyalgotrade.bitstamp.livebroker.LiveBroker-class.html#join,Method pyalgotrade.bitstamp.livefeed.LiveTradeFeed.join()=pyalgotrade.bitstamp.livefeed.LiveTradeFeed-class.html#join,Method pyalgotrade.broker.backtesting.Broker.join()=pyalgotrade.broker.backtesting.Broker-class.html#join,Method pyalgotrade.broker.backtesting_old.Broker.join()=pyalgotrade.broker.backtesting_old.Broker-class.html#join,Method pyalgotrade.feed.memfeed.MemFeed.join()=pyalgotrade.feed.memfeed.MemFeed-class.html#join,Method pyalgotrade.ib.barfeed.LiveFeed.join()=pyalgotrade.ib.barfeed.LiveFeed-class.html#join,Method pyalgotrade.ib.livebroker.LiveBroker.join()=pyalgotrade.ib.livebroker.LiveBroker-class.html#join,Method pyalgotrade.observer.Subject.join()=pyalgotrade.observer.Subject-class.html#join,Method pyalgotrade.twitter.feed.TwitterFeed.join()=pyalgotrade.twitter.feed.TwitterFeed-class.html#join"><a title="pyalgotrade.barfeed.OptimizerBarFeed.join
+pyalgotrade.barfeed.membf.BarFeed.join
+pyalgotrade.barfeed.resampled.ResampledBarFeed.join
+pyalgotrade.bitstamp.livebroker.LiveBroker.join
+pyalgotrade.bitstamp.livefeed.LiveTradeFeed.join
+pyalgotrade.broker.backtesting.Broker.join
+pyalgotrade.broker.backtesting_old.Broker.join
+pyalgotrade.feed.memfeed.MemFeed.join
+pyalgotrade.ib.barfeed.LiveFeed.join
+pyalgotrade.ib.livebroker.LiveBroker.join
+pyalgotrade.observer.Subject.join
+pyalgotrade.twitter.feed.TwitterFeed.join" class="py-name" href="#" onclick="return doclink('link-43', 'join', 'link-43');">join</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L165"></a><tt class="py-lineno">165</tt>  <tt class="py-line">        <tt class="py-keyword">finally</tt><tt class="py-op">:</tt> </tt>
+<a name="L166"></a><tt class="py-lineno">166</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__forcedStop</tt> <tt class="py-op">=</tt> <tt class="py-name">True</tt> </tt>
+</div></div><a name="L167"></a><tt class="py-lineno">167</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="pyalgotrade-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Sat Oct 15 14:17:57 2016
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

@@ -1,0 +1,440 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>pyalgotrade.technical.linebreak.LineBreak</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="pyalgotrade-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="pyalgotrade-module.html">Package&nbsp;pyalgotrade</a> ::
+        <a href="pyalgotrade.technical-module.html">Package&nbsp;technical</a> ::
+        <a href="pyalgotrade.technical.linebreak-module.html">Module&nbsp;linebreak</a> ::
+        Class&nbsp;LineBreak
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="pyalgotrade.technical.linebreak.LineBreak-class.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS DESCRIPTION ==================== -->
+<h1 class="epydoc">Class LineBreak</h1><p class="nomargin-top"><span class="codelink"><a href="pyalgotrade.technical.linebreak-pysrc.html#LineBreak">source&nbsp;code</a></span></p>
+<center>
+<center>  <map id="uml_class_diagram_for_pyalgotr_196" name="uml_class_diagram_for_pyalgotr_196">
+<area shape="rect" id="node1_12" href="pyalgotrade.technical.linebreak.LineBreak-class.html#__init__" title="x.__init__(...) initializes x; see help(type(x)) for signature" alt="" coords="17,347,527,367"/>
+<area shape="rect" id="node1_13" href="pyalgotrade.technical.linebreak.LineBreak-class.html#setMaxLen" title="Sets the maximum number of values to hold and resizes accordingly if &#160;necessary." alt="" coords="17,367,527,387"/>
+<area shape="rect" id="node1" href="pyalgotrade.technical.linebreak.LineBreak-class.html" title="Line Break filter as described in http://stockcharts.com/school/doku.php?id=chart_school:chart_analysis:three_line_break." alt="" coords="5,315,539,393"/>
+<area shape="rect" id="node2_14" href="pyalgotrade.dataseries.SequenceDataSeries-class.html#__abstractmethods__" title="pyalgotrade.dataseries.SequenceDataSeries.__abstractmethods__" alt="" coords="140,107,403,127"/>
+<area shape="rect" id="node2_15" href="pyalgotrade.dataseries.SequenceDataSeries-class.html#__len__" title="Returns the number of elements in the data series." alt="" coords="140,129,403,149"/>
+<area shape="rect" id="node2_16" href="pyalgotrade.dataseries.SequenceDataSeries-class.html#__getitem__" title="Returns the value at a given position/slice." alt="" coords="140,149,403,169"/>
+<area shape="rect" id="node2_17" href="pyalgotrade.dataseries.SequenceDataSeries-class.html#getMaxLen" title="Returns the maximum number of values to hold." alt="" coords="140,169,403,189"/>
+<area shape="rect" id="node2_18" href="pyalgotrade.dataseries.SequenceDataSeries-class.html#getNewValueEvent" title="pyalgotrade.dataseries.SequenceDataSeries.getNewValueEvent" alt="" coords="140,189,403,209"/>
+<area shape="rect" id="node2_19" href="pyalgotrade.dataseries.SequenceDataSeries-class.html#getValueAbsolute" title="pyalgotrade.dataseries.SequenceDataSeries.getValueAbsolute" alt="" coords="140,209,403,229"/>
+<area shape="rect" id="node2_20" href="pyalgotrade.dataseries.SequenceDataSeries-class.html#append" title="Appends a value." alt="" coords="140,229,403,249"/>
+<area shape="rect" id="node2_21" href="pyalgotrade.dataseries.SequenceDataSeries-class.html#appendWithDateTime" title="Appends a value with an associated datetime." alt="" coords="140,249,403,269"/>
+<area shape="rect" id="node2_22" href="pyalgotrade.dataseries.SequenceDataSeries-class.html#getDateTimes" title="Returns a list of :class:`datetime.datetime` associated with each value." alt="" coords="140,269,403,289"/>
+<area shape="rect" id="node2" href="pyalgotrade.dataseries.SequenceDataSeries-class.html" title="A DataSeries that holds values in a sequence in memory." alt="" coords="127,83,414,296"/>
+<area shape="rect" id="node3_23" href="abc.ABCMeta-class.html" title="Metaclass for defining Abstract Base Classes (ABCs)." alt="" coords="207,29,336,49"/>
+<area shape="rect" id="node3" href="pyalgotrade.dataseries.DataSeries-class.html" title="Base class for data series." alt="" coords="194,5,347,64"/>
+</map>
+  <img src="uml_class_diagram_for_pyalgotr_196.gif" alt='' usemap="#uml_class_diagram_for_pyalgotr_196" ismap="ismap" class="graph-without-title" />
+</center>
+</center>
+<hr />
+<pre class="literalblock">
+Line Break filter as described in http://stockcharts.com/school/doku.php?id=chart_school:chart_analysis:three_line_break.
+.
+This is a DataSeries of :class:`Line` instances.
+
+:param barDataSeries: The DataSeries instance being filtered.
+:type barDataSeries: :class:`pyalgotrade.dataseries.bards.BarDataSeries`.
+:param reversalLines: The number of lines back to check to calculate a reversal. Must be greater than 1.
+:type reversalLines: int.
+:param useAdjustedValues: True to use adjusted high/low/close values.
+:type useAdjustedValues: boolean.
+:param maxLen: The maximum number of values to hold.
+    Once a bounded length is full, when new items are added, a corresponding number of items are discarded from the
+    opposite end. If None then dataseries.DEFAULT_MAX_LEN is used.
+    This value can't be smaller than reversalLines.
+:type maxLen: int.
+
+</pre>
+
+<!-- ==================== NESTED CLASSES ==================== -->
+<a name="section-NestedClasses"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Nested Classes</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-NestedClasses"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="pyalgotrade.dataseries.DataSeries-class.html">dataseries.DataSeries</a></code></b>:
+      <code><a href="abc.ABCMeta-class.html">__metaclass__</a></code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== INSTANCE METHODS ==================== -->
+<a name="section-InstanceMethods"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Instance Methods</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-InstanceMethods"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyalgotrade.technical.linebreak.LineBreak-class.html#__init__" class="summary-sig-name">__init__</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">barDataSeries</span>,
+        <span class="summary-sig-arg">reversalLines</span>,
+        <span class="summary-sig-arg">useAdjustedValues</span>=<span class="summary-sig-default">False</span>,
+        <span class="summary-sig-arg">maxLen</span>=<span class="summary-sig-default">None</span>)</span><br />
+      x.__init__(...) initializes x; see help(type(x)) for signature</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.technical.linebreak-pysrc.html#LineBreak.__init__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="__onNewBar"></a><span class="summary-sig-name">__onNewBar</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">dataSeries</span>,
+        <span class="summary-sig-arg">dateTime</span>,
+        <span class="summary-sig-arg">value</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.technical.linebreak-pysrc.html#LineBreak.__onNewBar">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="__isReversal"></a><span class="summary-sig-name">__isReversal</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">value</span>,
+        <span class="summary-sig-arg">breakUp</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.technical.linebreak-pysrc.html#LineBreak.__isReversal">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="__getNextLine"></a><span class="summary-sig-name">__getNextLine</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">bar</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.technical.linebreak-pysrc.html#LineBreak.__getNextLine">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyalgotrade.technical.linebreak.LineBreak-class.html#setMaxLen" class="summary-sig-name">setMaxLen</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">maxLen</span>)</span><br />
+      Sets the maximum number of values to hold and resizes accordingly if 
+      necessary.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.technical.linebreak-pysrc.html#LineBreak.setMaxLen">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="pyalgotrade.dataseries.SequenceDataSeries-class.html">dataseries.SequenceDataSeries</a></code></b>:
+      <code><a href="pyalgotrade.dataseries.SequenceDataSeries-class.html#__getitem__">__getitem__</a></code>,
+      <code><a href="pyalgotrade.dataseries.SequenceDataSeries-class.html#__len__">__len__</a></code>,
+      <code><a href="pyalgotrade.dataseries.SequenceDataSeries-class.html#append">append</a></code>,
+      <code><a href="pyalgotrade.dataseries.SequenceDataSeries-class.html#appendWithDateTime">appendWithDateTime</a></code>,
+      <code><a href="pyalgotrade.dataseries.SequenceDataSeries-class.html#getDateTimes">getDateTimes</a></code>,
+      <code><a href="pyalgotrade.dataseries.SequenceDataSeries-class.html#getMaxLen">getMaxLen</a></code>,
+      <code><a href="pyalgotrade.dataseries.SequenceDataSeries-class.html#getNewValueEvent">getNewValueEvent</a></code>,
+      <code><a href="pyalgotrade.dataseries.SequenceDataSeries-class.html#getValueAbsolute">getValueAbsolute</a></code>
+      </p>
+    <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
+      <code>__delattr__</code>,
+      <code>__format__</code>,
+      <code>__getattribute__</code>,
+      <code>__hash__</code>,
+      <code>__new__</code>,
+      <code>__reduce__</code>,
+      <code>__reduce_ex__</code>,
+      <code>__repr__</code>,
+      <code>__setattr__</code>,
+      <code>__sizeof__</code>,
+      <code>__str__</code>,
+      <code>__subclasshook__</code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS VARIABLES ==================== -->
+<a name="section-ClassVariables"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Class Variables</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-ClassVariables"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="pyalgotrade.dataseries.SequenceDataSeries-class.html">dataseries.SequenceDataSeries</a></code></b>:
+      <code><a href="pyalgotrade.dataseries.SequenceDataSeries-class.html#__abstractmethods__">__abstractmethods__</a></code>
+      </p>
+    <div class="private">    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="pyalgotrade.dataseries.DataSeries-class.html">dataseries.DataSeries</a></code></b> (private):
+      <code><a href="pyalgotrade.dataseries.DataSeries-class.html#_abc_cache" onclick="show_private();">_abc_cache</a></code>,
+      <code><a href="pyalgotrade.dataseries.DataSeries-class.html#_abc_negative_cache" onclick="show_private();">_abc_negative_cache</a></code>,
+      <code><a href="pyalgotrade.dataseries.DataSeries-class.html#_abc_negative_cache_version" onclick="show_private();">_abc_negative_cache_version</a></code>,
+      <code><a href="pyalgotrade.dataseries.DataSeries-class.html#_abc_registry" onclick="show_private();">_abc_registry</a></code>
+      </p></div>
+    </td>
+  </tr>
+</table>
+<!-- ==================== PROPERTIES ==================== -->
+<a name="section-Properties"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Properties</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Properties"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
+      <code>__class__</code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== METHOD DETAILS ==================== -->
+<a name="section-MethodDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Method Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-MethodDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="__init__"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__init__</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">barDataSeries</span>,
+        <span class="sig-arg">reversalLines</span>,
+        <span class="sig-arg">useAdjustedValues</span>=<span class="sig-default">False</span>,
+        <span class="sig-arg">maxLen</span>=<span class="sig-default">None</span>)</span>
+    <br /><em class="fname">(Constructor)</em>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyalgotrade.technical.linebreak-pysrc.html#LineBreak.__init__">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>x.__init__(...) initializes x; see help(type(x)) for signature</p>
+  <dl class="fields">
+    <dt>Overrides:
+        object.__init__
+        <dd><em class="note">(inherited documentation)</em></dd>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="setMaxLen"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">setMaxLen</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">maxLen</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyalgotrade.technical.linebreak-pysrc.html#LineBreak.setMaxLen">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Sets the maximum number of values to hold and resizes accordingly if 
+  necessary.</p>
+  <dl class="fields">
+    <dt>Overrides:
+        <a href="pyalgotrade.dataseries.SequenceDataSeries-class.html#setMaxLen">dataseries.SequenceDataSeries.setMaxLen</a>
+        <dd><em class="note">(inherited documentation)</em></dd>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="pyalgotrade-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Sat Oct 15 14:17:53 2016
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

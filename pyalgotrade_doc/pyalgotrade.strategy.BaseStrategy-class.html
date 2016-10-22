@@ -1,0 +1,2000 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>pyalgotrade.strategy.BaseStrategy</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="pyalgotrade-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="pyalgotrade-module.html">Package&nbsp;pyalgotrade</a> ::
+        Module&nbsp;strategy ::
+        Class&nbsp;BaseStrategy
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="pyalgotrade.strategy.BaseStrategy-class.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS DESCRIPTION ==================== -->
+<h1 class="epydoc">Class BaseStrategy</h1><p class="nomargin-top"><span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy">source&nbsp;code</a></span></p>
+<center>
+<center>  <map id="uml_class_diagram_for_pyalgotr_173" name="uml_class_diagram_for_pyalgotr_173">
+<area shape="rect" id="node1_17" href="abc.ABCMeta-class.html" title="Metaclass for defining Abstract Base Classes (ABCs)." alt="" coords="18,30,345,50"/>
+<area shape="rect" id="node1_18" href="pyalgotrade.strategy.BaseStrategy-class.html#LOGGER_NAME" title="pyalgotrade.strategy.BaseStrategy.LOGGER_NAME" alt="" coords="18,50,345,70"/>
+<area shape="rect" id="node1_19" href="pyalgotrade.strategy.BaseStrategy-class.html#__abstractmethods__" title="pyalgotrade.strategy.BaseStrategy.__abstractmethods__" alt="" coords="18,70,345,90"/>
+<area shape="rect" id="node1_20" href="pyalgotrade.strategy.BaseStrategy-class.html#__init__" title="x.__init__(...) initializes x; see help(type(x)) for signature" alt="" coords="18,93,345,113"/>
+<area shape="rect" id="node1_21" href="pyalgotrade.strategy.BaseStrategy-class.html#setUseEventDateTimeInLogs" title="pyalgotrade.strategy.BaseStrategy.setUseEventDateTimeInLogs" alt="" coords="18,113,345,133"/>
+<area shape="rect" id="node1_22" href="pyalgotrade.strategy.BaseStrategy-class.html#getLogger" title="pyalgotrade.strategy.BaseStrategy.getLogger" alt="" coords="18,133,345,153"/>
+<area shape="rect" id="node1_23" href="pyalgotrade.strategy.BaseStrategy-class.html#getActivePositions" title="pyalgotrade.strategy.BaseStrategy.getActivePositions" alt="" coords="18,153,345,173"/>
+<area shape="rect" id="node1_24" href="pyalgotrade.strategy.BaseStrategy-class.html#getOrderToPosition" title="pyalgotrade.strategy.BaseStrategy.getOrderToPosition" alt="" coords="18,173,345,193"/>
+<area shape="rect" id="node1_25" href="pyalgotrade.strategy.BaseStrategy-class.html#getDispatcher" title="pyalgotrade.strategy.BaseStrategy.getDispatcher" alt="" coords="18,193,345,213"/>
+<area shape="rect" id="node1_26" href="pyalgotrade.strategy.BaseStrategy-class.html#getResult" title="pyalgotrade.strategy.BaseStrategy.getResult" alt="" coords="18,213,345,233"/>
+<area shape="rect" id="node1_27" href="pyalgotrade.strategy.BaseStrategy-class.html#getBarsProcessedEvent" title="pyalgotrade.strategy.BaseStrategy.getBarsProcessedEvent" alt="" coords="18,233,345,253"/>
+<area shape="rect" id="node1_28" href="pyalgotrade.strategy.BaseStrategy-class.html#getUseAdjustedValues" title="pyalgotrade.strategy.BaseStrategy.getUseAdjustedValues" alt="" coords="18,253,345,273"/>
+<area shape="rect" id="node1_29" href="pyalgotrade.strategy.BaseStrategy-class.html#registerPositionOrder" title="pyalgotrade.strategy.BaseStrategy.registerPositionOrder" alt="" coords="18,273,345,293"/>
+<area shape="rect" id="node1_30" href="pyalgotrade.strategy.BaseStrategy-class.html#unregisterPositionOrder" title="pyalgotrade.strategy.BaseStrategy.unregisterPositionOrder" alt="" coords="18,293,345,313"/>
+<area shape="rect" id="node1_31" href="pyalgotrade.strategy.BaseStrategy-class.html#unregisterPosition" title="pyalgotrade.strategy.BaseStrategy.unregisterPosition" alt="" coords="18,313,345,333"/>
+<area shape="rect" id="node1_32" href="pyalgotrade.strategy.BaseStrategy-class.html#attachAnalyzerEx" title="pyalgotrade.strategy.BaseStrategy.attachAnalyzerEx" alt="" coords="18,333,345,353"/>
+<area shape="rect" id="node1_33" href="pyalgotrade.strategy.BaseStrategy-class.html#resampleBarFeed" title="Builds a resampled barfeed that groups bars by a certain frequency." alt="" coords="18,373,345,393"/>
+<area shape="rect" id="node1" href="pyalgotrade.strategy.BaseStrategy-class.html" title="Base class for strategies." alt="" coords="5,5,356,399"/>
+<area shape="rect" id="node2" href="pyalgotrade.strategy.BacktestingStrategy-class.html" title="Base class for backtesting strategies." alt="" coords="105,417,259,456"/>
+</map>
+  <img src="uml_class_diagram_for_pyalgotr_173.gif" alt='' usemap="#uml_class_diagram_for_pyalgotr_173" ismap="ismap" class="graph-without-title" />
+</center>
+</center>
+<hr />
+<p>Base class for strategies.</p>
+  <p>:param barFeed: The bar feed that will supply the bars. :type barFeed:
+  :class:`pyalgotrade.barfeed.BaseBarFeed`. :param broker: The broker that 
+  will handle orders. :type broker: :class:`pyalgotrade.broker.Broker`.</p>
+  <p>.. note:</p>
+<pre class="literalblock">
+   This is a base class and should not be used directly.
+</pre>
+
+<!-- ==================== NESTED CLASSES ==================== -->
+<a name="section-NestedClasses"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Nested Classes</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-NestedClasses"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="abc.ABCMeta-class.html" class="summary-name">__metaclass__</a><br />
+      Metaclass for defining Abstract Base Classes (ABCs).
+    </td>
+  </tr>
+</table>
+<!-- ==================== INSTANCE METHODS ==================== -->
+<a name="section-InstanceMethods"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Instance Methods</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-InstanceMethods"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyalgotrade.strategy.BaseStrategy-class.html#__init__" class="summary-sig-name">__init__</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">barFeed</span>,
+        <span class="summary-sig-arg">broker</span>)</span><br />
+      x.__init__(...) initializes x; see help(type(x)) for signature</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.__init__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="_setBroker"></a><span class="summary-sig-name">_setBroker</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">broker</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy._setBroker">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="setUseEventDateTimeInLogs"></a><span class="summary-sig-name">setUseEventDateTimeInLogs</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">useEventDateTime</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.setUseEventDateTimeInLogs">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="getLogger"></a><span class="summary-sig-name">getLogger</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.getLogger">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="getActivePositions"></a><span class="summary-sig-name">getActivePositions</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.getActivePositions">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="getOrderToPosition"></a><span class="summary-sig-name">getOrderToPosition</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.getOrderToPosition">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="getDispatcher"></a><span class="summary-sig-name">getDispatcher</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.getDispatcher">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="getResult"></a><span class="summary-sig-name">getResult</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.getResult">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="getBarsProcessedEvent"></a><span class="summary-sig-name">getBarsProcessedEvent</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.getBarsProcessedEvent">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="getUseAdjustedValues"></a><span class="summary-sig-name">getUseAdjustedValues</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.getUseAdjustedValues">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="registerPositionOrder"></a><span class="summary-sig-name">registerPositionOrder</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">position</span>,
+        <span class="summary-sig-arg">order</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.registerPositionOrder">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="unregisterPositionOrder"></a><span class="summary-sig-name">unregisterPositionOrder</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">position</span>,
+        <span class="summary-sig-arg">order</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.unregisterPositionOrder">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="unregisterPosition"></a><span class="summary-sig-name">unregisterPosition</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">position</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.unregisterPosition">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="__notifyAnalyzers"></a><span class="summary-sig-name">__notifyAnalyzers</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">lambdaExpression</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.__notifyAnalyzers">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="attachAnalyzerEx"></a><span class="summary-sig-name">attachAnalyzerEx</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">strategyAnalyzer</span>,
+        <span class="summary-sig-arg">name</span>=<span class="summary-sig-default">None</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.attachAnalyzerEx">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="getLastPrice"></a><span class="summary-sig-name">getLastPrice</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">instrument</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.getLastPrice">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="getFeed"></a><span class="summary-sig-name">getFeed</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      Returns the :class:`pyalgotrade.barfeed.BaseBarFeed` that this 
+      strategy is using.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.getFeed">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="getBroker"></a><span class="summary-sig-name">getBroker</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      Returns the :class:`pyalgotrade.broker.Broker` used to handle order 
+      executions.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.getBroker">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="getCurrentDateTime"></a><span class="summary-sig-name">getCurrentDateTime</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      Returns the :class:`datetime.datetime` for the current 
+      :class:`pyalgotrade.bar.Bars`.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.getCurrentDateTime">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyalgotrade.strategy.BaseStrategy-class.html#marketOrder" class="summary-sig-name">marketOrder</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">instrument</span>,
+        <span class="summary-sig-arg">quantity</span>,
+        <span class="summary-sig-arg">onClose</span>=<span class="summary-sig-default">False</span>,
+        <span class="summary-sig-arg">goodTillCanceled</span>=<span class="summary-sig-default">False</span>,
+        <span class="summary-sig-arg">allOrNone</span>=<span class="summary-sig-default">False</span>)</span><br />
+      Submits a market order.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.marketOrder">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyalgotrade.strategy.BaseStrategy-class.html#limitOrder" class="summary-sig-name">limitOrder</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">instrument</span>,
+        <span class="summary-sig-arg">limitPrice</span>,
+        <span class="summary-sig-arg">quantity</span>,
+        <span class="summary-sig-arg">goodTillCanceled</span>=<span class="summary-sig-default">False</span>,
+        <span class="summary-sig-arg">allOrNone</span>=<span class="summary-sig-default">False</span>)</span><br />
+      Submits a limit order.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.limitOrder">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyalgotrade.strategy.BaseStrategy-class.html#stopOrder" class="summary-sig-name">stopOrder</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">instrument</span>,
+        <span class="summary-sig-arg">stopPrice</span>,
+        <span class="summary-sig-arg">quantity</span>,
+        <span class="summary-sig-arg">goodTillCanceled</span>=<span class="summary-sig-default">False</span>,
+        <span class="summary-sig-arg">allOrNone</span>=<span class="summary-sig-default">False</span>)</span><br />
+      Submits a stop order.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.stopOrder">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyalgotrade.strategy.BaseStrategy-class.html#stopLimitOrder" class="summary-sig-name">stopLimitOrder</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">instrument</span>,
+        <span class="summary-sig-arg">stopPrice</span>,
+        <span class="summary-sig-arg">limitPrice</span>,
+        <span class="summary-sig-arg">quantity</span>,
+        <span class="summary-sig-arg">goodTillCanceled</span>=<span class="summary-sig-default">False</span>,
+        <span class="summary-sig-arg">allOrNone</span>=<span class="summary-sig-default">False</span>)</span><br />
+      Submits a stop limit order.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.stopLimitOrder">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyalgotrade.strategy.BaseStrategy-class.html#enterLong" class="summary-sig-name">enterLong</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">instrument</span>,
+        <span class="summary-sig-arg">quantity</span>,
+        <span class="summary-sig-arg">goodTillCanceled</span>=<span class="summary-sig-default">False</span>,
+        <span class="summary-sig-arg">allOrNone</span>=<span class="summary-sig-default">False</span>)</span><br />
+      Generates a buy :class:`pyalgotrade.broker.MarketOrder` to enter a 
+      long position.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.enterLong">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyalgotrade.strategy.BaseStrategy-class.html#enterShort" class="summary-sig-name">enterShort</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">instrument</span>,
+        <span class="summary-sig-arg">quantity</span>,
+        <span class="summary-sig-arg">goodTillCanceled</span>=<span class="summary-sig-default">False</span>,
+        <span class="summary-sig-arg">allOrNone</span>=<span class="summary-sig-default">False</span>)</span><br />
+      Generates a sell short :class:`pyalgotrade.broker.MarketOrder` to 
+      enter a short position.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.enterShort">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyalgotrade.strategy.BaseStrategy-class.html#enterLongLimit" class="summary-sig-name">enterLongLimit</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">instrument</span>,
+        <span class="summary-sig-arg">limitPrice</span>,
+        <span class="summary-sig-arg">quantity</span>,
+        <span class="summary-sig-arg">goodTillCanceled</span>=<span class="summary-sig-default">False</span>,
+        <span class="summary-sig-arg">allOrNone</span>=<span class="summary-sig-default">False</span>)</span><br />
+      Generates a buy :class:`pyalgotrade.broker.LimitOrder` to enter a 
+      long position.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.enterLongLimit">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyalgotrade.strategy.BaseStrategy-class.html#enterShortLimit" class="summary-sig-name">enterShortLimit</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">instrument</span>,
+        <span class="summary-sig-arg">limitPrice</span>,
+        <span class="summary-sig-arg">quantity</span>,
+        <span class="summary-sig-arg">goodTillCanceled</span>=<span class="summary-sig-default">False</span>,
+        <span class="summary-sig-arg">allOrNone</span>=<span class="summary-sig-default">False</span>)</span><br />
+      Generates a sell short :class:`pyalgotrade.broker.LimitOrder` to 
+      enter a short position.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.enterShortLimit">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyalgotrade.strategy.BaseStrategy-class.html#enterLongStop" class="summary-sig-name">enterLongStop</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">instrument</span>,
+        <span class="summary-sig-arg">stopPrice</span>,
+        <span class="summary-sig-arg">quantity</span>,
+        <span class="summary-sig-arg">goodTillCanceled</span>=<span class="summary-sig-default">False</span>,
+        <span class="summary-sig-arg">allOrNone</span>=<span class="summary-sig-default">False</span>)</span><br />
+      Generates a buy :class:`pyalgotrade.broker.StopOrder` to enter a long
+      position.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.enterLongStop">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyalgotrade.strategy.BaseStrategy-class.html#enterShortStop" class="summary-sig-name">enterShortStop</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">instrument</span>,
+        <span class="summary-sig-arg">stopPrice</span>,
+        <span class="summary-sig-arg">quantity</span>,
+        <span class="summary-sig-arg">goodTillCanceled</span>=<span class="summary-sig-default">False</span>,
+        <span class="summary-sig-arg">allOrNone</span>=<span class="summary-sig-default">False</span>)</span><br />
+      Generates a sell short :class:`pyalgotrade.broker.StopOrder` to enter
+      a short position.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.enterShortStop">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyalgotrade.strategy.BaseStrategy-class.html#enterLongStopLimit" class="summary-sig-name">enterLongStopLimit</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">instrument</span>,
+        <span class="summary-sig-arg">stopPrice</span>,
+        <span class="summary-sig-arg">limitPrice</span>,
+        <span class="summary-sig-arg">quantity</span>,
+        <span class="summary-sig-arg">goodTillCanceled</span>=<span class="summary-sig-default">False</span>,
+        <span class="summary-sig-arg">allOrNone</span>=<span class="summary-sig-default">False</span>)</span><br />
+      Generates a buy :class:`pyalgotrade.broker.StopLimitOrder` order to 
+      enter a long position.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.enterLongStopLimit">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyalgotrade.strategy.BaseStrategy-class.html#enterShortStopLimit" class="summary-sig-name">enterShortStopLimit</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">instrument</span>,
+        <span class="summary-sig-arg">stopPrice</span>,
+        <span class="summary-sig-arg">limitPrice</span>,
+        <span class="summary-sig-arg">quantity</span>,
+        <span class="summary-sig-arg">goodTillCanceled</span>=<span class="summary-sig-default">False</span>,
+        <span class="summary-sig-arg">allOrNone</span>=<span class="summary-sig-default">False</span>)</span><br />
+      Generates a sell short :class:`pyalgotrade.broker.StopLimitOrder` 
+      order to enter a short position.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.enterShortStopLimit">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyalgotrade.strategy.BaseStrategy-class.html#onEnterOk" class="summary-sig-name">onEnterOk</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">position</span>)</span><br />
+      Override (optional) to get notified when the order submitted to enter
+      a position was filled.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.onEnterOk">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyalgotrade.strategy.BaseStrategy-class.html#onEnterCanceled" class="summary-sig-name">onEnterCanceled</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">position</span>)</span><br />
+      Override (optional) to get notified when the order submitted to enter
+      a position was canceled.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.onEnterCanceled">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyalgotrade.strategy.BaseStrategy-class.html#onExitOk" class="summary-sig-name">onExitOk</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">position</span>)</span><br />
+      Override (optional) to get notified when the order submitted to exit 
+      a position was filled.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.onExitOk">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyalgotrade.strategy.BaseStrategy-class.html#onExitCanceled" class="summary-sig-name">onExitCanceled</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">position</span>)</span><br />
+      Override (optional) to get notified when the order submitted to exit 
+      a position was canceled.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.onExitCanceled">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyalgotrade.strategy.BaseStrategy-class.html#onStart" class="summary-sig-name">onStart</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Override (optional) to get notified when the strategy starts 
+      executing.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.onStart">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyalgotrade.strategy.BaseStrategy-class.html#onFinish" class="summary-sig-name">onFinish</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">bars</span>)</span><br />
+      Override (optional) to get notified when the strategy finished 
+      executing.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.onFinish">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyalgotrade.strategy.BaseStrategy-class.html#onIdle" class="summary-sig-name">onIdle</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Override (optional) to get notified when there are no events.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.onIdle">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyalgotrade.strategy.BaseStrategy-class.html#onBars" class="summary-sig-name">onBars</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">bars</span>)</span><br />
+      Override (**mandatory**) to get notified when new bars are available.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.onBars">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyalgotrade.strategy.BaseStrategy-class.html#onOrderUpdated" class="summary-sig-name">onOrderUpdated</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">order</span>)</span><br />
+      Override (optional) to get notified when an order gets updated.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.onOrderUpdated">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="__onIdle"></a><span class="summary-sig-name">__onIdle</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.__onIdle">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="__onOrderEvent"></a><span class="summary-sig-name">__onOrderEvent</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">broker_</span>,
+        <span class="summary-sig-arg">orderEvent</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.__onOrderEvent">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="__onBars"></a><span class="summary-sig-name">__onBars</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">dateTime</span>,
+        <span class="summary-sig-arg">bars</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.__onBars">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="run"></a><span class="summary-sig-name">run</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      Call once (**and only once**) to run the strategy.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.run">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="stop"></a><span class="summary-sig-name">stop</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      Stops a running strategy.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.stop">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="attachAnalyzer"></a><span class="summary-sig-name">attachAnalyzer</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">strategyAnalyzer</span>)</span><br />
+      Adds a :class:`pyalgotrade.stratanalyzer.StrategyAnalyzer`.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.attachAnalyzer">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="getNamedAnalyzer"></a><span class="summary-sig-name">getNamedAnalyzer</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">name</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.getNamedAnalyzer">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="debug"></a><span class="summary-sig-name">debug</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">msg</span>)</span><br />
+      Logs a message with level DEBUG on the strategy logger.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.debug">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="info"></a><span class="summary-sig-name">info</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">msg</span>)</span><br />
+      Logs a message with level INFO on the strategy logger.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.info">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="warning"></a><span class="summary-sig-name">warning</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">msg</span>)</span><br />
+      Logs a message with level WARNING on the strategy logger.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.warning">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="error"></a><span class="summary-sig-name">error</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">msg</span>)</span><br />
+      Logs a message with level ERROR on the strategy logger.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.error">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="critical"></a><span class="summary-sig-name">critical</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">msg</span>)</span><br />
+      Logs a message with level CRITICAL on the strategy logger.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.critical">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyalgotrade.strategy.BaseStrategy-class.html#resampleBarFeed" class="summary-sig-name">resampleBarFeed</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">frequency</span>,
+        <span class="summary-sig-arg">callback</span>)</span><br />
+      Builds a resampled barfeed that groups bars by a certain frequency.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.resampleBarFeed">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
+      <code>__delattr__</code>,
+      <code>__format__</code>,
+      <code>__getattribute__</code>,
+      <code>__hash__</code>,
+      <code>__new__</code>,
+      <code>__reduce__</code>,
+      <code>__reduce_ex__</code>,
+      <code>__repr__</code>,
+      <code>__setattr__</code>,
+      <code>__sizeof__</code>,
+      <code>__str__</code>,
+      <code>__subclasshook__</code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS VARIABLES ==================== -->
+<a name="section-ClassVariables"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Class Variables</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-ClassVariables"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="LOGGER_NAME"></a><span class="summary-name">LOGGER_NAME</span> = <code title="'strategy'"><code class="variable-quote">'</code><code class="variable-string">strategy</code><code class="variable-quote">'</code></code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="__abstractmethods__"></a><span class="summary-name">__abstractmethods__</span> = <code title="frozenset(['onBars'])"><code class="variable-group">frozenset([</code><code class="variable-quote">'</code><code class="variable-string">onBars</code><code class="variable-quote">'</code><code class="variable-group">])</code></code>
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="_abc_cache"></a><span class="summary-name">_abc_cache</span> = <code title="&lt;_weakrefset.WeakSet object at 0x7f5b2d5215d0&gt;">&lt;_weakrefset.WeakSet object at 0x7f5b2d5215d0&gt;</code>
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pyalgotrade.strategy.BaseStrategy-class.html#_abc_negative_cache" class="summary-name" onclick="show_private();">_abc_negative_cache</a> = <code title="&lt;_weakrefset.WeakSet object at 0x7f5b2d4a9b90&gt;">&lt;_weakrefset.WeakSet object at 0x7f5b2d4<code class="variable-ellipsis">...</code></code>
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="_abc_negative_cache_version"></a><span class="summary-name">_abc_negative_cache_version</span> = <code title="31">31</code>
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="_abc_registry"></a><span class="summary-name">_abc_registry</span> = <code title="&lt;_weakrefset.WeakSet object at 0x7f5b2d521610&gt;">&lt;_weakrefset.WeakSet object at 0x7f5b2d521610&gt;</code>
+    </td>
+  </tr>
+</table>
+<!-- ==================== PROPERTIES ==================== -->
+<a name="section-Properties"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Properties</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Properties"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
+      <code>__class__</code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== METHOD DETAILS ==================== -->
+<a name="section-MethodDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Method Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-MethodDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="__init__"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__init__</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">barFeed</span>,
+        <span class="sig-arg">broker</span>)</span>
+    <br /><em class="fname">(Constructor)</em>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.__init__">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>x.__init__(...) initializes x; see help(type(x)) for signature</p>
+  <dl class="fields">
+    <dt>Overrides:
+        object.__init__
+        <dd><em class="note">(inherited documentation)</em></dd>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="marketOrder"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">marketOrder</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">instrument</span>,
+        <span class="sig-arg">quantity</span>,
+        <span class="sig-arg">onClose</span>=<span class="sig-default">False</span>,
+        <span class="sig-arg">goodTillCanceled</span>=<span class="sig-default">False</span>,
+        <span class="sig-arg">allOrNone</span>=<span class="sig-default">False</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.marketOrder">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Submits a market order.</p>
+  <p>:param instrument: Instrument identifier. :type instrument: string. 
+  :param quantity: The amount of shares. Positive means buy, negative means
+  sell. :type quantity: int/float. :param onClose: True if the order should
+  be filled as close to the closing price as possible (Market-On-Close 
+  order). Default is False. :type onClose: boolean. :param 
+  goodTillCanceled: True if the order is good till canceled. If False then 
+  the order gets automatically canceled when the session closes. :type 
+  goodTillCanceled: boolean. :param allOrNone: True if the order should be 
+  completely filled or not at all. :type allOrNone: boolean. :rtype: The 
+  :class:`pyalgotrade.broker.MarketOrder` submitted.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="limitOrder"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">limitOrder</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">instrument</span>,
+        <span class="sig-arg">limitPrice</span>,
+        <span class="sig-arg">quantity</span>,
+        <span class="sig-arg">goodTillCanceled</span>=<span class="sig-default">False</span>,
+        <span class="sig-arg">allOrNone</span>=<span class="sig-default">False</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.limitOrder">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Submits a limit order.</p>
+  <p>:param instrument: Instrument identifier. :type instrument: string. 
+  :param limitPrice: Limit price. :type limitPrice: float. :param quantity:
+  The amount of shares. Positive means buy, negative means sell. :type 
+  quantity: int/float. :param goodTillCanceled: True if the order is good 
+  till canceled. If False then the order gets automatically canceled when 
+  the session closes. :type goodTillCanceled: boolean. :param allOrNone: 
+  True if the order should be completely filled or not at all. :type 
+  allOrNone: boolean. :rtype: The :class:`pyalgotrade.broker.LimitOrder` 
+  submitted.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="stopOrder"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">stopOrder</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">instrument</span>,
+        <span class="sig-arg">stopPrice</span>,
+        <span class="sig-arg">quantity</span>,
+        <span class="sig-arg">goodTillCanceled</span>=<span class="sig-default">False</span>,
+        <span class="sig-arg">allOrNone</span>=<span class="sig-default">False</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.stopOrder">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Submits a stop order.</p>
+  <p>:param instrument: Instrument identifier. :type instrument: string. 
+  :param stopPrice: Stop price. :type stopPrice: float. :param quantity: 
+  The amount of shares. Positive means buy, negative means sell. :type 
+  quantity: int/float. :param goodTillCanceled: True if the order is good 
+  till canceled. If False then the order gets automatically canceled when 
+  the session closes. :type goodTillCanceled: boolean. :param allOrNone: 
+  True if the order should be completely filled or not at all. :type 
+  allOrNone: boolean. :rtype: The :class:`pyalgotrade.broker.StopOrder` 
+  submitted.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="stopLimitOrder"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">stopLimitOrder</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">instrument</span>,
+        <span class="sig-arg">stopPrice</span>,
+        <span class="sig-arg">limitPrice</span>,
+        <span class="sig-arg">quantity</span>,
+        <span class="sig-arg">goodTillCanceled</span>=<span class="sig-default">False</span>,
+        <span class="sig-arg">allOrNone</span>=<span class="sig-default">False</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.stopLimitOrder">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Submits a stop limit order.</p>
+  <p>:param instrument: Instrument identifier. :type instrument: string. 
+  :param stopPrice: Stop price. :type stopPrice: float. :param limitPrice: 
+  Limit price. :type limitPrice: float. :param quantity: The amount of 
+  shares. Positive means buy, negative means sell. :type quantity: 
+  int/float. :param goodTillCanceled: True if the order is good till 
+  canceled. If False then the order gets automatically canceled when the 
+  session closes. :type goodTillCanceled: boolean. :param allOrNone: True 
+  if the order should be completely filled or not at all. :type allOrNone: 
+  boolean. :rtype: The :class:`pyalgotrade.broker.StopLimitOrder` 
+  submitted.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="enterLong"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">enterLong</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">instrument</span>,
+        <span class="sig-arg">quantity</span>,
+        <span class="sig-arg">goodTillCanceled</span>=<span class="sig-default">False</span>,
+        <span class="sig-arg">allOrNone</span>=<span class="sig-default">False</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.enterLong">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Generates a buy :class:`pyalgotrade.broker.MarketOrder` to enter a 
+  long position.</p>
+  <p>:param instrument: Instrument identifier. :type instrument: string. 
+  :param quantity: Entry order quantity. :type quantity: int. :param 
+  goodTillCanceled: True if the entry order is good till canceled. If False
+  then the order gets automatically canceled when the session closes. :type
+  goodTillCanceled: boolean. :param allOrNone: True if the orders should be
+  completely filled or not at all. :type allOrNone: boolean. :rtype: The 
+  :class:`pyalgotrade.strategy.position.Position` entered.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="enterShort"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">enterShort</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">instrument</span>,
+        <span class="sig-arg">quantity</span>,
+        <span class="sig-arg">goodTillCanceled</span>=<span class="sig-default">False</span>,
+        <span class="sig-arg">allOrNone</span>=<span class="sig-default">False</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.enterShort">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Generates a sell short :class:`pyalgotrade.broker.MarketOrder` to 
+  enter a short position.</p>
+  <p>:param instrument: Instrument identifier. :type instrument: string. 
+  :param quantity: Entry order quantity. :type quantity: int. :param 
+  goodTillCanceled: True if the entry order is good till canceled. If False
+  then the order gets automatically canceled when the session closes. :type
+  goodTillCanceled: boolean. :param allOrNone: True if the orders should be
+  completely filled or not at all. :type allOrNone: boolean. :rtype: The 
+  :class:`pyalgotrade.strategy.position.Position` entered.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="enterLongLimit"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">enterLongLimit</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">instrument</span>,
+        <span class="sig-arg">limitPrice</span>,
+        <span class="sig-arg">quantity</span>,
+        <span class="sig-arg">goodTillCanceled</span>=<span class="sig-default">False</span>,
+        <span class="sig-arg">allOrNone</span>=<span class="sig-default">False</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.enterLongLimit">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Generates a buy :class:`pyalgotrade.broker.LimitOrder` to enter a long
+  position.</p>
+  <p>:param instrument: Instrument identifier. :type instrument: string. 
+  :param limitPrice: Limit price. :type limitPrice: float. :param quantity:
+  Entry order quantity. :type quantity: int. :param goodTillCanceled: True 
+  if the entry order is good till canceled. If False then the order gets 
+  automatically canceled when the session closes. :type goodTillCanceled: 
+  boolean. :param allOrNone: True if the orders should be completely filled
+  or not at all. :type allOrNone: boolean. :rtype: The 
+  :class:`pyalgotrade.strategy.position.Position` entered.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="enterShortLimit"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">enterShortLimit</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">instrument</span>,
+        <span class="sig-arg">limitPrice</span>,
+        <span class="sig-arg">quantity</span>,
+        <span class="sig-arg">goodTillCanceled</span>=<span class="sig-default">False</span>,
+        <span class="sig-arg">allOrNone</span>=<span class="sig-default">False</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.enterShortLimit">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Generates a sell short :class:`pyalgotrade.broker.LimitOrder` to enter
+  a short position.</p>
+  <p>:param instrument: Instrument identifier. :type instrument: string. 
+  :param limitPrice: Limit price. :type limitPrice: float. :param quantity:
+  Entry order quantity. :type quantity: int. :param goodTillCanceled: True 
+  if the entry order is good till canceled. If False then the order gets 
+  automatically canceled when the session closes. :type goodTillCanceled: 
+  boolean. :param allOrNone: True if the orders should be completely filled
+  or not at all. :type allOrNone: boolean. :rtype: The 
+  :class:`pyalgotrade.strategy.position.Position` entered.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="enterLongStop"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">enterLongStop</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">instrument</span>,
+        <span class="sig-arg">stopPrice</span>,
+        <span class="sig-arg">quantity</span>,
+        <span class="sig-arg">goodTillCanceled</span>=<span class="sig-default">False</span>,
+        <span class="sig-arg">allOrNone</span>=<span class="sig-default">False</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.enterLongStop">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Generates a buy :class:`pyalgotrade.broker.StopOrder` to enter a long 
+  position.</p>
+  <p>:param instrument: Instrument identifier. :type instrument: string. 
+  :param stopPrice: Stop price. :type stopPrice: float. :param quantity: 
+  Entry order quantity. :type quantity: int. :param goodTillCanceled: True 
+  if the entry order is good till canceled. If False then the order gets 
+  automatically canceled when the session closes. :type goodTillCanceled: 
+  boolean. :param allOrNone: True if the orders should be completely filled
+  or not at all. :type allOrNone: boolean. :rtype: The 
+  :class:`pyalgotrade.strategy.position.Position` entered.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="enterShortStop"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">enterShortStop</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">instrument</span>,
+        <span class="sig-arg">stopPrice</span>,
+        <span class="sig-arg">quantity</span>,
+        <span class="sig-arg">goodTillCanceled</span>=<span class="sig-default">False</span>,
+        <span class="sig-arg">allOrNone</span>=<span class="sig-default">False</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.enterShortStop">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Generates a sell short :class:`pyalgotrade.broker.StopOrder` to enter 
+  a short position.</p>
+  <p>:param instrument: Instrument identifier. :type instrument: string. 
+  :param stopPrice: Stop price. :type stopPrice: float. :param quantity: 
+  Entry order quantity. :type quantity: int. :param goodTillCanceled: True 
+  if the entry order is good till canceled. If False then the order gets 
+  automatically canceled when the session closes. :type goodTillCanceled: 
+  boolean. :param allOrNone: True if the orders should be completely filled
+  or not at all. :type allOrNone: boolean. :rtype: The 
+  :class:`pyalgotrade.strategy.position.Position` entered.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="enterLongStopLimit"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">enterLongStopLimit</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">instrument</span>,
+        <span class="sig-arg">stopPrice</span>,
+        <span class="sig-arg">limitPrice</span>,
+        <span class="sig-arg">quantity</span>,
+        <span class="sig-arg">goodTillCanceled</span>=<span class="sig-default">False</span>,
+        <span class="sig-arg">allOrNone</span>=<span class="sig-default">False</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.enterLongStopLimit">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Generates a buy :class:`pyalgotrade.broker.StopLimitOrder` order to 
+  enter a long position.</p>
+  <p>:param instrument: Instrument identifier. :type instrument: string. 
+  :param stopPrice: Stop price. :type stopPrice: float. :param limitPrice: 
+  Limit price. :type limitPrice: float. :param quantity: Entry order 
+  quantity. :type quantity: int. :param goodTillCanceled: True if the entry
+  order is good till canceled. If False then the order gets automatically 
+  canceled when the session closes. :type goodTillCanceled: boolean. :param
+  allOrNone: True if the orders should be completely filled or not at all. 
+  :type allOrNone: boolean. :rtype: The 
+  :class:`pyalgotrade.strategy.position.Position` entered.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="enterShortStopLimit"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">enterShortStopLimit</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">instrument</span>,
+        <span class="sig-arg">stopPrice</span>,
+        <span class="sig-arg">limitPrice</span>,
+        <span class="sig-arg">quantity</span>,
+        <span class="sig-arg">goodTillCanceled</span>=<span class="sig-default">False</span>,
+        <span class="sig-arg">allOrNone</span>=<span class="sig-default">False</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.enterShortStopLimit">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Generates a sell short :class:`pyalgotrade.broker.StopLimitOrder` 
+  order to enter a short position.</p>
+  <p>:param instrument: Instrument identifier. :type instrument: string. 
+  :param stopPrice: The Stop price. :type stopPrice: float. :param 
+  limitPrice: Limit price. :type limitPrice: float. :param quantity: Entry 
+  order quantity. :type quantity: int. :param goodTillCanceled: True if the
+  entry order is good till canceled. If False then the order gets 
+  automatically canceled when the session closes. :type goodTillCanceled: 
+  boolean. :param allOrNone: True if the orders should be completely filled
+  or not at all. :type allOrNone: boolean. :rtype: The 
+  :class:`pyalgotrade.strategy.position.Position` entered.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="onEnterOk"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">onEnterOk</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">position</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.onEnterOk">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Override (optional) to get notified when the order submitted to enter 
+  a position was filled. The default implementation is empty.</p>
+  <p>:param position: A position returned by any of the enterLongXXX or 
+  enterShortXXX methods. :type position: 
+  :class:`pyalgotrade.strategy.position.Position`.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="onEnterCanceled"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">onEnterCanceled</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">position</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.onEnterCanceled">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Override (optional) to get notified when the order submitted to enter 
+  a position was canceled. The default implementation is empty.</p>
+  <p>:param position: A position returned by any of the enterLongXXX or 
+  enterShortXXX methods. :type position: 
+  :class:`pyalgotrade.strategy.position.Position`.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="onExitOk"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">onExitOk</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">position</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.onExitOk">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Override (optional) to get notified when the order submitted to exit a
+  position was filled. The default implementation is empty.</p>
+  <p>:param position: A position returned by any of the enterLongXXX or 
+  enterShortXXX methods. :type position: 
+  :class:`pyalgotrade.strategy.position.Position`.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="onExitCanceled"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">onExitCanceled</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">position</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.onExitCanceled">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Override (optional) to get notified when the order submitted to exit a
+  position was canceled. The default implementation is empty.</p>
+  <p>:param position: A position returned by any of the enterLongXXX or 
+  enterShortXXX methods. :type position: 
+  :class:`pyalgotrade.strategy.position.Position`.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="onStart"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">onStart</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.onStart">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Override (optional) to get notified when the strategy starts 
+  executing. The default implementation is empty.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="onFinish"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">onFinish</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">bars</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.onFinish">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Override (optional) to get notified when the strategy finished 
+  executing. The default implementation is empty.</p>
+  <p>:param bars: The last bars processed. :type bars: 
+  :class:`pyalgotrade.bar.Bars`.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="onIdle"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">onIdle</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.onIdle">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Override (optional) to get notified when there are no events.</p>
+  <p>.. note:</p>
+<pre class="literalblock">
+    In a pure backtesting scenario this will not be called.
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="onBars"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">onBars</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">bars</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.onBars">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Override (**mandatory**) to get notified when new bars are available. 
+  The default implementation raises an Exception.</p>
+  <p>**This is the method to override to enter your trading logic and 
+  enter/exit positions**.</p>
+  <p>:param bars: The current bars. :type bars: 
+  :class:`pyalgotrade.bar.Bars`.</p>
+  <dl class="fields">
+    <dt>Decorators:</dt>
+    <dd><ul class="nomargin-top">
+        <li><code>@abc.abstractmethod</code></li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="onOrderUpdated"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">onOrderUpdated</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">order</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.onOrderUpdated">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Override (optional) to get notified when an order gets updated.</p>
+  <p>:param order: The order updated. :type order: 
+  :class:`pyalgotrade.broker.Order`.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="resampleBarFeed"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">resampleBarFeed</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">frequency</span>,
+        <span class="sig-arg">callback</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.resampleBarFeed">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Builds a resampled barfeed that groups bars by a certain 
+  frequency.</p>
+  <p>:param frequency: The grouping frequency in seconds. Must be &gt; 0. 
+  :param callback: A function similar to onBars that will be called when 
+  new bars are available. :rtype: 
+  :class:`pyalgotrade.barfeed.BaseBarFeed`.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== CLASS VARIABLE DETAILS ==================== -->
+<a name="section-ClassVariableDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Class Variable Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-ClassVariableDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="_abc_negative_cache"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">_abc_negative_cache</h3>
+  
+  <dl class="fields">
+  </dl>
+  <dl class="fields">
+    <dt>Value:</dt>
+      <dd><table><tr><td><pre class="variable">
+&lt;_weakrefset.WeakSet object at 0x7f5b2d4a9b90&gt;
+</pre></td></tr></table>
+</dd>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="pyalgotrade-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Sat Oct 15 14:17:52 2016
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

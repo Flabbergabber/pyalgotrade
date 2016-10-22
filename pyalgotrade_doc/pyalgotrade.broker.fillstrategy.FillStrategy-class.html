@@ -1,0 +1,871 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>pyalgotrade.broker.fillstrategy.FillStrategy</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="pyalgotrade-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="pyalgotrade-module.html">Package&nbsp;pyalgotrade</a> ::
+        <a href="pyalgotrade.broker-module.html">Package&nbsp;broker</a> ::
+        <a href="pyalgotrade.broker.fillstrategy-module.html">Module&nbsp;fillstrategy</a> ::
+        Class&nbsp;FillStrategy
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="pyalgotrade.broker.fillstrategy.FillStrategy-class.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS DESCRIPTION ==================== -->
+<h1 class="epydoc">Class FillStrategy</h1><p class="nomargin-top"><span class="codelink"><a href="pyalgotrade.broker.fillstrategy-pysrc.html#FillStrategy">source&nbsp;code</a></span></p>
+<center>
+<center>  <map id="uml_class_diagram_for_pyalgotr_92" name="uml_class_diagram_for_pyalgotr_92">
+<area shape="rect" id="node1_12" href="abc.ABCMeta-class.html" title="Metaclass for defining Abstract Base Classes (ABCs)." alt="" coords="18,30,305,50"/>
+<area shape="rect" id="node1_13" href="pyalgotrade.broker.fillstrategy.FillStrategy-class.html#__abstractmethods__" title="pyalgotrade.broker.fillstrategy.FillStrategy.__abstractmethods__" alt="" coords="18,50,305,70"/>
+<area shape="rect" id="node1_14" href="pyalgotrade.broker.fillstrategy.FillStrategy-class.html#onBars" title="Override (optional) to get notified when the broker is about to process new bars." alt="" coords="18,73,305,93"/>
+<area shape="rect" id="node1_15" href="pyalgotrade.broker.fillstrategy.FillStrategy-class.html#onOrderFilled" title="Override (optional) to get notified when an order was filled, or partially &#160;filled." alt="" coords="18,93,305,113"/>
+<area shape="rect" id="node1_16" href="pyalgotrade.broker.fillstrategy.FillStrategy-class.html#fillMarketOrder" title="Override to return the fill price and quantity for a market order or None &#160;if the order can&#39;t be filled at the given time." alt="" coords="18,113,305,133"/>
+<area shape="rect" id="node1_17" href="pyalgotrade.broker.fillstrategy.FillStrategy-class.html#fillLimitOrder" title="Override to return the fill price and quantity for a limit order or None if the order can&#39;t be filled at the given time." alt="" coords="18,133,305,153"/>
+<area shape="rect" id="node1_18" href="pyalgotrade.broker.fillstrategy.FillStrategy-class.html#fillStopOrder" title="Override to return the fill price and quantity for a stop order or None if &#160;the order can&#39;t be filled at the given time." alt="" coords="18,153,305,173"/>
+<area shape="rect" id="node1_19" href="pyalgotrade.broker.fillstrategy.FillStrategy-class.html#fillStopLimitOrder" title="Override to return the fill price and quantity for a stop limit order or &#160;None if the order can&#39;t be filled at the given time." alt="" coords="18,173,305,193"/>
+<area shape="rect" id="node1_20" href="pyalgotrade.broker.fillstrategy.FillStrategy-class.html#fillOptionOrder" title="Override to return the fill price and quantity for a market order or None &#160;if the order can&#39;t be filled at the given time." alt="" coords="18,193,305,213"/>
+<area shape="rect" id="node1_21" href="pyalgotrade.broker.fillstrategy.FillStrategy-class.html#fillOptionLimitOrder" title="Override to return the fill price and quantity for a limit order or None if the order can&#39;t be filled at the given time." alt="" coords="18,213,305,233"/>
+<area shape="rect" id="node1_22" href="pyalgotrade.broker.fillstrategy.FillStrategy-class.html#fillOptionStopOrder" title="Override to return the fill price and quantity for a stop order or None if &#160;the order can&#39;t be filled at the given time." alt="" coords="18,233,305,253"/>
+<area shape="rect" id="node1_23" href="pyalgotrade.broker.fillstrategy.FillStrategy-class.html#fillOptionStopLimitOrder" title="Override to return the fill price and quantity for a stop limit order or &#160;None if the order can&#39;t be filled at the given time." alt="" coords="18,253,305,273"/>
+<area shape="rect" id="node1" href="pyalgotrade.broker.fillstrategy.FillStrategy-class.html" title="Base class for order filling strategies for the backtester." alt="" coords="5,5,316,279"/>
+<area shape="rect" id="node2" href="pyalgotrade.broker.fillstrategy.DefaultStrategy-class.html" title="Default fill strategy." alt="" coords="99,297,225,336"/>
+</map>
+  <img src="uml_class_diagram_for_pyalgotr_92.gif" alt='' usemap="#uml_class_diagram_for_pyalgotr_92" ismap="ismap" class="graph-without-title" />
+</center>
+</center>
+<hr />
+<p>Base class for order filling strategies for the backtester.</p>
+
+<!-- ==================== NESTED CLASSES ==================== -->
+<a name="section-NestedClasses"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Nested Classes</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-NestedClasses"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="abc.ABCMeta-class.html" class="summary-name">__metaclass__</a><br />
+      Metaclass for defining Abstract Base Classes (ABCs).
+    </td>
+  </tr>
+</table>
+<!-- ==================== INSTANCE METHODS ==================== -->
+<a name="section-InstanceMethods"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Instance Methods</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-InstanceMethods"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyalgotrade.broker.fillstrategy.FillStrategy-class.html#onBars" class="summary-sig-name">onBars</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">broker_</span>,
+        <span class="summary-sig-arg">bars</span>)</span><br />
+      Override (optional) to get notified when the broker is about to 
+      process new bars.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.broker.fillstrategy-pysrc.html#FillStrategy.onBars">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyalgotrade.broker.fillstrategy.FillStrategy-class.html#onOrderFilled" class="summary-sig-name">onOrderFilled</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">broker_</span>,
+        <span class="summary-sig-arg">order</span>)</span><br />
+      Override (optional) to get notified when an order was filled, or 
+      partially filled.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.broker.fillstrategy-pysrc.html#FillStrategy.onOrderFilled">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyalgotrade.broker.fillstrategy.FillStrategy-class.html#fillMarketOrder" class="summary-sig-name">fillMarketOrder</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">broker_</span>,
+        <span class="summary-sig-arg">order</span>,
+        <span class="summary-sig-arg">bar</span>)</span><br />
+      Override to return the fill price and quantity for a market order or 
+      None if the order can't be filled at the given time.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.broker.fillstrategy-pysrc.html#FillStrategy.fillMarketOrder">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyalgotrade.broker.fillstrategy.FillStrategy-class.html#fillLimitOrder" class="summary-sig-name">fillLimitOrder</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">broker_</span>,
+        <span class="summary-sig-arg">order</span>,
+        <span class="summary-sig-arg">bar</span>)</span><br />
+      Override to return the fill price and quantity for a limit order or 
+      None if the order can't be filled at the given time.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.broker.fillstrategy-pysrc.html#FillStrategy.fillLimitOrder">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyalgotrade.broker.fillstrategy.FillStrategy-class.html#fillStopOrder" class="summary-sig-name">fillStopOrder</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">broker_</span>,
+        <span class="summary-sig-arg">order</span>,
+        <span class="summary-sig-arg">bar</span>)</span><br />
+      Override to return the fill price and quantity for a stop order or 
+      None if the order can't be filled at the given time.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.broker.fillstrategy-pysrc.html#FillStrategy.fillStopOrder">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyalgotrade.broker.fillstrategy.FillStrategy-class.html#fillStopLimitOrder" class="summary-sig-name">fillStopLimitOrder</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">broker_</span>,
+        <span class="summary-sig-arg">order</span>,
+        <span class="summary-sig-arg">bar</span>)</span><br />
+      Override to return the fill price and quantity for a stop limit order
+      or None if the order can't be filled at the given time.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.broker.fillstrategy-pysrc.html#FillStrategy.fillStopLimitOrder">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyalgotrade.broker.fillstrategy.FillStrategy-class.html#fillOptionOrder" class="summary-sig-name">fillOptionOrder</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">broker_</span>,
+        <span class="summary-sig-arg">order</span>,
+        <span class="summary-sig-arg">bar</span>)</span><br />
+      Override to return the fill price and quantity for a market order or 
+      None if the order can't be filled at the given time.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.broker.fillstrategy-pysrc.html#FillStrategy.fillOptionOrder">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyalgotrade.broker.fillstrategy.FillStrategy-class.html#fillOptionLimitOrder" class="summary-sig-name">fillOptionLimitOrder</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">broker_</span>,
+        <span class="summary-sig-arg">order</span>,
+        <span class="summary-sig-arg">bar</span>)</span><br />
+      Override to return the fill price and quantity for a limit order or 
+      None if the order can't be filled at the given time.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.broker.fillstrategy-pysrc.html#FillStrategy.fillOptionLimitOrder">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyalgotrade.broker.fillstrategy.FillStrategy-class.html#fillOptionStopOrder" class="summary-sig-name">fillOptionStopOrder</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">broker_</span>,
+        <span class="summary-sig-arg">order</span>,
+        <span class="summary-sig-arg">bar</span>)</span><br />
+      Override to return the fill price and quantity for a stop order or 
+      None if the order can't be filled at the given time.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.broker.fillstrategy-pysrc.html#FillStrategy.fillOptionStopOrder">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyalgotrade.broker.fillstrategy.FillStrategy-class.html#fillOptionStopLimitOrder" class="summary-sig-name">fillOptionStopLimitOrder</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">broker_</span>,
+        <span class="summary-sig-arg">order</span>,
+        <span class="summary-sig-arg">bar</span>)</span><br />
+      Override to return the fill price and quantity for a stop limit order
+      or None if the order can't be filled at the given time.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.broker.fillstrategy-pysrc.html#FillStrategy.fillOptionStopLimitOrder">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
+      <code>__delattr__</code>,
+      <code>__format__</code>,
+      <code>__getattribute__</code>,
+      <code>__hash__</code>,
+      <code>__init__</code>,
+      <code>__new__</code>,
+      <code>__reduce__</code>,
+      <code>__reduce_ex__</code>,
+      <code>__repr__</code>,
+      <code>__setattr__</code>,
+      <code>__sizeof__</code>,
+      <code>__str__</code>,
+      <code>__subclasshook__</code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS VARIABLES ==================== -->
+<a name="section-ClassVariables"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Class Variables</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-ClassVariables"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pyalgotrade.broker.fillstrategy.FillStrategy-class.html#__abstractmethods__" class="summary-name">__abstractmethods__</a> = <code title="frozenset(['fillLimitOrder',
+           'fillMarketOrder',
+           'fillOptionLimitOrder',
+           'fillOptionOrder',
+           'fillOptionStopLimitOrder',
+           'fillOptionStopOrder',
+           'fillStopLimitOrder',
+           'fillStopOrder'])"><code class="variable-group">frozenset([</code><code class="variable-quote">'</code><code class="variable-string">fillLimitOrder</code><code class="variable-quote">'</code><code class="variable-op">, </code><code class="variable-quote">'</code><code class="variable-string">fillMarket</code><code class="variable-ellipsis">...</code></code>
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="_abc_cache"></a><span class="summary-name">_abc_cache</span> = <code title="&lt;_weakrefset.WeakSet object at 0x7f5b2d4ff610&gt;">&lt;_weakrefset.WeakSet object at 0x7f5b2d4ff610&gt;</code>
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pyalgotrade.broker.fillstrategy.FillStrategy-class.html#_abc_negative_cache" class="summary-name" onclick="show_private();">_abc_negative_cache</a> = <code title="&lt;_weakrefset.WeakSet object at 0x7f5b2d4ff690&gt;">&lt;_weakrefset.WeakSet object at 0x7f5b2d4<code class="variable-ellipsis">...</code></code>
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="_abc_negative_cache_version"></a><span class="summary-name">_abc_negative_cache_version</span> = <code title="31">31</code>
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="_abc_registry"></a><span class="summary-name">_abc_registry</span> = <code title="&lt;_weakrefset.WeakSet object at 0x7f5b2d4ff550&gt;">&lt;_weakrefset.WeakSet object at 0x7f5b2d4ff550&gt;</code>
+    </td>
+  </tr>
+</table>
+<!-- ==================== PROPERTIES ==================== -->
+<a name="section-Properties"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Properties</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Properties"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
+      <code>__class__</code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== METHOD DETAILS ==================== -->
+<a name="section-MethodDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Method Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-MethodDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="onBars"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">onBars</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">broker_</span>,
+        <span class="sig-arg">bars</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyalgotrade.broker.fillstrategy-pysrc.html#FillStrategy.onBars">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Override (optional) to get notified when the broker is about to 
+  process new bars.</p>
+  <p>:param broker_: The broker. :type broker_: :class:`Broker` :param 
+  bars: The current bars. :type bars: :class:`pyalgotrade.bar.Bars`</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="onOrderFilled"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">onOrderFilled</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">broker_</span>,
+        <span class="sig-arg">order</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyalgotrade.broker.fillstrategy-pysrc.html#FillStrategy.onOrderFilled">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Override (optional) to get notified when an order was filled, or 
+  partially filled.</p>
+  <p>:param broker_: The broker. :type broker_: :class:`Broker` :param 
+  order: The order filled. :type order: 
+  :class:`pyalgotrade.broker.Order`</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="fillMarketOrder"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">fillMarketOrder</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">broker_</span>,
+        <span class="sig-arg">order</span>,
+        <span class="sig-arg">bar</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyalgotrade.broker.fillstrategy-pysrc.html#FillStrategy.fillMarketOrder">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Override to return the fill price and quantity for a market order or 
+  None if the order can't be filled at the given time.</p>
+  <p>:param broker_: The broker. :type broker_: :class:`Broker` :param 
+  order: The order. :type order: :class:`pyalgotrade.broker.MarketOrder` 
+  :param bar: The current bar. :type bar: :class:`pyalgotrade.bar.Bar` 
+  :rtype: A :class:`FillInfo` or None if the order should not be 
+  filled.</p>
+  <dl class="fields">
+    <dt>Decorators:</dt>
+    <dd><ul class="nomargin-top">
+        <li><code>@abc.abstractmethod</code></li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="fillLimitOrder"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">fillLimitOrder</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">broker_</span>,
+        <span class="sig-arg">order</span>,
+        <span class="sig-arg">bar</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyalgotrade.broker.fillstrategy-pysrc.html#FillStrategy.fillLimitOrder">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Override to return the fill price and quantity for a limit order or 
+  None if the order can't be filled at the given time.</p>
+  <p>:param broker_: The broker. :type broker_: :class:`Broker` :param 
+  order: The order. :type order: :class:`pyalgotrade.broker.LimitOrder` 
+  :param bar: The current bar. :type bar: :class:`pyalgotrade.bar.Bar` 
+  :rtype: A :class:`FillInfo` or None if the order should not be 
+  filled.</p>
+  <dl class="fields">
+    <dt>Decorators:</dt>
+    <dd><ul class="nomargin-top">
+        <li><code>@abc.abstractmethod</code></li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="fillStopOrder"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">fillStopOrder</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">broker_</span>,
+        <span class="sig-arg">order</span>,
+        <span class="sig-arg">bar</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyalgotrade.broker.fillstrategy-pysrc.html#FillStrategy.fillStopOrder">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Override to return the fill price and quantity for a stop order or 
+  None if the order can't be filled at the given time.</p>
+  <p>:param broker_: The broker. :type broker_: :class:`Broker` :param 
+  order: The order. :type order: :class:`pyalgotrade.broker.StopOrder` 
+  :param bar: The current bar. :type bar: :class:`pyalgotrade.bar.Bar` 
+  :rtype: A :class:`FillInfo` or None if the order should not be 
+  filled.</p>
+  <dl class="fields">
+    <dt>Decorators:</dt>
+    <dd><ul class="nomargin-top">
+        <li><code>@abc.abstractmethod</code></li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="fillStopLimitOrder"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">fillStopLimitOrder</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">broker_</span>,
+        <span class="sig-arg">order</span>,
+        <span class="sig-arg">bar</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyalgotrade.broker.fillstrategy-pysrc.html#FillStrategy.fillStopLimitOrder">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Override to return the fill price and quantity for a stop limit order 
+  or None if the order can't be filled at the given time.</p>
+  <p>:param broker_: The broker. :type broker_: :class:`Broker` :param 
+  order: The order. :type order: :class:`pyalgotrade.broker.StopLimitOrder`
+  :param bar: The current bar. :type bar: :class:`pyalgotrade.bar.Bar` 
+  :rtype: A :class:`FillInfo` or None if the order should not be 
+  filled.</p>
+  <dl class="fields">
+    <dt>Decorators:</dt>
+    <dd><ul class="nomargin-top">
+        <li><code>@abc.abstractmethod</code></li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="fillOptionOrder"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">fillOptionOrder</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">broker_</span>,
+        <span class="sig-arg">order</span>,
+        <span class="sig-arg">bar</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyalgotrade.broker.fillstrategy-pysrc.html#FillStrategy.fillOptionOrder">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Override to return the fill price and quantity for a market order or 
+  None if the order can't be filled at the given time.</p>
+  <p>:param broker_: The broker. :type broker_: :class:`Broker` :param 
+  order: The order. :type order: :class:`pyalgotrade.broker.MarketOrder` 
+  :param bar: The current bar. :type bar: :class:`pyalgotrade.bar.Bar` 
+  :rtype: A :class:`FillInfo` or None if the order should not be 
+  filled.</p>
+  <dl class="fields">
+    <dt>Decorators:</dt>
+    <dd><ul class="nomargin-top">
+        <li><code>@abc.abstractmethod</code></li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="fillOptionLimitOrder"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">fillOptionLimitOrder</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">broker_</span>,
+        <span class="sig-arg">order</span>,
+        <span class="sig-arg">bar</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyalgotrade.broker.fillstrategy-pysrc.html#FillStrategy.fillOptionLimitOrder">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Override to return the fill price and quantity for a limit order or 
+  None if the order can't be filled at the given time.</p>
+  <p>:param broker_: The broker. :type broker_: :class:`Broker` :param 
+  order: The order. :type order: :class:`pyalgotrade.broker.LimitOrder` 
+  :param bar: The current bar. :type bar: :class:`pyalgotrade.bar.Bar` 
+  :rtype: A :class:`FillInfo` or None if the order should not be 
+  filled.</p>
+  <dl class="fields">
+    <dt>Decorators:</dt>
+    <dd><ul class="nomargin-top">
+        <li><code>@abc.abstractmethod</code></li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="fillOptionStopOrder"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">fillOptionStopOrder</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">broker_</span>,
+        <span class="sig-arg">order</span>,
+        <span class="sig-arg">bar</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyalgotrade.broker.fillstrategy-pysrc.html#FillStrategy.fillOptionStopOrder">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Override to return the fill price and quantity for a stop order or 
+  None if the order can't be filled at the given time.</p>
+  <p>:param broker_: The broker. :type broker_: :class:`Broker` :param 
+  order: The order. :type order: :class:`pyalgotrade.broker.StopOrder` 
+  :param bar: The current bar. :type bar: :class:`pyalgotrade.bar.Bar` 
+  :rtype: A :class:`FillInfo` or None if the order should not be 
+  filled.</p>
+  <dl class="fields">
+    <dt>Decorators:</dt>
+    <dd><ul class="nomargin-top">
+        <li><code>@abc.abstractmethod</code></li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="fillOptionStopLimitOrder"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">fillOptionStopLimitOrder</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">broker_</span>,
+        <span class="sig-arg">order</span>,
+        <span class="sig-arg">bar</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyalgotrade.broker.fillstrategy-pysrc.html#FillStrategy.fillOptionStopLimitOrder">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Override to return the fill price and quantity for a stop limit order 
+  or None if the order can't be filled at the given time.</p>
+  <p>:param broker_: The broker. :type broker_: :class:`Broker` :param 
+  order: The order. :type order: :class:`pyalgotrade.broker.StopLimitOrder`
+  :param bar: The current bar. :type bar: :class:`pyalgotrade.bar.Bar` 
+  :rtype: A :class:`FillInfo` or None if the order should not be 
+  filled.</p>
+  <dl class="fields">
+    <dt>Decorators:</dt>
+    <dd><ul class="nomargin-top">
+        <li><code>@abc.abstractmethod</code></li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== CLASS VARIABLE DETAILS ==================== -->
+<a name="section-ClassVariableDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Class Variable Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-ClassVariableDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="__abstractmethods__"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">__abstractmethods__</h3>
+  
+  <dl class="fields">
+  </dl>
+  <dl class="fields">
+    <dt>Value:</dt>
+      <dd><table><tr><td><pre class="variable">
+<code class="variable-group">frozenset([</code><code class="variable-quote">'</code><code class="variable-string">fillLimitOrder</code><code class="variable-quote">'</code><code class="variable-op">,</code>
+           <code class="variable-quote">'</code><code class="variable-string">fillMarketOrder</code><code class="variable-quote">'</code><code class="variable-op">,</code>
+           <code class="variable-quote">'</code><code class="variable-string">fillOptionLimitOrder</code><code class="variable-quote">'</code><code class="variable-op">,</code>
+           <code class="variable-quote">'</code><code class="variable-string">fillOptionOrder</code><code class="variable-quote">'</code><code class="variable-op">,</code>
+           <code class="variable-quote">'</code><code class="variable-string">fillOptionStopLimitOrder</code><code class="variable-quote">'</code><code class="variable-op">,</code>
+           <code class="variable-quote">'</code><code class="variable-string">fillOptionStopOrder</code><code class="variable-quote">'</code><code class="variable-op">,</code>
+           <code class="variable-quote">'</code><code class="variable-string">fillStopLimitOrder</code><code class="variable-quote">'</code><code class="variable-op">,</code>
+           <code class="variable-quote">'</code><code class="variable-string">fillStopOrder</code><code class="variable-quote">'</code><code class="variable-group">])</code>
+</pre></td></tr></table>
+</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="_abc_negative_cache"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">_abc_negative_cache</h3>
+  
+  <dl class="fields">
+  </dl>
+  <dl class="fields">
+    <dt>Value:</dt>
+      <dd><table><tr><td><pre class="variable">
+&lt;_weakrefset.WeakSet object at 0x7f5b2d4ff690&gt;
+</pre></td></tr></table>
+</dd>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="pyalgotrade-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Sat Oct 15 14:17:47 2016
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

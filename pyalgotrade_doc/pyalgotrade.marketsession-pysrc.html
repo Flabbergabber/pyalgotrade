@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>pyalgotrade.marketsession</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="pyalgotrade-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="pyalgotrade-module.html">Package&nbsp;pyalgotrade</a> ::
+        Module&nbsp;marketsession
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="pyalgotrade.marketsession-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="pyalgotrade.marketsession-module.html">Module pyalgotrade.marketsession</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno"> 1</tt>  <tt class="py-line"><tt class="py-comment"># PyAlgoTrade</tt> </tt>
+<a name="L2"></a><tt class="py-lineno"> 2</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L3"></a><tt class="py-lineno"> 3</tt>  <tt class="py-line"><tt class="py-comment"># Copyright 2011-2015 Gabriel Martin Becedillas Ruiz</tt> </tt>
+<a name="L4"></a><tt class="py-lineno"> 4</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L5"></a><tt class="py-lineno"> 5</tt>  <tt class="py-line"><tt class="py-comment"># Licensed under the Apache License, Version 2.0 (the "License");</tt> </tt>
+<a name="L6"></a><tt class="py-lineno"> 6</tt>  <tt class="py-line"><tt class="py-comment"># you may not use this file except in compliance with the License.</tt> </tt>
+<a name="L7"></a><tt class="py-lineno"> 7</tt>  <tt class="py-line"><tt class="py-comment"># You may obtain a copy of the License at</tt> </tt>
+<a name="L8"></a><tt class="py-lineno"> 8</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L9"></a><tt class="py-lineno"> 9</tt>  <tt class="py-line"><tt class="py-comment">#   http://www.apache.org/licenses/LICENSE-2.0</tt> </tt>
+<a name="L10"></a><tt class="py-lineno">10</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L11"></a><tt class="py-lineno">11</tt>  <tt class="py-line"><tt class="py-comment"># Unless required by applicable law or agreed to in writing, software</tt> </tt>
+<a name="L12"></a><tt class="py-lineno">12</tt>  <tt class="py-line"><tt class="py-comment"># distributed under the License is distributed on an "AS IS" BASIS,</tt> </tt>
+<a name="L13"></a><tt class="py-lineno">13</tt>  <tt class="py-line"><tt class="py-comment"># WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</tt> </tt>
+<a name="L14"></a><tt class="py-lineno">14</tt>  <tt class="py-line"><tt class="py-comment"># See the License for the specific language governing permissions and</tt> </tt>
+<a name="L15"></a><tt class="py-lineno">15</tt>  <tt class="py-line"><tt class="py-comment"># limitations under the License.</tt> </tt>
+<a name="L16"></a><tt class="py-lineno">16</tt>  <tt class="py-line"> </tt>
+<a name="L17"></a><tt class="py-lineno">17</tt>  <tt class="py-line"><tt class="py-docstring">"""</tt> </tt>
+<a name="L18"></a><tt class="py-lineno">18</tt>  <tt class="py-line"><tt class="py-docstring">.. moduleauthor:: Gabriel Martin Becedillas Ruiz &lt;gabriel.becedillas@gmail.com&gt;</tt> </tt>
+<a name="L19"></a><tt class="py-lineno">19</tt>  <tt class="py-line"><tt class="py-docstring">"""</tt> </tt>
+<a name="L20"></a><tt class="py-lineno">20</tt>  <tt class="py-line"> </tt>
+<a name="L21"></a><tt class="py-lineno">21</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">pytz</tt> </tt>
+<a name="MarketSession"></a><div id="MarketSession-def"><a name="L22"></a><tt class="py-lineno">22</tt>  <tt class="py-line"> </tt>
+<a name="L23"></a><tt class="py-lineno">23</tt>  <tt class="py-line"> </tt>
+<a name="L24"></a><tt class="py-lineno">24</tt>  <tt class="py-line"><tt class="py-comment"># http://en.wikipedia.org/wiki/List_of_market_opening_times</tt> </tt>
+<a name="L25"></a><tt class="py-lineno">25</tt> <a class="py-toggle" href="#" id="MarketSession-toggle" onclick="return toggle('MarketSession');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="pyalgotrade.marketsession.MarketSession-class.html">MarketSession</a><tt class="py-op">(</tt><tt class="py-base-class">object</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="MarketSession-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="MarketSession-expanded"><a name="L26"></a><tt class="py-lineno">26</tt>  <tt class="py-line">    <tt class="py-docstring">"""Base class for market sessions.</tt> </tt>
+<a name="L27"></a><tt class="py-lineno">27</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L28"></a><tt class="py-lineno">28</tt>  <tt class="py-line"><tt class="py-docstring">    .. note::</tt> </tt>
+<a name="L29"></a><tt class="py-lineno">29</tt>  <tt class="py-line"><tt class="py-docstring">        This is a base class and should not be used directly.</tt> </tt>
+<a name="L30"></a><tt class="py-lineno">30</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L31"></a><tt class="py-lineno">31</tt>  <tt class="py-line"> </tt>
+<a name="L32"></a><tt class="py-lineno">32</tt>  <tt class="py-line">    <tt class="py-decorator">@</tt><tt class="py-decorator">classmethod</tt> </tt>
+<a name="MarketSession.getTimezone"></a><div id="MarketSession.getTimezone-def"><a name="L33"></a><tt class="py-lineno">33</tt> <a class="py-toggle" href="#" id="MarketSession.getTimezone-toggle" onclick="return toggle('MarketSession.getTimezone');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pyalgotrade.marketsession.MarketSession-class.html#getTimezone">getTimezone</a><tt class="py-op">(</tt><tt class="py-param">cls</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="MarketSession.getTimezone-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="MarketSession.getTimezone-expanded"><a name="L34"></a><tt class="py-lineno">34</tt>  <tt class="py-line">        <tt class="py-docstring">"""Returns the pytz timezone for the market session."""</tt> </tt>
+<a name="L35"></a><tt class="py-lineno">35</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">cls</tt><tt class="py-op">.</tt><tt id="link-0" class="py-name" targets="Variable pyalgotrade.barfeed.csvfeed.USEquitiesRTH.timezone=pyalgotrade.barfeed.csvfeed.USEquitiesRTH-class.html#timezone,Variable pyalgotrade.marketsession.BOVESPA.timezone=pyalgotrade.marketsession.BOVESPA-class.html#timezone,Variable pyalgotrade.marketsession.FTSE.timezone=pyalgotrade.marketsession.FTSE-class.html#timezone,Variable pyalgotrade.marketsession.MERVAL.timezone=pyalgotrade.marketsession.MERVAL-class.html#timezone,Variable pyalgotrade.marketsession.NASDAQ.timezone=pyalgotrade.marketsession.NASDAQ-class.html#timezone,Variable pyalgotrade.marketsession.NYSE.timezone=pyalgotrade.marketsession.NYSE-class.html#timezone,Variable pyalgotrade.marketsession.TSE.timezone=pyalgotrade.marketsession.TSE-class.html#timezone,Variable pyalgotrade.marketsession.USEquities.timezone=pyalgotrade.marketsession.USEquities-class.html#timezone"><a title="pyalgotrade.barfeed.csvfeed.USEquitiesRTH.timezone
+pyalgotrade.marketsession.BOVESPA.timezone
+pyalgotrade.marketsession.FTSE.timezone
+pyalgotrade.marketsession.MERVAL.timezone
+pyalgotrade.marketsession.NASDAQ.timezone
+pyalgotrade.marketsession.NYSE.timezone
+pyalgotrade.marketsession.TSE.timezone
+pyalgotrade.marketsession.USEquities.timezone" class="py-name" href="#" onclick="return doclink('link-0', 'timezone', 'link-0');">timezone</a></tt> </tt>
+</div></div><a name="L36"></a><tt class="py-lineno">36</tt>  <tt class="py-line"> </tt>
+<a name="NASDAQ"></a><div id="NASDAQ-def"><a name="L37"></a><tt class="py-lineno">37</tt>  <tt class="py-line"> </tt>
+<a name="L38"></a><tt class="py-lineno">38</tt>  <tt class="py-line"><tt class="py-comment">######################################################################</tt> </tt>
+<a name="L39"></a><tt class="py-lineno">39</tt>  <tt class="py-line"><tt class="py-comment"># US</tt> </tt>
+<a name="L40"></a><tt class="py-lineno">40</tt>  <tt class="py-line"> </tt>
+<a name="L41"></a><tt class="py-lineno">41</tt> <a class="py-toggle" href="#" id="NASDAQ-toggle" onclick="return toggle('NASDAQ');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="pyalgotrade.marketsession.NASDAQ-class.html">NASDAQ</a><tt class="py-op">(</tt><tt class="py-base-class">MarketSession</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="NASDAQ-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="NASDAQ-expanded"><a name="L42"></a><tt class="py-lineno">42</tt>  <tt class="py-line">    <tt class="py-docstring">"""NASDAQ market session."""</tt> </tt>
+<a name="L43"></a><tt class="py-lineno">43</tt>  <tt class="py-line">    <tt id="link-1" class="py-name"><a title="pyalgotrade.barfeed.csvfeed.USEquitiesRTH.timezone
+pyalgotrade.marketsession.BOVESPA.timezone
+pyalgotrade.marketsession.FTSE.timezone
+pyalgotrade.marketsession.MERVAL.timezone
+pyalgotrade.marketsession.NASDAQ.timezone
+pyalgotrade.marketsession.NYSE.timezone
+pyalgotrade.marketsession.TSE.timezone
+pyalgotrade.marketsession.USEquities.timezone" class="py-name" href="#" onclick="return doclink('link-1', 'timezone', 'link-0');">timezone</a></tt> <tt class="py-op">=</tt> <tt class="py-name">pytz</tt><tt class="py-op">.</tt><tt id="link-2" class="py-name"><a title="pyalgotrade.barfeed.csvfeed.USEquitiesRTH.timezone
+pyalgotrade.marketsession.BOVESPA.timezone
+pyalgotrade.marketsession.FTSE.timezone
+pyalgotrade.marketsession.MERVAL.timezone
+pyalgotrade.marketsession.NASDAQ.timezone
+pyalgotrade.marketsession.NYSE.timezone
+pyalgotrade.marketsession.TSE.timezone
+pyalgotrade.marketsession.USEquities.timezone" class="py-name" href="#" onclick="return doclink('link-2', 'timezone', 'link-0');">timezone</a></tt><tt class="py-op">(</tt><tt class="py-string">"US/Eastern"</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L44"></a><tt class="py-lineno">44</tt>  <tt class="py-line"> </tt>
+<a name="NYSE"></a><div id="NYSE-def"><a name="L45"></a><tt class="py-lineno">45</tt>  <tt class="py-line"> </tt>
+<a name="L46"></a><tt class="py-lineno">46</tt> <a class="py-toggle" href="#" id="NYSE-toggle" onclick="return toggle('NYSE');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="pyalgotrade.marketsession.NYSE-class.html">NYSE</a><tt class="py-op">(</tt><tt class="py-base-class">MarketSession</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="NYSE-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="NYSE-expanded"><a name="L47"></a><tt class="py-lineno">47</tt>  <tt class="py-line">    <tt class="py-docstring">"""New York Stock Exchange market session."""</tt> </tt>
+<a name="L48"></a><tt class="py-lineno">48</tt>  <tt class="py-line">    <tt id="link-3" class="py-name"><a title="pyalgotrade.barfeed.csvfeed.USEquitiesRTH.timezone
+pyalgotrade.marketsession.BOVESPA.timezone
+pyalgotrade.marketsession.FTSE.timezone
+pyalgotrade.marketsession.MERVAL.timezone
+pyalgotrade.marketsession.NASDAQ.timezone
+pyalgotrade.marketsession.NYSE.timezone
+pyalgotrade.marketsession.TSE.timezone
+pyalgotrade.marketsession.USEquities.timezone" class="py-name" href="#" onclick="return doclink('link-3', 'timezone', 'link-0');">timezone</a></tt> <tt class="py-op">=</tt> <tt class="py-name">pytz</tt><tt class="py-op">.</tt><tt id="link-4" class="py-name"><a title="pyalgotrade.barfeed.csvfeed.USEquitiesRTH.timezone
+pyalgotrade.marketsession.BOVESPA.timezone
+pyalgotrade.marketsession.FTSE.timezone
+pyalgotrade.marketsession.MERVAL.timezone
+pyalgotrade.marketsession.NASDAQ.timezone
+pyalgotrade.marketsession.NYSE.timezone
+pyalgotrade.marketsession.TSE.timezone
+pyalgotrade.marketsession.USEquities.timezone" class="py-name" href="#" onclick="return doclink('link-4', 'timezone', 'link-0');">timezone</a></tt><tt class="py-op">(</tt><tt class="py-string">"US/Eastern"</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L49"></a><tt class="py-lineno">49</tt>  <tt class="py-line"> </tt>
+<a name="USEquities"></a><div id="USEquities-def"><a name="L50"></a><tt class="py-lineno">50</tt>  <tt class="py-line"> </tt>
+<a name="L51"></a><tt class="py-lineno">51</tt> <a class="py-toggle" href="#" id="USEquities-toggle" onclick="return toggle('USEquities');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="pyalgotrade.marketsession.USEquities-class.html">USEquities</a><tt class="py-op">(</tt><tt class="py-base-class">MarketSession</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="USEquities-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="USEquities-expanded"><a name="L52"></a><tt class="py-lineno">52</tt>  <tt class="py-line">    <tt class="py-docstring">"""US Equities market session."""</tt> </tt>
+<a name="L53"></a><tt class="py-lineno">53</tt>  <tt class="py-line">    <tt id="link-5" class="py-name"><a title="pyalgotrade.barfeed.csvfeed.USEquitiesRTH.timezone
+pyalgotrade.marketsession.BOVESPA.timezone
+pyalgotrade.marketsession.FTSE.timezone
+pyalgotrade.marketsession.MERVAL.timezone
+pyalgotrade.marketsession.NASDAQ.timezone
+pyalgotrade.marketsession.NYSE.timezone
+pyalgotrade.marketsession.TSE.timezone
+pyalgotrade.marketsession.USEquities.timezone" class="py-name" href="#" onclick="return doclink('link-5', 'timezone', 'link-0');">timezone</a></tt> <tt class="py-op">=</tt> <tt class="py-name">pytz</tt><tt class="py-op">.</tt><tt id="link-6" class="py-name"><a title="pyalgotrade.barfeed.csvfeed.USEquitiesRTH.timezone
+pyalgotrade.marketsession.BOVESPA.timezone
+pyalgotrade.marketsession.FTSE.timezone
+pyalgotrade.marketsession.MERVAL.timezone
+pyalgotrade.marketsession.NASDAQ.timezone
+pyalgotrade.marketsession.NYSE.timezone
+pyalgotrade.marketsession.TSE.timezone
+pyalgotrade.marketsession.USEquities.timezone" class="py-name" href="#" onclick="return doclink('link-6', 'timezone', 'link-0');">timezone</a></tt><tt class="py-op">(</tt><tt class="py-string">"US/Eastern"</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L54"></a><tt class="py-lineno">54</tt>  <tt class="py-line"> </tt>
+<a name="MERVAL"></a><div id="MERVAL-def"><a name="L55"></a><tt class="py-lineno">55</tt>  <tt class="py-line"> </tt>
+<a name="L56"></a><tt class="py-lineno">56</tt>  <tt class="py-line"><tt class="py-comment">######################################################################</tt> </tt>
+<a name="L57"></a><tt class="py-lineno">57</tt>  <tt class="py-line"><tt class="py-comment"># South America</tt> </tt>
+<a name="L58"></a><tt class="py-lineno">58</tt>  <tt class="py-line"> </tt>
+<a name="L59"></a><tt class="py-lineno">59</tt> <a class="py-toggle" href="#" id="MERVAL-toggle" onclick="return toggle('MERVAL');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="pyalgotrade.marketsession.MERVAL-class.html">MERVAL</a><tt class="py-op">(</tt><tt class="py-base-class">MarketSession</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="MERVAL-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="MERVAL-expanded"><a name="L60"></a><tt class="py-lineno">60</tt>  <tt class="py-line">    <tt class="py-docstring">"""Buenos Aires (Argentina) market session."""</tt> </tt>
+<a name="L61"></a><tt class="py-lineno">61</tt>  <tt class="py-line">    <tt id="link-7" class="py-name"><a title="pyalgotrade.barfeed.csvfeed.USEquitiesRTH.timezone
+pyalgotrade.marketsession.BOVESPA.timezone
+pyalgotrade.marketsession.FTSE.timezone
+pyalgotrade.marketsession.MERVAL.timezone
+pyalgotrade.marketsession.NASDAQ.timezone
+pyalgotrade.marketsession.NYSE.timezone
+pyalgotrade.marketsession.TSE.timezone
+pyalgotrade.marketsession.USEquities.timezone" class="py-name" href="#" onclick="return doclink('link-7', 'timezone', 'link-0');">timezone</a></tt> <tt class="py-op">=</tt> <tt class="py-name">pytz</tt><tt class="py-op">.</tt><tt id="link-8" class="py-name"><a title="pyalgotrade.barfeed.csvfeed.USEquitiesRTH.timezone
+pyalgotrade.marketsession.BOVESPA.timezone
+pyalgotrade.marketsession.FTSE.timezone
+pyalgotrade.marketsession.MERVAL.timezone
+pyalgotrade.marketsession.NASDAQ.timezone
+pyalgotrade.marketsession.NYSE.timezone
+pyalgotrade.marketsession.TSE.timezone
+pyalgotrade.marketsession.USEquities.timezone" class="py-name" href="#" onclick="return doclink('link-8', 'timezone', 'link-0');">timezone</a></tt><tt class="py-op">(</tt><tt class="py-string">"America/Argentina/Buenos_Aires"</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L62"></a><tt class="py-lineno">62</tt>  <tt class="py-line"> </tt>
+<a name="BOVESPA"></a><div id="BOVESPA-def"><a name="L63"></a><tt class="py-lineno">63</tt>  <tt class="py-line"> </tt>
+<a name="L64"></a><tt class="py-lineno">64</tt> <a class="py-toggle" href="#" id="BOVESPA-toggle" onclick="return toggle('BOVESPA');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="pyalgotrade.marketsession.BOVESPA-class.html">BOVESPA</a><tt class="py-op">(</tt><tt class="py-base-class">MarketSession</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="BOVESPA-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="BOVESPA-expanded"><a name="L65"></a><tt class="py-lineno">65</tt>  <tt class="py-line">    <tt class="py-docstring">"""BOVESPA (Brazil) market session."""</tt> </tt>
+<a name="L66"></a><tt class="py-lineno">66</tt>  <tt class="py-line">    <tt id="link-9" class="py-name"><a title="pyalgotrade.barfeed.csvfeed.USEquitiesRTH.timezone
+pyalgotrade.marketsession.BOVESPA.timezone
+pyalgotrade.marketsession.FTSE.timezone
+pyalgotrade.marketsession.MERVAL.timezone
+pyalgotrade.marketsession.NASDAQ.timezone
+pyalgotrade.marketsession.NYSE.timezone
+pyalgotrade.marketsession.TSE.timezone
+pyalgotrade.marketsession.USEquities.timezone" class="py-name" href="#" onclick="return doclink('link-9', 'timezone', 'link-0');">timezone</a></tt> <tt class="py-op">=</tt> <tt class="py-name">pytz</tt><tt class="py-op">.</tt><tt id="link-10" class="py-name"><a title="pyalgotrade.barfeed.csvfeed.USEquitiesRTH.timezone
+pyalgotrade.marketsession.BOVESPA.timezone
+pyalgotrade.marketsession.FTSE.timezone
+pyalgotrade.marketsession.MERVAL.timezone
+pyalgotrade.marketsession.NASDAQ.timezone
+pyalgotrade.marketsession.NYSE.timezone
+pyalgotrade.marketsession.TSE.timezone
+pyalgotrade.marketsession.USEquities.timezone" class="py-name" href="#" onclick="return doclink('link-10', 'timezone', 'link-0');">timezone</a></tt><tt class="py-op">(</tt><tt class="py-string">"America/Sao_Paulo"</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L67"></a><tt class="py-lineno">67</tt>  <tt class="py-line"> </tt>
+<a name="FTSE"></a><div id="FTSE-def"><a name="L68"></a><tt class="py-lineno">68</tt>  <tt class="py-line"> </tt>
+<a name="L69"></a><tt class="py-lineno">69</tt>  <tt class="py-line"><tt class="py-comment">######################################################################</tt> </tt>
+<a name="L70"></a><tt class="py-lineno">70</tt>  <tt class="py-line"><tt class="py-comment"># Europe</tt> </tt>
+<a name="L71"></a><tt class="py-lineno">71</tt>  <tt class="py-line"> </tt>
+<a name="L72"></a><tt class="py-lineno">72</tt> <a class="py-toggle" href="#" id="FTSE-toggle" onclick="return toggle('FTSE');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="pyalgotrade.marketsession.FTSE-class.html">FTSE</a><tt class="py-op">(</tt><tt class="py-base-class">MarketSession</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="FTSE-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="FTSE-expanded"><a name="L73"></a><tt class="py-lineno">73</tt>  <tt class="py-line">    <tt class="py-docstring">""" London Stock Exchange market session."""</tt> </tt>
+<a name="L74"></a><tt class="py-lineno">74</tt>  <tt class="py-line">    <tt id="link-11" class="py-name"><a title="pyalgotrade.barfeed.csvfeed.USEquitiesRTH.timezone
+pyalgotrade.marketsession.BOVESPA.timezone
+pyalgotrade.marketsession.FTSE.timezone
+pyalgotrade.marketsession.MERVAL.timezone
+pyalgotrade.marketsession.NASDAQ.timezone
+pyalgotrade.marketsession.NYSE.timezone
+pyalgotrade.marketsession.TSE.timezone
+pyalgotrade.marketsession.USEquities.timezone" class="py-name" href="#" onclick="return doclink('link-11', 'timezone', 'link-0');">timezone</a></tt> <tt class="py-op">=</tt> <tt class="py-name">pytz</tt><tt class="py-op">.</tt><tt id="link-12" class="py-name"><a title="pyalgotrade.barfeed.csvfeed.USEquitiesRTH.timezone
+pyalgotrade.marketsession.BOVESPA.timezone
+pyalgotrade.marketsession.FTSE.timezone
+pyalgotrade.marketsession.MERVAL.timezone
+pyalgotrade.marketsession.NASDAQ.timezone
+pyalgotrade.marketsession.NYSE.timezone
+pyalgotrade.marketsession.TSE.timezone
+pyalgotrade.marketsession.USEquities.timezone" class="py-name" href="#" onclick="return doclink('link-12', 'timezone', 'link-0');">timezone</a></tt><tt class="py-op">(</tt><tt class="py-string">"Europe/London"</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L75"></a><tt class="py-lineno">75</tt>  <tt class="py-line"> </tt>
+<a name="TSE"></a><div id="TSE-def"><a name="L76"></a><tt class="py-lineno">76</tt>  <tt class="py-line"> </tt>
+<a name="L77"></a><tt class="py-lineno">77</tt>  <tt class="py-line"><tt class="py-comment">######################################################################</tt> </tt>
+<a name="L78"></a><tt class="py-lineno">78</tt>  <tt class="py-line"><tt class="py-comment"># Asia</tt> </tt>
+<a name="L79"></a><tt class="py-lineno">79</tt>  <tt class="py-line"> </tt>
+<a name="L80"></a><tt class="py-lineno">80</tt> <a class="py-toggle" href="#" id="TSE-toggle" onclick="return toggle('TSE');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="pyalgotrade.marketsession.TSE-class.html">TSE</a><tt class="py-op">(</tt><tt class="py-base-class">MarketSession</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="TSE-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="TSE-expanded"><a name="L81"></a><tt class="py-lineno">81</tt>  <tt class="py-line">    <tt class="py-docstring">"""Tokyo Stock Exchange market session."""</tt> </tt>
+<a name="L82"></a><tt class="py-lineno">82</tt>  <tt class="py-line">    <tt id="link-13" class="py-name"><a title="pyalgotrade.barfeed.csvfeed.USEquitiesRTH.timezone
+pyalgotrade.marketsession.BOVESPA.timezone
+pyalgotrade.marketsession.FTSE.timezone
+pyalgotrade.marketsession.MERVAL.timezone
+pyalgotrade.marketsession.NASDAQ.timezone
+pyalgotrade.marketsession.NYSE.timezone
+pyalgotrade.marketsession.TSE.timezone
+pyalgotrade.marketsession.USEquities.timezone" class="py-name" href="#" onclick="return doclink('link-13', 'timezone', 'link-0');">timezone</a></tt> <tt class="py-op">=</tt> <tt class="py-name">pytz</tt><tt class="py-op">.</tt><tt id="link-14" class="py-name"><a title="pyalgotrade.barfeed.csvfeed.USEquitiesRTH.timezone
+pyalgotrade.marketsession.BOVESPA.timezone
+pyalgotrade.marketsession.FTSE.timezone
+pyalgotrade.marketsession.MERVAL.timezone
+pyalgotrade.marketsession.NASDAQ.timezone
+pyalgotrade.marketsession.NYSE.timezone
+pyalgotrade.marketsession.TSE.timezone
+pyalgotrade.marketsession.USEquities.timezone" class="py-name" href="#" onclick="return doclink('link-14', 'timezone', 'link-0');">timezone</a></tt><tt class="py-op">(</tt><tt class="py-string">"Asia/Tokyo"</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L83"></a><tt class="py-lineno">83</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="pyalgotrade-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Sat Oct 15 14:17:56 2016
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

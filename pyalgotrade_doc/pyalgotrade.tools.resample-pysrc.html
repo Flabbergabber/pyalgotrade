@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>pyalgotrade.tools.resample</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="pyalgotrade-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="pyalgotrade-module.html">Package&nbsp;pyalgotrade</a> ::
+        <a href="pyalgotrade.tools-module.html">Package&nbsp;tools</a> ::
+        Module&nbsp;resample
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="pyalgotrade.tools.resample-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="pyalgotrade.tools.resample-module.html">Module pyalgotrade.tools.resample</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno">  1</tt>  <tt class="py-line"><tt class="py-comment"># PyAlgoTrade</tt> </tt>
+<a name="L2"></a><tt class="py-lineno">  2</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L3"></a><tt class="py-lineno">  3</tt>  <tt class="py-line"><tt class="py-comment"># Copyright 2011-2015 Gabriel Martin Becedillas Ruiz</tt> </tt>
+<a name="L4"></a><tt class="py-lineno">  4</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L5"></a><tt class="py-lineno">  5</tt>  <tt class="py-line"><tt class="py-comment"># Licensed under the Apache License, Version 2.0 (the "License");</tt> </tt>
+<a name="L6"></a><tt class="py-lineno">  6</tt>  <tt class="py-line"><tt class="py-comment"># you may not use this file except in compliance with the License.</tt> </tt>
+<a name="L7"></a><tt class="py-lineno">  7</tt>  <tt class="py-line"><tt class="py-comment"># You may obtain a copy of the License at</tt> </tt>
+<a name="L8"></a><tt class="py-lineno">  8</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L9"></a><tt class="py-lineno">  9</tt>  <tt class="py-line"><tt class="py-comment">#   http://www.apache.org/licenses/LICENSE-2.0</tt> </tt>
+<a name="L10"></a><tt class="py-lineno"> 10</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L11"></a><tt class="py-lineno"> 11</tt>  <tt class="py-line"><tt class="py-comment"># Unless required by applicable law or agreed to in writing, software</tt> </tt>
+<a name="L12"></a><tt class="py-lineno"> 12</tt>  <tt class="py-line"><tt class="py-comment"># distributed under the License is distributed on an "AS IS" BASIS,</tt> </tt>
+<a name="L13"></a><tt class="py-lineno"> 13</tt>  <tt class="py-line"><tt class="py-comment"># WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</tt> </tt>
+<a name="L14"></a><tt class="py-lineno"> 14</tt>  <tt class="py-line"><tt class="py-comment"># See the License for the specific language governing permissions and</tt> </tt>
+<a name="L15"></a><tt class="py-lineno"> 15</tt>  <tt class="py-line"><tt class="py-comment"># limitations under the License.</tt> </tt>
+<a name="L16"></a><tt class="py-lineno"> 16</tt>  <tt class="py-line"> </tt>
+<a name="L17"></a><tt class="py-lineno"> 17</tt>  <tt class="py-line"><tt class="py-docstring">"""</tt> </tt>
+<a name="L18"></a><tt class="py-lineno"> 18</tt>  <tt class="py-line"><tt class="py-docstring">.. moduleauthor:: Gabriel Martin Becedillas Ruiz &lt;gabriel.becedillas@gmail.com&gt;</tt> </tt>
+<a name="L19"></a><tt class="py-lineno"> 19</tt>  <tt class="py-line"><tt class="py-docstring">"""</tt> </tt>
+<a name="L20"></a><tt class="py-lineno"> 20</tt>  <tt class="py-line"> </tt>
+<a name="L21"></a><tt class="py-lineno"> 21</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">os</tt> </tt>
+<a name="L22"></a><tt class="py-lineno"> 22</tt>  <tt class="py-line"> </tt>
+<a name="L23"></a><tt class="py-lineno"> 23</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-0" class="py-name" targets="Package pyalgotrade=pyalgotrade-module.html"><a title="pyalgotrade" class="py-name" href="#" onclick="return doclink('link-0', 'pyalgotrade', 'link-0');">pyalgotrade</a></tt> <tt class="py-keyword">import</tt> <tt id="link-1" class="py-name" targets="Module pyalgotrade.dispatcher=pyalgotrade.dispatcher-module.html"><a title="pyalgotrade.dispatcher" class="py-name" href="#" onclick="return doclink('link-1', 'dispatcher', 'link-1');">dispatcher</a></tt> </tt>
+<a name="L24"></a><tt class="py-lineno"> 24</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-2" class="py-name"><a title="pyalgotrade" class="py-name" href="#" onclick="return doclink('link-2', 'pyalgotrade', 'link-0');">pyalgotrade</a></tt><tt class="py-op">.</tt><tt id="link-3" class="py-name" targets="Package pyalgotrade.dataseries=pyalgotrade.dataseries-module.html"><a title="pyalgotrade.dataseries" class="py-name" href="#" onclick="return doclink('link-3', 'dataseries', 'link-3');">dataseries</a></tt> <tt class="py-keyword">import</tt> <tt id="link-4" class="py-name" targets="Module pyalgotrade.barfeed.resampled=pyalgotrade.barfeed.resampled-module.html,Module pyalgotrade.dataseries.resampled=pyalgotrade.dataseries.resampled-module.html"><a title="pyalgotrade.barfeed.resampled
+pyalgotrade.dataseries.resampled" class="py-name" href="#" onclick="return doclink('link-4', 'resampled', 'link-4');">resampled</a></tt> </tt>
+<a name="L25"></a><tt class="py-lineno"> 25</tt>  <tt class="py-line"> </tt>
+<a name="L26"></a><tt class="py-lineno"> 26</tt>  <tt class="py-line"> </tt>
+<a name="L27"></a><tt class="py-lineno"> 27</tt>  <tt class="py-line"><tt id="link-5" class="py-name" targets="Variable pyalgotrade.tools.resample.datetime_format=pyalgotrade.tools.resample-module.html#datetime_format"><a title="pyalgotrade.tools.resample.datetime_format" class="py-name" href="#" onclick="return doclink('link-5', 'datetime_format', 'link-5');">datetime_format</a></tt> <tt class="py-op">=</tt> <tt class="py-string">"%Y-%m-%d %H:%M:%S"</tt> </tt>
+<a name="L28"></a><tt class="py-lineno"> 28</tt>  <tt class="py-line"> </tt>
+<a name="L29"></a><tt class="py-lineno"> 29</tt>  <tt class="py-line"> </tt>
+<a name="CSVFileWriter"></a><div id="CSVFileWriter-def"><a name="L30"></a><tt class="py-lineno"> 30</tt> <a class="py-toggle" href="#" id="CSVFileWriter-toggle" onclick="return toggle('CSVFileWriter');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="pyalgotrade.tools.resample.CSVFileWriter-class.html">CSVFileWriter</a><tt class="py-op">(</tt><tt class="py-base-class">object</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="CSVFileWriter-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="CSVFileWriter-expanded"><a name="CSVFileWriter.__init__"></a><div id="CSVFileWriter.__init__-def"><a name="L31"></a><tt class="py-lineno"> 31</tt> <a class="py-toggle" href="#" id="CSVFileWriter.__init__-toggle" onclick="return toggle('CSVFileWriter.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pyalgotrade.tools.resample.CSVFileWriter-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">csvFile</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="CSVFileWriter.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="CSVFileWriter.__init__-expanded"><a name="L32"></a><tt class="py-lineno"> 32</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__file</tt> <tt class="py-op">=</tt> <tt class="py-name">open</tt><tt class="py-op">(</tt><tt class="py-name">csvFile</tt><tt class="py-op">,</tt> <tt class="py-string">"w"</tt><tt class="py-op">)</tt> </tt>
+<a name="L33"></a><tt class="py-lineno"> 33</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-6" class="py-name" targets="Method pyalgotrade.tools.resample.CSVFileWriter.__writeLine()=pyalgotrade.tools.resample.CSVFileWriter-class.html#__writeLine"><a title="pyalgotrade.tools.resample.CSVFileWriter.__writeLine" class="py-name" href="#" onclick="return doclink('link-6', '__writeLine', 'link-6');">__writeLine</a></tt><tt class="py-op">(</tt><tt class="py-string">"Date Time"</tt><tt class="py-op">,</tt> <tt class="py-string">"Open"</tt><tt class="py-op">,</tt> <tt class="py-string">"High"</tt><tt class="py-op">,</tt> <tt class="py-string">"Low"</tt><tt class="py-op">,</tt> <tt class="py-string">"Close"</tt><tt class="py-op">,</tt> <tt class="py-string">"Volume"</tt><tt class="py-op">,</tt> <tt class="py-string">"Adj Close"</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L34"></a><tt class="py-lineno"> 34</tt>  <tt class="py-line"> </tt>
+<a name="CSVFileWriter.__writeLine"></a><div id="CSVFileWriter.__writeLine-def"><a name="L35"></a><tt class="py-lineno"> 35</tt> <a class="py-toggle" href="#" id="CSVFileWriter.__writeLine-toggle" onclick="return toggle('CSVFileWriter.__writeLine');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pyalgotrade.tools.resample.CSVFileWriter-class.html#__writeLine">__writeLine</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-op">*</tt><tt class="py-param">values</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="CSVFileWriter.__writeLine-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="CSVFileWriter.__writeLine-expanded"><a name="L36"></a><tt class="py-lineno"> 36</tt>  <tt class="py-line">        <tt class="py-name">line</tt> <tt class="py-op">=</tt> <tt class="py-string">","</tt><tt class="py-op">.</tt><tt id="link-7" class="py-name" targets="Method pyalgotrade.barfeed.OptimizerBarFeed.join()=pyalgotrade.barfeed.OptimizerBarFeed-class.html#join,Method pyalgotrade.barfeed.membf.BarFeed.join()=pyalgotrade.barfeed.membf.BarFeed-class.html#join,Method pyalgotrade.barfeed.resampled.ResampledBarFeed.join()=pyalgotrade.barfeed.resampled.ResampledBarFeed-class.html#join,Method pyalgotrade.bitstamp.livebroker.LiveBroker.join()=pyalgotrade.bitstamp.livebroker.LiveBroker-class.html#join,Method pyalgotrade.bitstamp.livefeed.LiveTradeFeed.join()=pyalgotrade.bitstamp.livefeed.LiveTradeFeed-class.html#join,Method pyalgotrade.broker.backtesting.Broker.join()=pyalgotrade.broker.backtesting.Broker-class.html#join,Method pyalgotrade.broker.backtesting_old.Broker.join()=pyalgotrade.broker.backtesting_old.Broker-class.html#join,Method pyalgotrade.feed.memfeed.MemFeed.join()=pyalgotrade.feed.memfeed.MemFeed-class.html#join,Method pyalgotrade.ib.barfeed.LiveFeed.join()=pyalgotrade.ib.barfeed.LiveFeed-class.html#join,Method pyalgotrade.ib.livebroker.LiveBroker.join()=pyalgotrade.ib.livebroker.LiveBroker-class.html#join,Method pyalgotrade.observer.Subject.join()=pyalgotrade.observer.Subject-class.html#join,Method pyalgotrade.twitter.feed.TwitterFeed.join()=pyalgotrade.twitter.feed.TwitterFeed-class.html#join"><a title="pyalgotrade.barfeed.OptimizerBarFeed.join
+pyalgotrade.barfeed.membf.BarFeed.join
+pyalgotrade.barfeed.resampled.ResampledBarFeed.join
+pyalgotrade.bitstamp.livebroker.LiveBroker.join
+pyalgotrade.bitstamp.livefeed.LiveTradeFeed.join
+pyalgotrade.broker.backtesting.Broker.join
+pyalgotrade.broker.backtesting_old.Broker.join
+pyalgotrade.feed.memfeed.MemFeed.join
+pyalgotrade.ib.barfeed.LiveFeed.join
+pyalgotrade.ib.livebroker.LiveBroker.join
+pyalgotrade.observer.Subject.join
+pyalgotrade.twitter.feed.TwitterFeed.join" class="py-name" href="#" onclick="return doclink('link-7', 'join', 'link-7');">join</a></tt><tt class="py-op">(</tt><tt class="py-op">[</tt><tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">value</tt><tt class="py-op">)</tt> <tt class="py-keyword">for</tt> <tt class="py-name">value</tt> <tt class="py-keyword">in</tt> <tt class="py-name">values</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L37"></a><tt class="py-lineno"> 37</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__file</tt><tt class="py-op">.</tt><tt class="py-name">write</tt><tt class="py-op">(</tt><tt class="py-name">line</tt><tt class="py-op">)</tt> </tt>
+<a name="L38"></a><tt class="py-lineno"> 38</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__file</tt><tt class="py-op">.</tt><tt class="py-name">write</tt><tt class="py-op">(</tt><tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">linesep</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L39"></a><tt class="py-lineno"> 39</tt>  <tt class="py-line"> </tt>
+<a name="CSVFileWriter.writeBar"></a><div id="CSVFileWriter.writeBar-def"><a name="L40"></a><tt class="py-lineno"> 40</tt> <a class="py-toggle" href="#" id="CSVFileWriter.writeBar-toggle" onclick="return toggle('CSVFileWriter.writeBar');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pyalgotrade.tools.resample.CSVFileWriter-class.html#writeBar">writeBar</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">bar_</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="CSVFileWriter.writeBar-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="CSVFileWriter.writeBar-expanded"><a name="L41"></a><tt class="py-lineno"> 41</tt>  <tt class="py-line">        <tt class="py-name">adjClose</tt> <tt class="py-op">=</tt> <tt class="py-name">bar_</tt><tt class="py-op">.</tt><tt id="link-8" class="py-name" targets="Method pyalgotrade.bar.Bar.getAdjClose()=pyalgotrade.bar.Bar-class.html#getAdjClose,Method pyalgotrade.bar.BasicBar.getAdjClose()=pyalgotrade.bar.BasicBar-class.html#getAdjClose,Method pyalgotrade.bitcoincharts.barfeed.TradeBar.getAdjClose()=pyalgotrade.bitcoincharts.barfeed.TradeBar-class.html#getAdjClose,Method pyalgotrade.bitstamp.livefeed.TradeBar.getAdjClose()=pyalgotrade.bitstamp.livefeed.TradeBar-class.html#getAdjClose"><a title="pyalgotrade.bar.Bar.getAdjClose
+pyalgotrade.bar.BasicBar.getAdjClose
+pyalgotrade.bitcoincharts.barfeed.TradeBar.getAdjClose
+pyalgotrade.bitstamp.livefeed.TradeBar.getAdjClose" class="py-name" href="#" onclick="return doclink('link-8', 'getAdjClose', 'link-8');">getAdjClose</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L42"></a><tt class="py-lineno"> 42</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">adjClose</tt> <tt class="py-keyword">is</tt> <tt class="py-name">None</tt><tt class="py-op">:</tt> </tt>
+<a name="L43"></a><tt class="py-lineno"> 43</tt>  <tt class="py-line">            <tt class="py-name">adjClose</tt> <tt class="py-op">=</tt> <tt class="py-string">""</tt> </tt>
+<a name="L44"></a><tt class="py-lineno"> 44</tt>  <tt class="py-line">        <tt class="py-name">dateTime</tt> <tt class="py-op">=</tt> <tt class="py-name">bar_</tt><tt class="py-op">.</tt><tt id="link-9" class="py-name" targets="Method pyalgotrade.bar.Bar.getDateTime()=pyalgotrade.bar.Bar-class.html#getDateTime,Method pyalgotrade.bar.Bars.getDateTime()=pyalgotrade.bar.Bars-class.html#getDateTime,Method pyalgotrade.bar.BasicBar.getDateTime()=pyalgotrade.bar.BasicBar-class.html#getDateTime,Method pyalgotrade.bitcoincharts.barfeed.TradeBar.getDateTime()=pyalgotrade.bitcoincharts.barfeed.TradeBar-class.html#getDateTime,Method pyalgotrade.bitstamp.httpclient.Order.getDateTime()=pyalgotrade.bitstamp.httpclient.Order-class.html#getDateTime,Method pyalgotrade.bitstamp.httpclient.UserTransaction.getDateTime()=pyalgotrade.bitstamp.httpclient.UserTransaction-class.html#getDateTime,Method pyalgotrade.bitstamp.livefeed.TradeBar.getDateTime()=pyalgotrade.bitstamp.livefeed.TradeBar-class.html#getDateTime,Method pyalgotrade.bitstamp.wsclient.OrderBookUpdate.getDateTime()=pyalgotrade.bitstamp.wsclient.OrderBookUpdate-class.html#getDateTime,Method pyalgotrade.bitstamp.wsclient.Trade.getDateTime()=pyalgotrade.bitstamp.wsclient.Trade-class.html#getDateTime,Method pyalgotrade.broker.OrderExecutionInfo.getDateTime()=pyalgotrade.broker.OrderExecutionInfo-class.html#getDateTime,Method pyalgotrade.resamplebase.Grouper.getDateTime()=pyalgotrade.resamplebase.Grouper-class.html#getDateTime,Method pyalgotrade.technical.linebreak.Line.getDateTime()=pyalgotrade.technical.linebreak.Line-class.html#getDateTime"><a title="pyalgotrade.bar.Bar.getDateTime
+pyalgotrade.bar.Bars.getDateTime
+pyalgotrade.bar.BasicBar.getDateTime
+pyalgotrade.bitcoincharts.barfeed.TradeBar.getDateTime
+pyalgotrade.bitstamp.httpclient.Order.getDateTime
+pyalgotrade.bitstamp.httpclient.UserTransaction.getDateTime
+pyalgotrade.bitstamp.livefeed.TradeBar.getDateTime
+pyalgotrade.bitstamp.wsclient.OrderBookUpdate.getDateTime
+pyalgotrade.bitstamp.wsclient.Trade.getDateTime
+pyalgotrade.broker.OrderExecutionInfo.getDateTime
+pyalgotrade.resamplebase.Grouper.getDateTime
+pyalgotrade.technical.linebreak.Line.getDateTime" class="py-name" href="#" onclick="return doclink('link-9', 'getDateTime', 'link-9');">getDateTime</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt class="py-name">strftime</tt><tt class="py-op">(</tt><tt id="link-10" class="py-name"><a title="pyalgotrade.tools.resample.datetime_format" class="py-name" href="#" onclick="return doclink('link-10', 'datetime_format', 'link-5');">datetime_format</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L45"></a><tt class="py-lineno"> 45</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-11" class="py-name"><a title="pyalgotrade.tools.resample.CSVFileWriter.__writeLine" class="py-name" href="#" onclick="return doclink('link-11', '__writeLine', 'link-6');">__writeLine</a></tt><tt class="py-op">(</tt> </tt>
+<a name="L46"></a><tt class="py-lineno"> 46</tt>  <tt class="py-line">            <tt class="py-name">dateTime</tt><tt class="py-op">,</tt> </tt>
+<a name="L47"></a><tt class="py-lineno"> 47</tt>  <tt class="py-line">            <tt class="py-name">bar_</tt><tt class="py-op">.</tt><tt id="link-12" class="py-name" targets="Method pyalgotrade.bar.Bar.getOpen()=pyalgotrade.bar.Bar-class.html#getOpen,Method pyalgotrade.bar.BasicBar.getOpen()=pyalgotrade.bar.BasicBar-class.html#getOpen,Method pyalgotrade.bitcoincharts.barfeed.TradeBar.getOpen()=pyalgotrade.bitcoincharts.barfeed.TradeBar-class.html#getOpen,Method pyalgotrade.bitstamp.livefeed.TradeBar.getOpen()=pyalgotrade.bitstamp.livefeed.TradeBar-class.html#getOpen"><a title="pyalgotrade.bar.Bar.getOpen
+pyalgotrade.bar.BasicBar.getOpen
+pyalgotrade.bitcoincharts.barfeed.TradeBar.getOpen
+pyalgotrade.bitstamp.livefeed.TradeBar.getOpen" class="py-name" href="#" onclick="return doclink('link-12', 'getOpen', 'link-12');">getOpen</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> </tt>
+<a name="L48"></a><tt class="py-lineno"> 48</tt>  <tt class="py-line">            <tt class="py-name">bar_</tt><tt class="py-op">.</tt><tt id="link-13" class="py-name" targets="Method pyalgotrade.bar.Bar.getHigh()=pyalgotrade.bar.Bar-class.html#getHigh,Method pyalgotrade.bar.BasicBar.getHigh()=pyalgotrade.bar.BasicBar-class.html#getHigh,Method pyalgotrade.bitcoincharts.barfeed.TradeBar.getHigh()=pyalgotrade.bitcoincharts.barfeed.TradeBar-class.html#getHigh,Method pyalgotrade.bitstamp.livefeed.TradeBar.getHigh()=pyalgotrade.bitstamp.livefeed.TradeBar-class.html#getHigh,Method pyalgotrade.technical.linebreak.Line.getHigh()=pyalgotrade.technical.linebreak.Line-class.html#getHigh"><a title="pyalgotrade.bar.Bar.getHigh
+pyalgotrade.bar.BasicBar.getHigh
+pyalgotrade.bitcoincharts.barfeed.TradeBar.getHigh
+pyalgotrade.bitstamp.livefeed.TradeBar.getHigh
+pyalgotrade.technical.linebreak.Line.getHigh" class="py-name" href="#" onclick="return doclink('link-13', 'getHigh', 'link-13');">getHigh</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> </tt>
+<a name="L49"></a><tt class="py-lineno"> 49</tt>  <tt class="py-line">            <tt class="py-name">bar_</tt><tt class="py-op">.</tt><tt id="link-14" class="py-name" targets="Method pyalgotrade.bar.Bar.getLow()=pyalgotrade.bar.Bar-class.html#getLow,Method pyalgotrade.bar.BasicBar.getLow()=pyalgotrade.bar.BasicBar-class.html#getLow,Method pyalgotrade.bitcoincharts.barfeed.TradeBar.getLow()=pyalgotrade.bitcoincharts.barfeed.TradeBar-class.html#getLow,Method pyalgotrade.bitstamp.livefeed.TradeBar.getLow()=pyalgotrade.bitstamp.livefeed.TradeBar-class.html#getLow,Method pyalgotrade.technical.linebreak.Line.getLow()=pyalgotrade.technical.linebreak.Line-class.html#getLow"><a title="pyalgotrade.bar.Bar.getLow
+pyalgotrade.bar.BasicBar.getLow
+pyalgotrade.bitcoincharts.barfeed.TradeBar.getLow
+pyalgotrade.bitstamp.livefeed.TradeBar.getLow
+pyalgotrade.technical.linebreak.Line.getLow" class="py-name" href="#" onclick="return doclink('link-14', 'getLow', 'link-14');">getLow</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> </tt>
+<a name="L50"></a><tt class="py-lineno"> 50</tt>  <tt class="py-line">            <tt class="py-name">bar_</tt><tt class="py-op">.</tt><tt id="link-15" class="py-name" targets="Method pyalgotrade.bar.Bar.getClose()=pyalgotrade.bar.Bar-class.html#getClose,Method pyalgotrade.bar.BasicBar.getClose()=pyalgotrade.bar.BasicBar-class.html#getClose,Method pyalgotrade.bitcoincharts.barfeed.TradeBar.getClose()=pyalgotrade.bitcoincharts.barfeed.TradeBar-class.html#getClose,Method pyalgotrade.bitstamp.livefeed.TradeBar.getClose()=pyalgotrade.bitstamp.livefeed.TradeBar-class.html#getClose"><a title="pyalgotrade.bar.Bar.getClose
+pyalgotrade.bar.BasicBar.getClose
+pyalgotrade.bitcoincharts.barfeed.TradeBar.getClose
+pyalgotrade.bitstamp.livefeed.TradeBar.getClose" class="py-name" href="#" onclick="return doclink('link-15', 'getClose', 'link-15');">getClose</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> </tt>
+<a name="L51"></a><tt class="py-lineno"> 51</tt>  <tt class="py-line">            <tt class="py-name">bar_</tt><tt class="py-op">.</tt><tt id="link-16" class="py-name" targets="Method pyalgotrade.bar.Bar.getVolume()=pyalgotrade.bar.Bar-class.html#getVolume,Method pyalgotrade.bar.BasicBar.getVolume()=pyalgotrade.bar.BasicBar-class.html#getVolume,Method pyalgotrade.bitcoincharts.barfeed.TradeBar.getVolume()=pyalgotrade.bitcoincharts.barfeed.TradeBar-class.html#getVolume,Method pyalgotrade.bitstamp.livefeed.TradeBar.getVolume()=pyalgotrade.bitstamp.livefeed.TradeBar-class.html#getVolume"><a title="pyalgotrade.bar.Bar.getVolume
+pyalgotrade.bar.BasicBar.getVolume
+pyalgotrade.bitcoincharts.barfeed.TradeBar.getVolume
+pyalgotrade.bitstamp.livefeed.TradeBar.getVolume" class="py-name" href="#" onclick="return doclink('link-16', 'getVolume', 'link-16');">getVolume</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> </tt>
+<a name="L52"></a><tt class="py-lineno"> 52</tt>  <tt class="py-line">            <tt class="py-name">adjClose</tt> </tt>
+<a name="L53"></a><tt class="py-lineno"> 53</tt>  <tt class="py-line">        <tt class="py-op">)</tt> </tt>
+</div><a name="L54"></a><tt class="py-lineno"> 54</tt>  <tt class="py-line"> </tt>
+<a name="CSVFileWriter.close"></a><div id="CSVFileWriter.close-def"><a name="L55"></a><tt class="py-lineno"> 55</tt> <a class="py-toggle" href="#" id="CSVFileWriter.close-toggle" onclick="return toggle('CSVFileWriter.close');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pyalgotrade.tools.resample.CSVFileWriter-class.html#close">close</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="CSVFileWriter.close-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="CSVFileWriter.close-expanded"><a name="L56"></a><tt class="py-lineno"> 56</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__file</tt><tt class="py-op">.</tt><tt id="link-17" class="py-name" targets="Method pyalgotrade.tools.resample.CSVFileWriter.close()=pyalgotrade.tools.resample.CSVFileWriter-class.html#close"><a title="pyalgotrade.tools.resample.CSVFileWriter.close" class="py-name" href="#" onclick="return doclink('link-17', 'close', 'link-17');">close</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L57"></a><tt class="py-lineno"> 57</tt>  <tt class="py-line"> </tt>
+<a name="L58"></a><tt class="py-lineno"> 58</tt>  <tt class="py-line"> </tt>
+<a name="resample_impl"></a><div id="resample_impl-def"><a name="L59"></a><tt class="py-lineno"> 59</tt> <a class="py-toggle" href="#" id="resample_impl-toggle" onclick="return toggle('resample_impl');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="pyalgotrade.tools.resample-module.html#resample_impl">resample_impl</a><tt class="py-op">(</tt><tt class="py-param">barFeed</tt><tt class="py-op">,</tt> <tt class="py-param">frequency</tt><tt class="py-op">,</tt> <tt class="py-param">csvFile</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="resample_impl-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="resample_impl-expanded"><a name="L60"></a><tt class="py-lineno"> 60</tt>  <tt class="py-line">    <tt class="py-name">instruments</tt> <tt class="py-op">=</tt> <tt class="py-name">barFeed</tt><tt class="py-op">.</tt><tt id="link-18" class="py-name" targets="Method pyalgotrade.barfeed.BaseBarFeed.getRegisteredInstruments()=pyalgotrade.barfeed.BaseBarFeed-class.html#getRegisteredInstruments"><a title="pyalgotrade.barfeed.BaseBarFeed.getRegisteredInstruments" class="py-name" href="#" onclick="return doclink('link-18', 'getRegisteredInstruments', 'link-18');">getRegisteredInstruments</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L61"></a><tt class="py-lineno"> 61</tt>  <tt class="py-line">    <tt class="py-keyword">if</tt> <tt class="py-name">len</tt><tt class="py-op">(</tt><tt class="py-name">instruments</tt><tt class="py-op">)</tt> <tt class="py-op">!=</tt> <tt class="py-number">1</tt><tt class="py-op">:</tt> </tt>
+<a name="L62"></a><tt class="py-lineno"> 62</tt>  <tt class="py-line">        <tt class="py-keyword">raise</tt> <tt class="py-name">Exception</tt><tt class="py-op">(</tt><tt class="py-string">"Only barfeeds with 1 instrument can be resampled"</tt><tt class="py-op">)</tt> </tt>
+<a name="L63"></a><tt class="py-lineno"> 63</tt>  <tt class="py-line"> </tt>
+<a name="L64"></a><tt class="py-lineno"> 64</tt>  <tt class="py-line">    <tt class="py-name">csvWriter</tt> <tt class="py-op">=</tt> <tt id="link-19" class="py-name" targets="Class pyalgotrade.tools.resample.CSVFileWriter=pyalgotrade.tools.resample.CSVFileWriter-class.html"><a title="pyalgotrade.tools.resample.CSVFileWriter" class="py-name" href="#" onclick="return doclink('link-19', 'CSVFileWriter', 'link-19');">CSVFileWriter</a></tt><tt class="py-op">(</tt><tt class="py-name">csvFile</tt><tt class="py-op">)</tt> </tt>
+<a name="L65"></a><tt class="py-lineno"> 65</tt>  <tt class="py-line"> </tt>
+<a name="L66"></a><tt class="py-lineno"> 66</tt>  <tt class="py-line">    <tt class="py-keyword">def</tt> <tt class="py-def-name">on_bar</tt><tt class="py-op">(</tt><tt class="py-param">ds</tt><tt class="py-op">,</tt> <tt class="py-param">dateTime</tt><tt class="py-op">,</tt> <tt class="py-param">value</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L67"></a><tt class="py-lineno"> 67</tt>  <tt class="py-line">        <tt class="py-name">csvWriter</tt><tt class="py-op">.</tt><tt id="link-20" class="py-name" targets="Method pyalgotrade.tools.resample.CSVFileWriter.writeBar()=pyalgotrade.tools.resample.CSVFileWriter-class.html#writeBar"><a title="pyalgotrade.tools.resample.CSVFileWriter.writeBar" class="py-name" href="#" onclick="return doclink('link-20', 'writeBar', 'link-20');">writeBar</a></tt><tt class="py-op">(</tt><tt class="py-name">value</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L68"></a><tt class="py-lineno"> 68</tt>  <tt class="py-line"> </tt>
+<a name="L69"></a><tt class="py-lineno"> 69</tt>  <tt class="py-line">    <tt class="py-name">insrumentDS</tt> <tt class="py-op">=</tt> <tt class="py-name">barFeed</tt><tt class="py-op">[</tt><tt class="py-name">instruments</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt><tt class="py-op">]</tt> </tt>
+<a name="L70"></a><tt class="py-lineno"> 70</tt>  <tt class="py-line">    <tt class="py-name">resampledDS</tt> <tt class="py-op">=</tt> <tt id="link-21" class="py-name"><a title="pyalgotrade.barfeed.resampled
+pyalgotrade.dataseries.resampled" class="py-name" href="#" onclick="return doclink('link-21', 'resampled', 'link-4');">resampled</a></tt><tt class="py-op">.</tt><tt id="link-22" class="py-name" targets="Class pyalgotrade.dataseries.resampled.ResampledBarDataSeries=pyalgotrade.dataseries.resampled.ResampledBarDataSeries-class.html"><a title="pyalgotrade.dataseries.resampled.ResampledBarDataSeries" class="py-name" href="#" onclick="return doclink('link-22', 'ResampledBarDataSeries', 'link-22');">ResampledBarDataSeries</a></tt><tt class="py-op">(</tt><tt class="py-name">insrumentDS</tt><tt class="py-op">,</tt> <tt class="py-name">frequency</tt><tt class="py-op">)</tt> </tt>
+<a name="L71"></a><tt class="py-lineno"> 71</tt>  <tt class="py-line">    <tt class="py-name">resampledDS</tt><tt class="py-op">.</tt><tt id="link-23" class="py-name" targets="Method pyalgotrade.dataseries.SequenceDataSeries.getNewValueEvent()=pyalgotrade.dataseries.SequenceDataSeries-class.html#getNewValueEvent"><a title="pyalgotrade.dataseries.SequenceDataSeries.getNewValueEvent" class="py-name" href="#" onclick="return doclink('link-23', 'getNewValueEvent', 'link-23');">getNewValueEvent</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt id="link-24" class="py-name" targets="Method pyalgotrade.observer.Event.subscribe()=pyalgotrade.observer.Event-class.html#subscribe,Method pyalgotrade.twitter.feed.TwitterFeed.subscribe()=pyalgotrade.twitter.feed.TwitterFeed-class.html#subscribe"><a title="pyalgotrade.observer.Event.subscribe
+pyalgotrade.twitter.feed.TwitterFeed.subscribe" class="py-name" href="#" onclick="return doclink('link-24', 'subscribe', 'link-24');">subscribe</a></tt><tt class="py-op">(</tt><tt class="py-name">on_bar</tt><tt class="py-op">)</tt> </tt>
+<a name="L72"></a><tt class="py-lineno"> 72</tt>  <tt class="py-line"> </tt>
+<a name="L73"></a><tt class="py-lineno"> 73</tt>  <tt class="py-line">    <tt class="py-comment"># Process all bars.</tt> </tt>
+<a name="L74"></a><tt class="py-lineno"> 74</tt>  <tt class="py-line">    <tt class="py-name">disp</tt> <tt class="py-op">=</tt> <tt id="link-25" class="py-name"><a title="pyalgotrade.dispatcher" class="py-name" href="#" onclick="return doclink('link-25', 'dispatcher', 'link-1');">dispatcher</a></tt><tt class="py-op">.</tt><tt id="link-26" class="py-name" targets="Class pyalgotrade.dispatcher.Dispatcher=pyalgotrade.dispatcher.Dispatcher-class.html"><a title="pyalgotrade.dispatcher.Dispatcher" class="py-name" href="#" onclick="return doclink('link-26', 'Dispatcher', 'link-26');">Dispatcher</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L75"></a><tt class="py-lineno"> 75</tt>  <tt class="py-line">    <tt class="py-name">disp</tt><tt class="py-op">.</tt><tt id="link-27" class="py-name" targets="Method pyalgotrade.dispatcher.Dispatcher.addSubject()=pyalgotrade.dispatcher.Dispatcher-class.html#addSubject"><a title="pyalgotrade.dispatcher.Dispatcher.addSubject" class="py-name" href="#" onclick="return doclink('link-27', 'addSubject', 'link-27');">addSubject</a></tt><tt class="py-op">(</tt><tt class="py-name">barFeed</tt><tt class="py-op">)</tt> </tt>
+<a name="L76"></a><tt class="py-lineno"> 76</tt>  <tt class="py-line">    <tt class="py-name">disp</tt><tt class="py-op">.</tt><tt id="link-28" class="py-name" targets="Method pyalgotrade.bitstamp.livebroker.TradeMonitor.run()=pyalgotrade.bitstamp.livebroker.TradeMonitor-class.html#run,Method pyalgotrade.bitstamp.wsclient.WebSocketClientThread.run()=pyalgotrade.bitstamp.wsclient.WebSocketClientThread-class.html#run,Method pyalgotrade.dispatcher.Dispatcher.run()=pyalgotrade.dispatcher.Dispatcher-class.html#run,Method pyalgotrade.eventprofiler.Profiler.run()=pyalgotrade.eventprofiler.Profiler-class.html#run,Method pyalgotrade.optimizer.local.ServerThread.run()=pyalgotrade.optimizer.local.ServerThread-class.html#run,Function pyalgotrade.optimizer.local.run()=pyalgotrade.optimizer.local-module.html#run,Method pyalgotrade.optimizer.worker.Worker.run()=pyalgotrade.optimizer.worker.Worker-class.html#run,Function pyalgotrade.optimizer.worker.run()=pyalgotrade.optimizer.worker-module.html#run,Method pyalgotrade.optimizer.xmlrpcserver.AutoStopThread.run()=pyalgotrade.optimizer.xmlrpcserver.AutoStopThread-class.html#run,Method pyalgotrade.strategy.BaseStrategy.run()=pyalgotrade.strategy.BaseStrategy-class.html#run"><a title="pyalgotrade.bitstamp.livebroker.TradeMonitor.run
+pyalgotrade.bitstamp.wsclient.WebSocketClientThread.run
+pyalgotrade.dispatcher.Dispatcher.run
+pyalgotrade.eventprofiler.Profiler.run
+pyalgotrade.optimizer.local.ServerThread.run
+pyalgotrade.optimizer.local.run
+pyalgotrade.optimizer.worker.Worker.run
+pyalgotrade.optimizer.worker.run
+pyalgotrade.optimizer.xmlrpcserver.AutoStopThread.run
+pyalgotrade.strategy.BaseStrategy.run" class="py-name" href="#" onclick="return doclink('link-28', 'run', 'link-28');">run</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L77"></a><tt class="py-lineno"> 77</tt>  <tt class="py-line">    <tt class="py-name">resampledDS</tt><tt class="py-op">.</tt><tt id="link-29" class="py-name" targets="Method pyalgotrade.dataseries.resampled.DSResampler.pushLast()=pyalgotrade.dataseries.resampled.DSResampler-class.html#pushLast"><a title="pyalgotrade.dataseries.resampled.DSResampler.pushLast" class="py-name" href="#" onclick="return doclink('link-29', 'pushLast', 'link-29');">pushLast</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L78"></a><tt class="py-lineno"> 78</tt>  <tt class="py-line"> </tt>
+<a name="L79"></a><tt class="py-lineno"> 79</tt>  <tt class="py-line"> </tt>
+<a name="resample_to_csv"></a><div id="resample_to_csv-def"><a name="L80"></a><tt class="py-lineno"> 80</tt> <a class="py-toggle" href="#" id="resample_to_csv-toggle" onclick="return toggle('resample_to_csv');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="pyalgotrade.tools.resample-module.html#resample_to_csv">resample_to_csv</a><tt class="py-op">(</tt><tt class="py-param">barFeed</tt><tt class="py-op">,</tt> <tt class="py-param">frequency</tt><tt class="py-op">,</tt> <tt class="py-param">csvFile</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="resample_to_csv-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="resample_to_csv-expanded"><a name="L81"></a><tt class="py-lineno"> 81</tt>  <tt class="py-line">    <tt class="py-docstring">"""Resample a BarFeed into a CSV file grouping bars by a certain frequency.</tt> </tt>
+<a name="L82"></a><tt class="py-lineno"> 82</tt>  <tt class="py-line"><tt class="py-docstring">    The resulting file can be loaded using :class:`pyalgotrade.barfeed.csvfeed.GenericBarFeed`.</tt> </tt>
+<a name="L83"></a><tt class="py-lineno"> 83</tt>  <tt class="py-line"><tt class="py-docstring">    The CSV file will have the following format:</tt> </tt>
+<a name="L84"></a><tt class="py-lineno"> 84</tt>  <tt class="py-line"><tt class="py-docstring">    ::</tt> </tt>
+<a name="L85"></a><tt class="py-lineno"> 85</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L86"></a><tt class="py-lineno"> 86</tt>  <tt class="py-line"><tt class="py-docstring">        Date Time,Open,High,Low,Close,Volume,Adj Close</tt> </tt>
+<a name="L87"></a><tt class="py-lineno"> 87</tt>  <tt class="py-line"><tt class="py-docstring">        2013-01-01 00:00:00,13.51001,13.56,13.51,13.56,273.88014126,13.51001</tt> </tt>
+<a name="L88"></a><tt class="py-lineno"> 88</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L89"></a><tt class="py-lineno"> 89</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L90"></a><tt class="py-lineno"> 90</tt>  <tt class="py-line"><tt class="py-docstring">    :param barFeed: The bar feed that will provide the bars. It should only hold bars from a single instrument.</tt> </tt>
+<a name="L91"></a><tt class="py-lineno"> 91</tt>  <tt class="py-line"><tt class="py-docstring">    :type barFeed: :class:`pyalgotrade.barfeed.BarFeed`</tt> </tt>
+<a name="L92"></a><tt class="py-lineno"> 92</tt>  <tt class="py-line"><tt class="py-docstring">    :param frequency: The grouping frequency in seconds. Must be &gt; 0.</tt> </tt>
+<a name="L93"></a><tt class="py-lineno"> 93</tt>  <tt class="py-line"><tt class="py-docstring">    :param csvFile: The path to the CSV file to write.</tt> </tt>
+<a name="L94"></a><tt class="py-lineno"> 94</tt>  <tt class="py-line"><tt class="py-docstring">    :type csvFile: string.</tt> </tt>
+<a name="L95"></a><tt class="py-lineno"> 95</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L96"></a><tt class="py-lineno"> 96</tt>  <tt class="py-line"><tt class="py-docstring">    .. note::</tt> </tt>
+<a name="L97"></a><tt class="py-lineno"> 97</tt>  <tt class="py-line"><tt class="py-docstring">        * Datetimes are stored without timezone information.</tt> </tt>
+<a name="L98"></a><tt class="py-lineno"> 98</tt>  <tt class="py-line"><tt class="py-docstring">        * **Adj Close** column may be empty if the input bar feed doesn't have that info.</tt> </tt>
+<a name="L99"></a><tt class="py-lineno"> 99</tt>  <tt class="py-line"><tt class="py-docstring">        * Supported resampling frequencies are:</tt> </tt>
+<a name="L100"></a><tt class="py-lineno">100</tt>  <tt class="py-line"><tt class="py-docstring">            * Less than bar.Frequency.DAY</tt> </tt>
+<a name="L101"></a><tt class="py-lineno">101</tt>  <tt class="py-line"><tt class="py-docstring">            * bar.Frequency.DAY</tt> </tt>
+<a name="L102"></a><tt class="py-lineno">102</tt>  <tt class="py-line"><tt class="py-docstring">            * bar.Frequency.MONTH</tt> </tt>
+<a name="L103"></a><tt class="py-lineno">103</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L104"></a><tt class="py-lineno">104</tt>  <tt class="py-line"> </tt>
+<a name="L105"></a><tt class="py-lineno">105</tt>  <tt class="py-line">    <tt class="py-keyword">assert</tt> <tt class="py-name">frequency</tt> <tt class="py-op">&gt;</tt> <tt class="py-number">0</tt><tt class="py-op">,</tt> <tt class="py-string">"Invalid frequency"</tt> </tt>
+<a name="L106"></a><tt class="py-lineno">106</tt>  <tt class="py-line">    <tt id="link-30" class="py-name" targets="Function pyalgotrade.tools.resample.resample_impl()=pyalgotrade.tools.resample-module.html#resample_impl"><a title="pyalgotrade.tools.resample.resample_impl" class="py-name" href="#" onclick="return doclink('link-30', 'resample_impl', 'link-30');">resample_impl</a></tt><tt class="py-op">(</tt><tt class="py-name">barFeed</tt><tt class="py-op">,</tt> <tt class="py-name">frequency</tt><tt class="py-op">,</tt> <tt class="py-name">csvFile</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L107"></a><tt class="py-lineno">107</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="pyalgotrade-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Sat Oct 15 14:17:56 2016
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

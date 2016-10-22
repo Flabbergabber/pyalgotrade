@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>pyalgotrade.bitstamp.common</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="pyalgotrade-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="pyalgotrade-module.html">Package&nbsp;pyalgotrade</a> ::
+        <a href="pyalgotrade.bitstamp-module.html">Package&nbsp;bitstamp</a> ::
+        Module&nbsp;common
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="pyalgotrade.bitstamp.common-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="pyalgotrade.bitstamp.common-module.html">Module pyalgotrade.bitstamp.common</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno"> 1</tt>  <tt class="py-line"><tt class="py-comment"># PyAlgoTrade</tt> </tt>
+<a name="L2"></a><tt class="py-lineno"> 2</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L3"></a><tt class="py-lineno"> 3</tt>  <tt class="py-line"><tt class="py-comment"># Copyright 2011-2015 Gabriel Martin Becedillas Ruiz</tt> </tt>
+<a name="L4"></a><tt class="py-lineno"> 4</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L5"></a><tt class="py-lineno"> 5</tt>  <tt class="py-line"><tt class="py-comment"># Licensed under the Apache License, Version 2.0 (the "License");</tt> </tt>
+<a name="L6"></a><tt class="py-lineno"> 6</tt>  <tt class="py-line"><tt class="py-comment"># you may not use this file except in compliance with the License.</tt> </tt>
+<a name="L7"></a><tt class="py-lineno"> 7</tt>  <tt class="py-line"><tt class="py-comment"># You may obtain a copy of the License at</tt> </tt>
+<a name="L8"></a><tt class="py-lineno"> 8</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L9"></a><tt class="py-lineno"> 9</tt>  <tt class="py-line"><tt class="py-comment">#   http://www.apache.org/licenses/LICENSE-2.0</tt> </tt>
+<a name="L10"></a><tt class="py-lineno">10</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L11"></a><tt class="py-lineno">11</tt>  <tt class="py-line"><tt class="py-comment"># Unless required by applicable law or agreed to in writing, software</tt> </tt>
+<a name="L12"></a><tt class="py-lineno">12</tt>  <tt class="py-line"><tt class="py-comment"># distributed under the License is distributed on an "AS IS" BASIS,</tt> </tt>
+<a name="L13"></a><tt class="py-lineno">13</tt>  <tt class="py-line"><tt class="py-comment"># WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</tt> </tt>
+<a name="L14"></a><tt class="py-lineno">14</tt>  <tt class="py-line"><tt class="py-comment"># See the License for the specific language governing permissions and</tt> </tt>
+<a name="L15"></a><tt class="py-lineno">15</tt>  <tt class="py-line"><tt class="py-comment"># limitations under the License.</tt> </tt>
+<a name="L16"></a><tt class="py-lineno">16</tt>  <tt class="py-line"> </tt>
+<a name="L17"></a><tt class="py-lineno">17</tt>  <tt class="py-line"><tt class="py-docstring">"""</tt> </tt>
+<a name="L18"></a><tt class="py-lineno">18</tt>  <tt class="py-line"><tt class="py-docstring">.. moduleauthor:: Gabriel Martin Becedillas Ruiz &lt;gabriel.becedillas@gmail.com&gt;</tt> </tt>
+<a name="L19"></a><tt class="py-lineno">19</tt>  <tt class="py-line"><tt class="py-docstring">"""</tt> </tt>
+<a name="L20"></a><tt class="py-lineno">20</tt>  <tt class="py-line"> </tt>
+<a name="L21"></a><tt class="py-lineno">21</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt id="link-0" class="py-name" targets="Package pyalgotrade=pyalgotrade-module.html"><a title="pyalgotrade" class="py-name" href="#" onclick="return doclink('link-0', 'pyalgotrade', 'link-0');">pyalgotrade</a></tt><tt class="py-op">.</tt><tt id="link-1" class="py-name" targets="Variable pyalgotrade.bitstamp.common.logger=pyalgotrade.bitstamp.common-module.html#logger,Module pyalgotrade.logger=pyalgotrade.logger-module.html,Variable pyalgotrade.optimizer.local.logger=pyalgotrade.optimizer.local-module.html#logger,Variable pyalgotrade.optimizer.server.logger=pyalgotrade.optimizer.server-module.html#logger,Variable pyalgotrade.optimizer.xmlrpcserver.logger=pyalgotrade.optimizer.xmlrpcserver-module.html#logger,Variable pyalgotrade.twitter.feed.logger=pyalgotrade.twitter.feed-module.html#logger,Variable pyalgotrade.websocket.client.logger=pyalgotrade.websocket.client-module.html#logger,Variable pyalgotrade.websocket.pusher.logger=pyalgotrade.websocket.pusher-module.html#logger"><a title="pyalgotrade.bitstamp.common.logger
+pyalgotrade.logger
+pyalgotrade.optimizer.local.logger
+pyalgotrade.optimizer.server.logger
+pyalgotrade.optimizer.xmlrpcserver.logger
+pyalgotrade.twitter.feed.logger
+pyalgotrade.websocket.client.logger
+pyalgotrade.websocket.pusher.logger" class="py-name" href="#" onclick="return doclink('link-1', 'logger', 'link-1');">logger</a></tt> </tt>
+<a name="L22"></a><tt class="py-lineno">22</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-2" class="py-name"><a title="pyalgotrade" class="py-name" href="#" onclick="return doclink('link-2', 'pyalgotrade', 'link-0');">pyalgotrade</a></tt> <tt class="py-keyword">import</tt> <tt id="link-3" class="py-name" targets="Module pyalgotrade.bitstamp.broker=pyalgotrade.bitstamp.broker-module.html,Package pyalgotrade.broker=pyalgotrade.broker-module.html"><a title="pyalgotrade.bitstamp.broker
+pyalgotrade.broker" class="py-name" href="#" onclick="return doclink('link-3', 'broker', 'link-3');">broker</a></tt> </tt>
+<a name="L23"></a><tt class="py-lineno">23</tt>  <tt class="py-line"> </tt>
+<a name="L24"></a><tt class="py-lineno">24</tt>  <tt class="py-line"> </tt>
+<a name="L25"></a><tt class="py-lineno">25</tt>  <tt class="py-line"><tt id="link-4" class="py-name"><a title="pyalgotrade.bitstamp.common.logger
+pyalgotrade.logger
+pyalgotrade.optimizer.local.logger
+pyalgotrade.optimizer.server.logger
+pyalgotrade.optimizer.xmlrpcserver.logger
+pyalgotrade.twitter.feed.logger
+pyalgotrade.websocket.client.logger
+pyalgotrade.websocket.pusher.logger" class="py-name" href="#" onclick="return doclink('link-4', 'logger', 'link-1');">logger</a></tt> <tt class="py-op">=</tt> <tt id="link-5" class="py-name"><a title="pyalgotrade" class="py-name" href="#" onclick="return doclink('link-5', 'pyalgotrade', 'link-0');">pyalgotrade</a></tt><tt class="py-op">.</tt><tt id="link-6" class="py-name"><a title="pyalgotrade.bitstamp.common.logger
+pyalgotrade.logger
+pyalgotrade.optimizer.local.logger
+pyalgotrade.optimizer.server.logger
+pyalgotrade.optimizer.xmlrpcserver.logger
+pyalgotrade.twitter.feed.logger
+pyalgotrade.websocket.client.logger
+pyalgotrade.websocket.pusher.logger" class="py-name" href="#" onclick="return doclink('link-6', 'logger', 'link-1');">logger</a></tt><tt class="py-op">.</tt><tt id="link-7" class="py-name" targets="Method pyalgotrade.broker.backtesting.Broker.getLogger()=pyalgotrade.broker.backtesting.Broker-class.html#getLogger,Method pyalgotrade.broker.backtesting_old.Broker.getLogger()=pyalgotrade.broker.backtesting_old.Broker-class.html#getLogger,Method pyalgotrade.optimizer.worker.Worker.getLogger()=pyalgotrade.optimizer.worker.Worker-class.html#getLogger,Method pyalgotrade.strategy.BaseStrategy.getLogger()=pyalgotrade.strategy.BaseStrategy-class.html#getLogger"><a title="pyalgotrade.broker.backtesting.Broker.getLogger
+pyalgotrade.broker.backtesting_old.Broker.getLogger
+pyalgotrade.optimizer.worker.Worker.getLogger
+pyalgotrade.strategy.BaseStrategy.getLogger" class="py-name" href="#" onclick="return doclink('link-7', 'getLogger', 'link-7');">getLogger</a></tt><tt class="py-op">(</tt><tt class="py-string">"bitstamp"</tt><tt class="py-op">)</tt> </tt>
+<a name="L26"></a><tt class="py-lineno">26</tt>  <tt class="py-line"><tt id="link-8" class="py-name" targets="Variable pyalgotrade.bitstamp.common.btc_symbol=pyalgotrade.bitstamp.common-module.html#btc_symbol"><a title="pyalgotrade.bitstamp.common.btc_symbol" class="py-name" href="#" onclick="return doclink('link-8', 'btc_symbol', 'link-8');">btc_symbol</a></tt> <tt class="py-op">=</tt> <tt class="py-string">"BTC"</tt> </tt>
+<a name="L27"></a><tt class="py-lineno">27</tt>  <tt class="py-line"> </tt>
+<a name="L28"></a><tt class="py-lineno">28</tt>  <tt class="py-line"> </tt>
+<a name="BTCTraits"></a><div id="BTCTraits-def"><a name="L29"></a><tt class="py-lineno">29</tt> <a class="py-toggle" href="#" id="BTCTraits-toggle" onclick="return toggle('BTCTraits');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="pyalgotrade.bitstamp.common.BTCTraits-class.html">BTCTraits</a><tt class="py-op">(</tt><tt class="py-base-class">broker</tt><tt class="py-op">.</tt><tt class="py-base-class">InstrumentTraits</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="BTCTraits-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="BTCTraits-expanded"><a name="BTCTraits.roundQuantity"></a><div id="BTCTraits.roundQuantity-def"><a name="L30"></a><tt class="py-lineno">30</tt> <a class="py-toggle" href="#" id="BTCTraits.roundQuantity-toggle" onclick="return toggle('BTCTraits.roundQuantity');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pyalgotrade.bitstamp.common.BTCTraits-class.html#roundQuantity">roundQuantity</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">quantity</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="BTCTraits.roundQuantity-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="BTCTraits.roundQuantity-expanded"><a name="L31"></a><tt class="py-lineno">31</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">round</tt><tt class="py-op">(</tt><tt class="py-name">quantity</tt><tt class="py-op">,</tt> <tt class="py-number">8</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L32"></a><tt class="py-lineno">32</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="pyalgotrade-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Sat Oct 15 14:17:58 2016
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

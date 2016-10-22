@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>pyalgotrade.dataseries.aligned</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="pyalgotrade-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="pyalgotrade-module.html">Package&nbsp;pyalgotrade</a> ::
+        <a href="pyalgotrade.dataseries-module.html">Package&nbsp;dataseries</a> ::
+        Module&nbsp;aligned
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="pyalgotrade.dataseries.aligned-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="pyalgotrade.dataseries.aligned-module.html">Module pyalgotrade.dataseries.aligned</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno"> 1</tt>  <tt class="py-line"><tt class="py-comment"># PyAlgoTrade</tt> </tt>
+<a name="L2"></a><tt class="py-lineno"> 2</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L3"></a><tt class="py-lineno"> 3</tt>  <tt class="py-line"><tt class="py-comment"># Copyright 2011-2015 Gabriel Martin Becedillas Ruiz</tt> </tt>
+<a name="L4"></a><tt class="py-lineno"> 4</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L5"></a><tt class="py-lineno"> 5</tt>  <tt class="py-line"><tt class="py-comment"># Licensed under the Apache License, Version 2.0 (the "License");</tt> </tt>
+<a name="L6"></a><tt class="py-lineno"> 6</tt>  <tt class="py-line"><tt class="py-comment"># you may not use this file except in compliance with the License.</tt> </tt>
+<a name="L7"></a><tt class="py-lineno"> 7</tt>  <tt class="py-line"><tt class="py-comment"># You may obtain a copy of the License at</tt> </tt>
+<a name="L8"></a><tt class="py-lineno"> 8</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L9"></a><tt class="py-lineno"> 9</tt>  <tt class="py-line"><tt class="py-comment">#   http://www.apache.org/licenses/LICENSE-2.0</tt> </tt>
+<a name="L10"></a><tt class="py-lineno">10</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L11"></a><tt class="py-lineno">11</tt>  <tt class="py-line"><tt class="py-comment"># Unless required by applicable law or agreed to in writing, software</tt> </tt>
+<a name="L12"></a><tt class="py-lineno">12</tt>  <tt class="py-line"><tt class="py-comment"># distributed under the License is distributed on an "AS IS" BASIS,</tt> </tt>
+<a name="L13"></a><tt class="py-lineno">13</tt>  <tt class="py-line"><tt class="py-comment"># WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</tt> </tt>
+<a name="L14"></a><tt class="py-lineno">14</tt>  <tt class="py-line"><tt class="py-comment"># See the License for the specific language governing permissions and</tt> </tt>
+<a name="L15"></a><tt class="py-lineno">15</tt>  <tt class="py-line"><tt class="py-comment"># limitations under the License.</tt> </tt>
+<a name="L16"></a><tt class="py-lineno">16</tt>  <tt class="py-line"> </tt>
+<a name="L17"></a><tt class="py-lineno">17</tt>  <tt class="py-line"><tt class="py-docstring">"""</tt> </tt>
+<a name="L18"></a><tt class="py-lineno">18</tt>  <tt class="py-line"><tt class="py-docstring">.. moduleauthor:: Gabriel Martin Becedillas Ruiz &lt;gabriel.becedillas@gmail.com&gt;</tt> </tt>
+<a name="L19"></a><tt class="py-lineno">19</tt>  <tt class="py-line"><tt class="py-docstring">"""</tt> </tt>
+<a name="L20"></a><tt class="py-lineno">20</tt>  <tt class="py-line"> </tt>
+<a name="L21"></a><tt class="py-lineno">21</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-0" class="py-name" targets="Package pyalgotrade=pyalgotrade-module.html"><a title="pyalgotrade" class="py-name" href="#" onclick="return doclink('link-0', 'pyalgotrade', 'link-0');">pyalgotrade</a></tt> <tt class="py-keyword">import</tt> <tt id="link-1" class="py-name" targets="Package pyalgotrade.dataseries=pyalgotrade.dataseries-module.html"><a title="pyalgotrade.dataseries" class="py-name" href="#" onclick="return doclink('link-1', 'dataseries', 'link-1');">dataseries</a></tt> </tt>
+<a name="L22"></a><tt class="py-lineno">22</tt>  <tt class="py-line"> </tt>
+<a name="L23"></a><tt class="py-lineno">23</tt>  <tt class="py-line"> </tt>
+<a name="datetime_aligned"></a><div id="datetime_aligned-def"><a name="L24"></a><tt class="py-lineno">24</tt> <a class="py-toggle" href="#" id="datetime_aligned-toggle" onclick="return toggle('datetime_aligned');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="pyalgotrade.dataseries.aligned-module.html#datetime_aligned">datetime_aligned</a><tt class="py-op">(</tt><tt class="py-param">ds1</tt><tt class="py-op">,</tt> <tt class="py-param">ds2</tt><tt class="py-op">,</tt> <tt class="py-param">maxLen</tt><tt class="py-op">=</tt><tt class="py-name">None</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="datetime_aligned-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="datetime_aligned-expanded"><a name="L25"></a><tt class="py-lineno">25</tt>  <tt class="py-line">    <tt class="py-docstring">"""</tt> </tt>
+<a name="L26"></a><tt class="py-lineno">26</tt>  <tt class="py-line"><tt class="py-docstring">    Returns two dataseries that exhibit only those values whose datetimes are in both dataseries.</tt> </tt>
+<a name="L27"></a><tt class="py-lineno">27</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L28"></a><tt class="py-lineno">28</tt>  <tt class="py-line"><tt class="py-docstring">    :param ds1: A DataSeries instance.</tt> </tt>
+<a name="L29"></a><tt class="py-lineno">29</tt>  <tt class="py-line"><tt class="py-docstring">    :type ds1: :class:`DataSeries`.</tt> </tt>
+<a name="L30"></a><tt class="py-lineno">30</tt>  <tt class="py-line"><tt class="py-docstring">    :param ds2: A DataSeries instance.</tt> </tt>
+<a name="L31"></a><tt class="py-lineno">31</tt>  <tt class="py-line"><tt class="py-docstring">    :type ds2: :class:`DataSeries`.</tt> </tt>
+<a name="L32"></a><tt class="py-lineno">32</tt>  <tt class="py-line"><tt class="py-docstring">    :param maxLen: The maximum number of values to hold for the returned :class:`DataSeries`.</tt> </tt>
+<a name="L33"></a><tt class="py-lineno">33</tt>  <tt class="py-line"><tt class="py-docstring">        Once a bounded length is full, when new items are added, a corresponding number of items are discarded from the</tt> </tt>
+<a name="L34"></a><tt class="py-lineno">34</tt>  <tt class="py-line"><tt class="py-docstring">        opposite end. If None then dataseries.DEFAULT_MAX_LEN is used.</tt> </tt>
+<a name="L35"></a><tt class="py-lineno">35</tt>  <tt class="py-line"><tt class="py-docstring">    :type maxLen: int.</tt> </tt>
+<a name="L36"></a><tt class="py-lineno">36</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L37"></a><tt class="py-lineno">37</tt>  <tt class="py-line">    <tt class="py-name">aligned1</tt> <tt class="py-op">=</tt> <tt id="link-2" class="py-name"><a title="pyalgotrade.dataseries" class="py-name" href="#" onclick="return doclink('link-2', 'dataseries', 'link-1');">dataseries</a></tt><tt class="py-op">.</tt><tt id="link-3" class="py-name" targets="Class pyalgotrade.dataseries.SequenceDataSeries=pyalgotrade.dataseries.SequenceDataSeries-class.html"><a title="pyalgotrade.dataseries.SequenceDataSeries" class="py-name" href="#" onclick="return doclink('link-3', 'SequenceDataSeries', 'link-3');">SequenceDataSeries</a></tt><tt class="py-op">(</tt><tt class="py-name">maxLen</tt><tt class="py-op">)</tt> </tt>
+<a name="L38"></a><tt class="py-lineno">38</tt>  <tt class="py-line">    <tt class="py-name">aligned2</tt> <tt class="py-op">=</tt> <tt id="link-4" class="py-name"><a title="pyalgotrade.dataseries" class="py-name" href="#" onclick="return doclink('link-4', 'dataseries', 'link-1');">dataseries</a></tt><tt class="py-op">.</tt><tt id="link-5" class="py-name"><a title="pyalgotrade.dataseries.SequenceDataSeries" class="py-name" href="#" onclick="return doclink('link-5', 'SequenceDataSeries', 'link-3');">SequenceDataSeries</a></tt><tt class="py-op">(</tt><tt class="py-name">maxLen</tt><tt class="py-op">)</tt> </tt>
+<a name="L39"></a><tt class="py-lineno">39</tt>  <tt class="py-line">    <tt id="link-6" class="py-name" targets="Class pyalgotrade.dataseries.aligned.Syncer=pyalgotrade.dataseries.aligned.Syncer-class.html"><a title="pyalgotrade.dataseries.aligned.Syncer" class="py-name" href="#" onclick="return doclink('link-6', 'Syncer', 'link-6');">Syncer</a></tt><tt class="py-op">(</tt><tt class="py-name">ds1</tt><tt class="py-op">,</tt> <tt class="py-name">ds2</tt><tt class="py-op">,</tt> <tt class="py-name">aligned1</tt><tt class="py-op">,</tt> <tt class="py-name">aligned2</tt><tt class="py-op">)</tt> </tt>
+<a name="L40"></a><tt class="py-lineno">40</tt>  <tt class="py-line">    <tt class="py-keyword">return</tt> <tt class="py-op">(</tt><tt class="py-name">aligned1</tt><tt class="py-op">,</tt> <tt class="py-name">aligned2</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L41"></a><tt class="py-lineno">41</tt>  <tt class="py-line"> </tt>
+<a name="L42"></a><tt class="py-lineno">42</tt>  <tt class="py-line"> </tt>
+<a name="L43"></a><tt class="py-lineno">43</tt>  <tt class="py-line"><tt class="py-comment"># This class is responsible for filling 2 dataseries when 2 other dataseries get new values.</tt> </tt>
+<a name="Syncer"></a><div id="Syncer-def"><a name="L44"></a><tt class="py-lineno">44</tt> <a class="py-toggle" href="#" id="Syncer-toggle" onclick="return toggle('Syncer');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="pyalgotrade.dataseries.aligned.Syncer-class.html">Syncer</a><tt class="py-op">(</tt><tt class="py-base-class">object</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Syncer-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="Syncer-expanded"><a name="Syncer.__init__"></a><div id="Syncer.__init__-def"><a name="L45"></a><tt class="py-lineno">45</tt> <a class="py-toggle" href="#" id="Syncer.__init__-toggle" onclick="return toggle('Syncer.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pyalgotrade.dataseries.aligned.Syncer-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">sourceDS1</tt><tt class="py-op">,</tt> <tt class="py-param">sourceDS2</tt><tt class="py-op">,</tt> <tt class="py-param">destDS1</tt><tt class="py-op">,</tt> <tt class="py-param">destDS2</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Syncer.__init__-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="Syncer.__init__-expanded"><a name="L46"></a><tt class="py-lineno">46</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__values1</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt>  <tt class="py-comment"># (datetime, value)</tt> </tt>
+<a name="L47"></a><tt class="py-lineno">47</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__values2</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt>  <tt class="py-comment"># (datetime, value)</tt> </tt>
+<a name="L48"></a><tt class="py-lineno">48</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__destDS1</tt> <tt class="py-op">=</tt> <tt class="py-name">destDS1</tt> </tt>
+<a name="L49"></a><tt class="py-lineno">49</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__destDS2</tt> <tt class="py-op">=</tt> <tt class="py-name">destDS2</tt> </tt>
+<a name="L50"></a><tt class="py-lineno">50</tt>  <tt class="py-line">        <tt class="py-name">sourceDS1</tt><tt class="py-op">.</tt><tt id="link-7" class="py-name" targets="Method pyalgotrade.dataseries.SequenceDataSeries.getNewValueEvent()=pyalgotrade.dataseries.SequenceDataSeries-class.html#getNewValueEvent"><a title="pyalgotrade.dataseries.SequenceDataSeries.getNewValueEvent" class="py-name" href="#" onclick="return doclink('link-7', 'getNewValueEvent', 'link-7');">getNewValueEvent</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt id="link-8" class="py-name" targets="Method pyalgotrade.observer.Event.subscribe()=pyalgotrade.observer.Event-class.html#subscribe,Method pyalgotrade.twitter.feed.TwitterFeed.subscribe()=pyalgotrade.twitter.feed.TwitterFeed-class.html#subscribe"><a title="pyalgotrade.observer.Event.subscribe
+pyalgotrade.twitter.feed.TwitterFeed.subscribe" class="py-name" href="#" onclick="return doclink('link-8', 'subscribe', 'link-8');">subscribe</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-9" class="py-name" targets="Method pyalgotrade.dataseries.aligned.Syncer.__onNewValue1()=pyalgotrade.dataseries.aligned.Syncer-class.html#__onNewValue1"><a title="pyalgotrade.dataseries.aligned.Syncer.__onNewValue1" class="py-name" href="#" onclick="return doclink('link-9', '__onNewValue1', 'link-9');">__onNewValue1</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L51"></a><tt class="py-lineno">51</tt>  <tt class="py-line">        <tt class="py-name">sourceDS2</tt><tt class="py-op">.</tt><tt id="link-10" class="py-name"><a title="pyalgotrade.dataseries.SequenceDataSeries.getNewValueEvent" class="py-name" href="#" onclick="return doclink('link-10', 'getNewValueEvent', 'link-7');">getNewValueEvent</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt id="link-11" class="py-name"><a title="pyalgotrade.observer.Event.subscribe
+pyalgotrade.twitter.feed.TwitterFeed.subscribe" class="py-name" href="#" onclick="return doclink('link-11', 'subscribe', 'link-8');">subscribe</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-12" class="py-name" targets="Method pyalgotrade.dataseries.aligned.Syncer.__onNewValue2()=pyalgotrade.dataseries.aligned.Syncer-class.html#__onNewValue2"><a title="pyalgotrade.dataseries.aligned.Syncer.__onNewValue2" class="py-name" href="#" onclick="return doclink('link-12', '__onNewValue2', 'link-12');">__onNewValue2</a></tt><tt class="py-op">)</tt> </tt>
+</div><a name="L52"></a><tt class="py-lineno">52</tt>  <tt class="py-line">        <tt class="py-comment"># Source dataseries will keep a reference to self and that will prevent from getting this destroyed.</tt> </tt>
+<a name="L53"></a><tt class="py-lineno">53</tt>  <tt class="py-line"> </tt>
+<a name="L54"></a><tt class="py-lineno">54</tt>  <tt class="py-line">    <tt class="py-comment"># Scan backwards for the position of dateTime in ds.</tt> </tt>
+<a name="Syncer.__findPosForDateTime"></a><div id="Syncer.__findPosForDateTime-def"><a name="L55"></a><tt class="py-lineno">55</tt> <a class="py-toggle" href="#" id="Syncer.__findPosForDateTime-toggle" onclick="return toggle('Syncer.__findPosForDateTime');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pyalgotrade.dataseries.aligned.Syncer-class.html#__findPosForDateTime">__findPosForDateTime</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">values</tt><tt class="py-op">,</tt> <tt class="py-param">dateTime</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Syncer.__findPosForDateTime-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="Syncer.__findPosForDateTime-expanded"><a name="L56"></a><tt class="py-lineno">56</tt>  <tt class="py-line">        <tt class="py-name">ret</tt> <tt class="py-op">=</tt> <tt class="py-name">None</tt> </tt>
+<a name="L57"></a><tt class="py-lineno">57</tt>  <tt class="py-line">        <tt class="py-name">i</tt> <tt class="py-op">=</tt> <tt class="py-name">len</tt><tt class="py-op">(</tt><tt class="py-name">values</tt><tt class="py-op">)</tt> <tt class="py-op">-</tt> <tt class="py-number">1</tt> </tt>
+<a name="L58"></a><tt class="py-lineno">58</tt>  <tt class="py-line">        <tt class="py-keyword">while</tt> <tt class="py-name">i</tt> <tt class="py-op">&gt;=</tt> <tt class="py-number">0</tt><tt class="py-op">:</tt> </tt>
+<a name="L59"></a><tt class="py-lineno">59</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">values</tt><tt class="py-op">[</tt><tt class="py-name">i</tt><tt class="py-op">]</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt> <tt class="py-op">==</tt> <tt class="py-name">dateTime</tt><tt class="py-op">:</tt> </tt>
+<a name="L60"></a><tt class="py-lineno">60</tt>  <tt class="py-line">                <tt class="py-name">ret</tt> <tt class="py-op">=</tt> <tt class="py-name">i</tt> </tt>
+<a name="L61"></a><tt class="py-lineno">61</tt>  <tt class="py-line">                <tt class="py-keyword">break</tt> </tt>
+<a name="L62"></a><tt class="py-lineno">62</tt>  <tt class="py-line">            <tt class="py-keyword">elif</tt> <tt class="py-name">values</tt><tt class="py-op">[</tt><tt class="py-name">i</tt><tt class="py-op">]</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt> <tt class="py-op">&lt;</tt> <tt class="py-name">dateTime</tt><tt class="py-op">:</tt> </tt>
+<a name="L63"></a><tt class="py-lineno">63</tt>  <tt class="py-line">                <tt class="py-keyword">break</tt> </tt>
+<a name="L64"></a><tt class="py-lineno">64</tt>  <tt class="py-line">            <tt class="py-name">i</tt> <tt class="py-op">-=</tt> <tt class="py-number">1</tt> </tt>
+<a name="L65"></a><tt class="py-lineno">65</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">ret</tt> </tt>
+</div><a name="L66"></a><tt class="py-lineno">66</tt>  <tt class="py-line"> </tt>
+<a name="Syncer.__onNewValue1"></a><div id="Syncer.__onNewValue1-def"><a name="L67"></a><tt class="py-lineno">67</tt> <a class="py-toggle" href="#" id="Syncer.__onNewValue1-toggle" onclick="return toggle('Syncer.__onNewValue1');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pyalgotrade.dataseries.aligned.Syncer-class.html#__onNewValue1">__onNewValue1</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">dataSeries</tt><tt class="py-op">,</tt> <tt class="py-param">dateTime</tt><tt class="py-op">,</tt> <tt class="py-param">value</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Syncer.__onNewValue1-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="Syncer.__onNewValue1-expanded"><a name="L68"></a><tt class="py-lineno">68</tt>  <tt class="py-line">        <tt class="py-name">pos2</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-13" class="py-name" targets="Method pyalgotrade.dataseries.aligned.Syncer.__findPosForDateTime()=pyalgotrade.dataseries.aligned.Syncer-class.html#__findPosForDateTime"><a title="pyalgotrade.dataseries.aligned.Syncer.__findPosForDateTime" class="py-name" href="#" onclick="return doclink('link-13', '__findPosForDateTime', 'link-13');">__findPosForDateTime</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__values2</tt><tt class="py-op">,</tt> <tt class="py-name">dateTime</tt><tt class="py-op">)</tt> </tt>
+<a name="L69"></a><tt class="py-lineno">69</tt>  <tt class="py-line">        <tt class="py-comment"># If a value for dateTime was added to first dataseries, and a value for that same datetime is also in the second one</tt> </tt>
+<a name="L70"></a><tt class="py-lineno">70</tt>  <tt class="py-line">        <tt class="py-comment"># then append to both destination dataseries.</tt> </tt>
+<a name="L71"></a><tt class="py-lineno">71</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">pos2</tt> <tt class="py-keyword">is</tt> <tt class="py-keyword">not</tt> <tt class="py-name">None</tt><tt class="py-op">:</tt> </tt>
+<a name="L72"></a><tt class="py-lineno">72</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-14" class="py-name" targets="Method pyalgotrade.dataseries.aligned.Syncer.__append()=pyalgotrade.dataseries.aligned.Syncer-class.html#__append"><a title="pyalgotrade.dataseries.aligned.Syncer.__append" class="py-name" href="#" onclick="return doclink('link-14', '__append', 'link-14');">__append</a></tt><tt class="py-op">(</tt><tt class="py-name">dateTime</tt><tt class="py-op">,</tt> <tt class="py-name">value</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__values2</tt><tt class="py-op">[</tt><tt class="py-name">pos2</tt><tt class="py-op">]</tt><tt class="py-op">[</tt><tt class="py-number">1</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L73"></a><tt class="py-lineno">73</tt>  <tt class="py-line">            <tt class="py-comment"># Reset buffers.</tt> </tt>
+<a name="L74"></a><tt class="py-lineno">74</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__values1</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
+<a name="L75"></a><tt class="py-lineno">75</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__values2</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__values2</tt><tt class="py-op">[</tt><tt class="py-name">pos2</tt><tt class="py-op">+</tt><tt class="py-number">1</tt><tt class="py-op">:</tt><tt class="py-op">]</tt> </tt>
+<a name="L76"></a><tt class="py-lineno">76</tt>  <tt class="py-line">        <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L77"></a><tt class="py-lineno">77</tt>  <tt class="py-line">            <tt class="py-comment"># Since source dataseries may not hold all the values we need, we need to buffer manually.</tt> </tt>
+<a name="L78"></a><tt class="py-lineno">78</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__values1</tt><tt class="py-op">.</tt><tt id="link-15" class="py-name" targets="Method pyalgotrade.dataseries.SequenceDataSeries.append()=pyalgotrade.dataseries.SequenceDataSeries-class.html#append,Method pyalgotrade.dataseries.bards.BarDataSeries.append()=pyalgotrade.dataseries.bards.BarDataSeries-class.html#append,Method pyalgotrade.utils.collections.ListDeque.append()=pyalgotrade.utils.collections.ListDeque-class.html#append,Method pyalgotrade.utils.collections.NumPyDeque.append()=pyalgotrade.utils.collections.NumPyDeque-class.html#append"><a title="pyalgotrade.dataseries.SequenceDataSeries.append
+pyalgotrade.dataseries.bards.BarDataSeries.append
+pyalgotrade.utils.collections.ListDeque.append
+pyalgotrade.utils.collections.NumPyDeque.append" class="py-name" href="#" onclick="return doclink('link-15', 'append', 'link-15');">append</a></tt><tt class="py-op">(</tt><tt class="py-op">(</tt><tt class="py-name">dateTime</tt><tt class="py-op">,</tt> <tt class="py-name">value</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L79"></a><tt class="py-lineno">79</tt>  <tt class="py-line"> </tt>
+<a name="Syncer.__onNewValue2"></a><div id="Syncer.__onNewValue2-def"><a name="L80"></a><tt class="py-lineno">80</tt> <a class="py-toggle" href="#" id="Syncer.__onNewValue2-toggle" onclick="return toggle('Syncer.__onNewValue2');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pyalgotrade.dataseries.aligned.Syncer-class.html#__onNewValue2">__onNewValue2</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">dataSeries</tt><tt class="py-op">,</tt> <tt class="py-param">dateTime</tt><tt class="py-op">,</tt> <tt class="py-param">value</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Syncer.__onNewValue2-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="Syncer.__onNewValue2-expanded"><a name="L81"></a><tt class="py-lineno">81</tt>  <tt class="py-line">        <tt class="py-name">pos1</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-16" class="py-name"><a title="pyalgotrade.dataseries.aligned.Syncer.__findPosForDateTime" class="py-name" href="#" onclick="return doclink('link-16', '__findPosForDateTime', 'link-13');">__findPosForDateTime</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__values1</tt><tt class="py-op">,</tt> <tt class="py-name">dateTime</tt><tt class="py-op">)</tt> </tt>
+<a name="L82"></a><tt class="py-lineno">82</tt>  <tt class="py-line">        <tt class="py-comment"># If a value for dateTime was added to second dataseries, and a value for that same datetime is also in the first one</tt> </tt>
+<a name="L83"></a><tt class="py-lineno">83</tt>  <tt class="py-line">        <tt class="py-comment"># then append to both destination dataseries.</tt> </tt>
+<a name="L84"></a><tt class="py-lineno">84</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">pos1</tt> <tt class="py-keyword">is</tt> <tt class="py-keyword">not</tt> <tt class="py-name">None</tt><tt class="py-op">:</tt> </tt>
+<a name="L85"></a><tt class="py-lineno">85</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-17" class="py-name"><a title="pyalgotrade.dataseries.aligned.Syncer.__append" class="py-name" href="#" onclick="return doclink('link-17', '__append', 'link-14');">__append</a></tt><tt class="py-op">(</tt><tt class="py-name">dateTime</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__values1</tt><tt class="py-op">[</tt><tt class="py-name">pos1</tt><tt class="py-op">]</tt><tt class="py-op">[</tt><tt class="py-number">1</tt><tt class="py-op">]</tt><tt class="py-op">,</tt> <tt class="py-name">value</tt><tt class="py-op">)</tt> </tt>
+<a name="L86"></a><tt class="py-lineno">86</tt>  <tt class="py-line">            <tt class="py-comment"># Reset buffers.</tt> </tt>
+<a name="L87"></a><tt class="py-lineno">87</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__values1</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__values1</tt><tt class="py-op">[</tt><tt class="py-name">pos1</tt><tt class="py-op">+</tt><tt class="py-number">1</tt><tt class="py-op">:</tt><tt class="py-op">]</tt> </tt>
+<a name="L88"></a><tt class="py-lineno">88</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__values2</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
+<a name="L89"></a><tt class="py-lineno">89</tt>  <tt class="py-line">        <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L90"></a><tt class="py-lineno">90</tt>  <tt class="py-line">            <tt class="py-comment"># Since source dataseries may not hold all the values we need, we need to buffer manually.</tt> </tt>
+<a name="L91"></a><tt class="py-lineno">91</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__values2</tt><tt class="py-op">.</tt><tt id="link-18" class="py-name"><a title="pyalgotrade.dataseries.SequenceDataSeries.append
+pyalgotrade.dataseries.bards.BarDataSeries.append
+pyalgotrade.utils.collections.ListDeque.append
+pyalgotrade.utils.collections.NumPyDeque.append" class="py-name" href="#" onclick="return doclink('link-18', 'append', 'link-15');">append</a></tt><tt class="py-op">(</tt><tt class="py-op">(</tt><tt class="py-name">dateTime</tt><tt class="py-op">,</tt> <tt class="py-name">value</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L92"></a><tt class="py-lineno">92</tt>  <tt class="py-line"> </tt>
+<a name="Syncer.__append"></a><div id="Syncer.__append-def"><a name="L93"></a><tt class="py-lineno">93</tt> <a class="py-toggle" href="#" id="Syncer.__append-toggle" onclick="return toggle('Syncer.__append');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pyalgotrade.dataseries.aligned.Syncer-class.html#__append">__append</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">dateTime</tt><tt class="py-op">,</tt> <tt class="py-param">value1</tt><tt class="py-op">,</tt> <tt class="py-param">value2</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Syncer.__append-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="Syncer.__append-expanded"><a name="L94"></a><tt class="py-lineno">94</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__destDS1</tt><tt class="py-op">.</tt><tt id="link-19" class="py-name" targets="Method pyalgotrade.dataseries.SequenceDataSeries.appendWithDateTime()=pyalgotrade.dataseries.SequenceDataSeries-class.html#appendWithDateTime,Method pyalgotrade.dataseries.bards.BarDataSeries.appendWithDateTime()=pyalgotrade.dataseries.bards.BarDataSeries-class.html#appendWithDateTime"><a title="pyalgotrade.dataseries.SequenceDataSeries.appendWithDateTime
+pyalgotrade.dataseries.bards.BarDataSeries.appendWithDateTime" class="py-name" href="#" onclick="return doclink('link-19', 'appendWithDateTime', 'link-19');">appendWithDateTime</a></tt><tt class="py-op">(</tt><tt class="py-name">dateTime</tt><tt class="py-op">,</tt> <tt class="py-name">value1</tt><tt class="py-op">)</tt> </tt>
+<a name="L95"></a><tt class="py-lineno">95</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__destDS2</tt><tt class="py-op">.</tt><tt id="link-20" class="py-name"><a title="pyalgotrade.dataseries.SequenceDataSeries.appendWithDateTime
+pyalgotrade.dataseries.bards.BarDataSeries.appendWithDateTime" class="py-name" href="#" onclick="return doclink('link-20', 'appendWithDateTime', 'link-19');">appendWithDateTime</a></tt><tt class="py-op">(</tt><tt class="py-name">dateTime</tt><tt class="py-op">,</tt> <tt class="py-name">value2</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L96"></a><tt class="py-lineno">96</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="pyalgotrade-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Sat Oct 15 14:17:55 2016
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

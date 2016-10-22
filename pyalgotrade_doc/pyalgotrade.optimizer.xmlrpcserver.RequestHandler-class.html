@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>pyalgotrade.optimizer.xmlrpcserver.RequestHandler</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="pyalgotrade-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="pyalgotrade-module.html">Package&nbsp;pyalgotrade</a> ::
+        <a href="pyalgotrade.optimizer-module.html">Package&nbsp;optimizer</a> ::
+        <a href="pyalgotrade.optimizer.xmlrpcserver-module.html">Module&nbsp;xmlrpcserver</a> ::
+        Class&nbsp;RequestHandler
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="pyalgotrade.optimizer.xmlrpcserver.RequestHandler-class.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS DESCRIPTION ==================== -->
+<h1 class="epydoc">Class RequestHandler</h1><p class="nomargin-top"><span class="codelink"><a href="pyalgotrade.optimizer.xmlrpcserver-pysrc.html#RequestHandler">source&nbsp;code</a></span></p>
+<center>
+<center>  <map id="uml_class_diagram_for_pyalgotr_145" name="uml_class_diagram_for_pyalgotr_145">
+<area shape="rect" id="node1_39" href="pyalgotrade.optimizer.xmlrpcserver.RequestHandler-class.html#rpc_paths" title="pyalgotrade.optimizer.xmlrpcserver.RequestHandler.rpc_paths" alt="" coords="135,1003,230,1023"/>
+<area shape="rect" id="node1" href="pyalgotrade.optimizer.xmlrpcserver.RequestHandler-class.html" title="pyalgotrade.optimizer.xmlrpcserver.RequestHandler" alt="" coords="123,979,241,1037"/>
+<area shape="rect" id="node2_40" href="javascript:void(0);" title="SimpleXMLRPCServer.SimpleXMLRPCRequestHandler.encode_threshold" alt="" coords="18,751,347,771"/>
+<area shape="rect" id="node2_41" href="javascript:void(0);" title="SimpleXMLRPCServer.SimpleXMLRPCRequestHandler.wbufsize" alt="" coords="18,771,347,791"/>
+<area shape="rect" id="node2_42" href="javascript:void(0);" title="SimpleXMLRPCServer.SimpleXMLRPCRequestHandler.disable_nagle_algorithm" alt="" coords="18,791,347,811"/>
+<area shape="rect" id="node2_43" href="javascript:void(0);" title="SimpleXMLRPCServer.SimpleXMLRPCRequestHandler.aepattern" alt="" coords="18,811,347,831"/>
+<area shape="rect" id="node2_44" href="javascript:void(0);" title="SimpleXMLRPCServer.SimpleXMLRPCRequestHandler.accept_encodings" alt="" coords="18,834,347,854"/>
+<area shape="rect" id="node2_45" href="javascript:void(0);" title="SimpleXMLRPCServer.SimpleXMLRPCRequestHandler.is_rpc_path_valid" alt="" coords="18,854,347,874"/>
+<area shape="rect" id="node2_46" href="javascript:void(0);" title="Handles the HTTP POST request." alt="" coords="18,874,347,894"/>
+<area shape="rect" id="node2_47" href="javascript:void(0);" title="SimpleXMLRPCServer.SimpleXMLRPCRequestHandler.decode_request_content" alt="" coords="18,894,347,914"/>
+<area shape="rect" id="node2_48" href="javascript:void(0);" title="SimpleXMLRPCServer.SimpleXMLRPCRequestHandler.report_404" alt="" coords="18,914,347,934"/>
+<area shape="rect" id="node2_49" href="javascript:void(0);" title="Selectively log an accepted request." alt="" coords="18,934,347,954"/>
+<area shape="rect" id="node2" href="javascript:void(0);" title="Simple XML&#45;RPC request handler class." alt="" coords="5,727,359,960"/>
+<area shape="rect" id="node3_50" href="javascript:void(0);" title="SocketServer.BaseRequestHandler.__init__" alt="" coords="50,37,317,57"/>
+<area shape="rect" id="node3" href="javascript:void(0);" title="Base class for request handler classes." alt="" coords="38,5,329,64"/>
+<area shape="rect" id="node5_51" href="javascript:void(0);" title="SocketServer.StreamRequestHandler.rbufsize" alt="" coords="73,107,293,127"/>
+<area shape="rect" id="node5_52" href="javascript:void(0);" title="SocketServer.StreamRequestHandler.timeout" alt="" coords="73,127,293,147"/>
+<area shape="rect" id="node5_53" href="javascript:void(0);" title="SocketServer.StreamRequestHandler.setup" alt="" coords="73,150,293,170"/>
+<area shape="rect" id="node5_54" href="javascript:void(0);" title="SocketServer.StreamRequestHandler.finish" alt="" coords="73,170,293,190"/>
+<area shape="rect" id="node5" href="javascript:void(0);" title="Define self.rfile and self.wfile for stream sockets." alt="" coords="60,83,304,196"/>
+<area shape="rect" id="node4_55" href="javascript:void(0);" title="BaseHTTPServer.BaseHTTPRequestHandler.sys_version" alt="" coords="50,239,317,259"/>
+<area shape="rect" id="node4_56" href="javascript:void(0);" title="BaseHTTPServer.BaseHTTPRequestHandler.server_version" alt="" coords="50,259,317,279"/>
+<area shape="rect" id="node4_57" href="javascript:void(0);" title="BaseHTTPServer.BaseHTTPRequestHandler.default_request_version" alt="" coords="50,279,317,299"/>
+<area shape="rect" id="node4_58" href="javascript:void(0);" title="BaseHTTPServer.BaseHTTPRequestHandler.error_message_format" alt="" coords="50,299,317,319"/>
+<area shape="rect" id="node4_59" href="javascript:void(0);" title="BaseHTTPServer.BaseHTTPRequestHandler.error_content_type" alt="" coords="50,319,317,339"/>
+<area shape="rect" id="node4_60" href="javascript:void(0);" title="BaseHTTPServer.BaseHTTPRequestHandler.weekdayname" alt="" coords="50,339,317,359"/>
+<area shape="rect" id="node4_61" href="javascript:void(0);" title="BaseHTTPServer.BaseHTTPRequestHandler.monthname" alt="" coords="50,359,317,379"/>
+<area shape="rect" id="node4_62" href="javascript:void(0);" title="BaseHTTPServer.BaseHTTPRequestHandler.protocol_version" alt="" coords="50,379,317,399"/>
+<area shape="rect" id="node4_63" href="mimetools.Message-class.html" title="A derived class of rfc822.Message that knows about MIME headers and &#160;contains some hooks for decoding encoded and multipart messages." alt="" coords="50,399,317,419"/>
+<area shape="rect" id="node4_64" href="javascript:void(0);" title="BaseHTTPServer.BaseHTTPRequestHandler.responses" alt="" coords="50,419,317,439"/>
+<area shape="rect" id="node4_65" href="javascript:void(0);" title="Parse a request (internal)." alt="" coords="50,441,317,461"/>
+<area shape="rect" id="node4_66" href="javascript:void(0);" title="Handle a single HTTP request." alt="" coords="50,461,317,481"/>
+<area shape="rect" id="node4_67" href="javascript:void(0);" title="Handle multiple requests if necessary." alt="" coords="50,481,317,501"/>
+<area shape="rect" id="node4_68" href="javascript:void(0);" title="Send and log an error reply." alt="" coords="50,501,317,521"/>
+<area shape="rect" id="node4_69" href="javascript:void(0);" title="Send the response header and log the response code." alt="" coords="50,521,317,541"/>
+<area shape="rect" id="node4_70" href="javascript:void(0);" title="Send a MIME header." alt="" coords="50,541,317,561"/>
+<area shape="rect" id="node4_71" href="javascript:void(0);" title="Send the blank line ending the MIME headers." alt="" coords="50,561,317,581"/>
+<area shape="rect" id="node4_72" href="javascript:void(0);" title="Log an error." alt="" coords="50,581,317,601"/>
+<area shape="rect" id="node4_73" href="javascript:void(0);" title="Log an arbitrary message." alt="" coords="50,601,317,621"/>
+<area shape="rect" id="node4_74" href="javascript:void(0);" title="Return the server software version string." alt="" coords="50,621,317,641"/>
+<area shape="rect" id="node4_75" href="javascript:void(0);" title="Return the current date and time formatted for a message header." alt="" coords="50,641,317,661"/>
+<area shape="rect" id="node4_76" href="javascript:void(0);" title="Return the current time formatted for logging." alt="" coords="50,661,317,681"/>
+<area shape="rect" id="node4_77" href="javascript:void(0);" title="Return the client address formatted for logging." alt="" coords="50,681,317,701"/>
+<area shape="rect" id="node4" href="javascript:void(0);" title="HTTP request handler base class." alt="" coords="38,215,329,708"/>
+</map>
+  <img src="uml_class_diagram_for_pyalgotr_145.gif" alt='' usemap="#uml_class_diagram_for_pyalgotr_145" ismap="ismap" class="graph-without-title" />
+</center>
+</center>
+<hr />
+<!-- ==================== NESTED CLASSES ==================== -->
+<a name="section-NestedClasses"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Nested Classes</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-NestedClasses"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code>BaseHTTPServer.BaseHTTPRequestHandler</code></b>:
+      <code><a href="mimetools.Message-class.html">MessageClass</a></code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== INSTANCE METHODS ==================== -->
+<a name="section-InstanceMethods"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Instance Methods</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-InstanceMethods"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code>SimpleXMLRPCServer.SimpleXMLRPCRequestHandler</code></b>:
+      <code>accept_encodings</code>,
+      <code>decode_request_content</code>,
+      <code>do_POST</code>,
+      <code>is_rpc_path_valid</code>,
+      <code>log_request</code>,
+      <code>report_404</code>
+      </p>
+    <p class="indent-wrapped-lines"><b>Inherited from <code>BaseHTTPServer.BaseHTTPRequestHandler</code></b>:
+      <code>address_string</code>,
+      <code>date_time_string</code>,
+      <code>end_headers</code>,
+      <code>handle</code>,
+      <code>handle_one_request</code>,
+      <code>log_date_time_string</code>,
+      <code>log_error</code>,
+      <code>log_message</code>,
+      <code>parse_request</code>,
+      <code>send_error</code>,
+      <code>send_header</code>,
+      <code>send_response</code>,
+      <code>version_string</code>
+      </p>
+    <p class="indent-wrapped-lines"><b>Inherited from <code>SocketServer.StreamRequestHandler</code></b>:
+      <code>finish</code>,
+      <code>setup</code>
+      </p>
+    <p class="indent-wrapped-lines"><b>Inherited from <code>SocketServer.BaseRequestHandler</code></b>:
+      <code>__init__</code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS VARIABLES ==================== -->
+<a name="section-ClassVariables"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Class Variables</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-ClassVariables"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="rpc_paths"></a><span class="summary-name">rpc_paths</span> = <code title="('/PyAlgoTradeRPC')"><code class="variable-group">(</code><code class="variable-quote">'</code><code class="variable-string">/PyAlgoTradeRPC</code><code class="variable-quote">'</code><code class="variable-group">)</code></code>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code>SimpleXMLRPCServer.SimpleXMLRPCRequestHandler</code></b>:
+      <code>aepattern</code>,
+      <code>disable_nagle_algorithm</code>,
+      <code>encode_threshold</code>,
+      <code>wbufsize</code>
+      </p>
+    <p class="indent-wrapped-lines"><b>Inherited from <code>BaseHTTPServer.BaseHTTPRequestHandler</code></b>:
+      <code>default_request_version</code>,
+      <code>error_content_type</code>,
+      <code>error_message_format</code>,
+      <code>monthname</code>,
+      <code>protocol_version</code>,
+      <code>responses</code>,
+      <code>server_version</code>,
+      <code>sys_version</code>,
+      <code>weekdayname</code>
+      </p>
+    <p class="indent-wrapped-lines"><b>Inherited from <code>SocketServer.StreamRequestHandler</code></b>:
+      <code>rbufsize</code>,
+      <code>timeout</code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="pyalgotrade-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Sat Oct 15 14:17:50 2016
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>
