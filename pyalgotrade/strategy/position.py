@@ -493,8 +493,15 @@ class ShortPosition(Position):
         
 ###################################
 #### OPTION
-        
-class LongOptionPosition(Position):
+   
+class OptionPosition(Position):
+    def __init__(self,strategy, entryOrder, goodTillCanceled, allOrNone):
+        super(OptionPosition, self).__init__(strategy, entryOrder, goodTillCanceled, allOrNone)
+    
+    def executeOptionOrder(self):
+        raise NotImplementedError()
+         
+class LongOptionPosition(OptionPosition):
     def __init__(self, strategy, instrument, stopPrice, limitPrice, quantity, right, strike, expiry, goodTillCanceled, allOrNone):
         if limitPrice is None and stopPrice is None:
             entryOrder = strategy.getBroker().createOptionOrder(broker.Order.Action.BUY, instrument, quantity, right, strike, expiry, False)
@@ -524,9 +531,12 @@ class LongOptionPosition(Position):
             assert(False)
 
         return ret
+    
+    def executeOptionOrder(self):
+        raise NotImplementedError()
 
 # This class is reponsible for order management in short positions.
-class ShortOptionPosition(Position):
+class ShortOptionPosition(OptionPosition):
     def __init__(self, strategy, instrument, stopPrice, limitPrice, quantity , right, strike, expiry, goodTillCanceled, allOrNone):
         if limitPrice is None and stopPrice is None:
             entryOrder = strategy.getBroker().createOptionOrder(broker.Order.Action.SELL_SHORT, instrument, quantity, right, strike, expiry,False)
@@ -557,3 +567,5 @@ class ShortOptionPosition(Position):
 
         return ret
         
+    def executeOptionOrder(self):
+        raise NotImplementedError()

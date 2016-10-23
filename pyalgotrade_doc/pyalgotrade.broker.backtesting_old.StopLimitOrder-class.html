@@ -59,15 +59,15 @@
 <!-- ==================== CLASS DESCRIPTION ==================== -->
 <h1 class="epydoc">Class StopLimitOrder</h1><p class="nomargin-top"><span class="codelink"><a href="pyalgotrade.broker.backtesting_old-pysrc.html#StopLimitOrder">source&nbsp;code</a></span></p>
 <center>
-<center>  <map id="uml_class_diagram_for_pyalgotr_87" name="uml_class_diagram_for_pyalgotr_87">
+<center>  <map id="uml_class_diagram_for_pyalgotr_88" name="uml_class_diagram_for_pyalgotr_88">
 <area shape="rect" id="node1_27" href="pyalgotrade.broker.backtesting_old.StopLimitOrder-class.html#__init__" title="x.__init__(...) initializes x; see help(type(x)) for signature" alt="" coords="18,567,491,587"/>
 <area shape="rect" id="node1_28" href="pyalgotrade.broker.backtesting_old.StopLimitOrder-class.html#setStopHit" title="pyalgotrade.broker.backtesting_old.StopLimitOrder.setStopHit" alt="" coords="18,587,491,607"/>
 <area shape="rect" id="node1_29" href="pyalgotrade.broker.backtesting_old.StopLimitOrder-class.html#getStopHit" title="pyalgotrade.broker.backtesting_old.StopLimitOrder.getStopHit" alt="" coords="18,607,491,627"/>
 <area shape="rect" id="node1_30" href="pyalgotrade.broker.backtesting_old.StopLimitOrder-class.html#isLimitOrderActive" title="pyalgotrade.broker.backtesting_old.StopLimitOrder.isLimitOrderActive" alt="" coords="18,627,491,647"/>
 <area shape="rect" id="node1_31" href="pyalgotrade.broker.backtesting_old.StopLimitOrder-class.html#process" title="pyalgotrade.broker.backtesting_old.StopLimitOrder.process" alt="" coords="18,647,491,667"/>
 <area shape="rect" id="node1" href="pyalgotrade.broker.backtesting_old.StopLimitOrder-class.html" title="pyalgotrade.broker.backtesting_old.StopLimitOrder" alt="" coords="5,535,503,673"/>
-<area shape="rect" id="node2_32" href="pyalgotrade.broker.StopLimitOrder-class.html#getStopPrice" title="Returns the stop price." alt="" coords="89,470,199,490"/>
-<area shape="rect" id="node2_33" href="pyalgotrade.broker.StopLimitOrder-class.html#getLimitPrice" title="Returns the limit price." alt="" coords="89,490,199,510"/>
+<area shape="rect" id="node2_32" href="pyalgotrade.broker.StopLimitOrder-class.html#getLimitPrice" title="Returns the limit price." alt="" coords="89,470,199,490"/>
+<area shape="rect" id="node2_33" href="pyalgotrade.broker.StopLimitOrder-class.html#getStopPrice" title="Returns the stop price." alt="" coords="89,490,199,510"/>
 <area shape="rect" id="node2" href="pyalgotrade.broker.StopLimitOrder-class.html" title="Base class for stop limit orders." alt="" coords="76,437,211,516"/>
 <area shape="rect" id="node3_34" href="pyalgotrade.broker.Order.Action-class.html" title="pyalgotrade.broker.Order.Action" alt="" coords="33,29,255,49"/>
 <area shape="rect" id="node3_35" href="pyalgotrade.broker.Order.State-class.html" title="pyalgotrade.broker.Order.State" alt="" coords="33,49,255,69"/>
@@ -86,13 +86,13 @@
 <area shape="rect" id="node3_48" href="pyalgotrade.broker.Order-class.html#isAccepted" title="Returns True if the order state is Order.State.ACCEPTED." alt="" coords="33,312,255,332"/>
 <area shape="rect" id="node3_49" href="pyalgotrade.broker.Order-class.html#isCanceled" title="Returns True if the order state is Order.State.CANCELED." alt="" coords="33,332,255,352"/>
 <area shape="rect" id="node3_50" href="pyalgotrade.broker.Order-class.html#isPartiallyFilled" title="Returns True if the order state is Order.State.PARTIALLY_FILLED." alt="" coords="33,352,255,372"/>
-<area shape="rect" id="node3_51" href="pyalgotrade.broker.Order-class.html#setStrike" title="pyalgotrade.broker.Order.setStrike" alt="" coords="33,392,255,412"/>
+<area shape="rect" id="node3_51" href="pyalgotrade.broker.Order-class.html#isSell" title="pyalgotrade.broker.Order.isSell" alt="" coords="33,392,255,412"/>
 <area shape="rect" id="node3" href="pyalgotrade.broker.Order-class.html" title="Base class for orders." alt="" coords="20,5,267,419"/>
 <area shape="rect" id="node4_52" href="pyalgotrade.broker.backtesting_old.BacktestingOrder-class.html#setAcceptedDateTime" title="pyalgotrade.broker.backtesting_old.BacktestingOrder.setAcceptedDateTime" alt="" coords="253,470,479,490"/>
 <area shape="rect" id="node4_53" href="pyalgotrade.broker.backtesting_old.BacktestingOrder-class.html#getAcceptedDateTime" title="pyalgotrade.broker.backtesting_old.BacktestingOrder.getAcceptedDateTime" alt="" coords="253,490,479,510"/>
 <area shape="rect" id="node4" href="pyalgotrade.broker.backtesting_old.BacktestingOrder-class.html" title="pyalgotrade.broker.backtesting_old.BacktestingOrder" alt="" coords="241,437,491,516"/>
 </map>
-  <img src="uml_class_diagram_for_pyalgotr_87.gif" alt='' usemap="#uml_class_diagram_for_pyalgotr_87" ismap="ismap" class="graph-without-title" />
+  <img src="uml_class_diagram_for_pyalgotr_88.gif" alt='' usemap="#uml_class_diagram_for_pyalgotr_88" ismap="ismap" class="graph-without-title" />
 </center>
 </center>
 <hr />
@@ -243,7 +243,6 @@
       <code><a href="pyalgotrade.broker.Order-class.html#getAvgFillPrice">getAvgFillPrice</a></code>,
       <code><a href="pyalgotrade.broker.Order-class.html#getCommissions">getCommissions</a></code>,
       <code><a href="pyalgotrade.broker.Order-class.html#getExecutionInfo">getExecutionInfo</a></code>,
-      <code><a href="pyalgotrade.broker.Order-class.html#getExpiry">getExpiry</a></code>,
       <code><a href="pyalgotrade.broker.Order-class.html#getFilled">getFilled</a></code>,
       <code><a href="pyalgotrade.broker.Order-class.html#getGoodTillCanceled">getGoodTillCanceled</a></code>,
       <code><a href="pyalgotrade.broker.Order-class.html#getId">getId</a></code>,
@@ -251,9 +250,7 @@
       <code><a href="pyalgotrade.broker.Order-class.html#getInstrumentTraits">getInstrumentTraits</a></code>,
       <code><a href="pyalgotrade.broker.Order-class.html#getQuantity">getQuantity</a></code>,
       <code><a href="pyalgotrade.broker.Order-class.html#getRemaining">getRemaining</a></code>,
-      <code><a href="pyalgotrade.broker.Order-class.html#getRight">getRight</a></code>,
       <code><a href="pyalgotrade.broker.Order-class.html#getState">getState</a></code>,
-      <code><a href="pyalgotrade.broker.Order-class.html#getStrike">getStrike</a></code>,
       <code><a href="pyalgotrade.broker.Order-class.html#getSubmitDateTime">getSubmitDateTime</a></code>,
       <code><a href="pyalgotrade.broker.Order-class.html#getType">getType</a></code>,
       <code><a href="pyalgotrade.broker.Order-class.html#isAccepted">isAccepted</a></code>,
@@ -266,11 +263,8 @@
       <code><a href="pyalgotrade.broker.Order-class.html#isSell">isSell</a></code>,
       <code><a href="pyalgotrade.broker.Order-class.html#isSubmitted">isSubmitted</a></code>,
       <code><a href="pyalgotrade.broker.Order-class.html#setAllOrNone">setAllOrNone</a></code>,
-      <code><a href="pyalgotrade.broker.Order-class.html#setExpiry">setExpiry</a></code>,
       <code><a href="pyalgotrade.broker.Order-class.html#setGoodTillCanceled">setGoodTillCanceled</a></code>,
-      <code><a href="pyalgotrade.broker.Order-class.html#setRight">setRight</a></code>,
       <code><a href="pyalgotrade.broker.Order-class.html#setState">setState</a></code>,
-      <code><a href="pyalgotrade.broker.Order-class.html#setStrike">setStrike</a></code>,
       <code><a href="pyalgotrade.broker.Order-class.html#setSubmitted">setSubmitted</a></code>,
       <code><a href="pyalgotrade.broker.Order-class.html#switchState">switchState</a></code>
       </p>
@@ -447,7 +441,7 @@
 <table border="0" cellpadding="0" cellspacing="0" width="100%%">
   <tr>
     <td align="left" class="footer">
-    Generated by Epydoc 3.0.1 on Sat Oct 15 14:17:46 2016
+    Generated by Epydoc 3.0.1 on Sun Oct 23 19:01:59 2016
     </td>
     <td align="right" class="footer">
       <a target="mainFrame" href="http://epydoc.sourceforge.net"

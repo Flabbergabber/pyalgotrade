@@ -11,7 +11,7 @@ class MyStrategy(strategy.BacktestingStrategy):
     def __init__(self, feed, instrument, smaPeriod):
         super(MyStrategy, self).__init__(feed, 1000)
         self.__position = None
-        self.__option = None
+        self.__optionPosition = None
         self.__optionAlreadyExecuted = False
         self.__instrument = instrument
         # We'll use adjusted close values instead of regular close values.
@@ -41,7 +41,7 @@ class MyStrategy(strategy.BacktestingStrategy):
 
         bar = bars[self.__instrument]
         # If a position was not opened, check if we should enter a long position.
-        if self.__option is None and not self.__optionAlreadyExecuted:
+        if self.__optionPosition is None and not self.__optionAlreadyExecuted:
             
             right = broker.OptionOrder.Right.PUT
             strike = bar.getPrice() + 10
@@ -50,17 +50,17 @@ class MyStrategy(strategy.BacktestingStrategy):
             
             #if bar.getPrice() > self.__sma[-1]:
                 # Enter a buy market order for 10 shares. The order is good till canceled.
-            self.__option = self.enterOptionLong(self.__instrument, 10, right, strike, expiry, True)
+            self.__optionPosition = self.enterOptionLong(self.__instrument, 10, right, strike, expiry, True)
             self.__optionAlreadyExecuted = True
-            print "Option executed for: $%.2f" % (bar.getPrice()+10)
+            print "Option executed for: $%.2f" % strike
         # Check if we have to exit the position.
         #elif bar.getPrice() < self.__sma[-1] and not self.__position.exitActive():
             #self.__position.exitMarket()
         
         
         #### l'ordre devrait etre generer a partir de la position de l'option avec le strike price si expiry n'est pas depasse
-        elif self.__position is None and self.__option.getAge().days == 25 :
-            self.__position = self.enterLong(self.__option.getInstrument(), 10, True)
+        elif self.__position is None and self.__optionPosition.getAge().days == 25 :
+            self.__position = self.enterLong(self.__optionPosition.getInstrument(), 10, True)
             print "Order executed at: $%.2f" % bar.getPrice()
         
         elif self.__position is not None and self.__position.getAge().days == 60 :
@@ -80,5 +80,5 @@ def run_strategy(smaPeriod):
     myStrategy.run()
     print "Final portfolio value: $%.2f" % myStrategy.getBroker().getEquity()
 
-for i in range(10, 30):
+for i in range(10, 11):
     run_strategy(i)

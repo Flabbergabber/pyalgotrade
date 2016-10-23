@@ -60,21 +60,21 @@
 <h1 class="epydoc">Class Bar</h1><p class="nomargin-top"><span class="codelink"><a href="pyalgotrade.bar-pysrc.html#Bar">source&nbsp;code</a></span></p>
 <center>
 <center>  <map id="uml_class_diagram_for_pyalgotr" name="uml_class_diagram_for_pyalgotr">
-<area shape="rect" id="node1_15" href="abc.ABCMeta-class.html" title="Metaclass for defining Abstract Base Classes (ABCs)." alt="" coords="108,29,349,49"/>
-<area shape="rect" id="node1_16" href="pyalgotrade.bar.Bar-class.html#__abstractmethods__" title="pyalgotrade.bar.Bar.__abstractmethods__" alt="" coords="108,49,349,69"/>
-<area shape="rect" id="node1_17" href="pyalgotrade.bar.Bar-class.html#setUseAdjustedValue" title="pyalgotrade.bar.Bar.setUseAdjustedValue" alt="" coords="108,72,349,92"/>
-<area shape="rect" id="node1_18" href="pyalgotrade.bar.Bar-class.html#getUseAdjValue" title="pyalgotrade.bar.Bar.getUseAdjValue" alt="" coords="108,92,349,112"/>
+<area shape="rect" id="node1_15" href="pyalgotrade.bar.Bar-class.html#__abstractmethods__" title="pyalgotrade.bar.Bar.__abstractmethods__" alt="" coords="108,29,349,49"/>
+<area shape="rect" id="node1_16" href="abc.ABCMeta-class.html" title="Metaclass for defining Abstract Base Classes (ABCs)." alt="" coords="108,49,349,69"/>
+<area shape="rect" id="node1_17" href="pyalgotrade.bar.Bar-class.html#getAdjClose" title="Returns the adjusted closing price." alt="" coords="108,72,349,92"/>
+<area shape="rect" id="node1_18" href="pyalgotrade.bar.Bar-class.html#getClose" title="Returns the closing price." alt="" coords="108,92,349,112"/>
 <area shape="rect" id="node1_19" href="pyalgotrade.bar.Bar-class.html#getDateTime" title="Returns the :class:`datetime.datetime`." alt="" coords="108,112,349,132"/>
-<area shape="rect" id="node1_20" href="pyalgotrade.bar.Bar-class.html#getOpen" title="Returns the opening price." alt="" coords="108,132,349,152"/>
-<area shape="rect" id="node1_21" href="pyalgotrade.bar.Bar-class.html#getHigh" title="Returns the highest price." alt="" coords="108,152,349,172"/>
-<area shape="rect" id="node1_22" href="pyalgotrade.bar.Bar-class.html#getLow" title="Returns the lowest price." alt="" coords="108,172,349,192"/>
-<area shape="rect" id="node1_23" href="pyalgotrade.bar.Bar-class.html#getClose" title="Returns the closing price." alt="" coords="108,192,349,212"/>
-<area shape="rect" id="node1_24" href="pyalgotrade.bar.Bar-class.html#getVolume" title="Returns the volume." alt="" coords="108,212,349,232"/>
-<area shape="rect" id="node1_25" href="pyalgotrade.bar.Bar-class.html#getAdjClose" title="Returns the adjusted closing price." alt="" coords="108,232,349,252"/>
-<area shape="rect" id="node1_26" href="pyalgotrade.bar.Bar-class.html#getFrequency" title="The bar&#39;s period." alt="" coords="108,252,349,272"/>
-<area shape="rect" id="node1_27" href="pyalgotrade.bar.Bar-class.html#getTypicalPrice" title="Returns the typical price." alt="" coords="108,272,349,292"/>
-<area shape="rect" id="node1_28" href="pyalgotrade.bar.Bar-class.html#getPrice" title="Returns the closing or adjusted closing price." alt="" coords="108,292,349,312"/>
-<area shape="rect" id="node1_29" href="pyalgotrade.bar.Bar-class.html#getExtraColumns" title="pyalgotrade.bar.Bar.getExtraColumns" alt="" coords="108,312,349,332"/>
+<area shape="rect" id="node1_20" href="pyalgotrade.bar.Bar-class.html#getExtraColumns" title="pyalgotrade.bar.Bar.getExtraColumns" alt="" coords="108,132,349,152"/>
+<area shape="rect" id="node1_21" href="pyalgotrade.bar.Bar-class.html#getFrequency" title="The bar&#39;s period." alt="" coords="108,152,349,172"/>
+<area shape="rect" id="node1_22" href="pyalgotrade.bar.Bar-class.html#getHigh" title="Returns the highest price." alt="" coords="108,172,349,192"/>
+<area shape="rect" id="node1_23" href="pyalgotrade.bar.Bar-class.html#getLow" title="Returns the lowest price." alt="" coords="108,192,349,212"/>
+<area shape="rect" id="node1_24" href="pyalgotrade.bar.Bar-class.html#getOpen" title="Returns the opening price." alt="" coords="108,212,349,232"/>
+<area shape="rect" id="node1_25" href="pyalgotrade.bar.Bar-class.html#getPrice" title="Returns the closing or adjusted closing price." alt="" coords="108,232,349,252"/>
+<area shape="rect" id="node1_26" href="pyalgotrade.bar.Bar-class.html#getTypicalPrice" title="Returns the typical price." alt="" coords="108,252,349,272"/>
+<area shape="rect" id="node1_27" href="pyalgotrade.bar.Bar-class.html#getUseAdjValue" title="pyalgotrade.bar.Bar.getUseAdjValue" alt="" coords="108,272,349,292"/>
+<area shape="rect" id="node1_28" href="pyalgotrade.bar.Bar-class.html#getVolume" title="Returns the volume." alt="" coords="108,292,349,312"/>
+<area shape="rect" id="node1_29" href="pyalgotrade.bar.Bar-class.html#setUseAdjustedValue" title="pyalgotrade.bar.Bar.setUseAdjustedValue" alt="" coords="108,312,349,332"/>
 <area shape="rect" id="node1" href="pyalgotrade.bar.Bar-class.html" title="A Bar is a summary of the trading activity for a security in a given period." alt="" coords="95,5,361,339"/>
 <area shape="rect" id="node2" href="pyalgotrade.bar.BasicBar-class.html" title="pyalgotrade.bar.BasicBar" alt="" coords="5,357,93,396"/>
 <area shape="rect" id="node3" href="pyalgotrade.bitcoincharts.barfeed.TradeBar-class.html" title="pyalgotrade.bitcoincharts.barfeed.TradeBar" alt="" coords="123,357,336,396"/>
@@ -140,10 +140,10 @@
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a href="pyalgotrade.bar.Bar-class.html#setUseAdjustedValue" class="summary-sig-name">setUseAdjustedValue</a>(<span class="summary-sig-arg">self</span>,
-        <span class="summary-sig-arg">useAdjusted</span>)</span></td>
+          <td><span class="summary-sig"><a href="pyalgotrade.bar.Bar-class.html#getAdjClose" class="summary-sig-name">getAdjClose</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Returns the adjusted closing price.</td>
           <td align="right" valign="top">
-            <span class="codelink"><a href="pyalgotrade.bar-pysrc.html#Bar.setUseAdjustedValue">source&nbsp;code</a></span>
+            <span class="codelink"><a href="pyalgotrade.bar-pysrc.html#Bar.getAdjClose">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -157,9 +157,11 @@
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a href="pyalgotrade.bar.Bar-class.html#getUseAdjValue" class="summary-sig-name">getUseAdjValue</a>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td><span class="summary-sig"><a href="pyalgotrade.bar.Bar-class.html#getClose" class="summary-sig-name">getClose</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">adjusted</span>=<span class="summary-sig-default">False</span>)</span><br />
+      Returns the closing price.</td>
           <td align="right" valign="top">
-            <span class="codelink"><a href="pyalgotrade.bar-pysrc.html#Bar.getUseAdjValue">source&nbsp;code</a></span>
+            <span class="codelink"><a href="pyalgotrade.bar-pysrc.html#Bar.getClose">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -190,11 +192,26 @@
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a href="pyalgotrade.bar.Bar-class.html#getOpen" class="summary-sig-name">getOpen</a>(<span class="summary-sig-arg">self</span>,
-        <span class="summary-sig-arg">adjusted</span>=<span class="summary-sig-default">False</span>)</span><br />
-      Returns the opening price.</td>
+          <td><span class="summary-sig"><a name="getExtraColumns"></a><span class="summary-sig-name">getExtraColumns</span>(<span class="summary-sig-arg">self</span>)</span></td>
           <td align="right" valign="top">
-            <span class="codelink"><a href="pyalgotrade.bar-pysrc.html#Bar.getOpen">source&nbsp;code</a></span>
+            <span class="codelink"><a href="pyalgotrade.bar-pysrc.html#Bar.getExtraColumns">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyalgotrade.bar.Bar-class.html#getFrequency" class="summary-sig-name">getFrequency</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      The bar's period.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.bar-pysrc.html#Bar.getFrequency">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -244,79 +261,11 @@
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a href="pyalgotrade.bar.Bar-class.html#getClose" class="summary-sig-name">getClose</a>(<span class="summary-sig-arg">self</span>,
+          <td><span class="summary-sig"><a href="pyalgotrade.bar.Bar-class.html#getOpen" class="summary-sig-name">getOpen</a>(<span class="summary-sig-arg">self</span>,
         <span class="summary-sig-arg">adjusted</span>=<span class="summary-sig-default">False</span>)</span><br />
-      Returns the closing price.</td>
+      Returns the opening price.</td>
           <td align="right" valign="top">
-            <span class="codelink"><a href="pyalgotrade.bar-pysrc.html#Bar.getClose">source&nbsp;code</a></span>
-            
-          </td>
-        </tr>
-      </table>
-      
-    </td>
-  </tr>
-<tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-      <table width="100%" cellpadding="0" cellspacing="0" border="0">
-        <tr>
-          <td><span class="summary-sig"><a href="pyalgotrade.bar.Bar-class.html#getVolume" class="summary-sig-name">getVolume</a>(<span class="summary-sig-arg">self</span>)</span><br />
-      Returns the volume.</td>
-          <td align="right" valign="top">
-            <span class="codelink"><a href="pyalgotrade.bar-pysrc.html#Bar.getVolume">source&nbsp;code</a></span>
-            
-          </td>
-        </tr>
-      </table>
-      
-    </td>
-  </tr>
-<tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-      <table width="100%" cellpadding="0" cellspacing="0" border="0">
-        <tr>
-          <td><span class="summary-sig"><a href="pyalgotrade.bar.Bar-class.html#getAdjClose" class="summary-sig-name">getAdjClose</a>(<span class="summary-sig-arg">self</span>)</span><br />
-      Returns the adjusted closing price.</td>
-          <td align="right" valign="top">
-            <span class="codelink"><a href="pyalgotrade.bar-pysrc.html#Bar.getAdjClose">source&nbsp;code</a></span>
-            
-          </td>
-        </tr>
-      </table>
-      
-    </td>
-  </tr>
-<tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-      <table width="100%" cellpadding="0" cellspacing="0" border="0">
-        <tr>
-          <td><span class="summary-sig"><a href="pyalgotrade.bar.Bar-class.html#getFrequency" class="summary-sig-name">getFrequency</a>(<span class="summary-sig-arg">self</span>)</span><br />
-      The bar's period.</td>
-          <td align="right" valign="top">
-            <span class="codelink"><a href="pyalgotrade.bar-pysrc.html#Bar.getFrequency">source&nbsp;code</a></span>
-            
-          </td>
-        </tr>
-      </table>
-      
-    </td>
-  </tr>
-<tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-      <table width="100%" cellpadding="0" cellspacing="0" border="0">
-        <tr>
-          <td><span class="summary-sig"><a name="getTypicalPrice"></a><span class="summary-sig-name">getTypicalPrice</span>(<span class="summary-sig-arg">self</span>)</span><br />
-      Returns the typical price.</td>
-          <td align="right" valign="top">
-            <span class="codelink"><a href="pyalgotrade.bar-pysrc.html#Bar.getTypicalPrice">source&nbsp;code</a></span>
+            <span class="codelink"><a href="pyalgotrade.bar-pysrc.html#Bar.getOpen">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -347,9 +296,60 @@
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="getExtraColumns"></a><span class="summary-sig-name">getExtraColumns</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td><span class="summary-sig"><a name="getTypicalPrice"></a><span class="summary-sig-name">getTypicalPrice</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      Returns the typical price.</td>
           <td align="right" valign="top">
-            <span class="codelink"><a href="pyalgotrade.bar-pysrc.html#Bar.getExtraColumns">source&nbsp;code</a></span>
+            <span class="codelink"><a href="pyalgotrade.bar-pysrc.html#Bar.getTypicalPrice">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyalgotrade.bar.Bar-class.html#getUseAdjValue" class="summary-sig-name">getUseAdjValue</a>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.bar-pysrc.html#Bar.getUseAdjValue">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyalgotrade.bar.Bar-class.html#getVolume" class="summary-sig-name">getVolume</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Returns the volume.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.bar-pysrc.html#Bar.getVolume">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyalgotrade.bar.Bar-class.html#setUseAdjustedValue" class="summary-sig-name">setUseAdjustedValue</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">useAdjusted</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.bar-pysrc.html#Bar.setUseAdjustedValue">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -413,14 +413,14 @@
     <td width="15%" align="right" valign="top" class="summary">
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
-        <a name="_abc_cache"></a><span class="summary-name">_abc_cache</span> = <code title="&lt;_weakrefset.WeakSet object at 0x7f5b2e225d50&gt;">&lt;_weakrefset.WeakSet object at 0x7f5b2e225d50&gt;</code>
+        <a name="_abc_cache"></a><span class="summary-name">_abc_cache</span> = <code title="&lt;_weakrefset.WeakSet object at 0x7fe8932dd690&gt;">&lt;_weakrefset.WeakSet object at 0x7fe8932dd690&gt;</code>
     </td>
   </tr>
 <tr class="private">
     <td width="15%" align="right" valign="top" class="summary">
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
-        <a href="pyalgotrade.bar.Bar-class.html#_abc_negative_cache" class="summary-name" onclick="show_private();">_abc_negative_cache</a> = <code title="&lt;_weakrefset.WeakSet object at 0x7f5b2e225dd0&gt;">&lt;_weakrefset.WeakSet object at 0x7f5b2e2<code class="variable-ellipsis">...</code></code>
+        <a href="pyalgotrade.bar.Bar-class.html#_abc_negative_cache" class="summary-name" onclick="show_private();">_abc_negative_cache</a> = <code title="&lt;_weakrefset.WeakSet object at 0x7fe8932dd590&gt;">&lt;_weakrefset.WeakSet object at 0x7fe8932<code class="variable-ellipsis">...</code></code>
     </td>
   </tr>
 <tr class="private">
@@ -434,7 +434,7 @@
     <td width="15%" align="right" valign="top" class="summary">
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
-        <a name="_abc_registry"></a><span class="summary-name">_abc_registry</span> = <code title="&lt;_weakrefset.WeakSet object at 0x7f5b2e225c90&gt;">&lt;_weakrefset.WeakSet object at 0x7f5b2e225c90&gt;</code>
+        <a name="_abc_registry"></a><span class="summary-name">_abc_registry</span> = <code title="&lt;_weakrefset.WeakSet object at 0x7fe893f0ae90&gt;">&lt;_weakrefset.WeakSet object at 0x7fe893f0ae90&gt;</code>
     </td>
   </tr>
 </table>
@@ -481,22 +481,21 @@
   </td>
 </tr>
 </table>
-<a name="setUseAdjustedValue"></a>
+<a name="getAdjClose"></a>
 <div>
 <table class="details" border="1" cellpadding="3"
        cellspacing="0" width="100%" bgcolor="white">
 <tr><td>
   <table width="100%" cellpadding="0" cellspacing="0" border="0">
   <tr valign="top"><td>
-  <h3 class="epydoc"><span class="sig"><span class="sig-name">setUseAdjustedValue</span>(<span class="sig-arg">self</span>,
-        <span class="sig-arg">useAdjusted</span>)</span>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">getAdjClose</span>(<span class="sig-arg">self</span>)</span>
   </h3>
   </td><td align="right" valign="top"
-    ><span class="codelink"><a href="pyalgotrade.bar-pysrc.html#Bar.setUseAdjustedValue">source&nbsp;code</a></span>&nbsp;
+    ><span class="codelink"><a href="pyalgotrade.bar-pysrc.html#Bar.getAdjClose">source&nbsp;code</a></span>&nbsp;
     </td>
   </tr></table>
   
-  
+  <p>Returns the adjusted closing price.</p>
   <dl class="fields">
     <dt>Decorators:</dt>
     <dd><ul class="nomargin-top">
@@ -505,21 +504,22 @@
   </dl>
 </td></tr></table>
 </div>
-<a name="getUseAdjValue"></a>
+<a name="getClose"></a>
 <div>
 <table class="details" border="1" cellpadding="3"
        cellspacing="0" width="100%" bgcolor="white">
 <tr><td>
   <table width="100%" cellpadding="0" cellspacing="0" border="0">
   <tr valign="top"><td>
-  <h3 class="epydoc"><span class="sig"><span class="sig-name">getUseAdjValue</span>(<span class="sig-arg">self</span>)</span>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">getClose</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">adjusted</span>=<span class="sig-default">False</span>)</span>
   </h3>
   </td><td align="right" valign="top"
-    ><span class="codelink"><a href="pyalgotrade.bar-pysrc.html#Bar.getUseAdjValue">source&nbsp;code</a></span>&nbsp;
+    ><span class="codelink"><a href="pyalgotrade.bar-pysrc.html#Bar.getClose">source&nbsp;code</a></span>&nbsp;
     </td>
   </tr></table>
   
-  
+  <p>Returns the closing price.</p>
   <dl class="fields">
     <dt>Decorators:</dt>
     <dd><ul class="nomargin-top">
@@ -551,22 +551,21 @@
   </dl>
 </td></tr></table>
 </div>
-<a name="getOpen"></a>
+<a name="getFrequency"></a>
 <div>
 <table class="details" border="1" cellpadding="3"
        cellspacing="0" width="100%" bgcolor="white">
 <tr><td>
   <table width="100%" cellpadding="0" cellspacing="0" border="0">
   <tr valign="top"><td>
-  <h3 class="epydoc"><span class="sig"><span class="sig-name">getOpen</span>(<span class="sig-arg">self</span>,
-        <span class="sig-arg">adjusted</span>=<span class="sig-default">False</span>)</span>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">getFrequency</span>(<span class="sig-arg">self</span>)</span>
   </h3>
   </td><td align="right" valign="top"
-    ><span class="codelink"><a href="pyalgotrade.bar-pysrc.html#Bar.getOpen">source&nbsp;code</a></span>&nbsp;
+    ><span class="codelink"><a href="pyalgotrade.bar-pysrc.html#Bar.getFrequency">source&nbsp;code</a></span>&nbsp;
     </td>
   </tr></table>
   
-  <p>Returns the opening price.</p>
+  <p>The bar's period.</p>
   <dl class="fields">
     <dt>Decorators:</dt>
     <dd><ul class="nomargin-top">
@@ -623,22 +622,68 @@
   </dl>
 </td></tr></table>
 </div>
-<a name="getClose"></a>
+<a name="getOpen"></a>
 <div>
 <table class="details" border="1" cellpadding="3"
        cellspacing="0" width="100%" bgcolor="white">
 <tr><td>
   <table width="100%" cellpadding="0" cellspacing="0" border="0">
   <tr valign="top"><td>
-  <h3 class="epydoc"><span class="sig"><span class="sig-name">getClose</span>(<span class="sig-arg">self</span>,
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">getOpen</span>(<span class="sig-arg">self</span>,
         <span class="sig-arg">adjusted</span>=<span class="sig-default">False</span>)</span>
   </h3>
   </td><td align="right" valign="top"
-    ><span class="codelink"><a href="pyalgotrade.bar-pysrc.html#Bar.getClose">source&nbsp;code</a></span>&nbsp;
+    ><span class="codelink"><a href="pyalgotrade.bar-pysrc.html#Bar.getOpen">source&nbsp;code</a></span>&nbsp;
     </td>
   </tr></table>
   
-  <p>Returns the closing price.</p>
+  <p>Returns the opening price.</p>
+  <dl class="fields">
+    <dt>Decorators:</dt>
+    <dd><ul class="nomargin-top">
+        <li><code>@abc.abstractmethod</code></li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="getPrice"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">getPrice</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyalgotrade.bar-pysrc.html#Bar.getPrice">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Returns the closing or adjusted closing price.</p>
+  <dl class="fields">
+    <dt>Decorators:</dt>
+    <dd><ul class="nomargin-top">
+        <li><code>@abc.abstractmethod</code></li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="getUseAdjValue"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">getUseAdjValue</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyalgotrade.bar-pysrc.html#Bar.getUseAdjValue">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  
   <dl class="fields">
     <dt>Decorators:</dt>
     <dd><ul class="nomargin-top">
@@ -670,67 +715,22 @@
   </dl>
 </td></tr></table>
 </div>
-<a name="getAdjClose"></a>
+<a name="setUseAdjustedValue"></a>
 <div>
 <table class="details" border="1" cellpadding="3"
        cellspacing="0" width="100%" bgcolor="white">
 <tr><td>
   <table width="100%" cellpadding="0" cellspacing="0" border="0">
   <tr valign="top"><td>
-  <h3 class="epydoc"><span class="sig"><span class="sig-name">getAdjClose</span>(<span class="sig-arg">self</span>)</span>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">setUseAdjustedValue</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">useAdjusted</span>)</span>
   </h3>
   </td><td align="right" valign="top"
-    ><span class="codelink"><a href="pyalgotrade.bar-pysrc.html#Bar.getAdjClose">source&nbsp;code</a></span>&nbsp;
+    ><span class="codelink"><a href="pyalgotrade.bar-pysrc.html#Bar.setUseAdjustedValue">source&nbsp;code</a></span>&nbsp;
     </td>
   </tr></table>
   
-  <p>Returns the adjusted closing price.</p>
-  <dl class="fields">
-    <dt>Decorators:</dt>
-    <dd><ul class="nomargin-top">
-        <li><code>@abc.abstractmethod</code></li>
-    </ul></dd>
-  </dl>
-</td></tr></table>
-</div>
-<a name="getFrequency"></a>
-<div>
-<table class="details" border="1" cellpadding="3"
-       cellspacing="0" width="100%" bgcolor="white">
-<tr><td>
-  <table width="100%" cellpadding="0" cellspacing="0" border="0">
-  <tr valign="top"><td>
-  <h3 class="epydoc"><span class="sig"><span class="sig-name">getFrequency</span>(<span class="sig-arg">self</span>)</span>
-  </h3>
-  </td><td align="right" valign="top"
-    ><span class="codelink"><a href="pyalgotrade.bar-pysrc.html#Bar.getFrequency">source&nbsp;code</a></span>&nbsp;
-    </td>
-  </tr></table>
   
-  <p>The bar's period.</p>
-  <dl class="fields">
-    <dt>Decorators:</dt>
-    <dd><ul class="nomargin-top">
-        <li><code>@abc.abstractmethod</code></li>
-    </ul></dd>
-  </dl>
-</td></tr></table>
-</div>
-<a name="getPrice"></a>
-<div>
-<table class="details" border="1" cellpadding="3"
-       cellspacing="0" width="100%" bgcolor="white">
-<tr><td>
-  <table width="100%" cellpadding="0" cellspacing="0" border="0">
-  <tr valign="top"><td>
-  <h3 class="epydoc"><span class="sig"><span class="sig-name">getPrice</span>(<span class="sig-arg">self</span>)</span>
-  </h3>
-  </td><td align="right" valign="top"
-    ><span class="codelink"><a href="pyalgotrade.bar-pysrc.html#Bar.getPrice">source&nbsp;code</a></span>&nbsp;
-    </td>
-  </tr></table>
-  
-  <p>Returns the closing or adjusted closing price.</p>
   <dl class="fields">
     <dt>Decorators:</dt>
     <dd><ul class="nomargin-top">
@@ -796,7 +796,7 @@
   <dl class="fields">
     <dt>Value:</dt>
       <dd><table><tr><td><pre class="variable">
-&lt;_weakrefset.WeakSet object at 0x7f5b2e225dd0&gt;
+&lt;_weakrefset.WeakSet object at 0x7fe8932dd590&gt;
 </pre></td></tr></table>
 </dd>
   </dl>
@@ -829,7 +829,7 @@
 <table border="0" cellpadding="0" cellspacing="0" width="100%%">
   <tr>
     <td align="left" class="footer">
-    Generated by Epydoc 3.0.1 on Sat Oct 15 14:17:40 2016
+    Generated by Epydoc 3.0.1 on Sun Oct 23 19:01:53 2016
     </td>
     <td align="right" class="footer">
       <a target="mainFrame" href="http://epydoc.sourceforge.net"

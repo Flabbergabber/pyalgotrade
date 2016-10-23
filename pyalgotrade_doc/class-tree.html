@@ -128,18 +128,6 @@
     </li>
     <li> <strong class="uidlink"><a href="pyalgotrade.broker.Order.Action-class.html">pyalgotrade.broker.Order.Action</a></strong>
     </li>
-    <li> <strong class="uidlink"><a href="pyalgotrade.broker.backtesting_old.BacktestingOrder-class.html">pyalgotrade.broker.backtesting_old.BacktestingOrder</a></strong>
-    <ul>
-    <li> <strong class="uidlink"><a href="pyalgotrade.broker.backtesting_old.LimitOrder-class.html">pyalgotrade.broker.backtesting_old.LimitOrder</a></strong>
-    </li>
-    <li> <strong class="uidlink"><a href="pyalgotrade.broker.backtesting_old.MarketOrder-class.html">pyalgotrade.broker.backtesting_old.MarketOrder</a></strong>
-    </li>
-    <li> <strong class="uidlink"><a href="pyalgotrade.broker.backtesting_old.StopLimitOrder-class.html">pyalgotrade.broker.backtesting_old.StopLimitOrder</a></strong>
-    </li>
-    <li> <strong class="uidlink"><a href="pyalgotrade.broker.backtesting_old.StopOrder-class.html">pyalgotrade.broker.backtesting_old.StopOrder</a></strong>
-    </li>
-    </ul>
-    </li>
     <li> <strong class="uidlink"><a href="pyalgotrade.broker.backtesting.BacktestingOrder-class.html">pyalgotrade.broker.backtesting.BacktestingOrder</a></strong>
     <ul>
     <li> <strong class="uidlink"><a href="pyalgotrade.broker.backtesting.LimitOrder-class.html">pyalgotrade.broker.backtesting.LimitOrder</a></strong>
@@ -157,6 +145,18 @@
     <li> <strong class="uidlink"><a href="pyalgotrade.broker.backtesting.StopLimitOrder-class.html">pyalgotrade.broker.backtesting.StopLimitOrder</a></strong>
     </li>
     <li> <strong class="uidlink"><a href="pyalgotrade.broker.backtesting.StopOrder-class.html">pyalgotrade.broker.backtesting.StopOrder</a></strong>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="pyalgotrade.broker.backtesting_old.BacktestingOrder-class.html">pyalgotrade.broker.backtesting_old.BacktestingOrder</a></strong>
+    <ul>
+    <li> <strong class="uidlink"><a href="pyalgotrade.broker.backtesting_old.LimitOrder-class.html">pyalgotrade.broker.backtesting_old.LimitOrder</a></strong>
+    </li>
+    <li> <strong class="uidlink"><a href="pyalgotrade.broker.backtesting_old.MarketOrder-class.html">pyalgotrade.broker.backtesting_old.MarketOrder</a></strong>
+    </li>
+    <li> <strong class="uidlink"><a href="pyalgotrade.broker.backtesting_old.StopLimitOrder-class.html">pyalgotrade.broker.backtesting_old.StopLimitOrder</a></strong>
+    </li>
+    <li> <strong class="uidlink"><a href="pyalgotrade.broker.backtesting_old.StopOrder-class.html">pyalgotrade.broker.backtesting_old.StopOrder</a></strong>
     </li>
     </ul>
     </li>
@@ -220,22 +220,6 @@
     </li>
     <li> <strong class="uidlink"><a href="pyalgotrade.tools.resample.CSVFileWriter-class.html">pyalgotrade.tools.resample.CSVFileWriter</a></strong>
     </li>
-    <li> <strong class="uidlink"><a href="pyalgotrade.broker.backtesting_old.Commission-class.html">pyalgotrade.broker.backtesting_old.Commission</a></strong>:
-      <em class="summary">Base class for implementing different commission schemes.</em>
-    <ul>
-    <li> <strong class="uidlink"><a href="pyalgotrade.broker.backtesting_old.FixedPerTrade-class.html">pyalgotrade.broker.backtesting_old.FixedPerTrade</a></strong>:
-      <em class="summary">A :class:`Commission` class that charges a fixed amount for the 
-        whole trade.</em>
-    </li>
-    <li> <strong class="uidlink"><a href="pyalgotrade.broker.backtesting_old.NoCommission-class.html">pyalgotrade.broker.backtesting_old.NoCommission</a></strong>:
-      <em class="summary">A :class:`Commission` class that always returns 0.</em>
-    </li>
-    <li> <strong class="uidlink"><a href="pyalgotrade.broker.backtesting_old.TradePercentage-class.html">pyalgotrade.broker.backtesting_old.TradePercentage</a></strong>:
-      <em class="summary">A :class:`Commission` class that charges a percentage of the whole 
-        trade.</em>
-    </li>
-    </ul>
-    </li>
     <li> <strong class="uidlink"><a href="pyalgotrade.broker.backtesting.Commission-class.html">pyalgotrade.broker.backtesting.Commission</a></strong>:
       <em class="summary">Base class for implementing different commission schemes.</em>
     <ul>
@@ -247,6 +231,22 @@
       <em class="summary">A :class:`Commission` class that always returns 0.</em>
     </li>
     <li> <strong class="uidlink"><a href="pyalgotrade.broker.backtesting.TradePercentage-class.html">pyalgotrade.broker.backtesting.TradePercentage</a></strong>:
+      <em class="summary">A :class:`Commission` class that charges a percentage of the whole 
+        trade.</em>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="pyalgotrade.broker.backtesting_old.Commission-class.html">pyalgotrade.broker.backtesting_old.Commission</a></strong>:
+      <em class="summary">Base class for implementing different commission schemes.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="pyalgotrade.broker.backtesting_old.FixedPerTrade-class.html">pyalgotrade.broker.backtesting_old.FixedPerTrade</a></strong>:
+      <em class="summary">A :class:`Commission` class that charges a fixed amount for the 
+        whole trade.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="pyalgotrade.broker.backtesting_old.NoCommission-class.html">pyalgotrade.broker.backtesting_old.NoCommission</a></strong>:
+      <em class="summary">A :class:`Commission` class that always returns 0.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="pyalgotrade.broker.backtesting_old.TradePercentage-class.html">pyalgotrade.broker.backtesting_old.TradePercentage</a></strong>:
       <em class="summary">A :class:`Commission` class that charges a percentage of the whole 
         trade.</em>
     </li>
@@ -356,10 +356,6 @@ http://stockcharts.com/school/doku.php?st=stochastic+oscillator&amp;id=chart_sch
     </li>
     <li> <strong class="uidlink"><a href="pyalgotrade.stratanalyzer.drawdown.DrawDownHelper-class.html">pyalgotrade.stratanalyzer.drawdown.DrawDownHelper</a></strong>
     </li>
-    <li> <strong class="uidlink"><a href="pyalgotrade.eventprofiler.Event-class.html">pyalgotrade.eventprofiler.Event</a></strong>
-    </li>
-    <li> <strong class="uidlink"><a href="pyalgotrade.observer.Event-class.html">pyalgotrade.observer.Event</a></strong>
-    </li>
     <li> <strong class="uidlink"><a href="pyalgotrade.websocket.pusher.Event-class.html">pyalgotrade.websocket.pusher.Event</a></strong>
     <ul>
     <li> <strong class="uidlink"><a href="pyalgotrade.bitstamp.wsclient.OrderBookUpdate-class.html">pyalgotrade.bitstamp.wsclient.OrderBookUpdate</a></strong>:
@@ -369,6 +365,10 @@ http://stockcharts.com/school/doku.php?st=stochastic+oscillator&amp;id=chart_sch
       <em class="summary">A trade event.</em>
     </li>
     </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="pyalgotrade.observer.Event-class.html">pyalgotrade.observer.Event</a></strong>
+    </li>
+    <li> <strong class="uidlink"><a href="pyalgotrade.eventprofiler.Event-class.html">pyalgotrade.eventprofiler.Event</a></strong>
     </li>
     <li> <strong class="uidlink"><a href="pyalgotrade.technical.EventWindow-class.html">pyalgotrade.technical.EventWindow</a></strong>:
       <em class="summary">An EventWindow class is responsible for making calculation over a 
@@ -511,8 +511,6 @@ http://stockcharts.com/school/doku.php?st=stochastic+oscillator&amp;id=chart_sch
     </li>
     <li> <strong class="uidlink"><a href="pyalgotrade.broker.backtesting_old.LimitOrder-class.html">pyalgotrade.broker.backtesting_old.LimitOrder</a></strong>
     </li>
-    <li> <strong class="uidlink"><a href="pyalgotrade.broker.backtesting.OptionLimitOrder-class.html">pyalgotrade.broker.backtesting.OptionLimitOrder</a></strong>
-    </li>
     </ul>
     </li>
     <li> <strong class="uidlink"><a href="pyalgotrade.broker.MarketOrder-class.html">pyalgotrade.broker.MarketOrder</a></strong>:
@@ -524,27 +522,40 @@ http://stockcharts.com/school/doku.php?st=stochastic+oscillator&amp;id=chart_sch
     </li>
     </ul>
     </li>
+    <li> <strong class="uidlink"><a href="pyalgotrade.broker.OptionOrder-class.html">pyalgotrade.broker.OptionOrder</a></strong>:
+      <em class="summary">Base class for Option orders.</em>
+    <ul>
     <li> <strong class="uidlink"><a href="pyalgotrade.broker.OptionLimitOrder-class.html">pyalgotrade.broker.OptionLimitOrder</a></strong>:
       <em class="summary">Base class for limit orders.</em>
-    </li>
-    <li> <strong class="uidlink"><a href="pyalgotrade.broker.OptionOrder-class.html">pyalgotrade.broker.OptionOrder</a></strong>:
-      <em class="summary">Base class for market orders.</em>
     <ul>
-    <li> <strong class="uidlink"><a href="pyalgotrade.broker.backtesting.OptionOrder-class.html">pyalgotrade.broker.backtesting.OptionOrder</a></strong>
+    <li> <strong class="uidlink"><a href="pyalgotrade.broker.backtesting.OptionLimitOrder-class.html">pyalgotrade.broker.backtesting.OptionLimitOrder</a></strong>
     </li>
     </ul>
     </li>
+    <li> <strong class="uidlink"><a href="pyalgotrade.broker.backtesting.OptionOrder-class.html">pyalgotrade.broker.backtesting.OptionOrder</a></strong>
+    </li>
     <li> <strong class="uidlink"><a href="pyalgotrade.broker.OptionStopLimitOrder-class.html">pyalgotrade.broker.OptionStopLimitOrder</a></strong>:
-      <em class="summary">Base class for stop limit orders.</em>
-    </li>
-    <li> <strong class="uidlink"><a href="pyalgotrade.broker.OptionStopOrder-class.html">pyalgotrade.broker.OptionStopOrder</a></strong>:
-      <em class="summary">Base class for stop orders.</em>
-    </li>
-    <li> <strong class="uidlink"><a href="pyalgotrade.broker.StopLimitOrder-class.html">pyalgotrade.broker.StopLimitOrder</a></strong>:
       <em class="summary">Base class for stop limit orders.</em>
     <ul>
     <li> <strong class="uidlink"><a href="pyalgotrade.broker.backtesting.OptionStopLimitOrder-class.html">pyalgotrade.broker.backtesting.OptionStopLimitOrder</a></strong>
     </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="pyalgotrade.broker.OptionStopOrder-class.html">pyalgotrade.broker.OptionStopOrder</a></strong>:
+      <em class="summary">Base class for stop orders.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="pyalgotrade.broker.backtesting.OptionStopOrder-class.html">pyalgotrade.broker.backtesting.OptionStopOrder</a></strong>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="pyalgotrade.broker.OrderExecutionInfo-class.html">pyalgotrade.broker.OrderExecutionInfo</a></strong>:
+      <em class="summary">Execution information for an order.</em>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="pyalgotrade.broker.StopLimitOrder-class.html">pyalgotrade.broker.StopLimitOrder</a></strong>:
+      <em class="summary">Base class for stop limit orders.</em>
+    <ul>
     <li> <strong class="uidlink"><a href="pyalgotrade.broker.backtesting.StopLimitOrder-class.html">pyalgotrade.broker.backtesting.StopLimitOrder</a></strong>
     </li>
     <li> <strong class="uidlink"><a href="pyalgotrade.broker.backtesting_old.StopLimitOrder-class.html">pyalgotrade.broker.backtesting_old.StopLimitOrder</a></strong>
@@ -554,8 +565,6 @@ http://stockcharts.com/school/doku.php?st=stochastic+oscillator&amp;id=chart_sch
     <li> <strong class="uidlink"><a href="pyalgotrade.broker.StopOrder-class.html">pyalgotrade.broker.StopOrder</a></strong>:
       <em class="summary">Base class for stop orders.</em>
     <ul>
-    <li> <strong class="uidlink"><a href="pyalgotrade.broker.backtesting.OptionStopOrder-class.html">pyalgotrade.broker.backtesting.OptionStopOrder</a></strong>
-    </li>
     <li> <strong class="uidlink"><a href="pyalgotrade.broker.backtesting.StopOrder-class.html">pyalgotrade.broker.backtesting.StopOrder</a></strong>
     </li>
     <li> <strong class="uidlink"><a href="pyalgotrade.broker.backtesting_old.StopOrder-class.html">pyalgotrade.broker.backtesting_old.StopOrder</a></strong>
@@ -566,9 +575,6 @@ http://stockcharts.com/school/doku.php?st=stochastic+oscillator&amp;id=chart_sch
     </li>
     <li> <strong class="uidlink"><a href="pyalgotrade.broker.OrderEvent-class.html">pyalgotrade.broker.OrderEvent</a></strong>
     </li>
-    <li> <strong class="uidlink"><a href="pyalgotrade.broker.OrderExecutionInfo-class.html">pyalgotrade.broker.OrderExecutionInfo</a></strong>:
-      <em class="summary">Execution information for an order.</em>
-    </li>
     <li> <strong class="uidlink"><a href="pyalgotrade.optimizer.base.ParameterSource-class.html">pyalgotrade.optimizer.base.ParameterSource</a></strong>:
       <em class="summary">Source for backtesting parameters.</em>
     </li>
@@ -577,11 +583,15 @@ http://stockcharts.com/school/doku.php?st=stochastic+oscillator&amp;id=chart_sch
     <li> <strong class="uidlink"><a href="pyalgotrade.strategy.position.Position-class.html">pyalgotrade.strategy.position.Position</a></strong>:
       <em class="summary">Base class for positions.</em>
     <ul>
-    <li> <strong class="uidlink"><a href="pyalgotrade.strategy.position.LongOptionPosition-class.html">pyalgotrade.strategy.position.LongOptionPosition</a></strong>
-    </li>
     <li> <strong class="uidlink"><a href="pyalgotrade.strategy.position.LongPosition-class.html">pyalgotrade.strategy.position.LongPosition</a></strong>
     </li>
+    <li> <strong class="uidlink"><a href="pyalgotrade.strategy.position.OptionPosition-class.html">pyalgotrade.strategy.position.OptionPosition</a></strong>
+    <ul>
+    <li> <strong class="uidlink"><a href="pyalgotrade.strategy.position.LongOptionPosition-class.html">pyalgotrade.strategy.position.LongOptionPosition</a></strong>
+    </li>
     <li> <strong class="uidlink"><a href="pyalgotrade.strategy.position.ShortOptionPosition-class.html">pyalgotrade.strategy.position.ShortOptionPosition</a></strong>
+    </li>
+    </ul>
     </li>
     <li> <strong class="uidlink"><a href="pyalgotrade.strategy.position.ShortPosition-class.html">pyalgotrade.strategy.position.ShortPosition</a></strong>
     </li>
@@ -615,6 +625,8 @@ http://stockcharts.com/school/doku.php?st=stochastic+oscillator&amp;id=chart_sch
     <li> <strong class="uidlink"><a href="pyalgotrade.optimizer.server.Results-class.html">pyalgotrade.optimizer.server.Results</a></strong>:
       <em class="summary">The results of the strategy executions.</em>
     </li>
+    <li> <strong class="uidlink"><a href="pyalgotrade.broker.OptionOrder.Right-class.html">pyalgotrade.broker.OptionOrder.Right</a></strong>
+    </li>
     <li> <strong class="uidlink"><a href="pyalgotrade.feed.csvfeed.RowFilter-class.html">pyalgotrade.feed.csvfeed.RowFilter</a></strong>
     <ul>
     <li> <strong class="uidlink"><a href="pyalgotrade.feed.csvfeed.DateRangeFilter-class.html">pyalgotrade.feed.csvfeed.DateRangeFilter</a></strong>
@@ -631,37 +643,19 @@ http://stockcharts.com/school/doku.php?st=stochastic+oscillator&amp;id=chart_sch
     <ul>
     <li> <strong class="uidlink"><a href="pyalgotrade.barfeed.csvfeed.GenericRowParser-class.html">pyalgotrade.barfeed.csvfeed.GenericRowParser</a></strong>
     </li>
-    <li> <strong class="uidlink"><a href="pyalgotrade.barfeed.ninjatraderfeed.RowParser-class.html">pyalgotrade.barfeed.ninjatraderfeed.RowParser</a></strong>
+    <li> <strong class="uidlink"><a href="pyalgotrade.barfeed.googlefeed.RowParser-class.html">pyalgotrade.barfeed.googlefeed.RowParser</a></strong>
     </li>
     <li> <strong class="uidlink"><a href="pyalgotrade.barfeed.ibfeed.RowParser-class.html">pyalgotrade.barfeed.ibfeed.RowParser</a></strong>
     </li>
-    <li> <strong class="uidlink"><a href="pyalgotrade.barfeed.googlefeed.RowParser-class.html">pyalgotrade.barfeed.googlefeed.RowParser</a></strong>
+    <li> <strong class="uidlink"><a href="pyalgotrade.bitcoincharts.barfeed.RowParser-class.html">pyalgotrade.bitcoincharts.barfeed.RowParser</a></strong>
+    </li>
+    <li> <strong class="uidlink"><a href="pyalgotrade.barfeed.ninjatraderfeed.RowParser-class.html">pyalgotrade.barfeed.ninjatraderfeed.RowParser</a></strong>
     </li>
     <li> <strong class="uidlink"><a href="pyalgotrade.barfeed.yahoofeed.RowParser-class.html">pyalgotrade.barfeed.yahoofeed.RowParser</a></strong>
-    </li>
-    <li> <strong class="uidlink"><a href="pyalgotrade.bitcoincharts.barfeed.RowParser-class.html">pyalgotrade.bitcoincharts.barfeed.RowParser</a></strong>
     </li>
     </ul>
     </li>
     <li> <strong class="uidlink"><a href="pyalgotrade.plotter.Series-class.html">pyalgotrade.plotter.Series</a></strong>
-    <ul>
-    <li> <strong class="uidlink"><a href="pyalgotrade.plotter.BuyMarker-class.html">pyalgotrade.plotter.BuyMarker</a></strong>
-    </li>
-    <li> <strong class="uidlink"><a href="pyalgotrade.plotter.CustomMarker-class.html">pyalgotrade.plotter.CustomMarker</a></strong>
-    </li>
-    <li> <strong class="uidlink"><a href="pyalgotrade.plotter.HistogramMarker-class.html">pyalgotrade.plotter.HistogramMarker</a></strong>
-    <ul>
-    <li> <strong class="uidlink"><a href="pyalgotrade.plotter.MACDMarker-class.html">pyalgotrade.plotter.MACDMarker</a></strong>
-    </li>
-    </ul>
-    </li>
-    <li> <strong class="uidlink"><a href="pyalgotrade.plotter.InstrumentMarker-class.html">pyalgotrade.plotter.InstrumentMarker</a></strong>
-    </li>
-    <li> <strong class="uidlink"><a href="pyalgotrade.plotter.LineMarker-class.html">pyalgotrade.plotter.LineMarker</a></strong>
-    </li>
-    <li> <strong class="uidlink"><a href="pyalgotrade.plotter.SellMarker-class.html">pyalgotrade.plotter.SellMarker</a></strong>
-    </li>
-    </ul>
     </li>
     <li> <strong class="uidlink"><a href="pyalgotrade.broker.slippage.SlippageModel-class.html">pyalgotrade.broker.slippage.SlippageModel</a></strong>:
       <em class="summary">Base class for slippage models.</em>
@@ -725,17 +719,17 @@ whole portfolio.</em>
     <li> <strong class="uidlink"><a href="pyalgotrade.bitcoincharts.barfeed.CSVTradeFeed-class.html">pyalgotrade.bitcoincharts.barfeed.CSVTradeFeed</a></strong>:
       <em class="summary">A BarFeed that builds bars from a Historic Trade Data CSV file as described in http://www.bitcoincharts.com/about/markets-api/.</em>
     </li>
-    <li> <strong class="uidlink"><a href="pyalgotrade.barfeed.googlefeed.Feed-class.html">pyalgotrade.barfeed.googlefeed.Feed</a></strong>:
-      <em class="summary">A :class:`pyalgotrade.barfeed.csvfeed.BarFeed` that loads bars from CSV files downloaded from Google Finance.</em>
-    </li>
-    <li> <strong class="uidlink"><a href="pyalgotrade.barfeed.yahoofeed.Feed-class.html">pyalgotrade.barfeed.yahoofeed.Feed</a></strong>:
-      <em class="summary">A :class:`pyalgotrade.barfeed.csvfeed.BarFeed` that loads bars from CSV files downloaded from Yahoo! Finance.</em>
-    </li>
     <li> <strong class="uidlink"><a href="pyalgotrade.barfeed.ninjatraderfeed.Feed-class.html">pyalgotrade.barfeed.ninjatraderfeed.Feed</a></strong>:
       <em class="summary">A :class:`pyalgotrade.barfeed.csvfeed.BarFeed` that loads bars from CSV files exported from NinjaTrader.</em>
     </li>
     <li> <strong class="uidlink"><a href="pyalgotrade.barfeed.ibfeed.Feed-class.html">pyalgotrade.barfeed.ibfeed.Feed</a></strong>:
       <em class="summary">A :class:`pyalgotrade.barfeed.csvfeed.BarFeed` that loads bars from CSV files exported from NinjaTrader.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="pyalgotrade.barfeed.yahoofeed.Feed-class.html">pyalgotrade.barfeed.yahoofeed.Feed</a></strong>:
+      <em class="summary">A :class:`pyalgotrade.barfeed.csvfeed.BarFeed` that loads bars from CSV files downloaded from Yahoo! Finance.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="pyalgotrade.barfeed.googlefeed.Feed-class.html">pyalgotrade.barfeed.googlefeed.Feed</a></strong>:
+      <em class="summary">A :class:`pyalgotrade.barfeed.csvfeed.BarFeed` that loads bars from CSV files downloaded from Google Finance.</em>
     </li>
     <li> <strong class="uidlink"><a href="pyalgotrade.barfeed.csvfeed.GenericBarFeed-class.html">pyalgotrade.barfeed.csvfeed.GenericBarFeed</a></strong>:
       <em class="summary">A BarFeed that loads bars from CSV files that have the following format:
@@ -803,11 +797,6 @@ whole portfolio.</em>
     </ul>
     </li>
     <li> <strong class="uidlink"><a href="pyalgotrade.plotter.Subplot-class.html">pyalgotrade.plotter.Subplot</a></strong>
-    <ul>
-    <li> <strong class="uidlink"><a href="pyalgotrade.plotter.InstrumentSubplot-class.html">pyalgotrade.plotter.InstrumentSubplot</a></strong>:
-      <em class="summary">A Subplot responsible for plotting an instrument.</em>
-    </li>
-    </ul>
     </li>
     <li> <strong class="uidlink"><a href="pyalgotrade.dataseries.aligned.Syncer-class.html">pyalgotrade.dataseries.aligned.Syncer</a></strong>
     </li>
@@ -910,7 +899,7 @@ whole portfolio.</em>
 <table border="0" cellpadding="0" cellspacing="0" width="100%%">
   <tr>
     <td align="left" class="footer">
-    Generated by Epydoc 3.0.1 on Sat Oct 15 14:17:39 2016
+    Generated by Epydoc 3.0.1 on Sun Oct 23 19:01:52 2016
     </td>
     <td align="right" class="footer">
       <a target="mainFrame" href="http://epydoc.sourceforge.net"

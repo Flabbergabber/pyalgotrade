@@ -58,7 +58,7 @@
 <!-- ==================== CLASS DESCRIPTION ==================== -->
 <h1 class="epydoc">Class BaseStrategy</h1><p class="nomargin-top"><span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy">source&nbsp;code</a></span></p>
 <center>
-<center>  <map id="uml_class_diagram_for_pyalgotr_173" name="uml_class_diagram_for_pyalgotr_173">
+<center>  <map id="uml_class_diagram_for_pyalgotr_174" name="uml_class_diagram_for_pyalgotr_174">
 <area shape="rect" id="node1_17" href="abc.ABCMeta-class.html" title="Metaclass for defining Abstract Base Classes (ABCs)." alt="" coords="18,30,345,50"/>
 <area shape="rect" id="node1_18" href="pyalgotrade.strategy.BaseStrategy-class.html#LOGGER_NAME" title="pyalgotrade.strategy.BaseStrategy.LOGGER_NAME" alt="" coords="18,50,345,70"/>
 <area shape="rect" id="node1_19" href="pyalgotrade.strategy.BaseStrategy-class.html#__abstractmethods__" title="pyalgotrade.strategy.BaseStrategy.__abstractmethods__" alt="" coords="18,70,345,90"/>
@@ -79,7 +79,7 @@
 <area shape="rect" id="node1" href="pyalgotrade.strategy.BaseStrategy-class.html" title="Base class for strategies." alt="" coords="5,5,356,399"/>
 <area shape="rect" id="node2" href="pyalgotrade.strategy.BacktestingStrategy-class.html" title="Base class for backtesting strategies." alt="" coords="105,417,259,456"/>
 </map>
-  <img src="uml_class_diagram_for_pyalgotr_173.gif" alt='' usemap="#uml_class_diagram_for_pyalgotr_173" ismap="ismap" class="graph-without-title" />
+  <img src="uml_class_diagram_for_pyalgotr_174.gif" alt='' usemap="#uml_class_diagram_for_pyalgotr_174" ismap="ismap" class="graph-without-title" />
 </center>
 </center>
 <hr />
@@ -738,6 +738,340 @@
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
+          <td><span class="summary-sig"><a href="pyalgotrade.strategy.BaseStrategy-class.html#optionOrder" class="summary-sig-name">optionOrder</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">instrument</span>,
+        <span class="summary-sig-arg">quantity</span>,
+        <span class="summary-sig-arg">right</span>,
+        <span class="summary-sig-arg">strike</span>,
+        <span class="summary-sig-arg">expiry</span>,
+        <span class="summary-sig-arg">onClose</span>=<span class="summary-sig-default">False</span>,
+        <span class="summary-sig-arg">goodTillCanceled</span>=<span class="summary-sig-default">False</span>,
+        <span class="summary-sig-arg">allOrNone</span>=<span class="summary-sig-default">False</span>)</span><br />
+      Submits a market order.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.optionOrder">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyalgotrade.strategy.BaseStrategy-class.html#optionLimitOrder" class="summary-sig-name">optionLimitOrder</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">instrument</span>,
+        <span class="summary-sig-arg">limitPrice</span>,
+        <span class="summary-sig-arg">quantity</span>,
+        <span class="summary-sig-arg">right</span>,
+        <span class="summary-sig-arg">strike</span>,
+        <span class="summary-sig-arg">expiry</span>,
+        <span class="summary-sig-arg">goodTillCanceled</span>=<span class="summary-sig-default">False</span>,
+        <span class="summary-sig-arg">allOrNone</span>=<span class="summary-sig-default">False</span>)</span><br />
+      Submits a limit order.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.optionLimitOrder">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyalgotrade.strategy.BaseStrategy-class.html#optionStopOrder" class="summary-sig-name">optionStopOrder</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">instrument</span>,
+        <span class="summary-sig-arg">stopPrice</span>,
+        <span class="summary-sig-arg">quantity</span>,
+        <span class="summary-sig-arg">right</span>,
+        <span class="summary-sig-arg">strike</span>,
+        <span class="summary-sig-arg">expiry</span>,
+        <span class="summary-sig-arg">goodTillCanceled</span>=<span class="summary-sig-default">False</span>,
+        <span class="summary-sig-arg">allOrNone</span>=<span class="summary-sig-default">False</span>)</span><br />
+      Submits a stop order.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.optionStopOrder">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyalgotrade.strategy.BaseStrategy-class.html#optionStopLimitOrder" class="summary-sig-name">optionStopLimitOrder</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">instrument</span>,
+        <span class="summary-sig-arg">stopPrice</span>,
+        <span class="summary-sig-arg">limitPrice</span>,
+        <span class="summary-sig-arg">quantity</span>,
+        <span class="summary-sig-arg">right</span>,
+        <span class="summary-sig-arg">strike</span>,
+        <span class="summary-sig-arg">expiry</span>,
+        <span class="summary-sig-arg">goodTillCanceled</span>=<span class="summary-sig-default">False</span>,
+        <span class="summary-sig-arg">allOrNone</span>=<span class="summary-sig-default">False</span>)</span><br />
+      Submits a stop limit order.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.optionStopLimitOrder">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyalgotrade.strategy.BaseStrategy-class.html#enterOptionLong" class="summary-sig-name">enterOptionLong</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">instrument</span>,
+        <span class="summary-sig-arg">quantity</span>,
+        <span class="summary-sig-arg">right</span>,
+        <span class="summary-sig-arg">strike</span>,
+        <span class="summary-sig-arg">expiry</span>,
+        <span class="summary-sig-arg">goodTillCanceled</span>=<span class="summary-sig-default">False</span>,
+        <span class="summary-sig-arg">allOrNone</span>=<span class="summary-sig-default">False</span>)</span><br />
+      Generates a buy :class:`pyalgotrade.broker.MarketOrder` to enter a 
+      long position.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.enterOptionLong">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyalgotrade.strategy.BaseStrategy-class.html#enterOptionLongCall" class="summary-sig-name">enterOptionLongCall</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">instrument</span>,
+        <span class="summary-sig-arg">quantity</span>,
+        <span class="summary-sig-arg">right</span>,
+        <span class="summary-sig-arg">strike</span>,
+        <span class="summary-sig-arg">expiry</span>,
+        <span class="summary-sig-arg">goodTillCanceled</span>=<span class="summary-sig-default">False</span>,
+        <span class="summary-sig-arg">allOrNone</span>=<span class="summary-sig-default">False</span>)</span><br />
+      Generates a buy :class:`pyalgotrade.broker.MarketOrder` to enter a 
+      long position.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.enterOptionLongCall">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyalgotrade.strategy.BaseStrategy-class.html#enterOptionShort" class="summary-sig-name">enterOptionShort</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">instrument</span>,
+        <span class="summary-sig-arg">quantity</span>,
+        <span class="summary-sig-arg">right</span>,
+        <span class="summary-sig-arg">strike</span>,
+        <span class="summary-sig-arg">expiry</span>,
+        <span class="summary-sig-arg">goodTillCanceled</span>=<span class="summary-sig-default">False</span>,
+        <span class="summary-sig-arg">allOrNone</span>=<span class="summary-sig-default">False</span>)</span><br />
+      Generates a sell short :class:`pyalgotrade.broker.MarketOrder` to 
+      enter a short position.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.enterOptionShort">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyalgotrade.strategy.BaseStrategy-class.html#enterOptionLongLimit" class="summary-sig-name">enterOptionLongLimit</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">instrument</span>,
+        <span class="summary-sig-arg">limitPrice</span>,
+        <span class="summary-sig-arg">quantity</span>,
+        <span class="summary-sig-arg">right</span>,
+        <span class="summary-sig-arg">strike</span>,
+        <span class="summary-sig-arg">expiry</span>,
+        <span class="summary-sig-arg">goodTillCanceled</span>=<span class="summary-sig-default">False</span>,
+        <span class="summary-sig-arg">allOrNone</span>=<span class="summary-sig-default">False</span>)</span><br />
+      Generates a buy :class:`pyalgotrade.broker.LimitOrder` to enter a 
+      long position.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.enterOptionLongLimit">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyalgotrade.strategy.BaseStrategy-class.html#enterOptionShortLimit" class="summary-sig-name">enterOptionShortLimit</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">instrument</span>,
+        <span class="summary-sig-arg">limitPrice</span>,
+        <span class="summary-sig-arg">quantity</span>,
+        <span class="summary-sig-arg">right</span>,
+        <span class="summary-sig-arg">strike</span>,
+        <span class="summary-sig-arg">expiry</span>,
+        <span class="summary-sig-arg">goodTillCanceled</span>=<span class="summary-sig-default">False</span>,
+        <span class="summary-sig-arg">allOrNone</span>=<span class="summary-sig-default">False</span>)</span><br />
+      Generates a sell short :class:`pyalgotrade.broker.LimitOrder` to 
+      enter a short position.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.enterOptionShortLimit">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyalgotrade.strategy.BaseStrategy-class.html#enterOptionLongStop" class="summary-sig-name">enterOptionLongStop</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">instrument</span>,
+        <span class="summary-sig-arg">stopPrice</span>,
+        <span class="summary-sig-arg">quantity</span>,
+        <span class="summary-sig-arg">right</span>,
+        <span class="summary-sig-arg">strike</span>,
+        <span class="summary-sig-arg">expiry</span>,
+        <span class="summary-sig-arg">goodTillCanceled</span>=<span class="summary-sig-default">False</span>,
+        <span class="summary-sig-arg">allOrNone</span>=<span class="summary-sig-default">False</span>)</span><br />
+      Generates a buy :class:`pyalgotrade.broker.StopOrder` to enter a long
+      position.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.enterOptionLongStop">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyalgotrade.strategy.BaseStrategy-class.html#enterOptionShortStop" class="summary-sig-name">enterOptionShortStop</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">instrument</span>,
+        <span class="summary-sig-arg">stopPrice</span>,
+        <span class="summary-sig-arg">quantity</span>,
+        <span class="summary-sig-arg">right</span>,
+        <span class="summary-sig-arg">strike</span>,
+        <span class="summary-sig-arg">expiry</span>,
+        <span class="summary-sig-arg">goodTillCanceled</span>=<span class="summary-sig-default">False</span>,
+        <span class="summary-sig-arg">allOrNone</span>=<span class="summary-sig-default">False</span>)</span><br />
+      Generates a sell short :class:`pyalgotrade.broker.StopOrder` to enter
+      a short position.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.enterOptionShortStop">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyalgotrade.strategy.BaseStrategy-class.html#enterOptionLongStopLimit" class="summary-sig-name">enterOptionLongStopLimit</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">instrument</span>,
+        <span class="summary-sig-arg">stopPrice</span>,
+        <span class="summary-sig-arg">limitPrice</span>,
+        <span class="summary-sig-arg">quantity</span>,
+        <span class="summary-sig-arg">right</span>,
+        <span class="summary-sig-arg">strike</span>,
+        <span class="summary-sig-arg">expiry</span>,
+        <span class="summary-sig-arg">goodTillCanceled</span>=<span class="summary-sig-default">False</span>,
+        <span class="summary-sig-arg">allOrNone</span>=<span class="summary-sig-default">False</span>)</span><br />
+      Generates a buy :class:`pyalgotrade.broker.StopLimitOrder` order to 
+      enter a long position.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.enterOptionLongStopLimit">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyalgotrade.strategy.BaseStrategy-class.html#enterOptionShortStopLimit" class="summary-sig-name">enterOptionShortStopLimit</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">instrument</span>,
+        <span class="summary-sig-arg">stopPrice</span>,
+        <span class="summary-sig-arg">limitPrice</span>,
+        <span class="summary-sig-arg">quantity</span>,
+        <span class="summary-sig-arg">right</span>,
+        <span class="summary-sig-arg">strike</span>,
+        <span class="summary-sig-arg">expiry</span>,
+        <span class="summary-sig-arg">goodTillCanceled</span>=<span class="summary-sig-default">False</span>,
+        <span class="summary-sig-arg">allOrNone</span>=<span class="summary-sig-default">False</span>)</span><br />
+      Generates a sell short :class:`pyalgotrade.broker.StopLimitOrder` 
+      order to enter a short position.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.enterOptionShortStopLimit">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
           <td><span class="summary-sig"><a href="pyalgotrade.strategy.BaseStrategy-class.html#onEnterOk" class="summary-sig-name">onEnterOk</a>(<span class="summary-sig-arg">self</span>,
         <span class="summary-sig-arg">position</span>)</span><br />
       Override (optional) to get notified when the order submitted to enter
@@ -1182,28 +1516,28 @@
     <td width="15%" align="right" valign="top" class="summary">
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
-        <a name="_abc_cache"></a><span class="summary-name">_abc_cache</span> = <code title="&lt;_weakrefset.WeakSet object at 0x7f5b2d5215d0&gt;">&lt;_weakrefset.WeakSet object at 0x7f5b2d5215d0&gt;</code>
+        <a name="_abc_cache"></a><span class="summary-name">_abc_cache</span> = <code title="&lt;_weakrefset.WeakSet object at 0x7fe8929aaf90&gt;">&lt;_weakrefset.WeakSet object at 0x7fe8929aaf90&gt;</code>
     </td>
   </tr>
 <tr class="private">
     <td width="15%" align="right" valign="top" class="summary">
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
-        <a href="pyalgotrade.strategy.BaseStrategy-class.html#_abc_negative_cache" class="summary-name" onclick="show_private();">_abc_negative_cache</a> = <code title="&lt;_weakrefset.WeakSet object at 0x7f5b2d4a9b90&gt;">&lt;_weakrefset.WeakSet object at 0x7f5b2d4<code class="variable-ellipsis">...</code></code>
+        <a href="pyalgotrade.strategy.BaseStrategy-class.html#_abc_negative_cache" class="summary-name" onclick="show_private();">_abc_negative_cache</a> = <code title="&lt;_weakrefset.WeakSet object at 0x7fe892938590&gt;">&lt;_weakrefset.WeakSet object at 0x7fe8929<code class="variable-ellipsis">...</code></code>
     </td>
   </tr>
 <tr class="private">
     <td width="15%" align="right" valign="top" class="summary">
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
-        <a name="_abc_negative_cache_version"></a><span class="summary-name">_abc_negative_cache_version</span> = <code title="31">31</code>
+        <a name="_abc_negative_cache_version"></a><span class="summary-name">_abc_negative_cache_version</span> = <code title="30">30</code>
     </td>
   </tr>
 <tr class="private">
     <td width="15%" align="right" valign="top" class="summary">
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
-        <a name="_abc_registry"></a><span class="summary-name">_abc_registry</span> = <code title="&lt;_weakrefset.WeakSet object at 0x7f5b2d521610&gt;">&lt;_weakrefset.WeakSet object at 0x7f5b2d521610&gt;</code>
+        <a name="_abc_registry"></a><span class="summary-name">_abc_registry</span> = <code title="&lt;_weakrefset.WeakSet object at 0x7fe8929aafd0&gt;">&lt;_weakrefset.WeakSet object at 0x7fe8929aafd0&gt;</code>
     </td>
   </tr>
 </table>
@@ -1675,6 +2009,524 @@
   </dl>
 </td></tr></table>
 </div>
+<a name="optionOrder"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">optionOrder</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">instrument</span>,
+        <span class="sig-arg">quantity</span>,
+        <span class="sig-arg">right</span>,
+        <span class="sig-arg">strike</span>,
+        <span class="sig-arg">expiry</span>,
+        <span class="sig-arg">onClose</span>=<span class="sig-default">False</span>,
+        <span class="sig-arg">goodTillCanceled</span>=<span class="sig-default">False</span>,
+        <span class="sig-arg">allOrNone</span>=<span class="sig-default">False</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.optionOrder">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Submits a market order.</p>
+  <p>:param instrument: Instrument identifier. :type instrument: string. 
+  :param quantity: The amount of shares. Positive means buy, negative means
+  sell. :type quantity: int/float.</p>
+  <p>:param right: PUT or CALL. :type right: Right. :param strike: strike 
+  price. :type strike: float. :param expiry: expiry price. :type expiry: 
+  date.</p>
+  <p>:param onClose: True if the order should be filled as close to the 
+  closing price as possible (Market-On-Close order). Default is False. 
+  :type onClose: boolean. :param goodTillCanceled: True if the order is 
+  good till canceled. If False then the order gets automatically canceled 
+  when the session closes. :type goodTillCanceled: boolean. :param 
+  allOrNone: True if the order should be completely filled or not at all. 
+  :type allOrNone: boolean. :rtype: The 
+  :class:`pyalgotrade.broker.MarketOrder` submitted.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="optionLimitOrder"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">optionLimitOrder</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">instrument</span>,
+        <span class="sig-arg">limitPrice</span>,
+        <span class="sig-arg">quantity</span>,
+        <span class="sig-arg">right</span>,
+        <span class="sig-arg">strike</span>,
+        <span class="sig-arg">expiry</span>,
+        <span class="sig-arg">goodTillCanceled</span>=<span class="sig-default">False</span>,
+        <span class="sig-arg">allOrNone</span>=<span class="sig-default">False</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.optionLimitOrder">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Submits a limit order.</p>
+  <p>:param instrument: Instrument identifier. :type instrument: string. 
+  :param limitPrice: Limit price. :type limitPrice: float. :param quantity:
+  The amount of shares. Positive means buy, negative means sell. :type 
+  quantity: int/float.</p>
+  <p>:param right: PUT or CALL. :type right: Right. :param strike: strike 
+  price. :type strike: float. :param expiry: expiry price. :type expiry: 
+  date.</p>
+  <p>:param goodTillCanceled: True if the order is good till canceled. If 
+  False then the order gets automatically canceled when the session closes.
+  :type goodTillCanceled: boolean. :param allOrNone: True if the order 
+  should be completely filled or not at all. :type allOrNone: boolean. 
+  :rtype: The :class:`pyalgotrade.broker.LimitOrder` submitted.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="optionStopOrder"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">optionStopOrder</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">instrument</span>,
+        <span class="sig-arg">stopPrice</span>,
+        <span class="sig-arg">quantity</span>,
+        <span class="sig-arg">right</span>,
+        <span class="sig-arg">strike</span>,
+        <span class="sig-arg">expiry</span>,
+        <span class="sig-arg">goodTillCanceled</span>=<span class="sig-default">False</span>,
+        <span class="sig-arg">allOrNone</span>=<span class="sig-default">False</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.optionStopOrder">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Submits a stop order.</p>
+  <p>:param instrument: Instrument identifier. :type instrument: string. 
+  :param stopPrice: Stop price. :type stopPrice: float. :param quantity: 
+  The amount of shares. Positive means buy, negative means sell. :type 
+  quantity: int/float.</p>
+  <p>:param right: PUT or CALL. :type right: Right. :param strike: strike 
+  price. :type strike: float. :param expiry: expiry price. :type expiry: 
+  date.</p>
+  <p>:param goodTillCanceled: True if the order is good till canceled. If 
+  False then the order gets automatically canceled when the session closes.
+  :type goodTillCanceled: boolean. :param allOrNone: True if the order 
+  should be completely filled or not at all. :type allOrNone: boolean. 
+  :rtype: The :class:`pyalgotrade.broker.StopOrder` submitted.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="optionStopLimitOrder"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">optionStopLimitOrder</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">instrument</span>,
+        <span class="sig-arg">stopPrice</span>,
+        <span class="sig-arg">limitPrice</span>,
+        <span class="sig-arg">quantity</span>,
+        <span class="sig-arg">right</span>,
+        <span class="sig-arg">strike</span>,
+        <span class="sig-arg">expiry</span>,
+        <span class="sig-arg">goodTillCanceled</span>=<span class="sig-default">False</span>,
+        <span class="sig-arg">allOrNone</span>=<span class="sig-default">False</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.optionStopLimitOrder">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Submits a stop limit order.</p>
+  <p>:param instrument: Instrument identifier. :type instrument: string. 
+  :param stopPrice: Stop price. :type stopPrice: float. :param limitPrice: 
+  Limit price. :type limitPrice: float. :param quantity: The amount of 
+  shares. Positive means buy, negative means sell. :type quantity: 
+  int/float.</p>
+  <p>:param right: PUT or CALL. :type right: Right. :param strike: strike 
+  price. :type strike: float. :param expiry: expiry price. :type expiry: 
+  date.</p>
+  <p>:param goodTillCanceled: True if the order is good till canceled. If 
+  False then the order gets automatically canceled when the session closes.
+  :type goodTillCanceled: boolean. :param allOrNone: True if the order 
+  should be completely filled or not at all. :type allOrNone: boolean. 
+  :rtype: The :class:`pyalgotrade.broker.StopLimitOrder` submitted.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="enterOptionLong"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">enterOptionLong</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">instrument</span>,
+        <span class="sig-arg">quantity</span>,
+        <span class="sig-arg">right</span>,
+        <span class="sig-arg">strike</span>,
+        <span class="sig-arg">expiry</span>,
+        <span class="sig-arg">goodTillCanceled</span>=<span class="sig-default">False</span>,
+        <span class="sig-arg">allOrNone</span>=<span class="sig-default">False</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.enterOptionLong">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Generates a buy :class:`pyalgotrade.broker.MarketOrder` to enter a 
+  long position.</p>
+  <p>:param instrument: Instrument identifier. :type instrument: string. 
+  :param quantity: Entry order quantity. :type quantity: int.</p>
+  <p>:param right: PUT or CALL. :type right: Right. :param strike: strike 
+  price. :type strike: float. :param expiry: expiry price. :type expiry: 
+  date.</p>
+  <p>:param goodTillCanceled: True if the entry order is good till 
+  canceled. If False then the order gets automatically canceled when the 
+  session closes. :type goodTillCanceled: boolean. :param allOrNone: True 
+  if the orders should be completely filled or not at all. :type allOrNone:
+  boolean. :rtype: The :class:`pyalgotrade.strategy.position.Position` 
+  entered.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="enterOptionLongCall"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">enterOptionLongCall</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">instrument</span>,
+        <span class="sig-arg">quantity</span>,
+        <span class="sig-arg">right</span>,
+        <span class="sig-arg">strike</span>,
+        <span class="sig-arg">expiry</span>,
+        <span class="sig-arg">goodTillCanceled</span>=<span class="sig-default">False</span>,
+        <span class="sig-arg">allOrNone</span>=<span class="sig-default">False</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.enterOptionLongCall">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Generates a buy :class:`pyalgotrade.broker.MarketOrder` to enter a 
+  long position.</p>
+  <p>:param instrument: Instrument identifier. :type instrument: string. 
+  :param quantity: Entry order quantity. :type quantity: int.</p>
+  <p>:param right: PUT or CALL. :type right: Right. :param strike: strike 
+  price. :type strike: float. :param expiry: expiry price. :type expiry: 
+  date.</p>
+  <p>:param goodTillCanceled: True if the entry order is good till 
+  canceled. If False then the order gets automatically canceled when the 
+  session closes. :type goodTillCanceled: boolean. :param allOrNone: True 
+  if the orders should be completely filled or not at all. :type allOrNone:
+  boolean. :rtype: The :class:`pyalgotrade.strategy.position.Position` 
+  entered.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="enterOptionShort"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">enterOptionShort</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">instrument</span>,
+        <span class="sig-arg">quantity</span>,
+        <span class="sig-arg">right</span>,
+        <span class="sig-arg">strike</span>,
+        <span class="sig-arg">expiry</span>,
+        <span class="sig-arg">goodTillCanceled</span>=<span class="sig-default">False</span>,
+        <span class="sig-arg">allOrNone</span>=<span class="sig-default">False</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.enterOptionShort">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Generates a sell short :class:`pyalgotrade.broker.MarketOrder` to 
+  enter a short position.</p>
+  <p>:param instrument: Instrument identifier. :type instrument: string. 
+  :param quantity: Entry order quantity. :type quantity: int.</p>
+  <p>:param right: PUT or CALL. :type right: Right. :param strike: strike 
+  price. :type strike: float. :param expiry: expiry price. :type expiry: 
+  date.</p>
+  <p>:param goodTillCanceled: True if the entry order is good till 
+  canceled. If False then the order gets automatically canceled when the 
+  session closes. :type goodTillCanceled: boolean. :param allOrNone: True 
+  if the orders should be completely filled or not at all. :type allOrNone:
+  boolean. :rtype: The :class:`pyalgotrade.strategy.position.Position` 
+  entered.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="enterOptionLongLimit"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">enterOptionLongLimit</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">instrument</span>,
+        <span class="sig-arg">limitPrice</span>,
+        <span class="sig-arg">quantity</span>,
+        <span class="sig-arg">right</span>,
+        <span class="sig-arg">strike</span>,
+        <span class="sig-arg">expiry</span>,
+        <span class="sig-arg">goodTillCanceled</span>=<span class="sig-default">False</span>,
+        <span class="sig-arg">allOrNone</span>=<span class="sig-default">False</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.enterOptionLongLimit">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Generates a buy :class:`pyalgotrade.broker.LimitOrder` to enter a long
+  position.</p>
+  <p>:param instrument: Instrument identifier. :type instrument: string. 
+  :param limitPrice: Limit price. :type limitPrice: float. :param quantity:
+  Entry order quantity. :type quantity: int.</p>
+  <p>:param right: PUT or CALL. :type right: Right. :param strike: strike 
+  price. :type strike: float. :param expiry: expiry price. :type expiry: 
+  date.</p>
+  <p>:param goodTillCanceled: True if the entry order is good till 
+  canceled. If False then the order gets automatically canceled when the 
+  session closes. :type goodTillCanceled: boolean. :param allOrNone: True 
+  if the orders should be completely filled or not at all. :type allOrNone:
+  boolean. :rtype: The :class:`pyalgotrade.strategy.position.Position` 
+  entered.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="enterOptionShortLimit"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">enterOptionShortLimit</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">instrument</span>,
+        <span class="sig-arg">limitPrice</span>,
+        <span class="sig-arg">quantity</span>,
+        <span class="sig-arg">right</span>,
+        <span class="sig-arg">strike</span>,
+        <span class="sig-arg">expiry</span>,
+        <span class="sig-arg">goodTillCanceled</span>=<span class="sig-default">False</span>,
+        <span class="sig-arg">allOrNone</span>=<span class="sig-default">False</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.enterOptionShortLimit">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Generates a sell short :class:`pyalgotrade.broker.LimitOrder` to enter
+  a short position.</p>
+  <p>:param instrument: Instrument identifier. :type instrument: string. 
+  :param limitPrice: Limit price. :type limitPrice: float. :param quantity:
+  Entry order quantity. :type quantity: int.</p>
+  <p>:param right: PUT or CALL. :type right: Right. :param strike: strike 
+  price. :type strike: float. :param expiry: expiry price. :type expiry: 
+  date.</p>
+  <p>:param goodTillCanceled: True if the entry order is good till 
+  canceled. If False then the order gets automatically canceled when the 
+  session closes. :type goodTillCanceled: boolean. :param allOrNone: True 
+  if the orders should be completely filled or not at all. :type allOrNone:
+  boolean. :rtype: The :class:`pyalgotrade.strategy.position.Position` 
+  entered.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="enterOptionLongStop"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">enterOptionLongStop</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">instrument</span>,
+        <span class="sig-arg">stopPrice</span>,
+        <span class="sig-arg">quantity</span>,
+        <span class="sig-arg">right</span>,
+        <span class="sig-arg">strike</span>,
+        <span class="sig-arg">expiry</span>,
+        <span class="sig-arg">goodTillCanceled</span>=<span class="sig-default">False</span>,
+        <span class="sig-arg">allOrNone</span>=<span class="sig-default">False</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.enterOptionLongStop">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Generates a buy :class:`pyalgotrade.broker.StopOrder` to enter a long 
+  position.</p>
+  <p>:param instrument: Instrument identifier. :type instrument: string. 
+  :param stopPrice: Stop price. :type stopPrice: float. :param quantity: 
+  Entry order quantity. :type quantity: int.</p>
+  <p>:param right: PUT or CALL. :type right: Right. :param strike: strike 
+  price. :type strike: float. :param expiry: expiry price. :type expiry: 
+  date.</p>
+  <p>:param goodTillCanceled: True if the entry order is good till 
+  canceled. If False then the order gets automatically canceled when the 
+  session closes. :type goodTillCanceled: boolean. :param allOrNone: True 
+  if the orders should be completely filled or not at all. :type allOrNone:
+  boolean. :rtype: The :class:`pyalgotrade.strategy.position.Position` 
+  entered.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="enterOptionShortStop"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">enterOptionShortStop</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">instrument</span>,
+        <span class="sig-arg">stopPrice</span>,
+        <span class="sig-arg">quantity</span>,
+        <span class="sig-arg">right</span>,
+        <span class="sig-arg">strike</span>,
+        <span class="sig-arg">expiry</span>,
+        <span class="sig-arg">goodTillCanceled</span>=<span class="sig-default">False</span>,
+        <span class="sig-arg">allOrNone</span>=<span class="sig-default">False</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.enterOptionShortStop">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Generates a sell short :class:`pyalgotrade.broker.StopOrder` to enter 
+  a short position.</p>
+  <p>:param instrument: Instrument identifier. :type instrument: string. 
+  :param stopPrice: Stop price. :type stopPrice: float. :param quantity: 
+  Entry order quantity. :type quantity: int.</p>
+  <p>:param right: PUT or CALL. :type right: Right. :param strike: strike 
+  price. :type strike: float. :param expiry: expiry price. :type expiry: 
+  date.</p>
+  <p>:param goodTillCanceled: True if the entry order is good till 
+  canceled. If False then the order gets automatically canceled when the 
+  session closes. :type goodTillCanceled: boolean. :param allOrNone: True 
+  if the orders should be completely filled or not at all. :type allOrNone:
+  boolean. :rtype: The :class:`pyalgotrade.strategy.position.Position` 
+  entered.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="enterOptionLongStopLimit"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">enterOptionLongStopLimit</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">instrument</span>,
+        <span class="sig-arg">stopPrice</span>,
+        <span class="sig-arg">limitPrice</span>,
+        <span class="sig-arg">quantity</span>,
+        <span class="sig-arg">right</span>,
+        <span class="sig-arg">strike</span>,
+        <span class="sig-arg">expiry</span>,
+        <span class="sig-arg">goodTillCanceled</span>=<span class="sig-default">False</span>,
+        <span class="sig-arg">allOrNone</span>=<span class="sig-default">False</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.enterOptionLongStopLimit">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Generates a buy :class:`pyalgotrade.broker.StopLimitOrder` order to 
+  enter a long position.</p>
+  <p>:param instrument: Instrument identifier. :type instrument: string. 
+  :param stopPrice: Stop price. :type stopPrice: float. :param limitPrice: 
+  Limit price. :type limitPrice: float. :param quantity: Entry order 
+  quantity. :type quantity: int.</p>
+  <p>:param right: PUT or CALL. :type right: Right. :param strike: strike 
+  price. :type strike: float. :param expiry: expiry price. :type expiry: 
+  date.</p>
+  <p>:param goodTillCanceled: True if the entry order is good till 
+  canceled. If False then the order gets automatically canceled when the 
+  session closes. :type goodTillCanceled: boolean. :param allOrNone: True 
+  if the orders should be completely filled or not at all. :type allOrNone:
+  boolean. :rtype: The :class:`pyalgotrade.strategy.position.Position` 
+  entered.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="enterOptionShortStopLimit"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">enterOptionShortStopLimit</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">instrument</span>,
+        <span class="sig-arg">stopPrice</span>,
+        <span class="sig-arg">limitPrice</span>,
+        <span class="sig-arg">quantity</span>,
+        <span class="sig-arg">right</span>,
+        <span class="sig-arg">strike</span>,
+        <span class="sig-arg">expiry</span>,
+        <span class="sig-arg">goodTillCanceled</span>=<span class="sig-default">False</span>,
+        <span class="sig-arg">allOrNone</span>=<span class="sig-default">False</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyalgotrade.strategy-pysrc.html#BaseStrategy.enterOptionShortStopLimit">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Generates a sell short :class:`pyalgotrade.broker.StopLimitOrder` 
+  order to enter a short position.</p>
+  <p>:param instrument: Instrument identifier. :type instrument: string. 
+  :param stopPrice: The Stop price. :type stopPrice: float. :param 
+  limitPrice: Limit price. :type limitPrice: float. :param quantity: Entry 
+  order quantity. :type quantity: int.</p>
+  <p>:param right: PUT or CALL. :type right: Right. :param strike: strike 
+  price. :type strike: float. :param expiry: expiry price. :type expiry: 
+  date.</p>
+  <p>:param goodTillCanceled: True if the entry order is good till 
+  canceled. If False then the order gets automatically canceled when the 
+  session closes. :type goodTillCanceled: boolean. :param allOrNone: True 
+  if the orders should be completely filled or not at all. :type allOrNone:
+  boolean. :rtype: The :class:`pyalgotrade.strategy.position.Position` 
+  entered.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
 <a name="onEnterOk"></a>
 <div>
 <table class="details" border="1" cellpadding="3"
@@ -1945,7 +2797,7 @@
   <dl class="fields">
     <dt>Value:</dt>
       <dd><table><tr><td><pre class="variable">
-&lt;_weakrefset.WeakSet object at 0x7f5b2d4a9b90&gt;
+&lt;_weakrefset.WeakSet object at 0x7fe892938590&gt;
 </pre></td></tr></table>
 </dd>
   </dl>
@@ -1978,7 +2830,7 @@
 <table border="0" cellpadding="0" cellspacing="0" width="100%%">
   <tr>
     <td align="left" class="footer">
-    Generated by Epydoc 3.0.1 on Sat Oct 15 14:17:52 2016
+    Generated by Epydoc 3.0.1 on Sun Oct 23 19:02:05 2016
     </td>
     <td align="right" class="footer">
       <a target="mainFrame" href="http://epydoc.sourceforge.net"

@@ -58,50 +58,50 @@
 <!-- ==================== CLASS DESCRIPTION ==================== -->
 <h1 class="epydoc">Class BaseFeed</h1><p class="nomargin-top"><span class="codelink"><a href="pyalgotrade.feed-pysrc.html#BaseFeed">source&nbsp;code</a></span></p>
 <center>
-<center>  <map id="uml_class_diagram_for_pyalgotr_110" name="uml_class_diagram_for_pyalgotr_110">
-<area shape="rect" id="node1_22" href="pyalgotrade.feed.BaseFeed-class.html#__abstractmethods__" title="pyalgotrade.feed.BaseFeed.__abstractmethods__" alt="" coords="304,261,523,281"/>
-<area shape="rect" id="node1_23" href="pyalgotrade.feed.BaseFeed-class.html#__init__" title="x.__init__(...) initializes x; see help(type(x)) for signature" alt="" coords="304,284,523,304"/>
-<area shape="rect" id="node1_24" href="pyalgotrade.feed.BaseFeed-class.html#reset" title="pyalgotrade.feed.BaseFeed.reset" alt="" coords="304,304,523,324"/>
-<area shape="rect" id="node1_25" href="pyalgotrade.feed.BaseFeed-class.html#createDataSeries" title="pyalgotrade.feed.BaseFeed.createDataSeries" alt="" coords="304,324,523,344"/>
-<area shape="rect" id="node1_26" href="pyalgotrade.feed.BaseFeed-class.html#getNextValues" title="pyalgotrade.feed.BaseFeed.getNextValues" alt="" coords="304,344,523,364"/>
-<area shape="rect" id="node1_27" href="pyalgotrade.feed.BaseFeed-class.html#registerDataSeries" title="pyalgotrade.feed.BaseFeed.registerDataSeries" alt="" coords="304,364,523,384"/>
-<area shape="rect" id="node1_28" href="pyalgotrade.feed.BaseFeed-class.html#getNextValuesAndUpdateDS" title="pyalgotrade.feed.BaseFeed.getNextValuesAndUpdateDS" alt="" coords="304,384,523,404"/>
-<area shape="rect" id="node1_29" href="pyalgotrade.feed.BaseFeed-class.html#__iter__" title="pyalgotrade.feed.BaseFeed.__iter__" alt="" coords="304,404,523,424"/>
-<area shape="rect" id="node1_30" href="pyalgotrade.feed.BaseFeed-class.html#getNewValuesEvent" title="Returns the event that will be emitted when new values are available." alt="" coords="304,424,523,444"/>
-<area shape="rect" id="node1_31" href="pyalgotrade.feed.BaseFeed-class.html#dispatch" title="pyalgotrade.feed.BaseFeed.dispatch" alt="" coords="304,444,523,464"/>
-<area shape="rect" id="node1_32" href="pyalgotrade.feed.BaseFeed-class.html#getKeys" title="pyalgotrade.feed.BaseFeed.getKeys" alt="" coords="304,464,523,484"/>
-<area shape="rect" id="node1_33" href="pyalgotrade.feed.BaseFeed-class.html#__getitem__" title="Returns the :class:`pyalgotrade.dataseries.DataSeries` for a given key." alt="" coords="304,484,523,504"/>
-<area shape="rect" id="node1_34" href="pyalgotrade.feed.BaseFeed-class.html#__contains__" title="Returns True if a :class:`pyalgotrade.dataseries.DataSeries` for the given &#160;key is available." alt="" coords="304,504,523,524"/>
-<area shape="rect" id="node1" href="pyalgotrade.feed.BaseFeed-class.html" title="Base class for feeds." alt="" coords="292,237,535,531"/>
-<area shape="rect" id="node4" href="pyalgotrade.feed.memfeed.MemFeed-class.html" title="pyalgotrade.feed.memfeed.MemFeed" alt="" coords="113,549,265,588"/>
-<area shape="rect" id="node19" href="pyalgotrade.barfeed.BaseBarFeed-class.html" title="Base class for :class:`pyalgotrade.bar.Bar` providing feeds." alt="" coords="446,549,607,588"/>
-<area shape="rect" id="node2" href="pyalgotrade.feed.csvfeed.BaseFeed-class.html" title="pyalgotrade.feed.csvfeed.BaseFeed" alt="" coords="5,607,149,645"/>
-<area shape="rect" id="node3" href="pyalgotrade.feed.csvfeed.Feed-class.html" title="A feed that loads values from CSV formatted files." alt="" coords="20,664,135,703"/>
-<area shape="rect" id="node5_35" href="abc.ABCMeta-class.html" title="Metaclass for defining Abstract Base Classes (ABCs)." alt="" coords="292,29,535,49"/>
-<area shape="rect" id="node5_36" href="pyalgotrade.observer.Subject-class.html#start" title="pyalgotrade.observer.Subject.start" alt="" coords="292,52,535,72"/>
-<area shape="rect" id="node5_37" href="pyalgotrade.observer.Subject-class.html#stop" title="pyalgotrade.observer.Subject.stop" alt="" coords="292,72,535,92"/>
-<area shape="rect" id="node5_38" href="pyalgotrade.observer.Subject-class.html#join" title="pyalgotrade.observer.Subject.join" alt="" coords="292,92,535,112"/>
-<area shape="rect" id="node5_39" href="pyalgotrade.observer.Subject-class.html#eof" title="pyalgotrade.observer.Subject.eof" alt="" coords="292,112,535,132"/>
-<area shape="rect" id="node5_40" href="pyalgotrade.observer.Subject-class.html#peekDateTime" title="pyalgotrade.observer.Subject.peekDateTime" alt="" coords="292,132,535,152"/>
-<area shape="rect" id="node5_41" href="pyalgotrade.observer.Subject-class.html#getDispatchPriority" title="pyalgotrade.observer.Subject.getDispatchPriority" alt="" coords="292,152,535,172"/>
-<area shape="rect" id="node5_42" href="pyalgotrade.observer.Subject-class.html#setDispatchPriority" title="pyalgotrade.observer.Subject.setDispatchPriority" alt="" coords="292,172,535,192"/>
-<area shape="rect" id="node5_43" href="pyalgotrade.observer.Subject-class.html#onDispatcherRegistered" title="pyalgotrade.observer.Subject.onDispatcherRegistered" alt="" coords="292,192,535,212"/>
-<area shape="rect" id="node5" href="pyalgotrade.observer.Subject-class.html" title="pyalgotrade.observer.Subject" alt="" coords="280,5,547,219"/>
-<area shape="rect" id="node6" href="pyalgotrade.barfeed.sqlitefeed.Feed-class.html" title="pyalgotrade.barfeed.sqlitefeed.Feed" alt="" coords="549,664,721,703"/>
-<area shape="rect" id="node7" href="pyalgotrade.barfeed.ninjatraderfeed.Feed-class.html" title="A :class:`pyalgotrade.barfeed.csvfeed.BarFeed` that loads bars from CSV files exported from NinjaTrader." alt="" coords="140,721,340,760"/>
-<area shape="rect" id="node8" href="pyalgotrade.barfeed.csvfeed.BarFeed-class.html" title="Base class for CSV file based :class:`pyalgotrade.barfeed.BarFeed`." alt="" coords="751,664,932,703"/>
-<area shape="rect" id="node11" href="pyalgotrade.bitcoincharts.barfeed.CSVTradeFeed-class.html" title="A BarFeed that builds bars from a Historic Trade Data CSV file as described in http://www.bitcoincharts.com/about/markets&#45;api/." alt="" coords="369,721,620,760"/>
-<area shape="rect" id="node13" href="pyalgotrade.barfeed.googlefeed.Feed-class.html" title="A :class:`pyalgotrade.barfeed.csvfeed.BarFeed` that loads bars from CSV files downloaded from Google Finance." alt="" coords="649,721,828,760"/>
-<area shape="rect" id="node16" href="pyalgotrade.barfeed.yahoofeed.Feed-class.html" title="A :class:`pyalgotrade.barfeed.csvfeed.BarFeed` that loads bars from CSV files downloaded from Yahoo! Finance." alt="" coords="857,721,1033,760"/>
-<area shape="rect" id="node17" href="pyalgotrade.barfeed.ibfeed.Feed-class.html" title="A :class:`pyalgotrade.barfeed.csvfeed.BarFeed` that loads bars from CSV files exported from NinjaTrader." alt="" coords="1063,721,1214,760"/>
-<area shape="rect" id="node18" href="pyalgotrade.barfeed.csvfeed.GenericBarFeed-class.html" title="A BarFeed that loads bars from CSV files that have the following format: ::" alt="" coords="1244,721,1471,760"/>
-<area shape="rect" id="node9" href="pyalgotrade.bitstamp.livefeed.LiveTradeFeed-class.html" title="A real&#45;time BarFeed that builds bars from live trades." alt="" coords="179,607,403,645"/>
-<area shape="rect" id="node10" href="pyalgotrade.barfeed.OptimizerBarFeed-class.html" title="pyalgotrade.barfeed.OptimizerBarFeed" alt="" coords="433,607,621,645"/>
-<area shape="rect" id="node12" href="pyalgotrade.barfeed.quandlfeed.Feed-class.html" title="A :class:`pyalgotrade.barfeed.csvfeed.BarFeed` that loads bars from CSV files downloaded from Quandl." alt="" coords="1268,779,1447,817"/>
-<area shape="rect" id="node14" href="pyalgotrade.barfeed.membf.BarFeed-class.html" title="pyalgotrade.barfeed.membf.BarFeed" alt="" coords="651,607,827,645"/>
-<area shape="rect" id="node15" href="pyalgotrade.barfeed.resampled.ResampledBarFeed-class.html" title="pyalgotrade.barfeed.resampled.ResampledBarFeed" alt="" coords="856,607,1117,645"/>
+<center>  <map id="uml_class_diagram_for_pyalgotr_111" name="uml_class_diagram_for_pyalgotr_111">
+<area shape="rect" id="node1_22" href="pyalgotrade.feed.BaseFeed-class.html#__abstractmethods__" title="pyalgotrade.feed.BaseFeed.__abstractmethods__" alt="" coords="313,261,532,281"/>
+<area shape="rect" id="node1_23" href="pyalgotrade.feed.BaseFeed-class.html#__contains__" title="Returns True if a :class:`pyalgotrade.dataseries.DataSeries` for the given &#160;key is available." alt="" coords="313,284,532,304"/>
+<area shape="rect" id="node1_24" href="pyalgotrade.feed.BaseFeed-class.html#__getitem__" title="Returns the :class:`pyalgotrade.dataseries.DataSeries` for a given key." alt="" coords="313,304,532,324"/>
+<area shape="rect" id="node1_25" href="pyalgotrade.feed.BaseFeed-class.html#__init__" title="x.__init__(...) initializes x; see help(type(x)) for signature" alt="" coords="313,324,532,344"/>
+<area shape="rect" id="node1_26" href="pyalgotrade.feed.BaseFeed-class.html#__iter__" title="pyalgotrade.feed.BaseFeed.__iter__" alt="" coords="313,344,532,364"/>
+<area shape="rect" id="node1_27" href="pyalgotrade.feed.BaseFeed-class.html#createDataSeries" title="pyalgotrade.feed.BaseFeed.createDataSeries" alt="" coords="313,364,532,384"/>
+<area shape="rect" id="node1_28" href="pyalgotrade.feed.BaseFeed-class.html#dispatch" title="pyalgotrade.feed.BaseFeed.dispatch" alt="" coords="313,384,532,404"/>
+<area shape="rect" id="node1_29" href="pyalgotrade.feed.BaseFeed-class.html#getKeys" title="pyalgotrade.feed.BaseFeed.getKeys" alt="" coords="313,404,532,424"/>
+<area shape="rect" id="node1_30" href="pyalgotrade.feed.BaseFeed-class.html#getNewValuesEvent" title="Returns the event that will be emitted when new values are available." alt="" coords="313,424,532,444"/>
+<area shape="rect" id="node1_31" href="pyalgotrade.feed.BaseFeed-class.html#getNextValues" title="pyalgotrade.feed.BaseFeed.getNextValues" alt="" coords="313,444,532,464"/>
+<area shape="rect" id="node1_32" href="pyalgotrade.feed.BaseFeed-class.html#getNextValuesAndUpdateDS" title="pyalgotrade.feed.BaseFeed.getNextValuesAndUpdateDS" alt="" coords="313,464,532,484"/>
+<area shape="rect" id="node1_33" href="pyalgotrade.feed.BaseFeed-class.html#registerDataSeries" title="pyalgotrade.feed.BaseFeed.registerDataSeries" alt="" coords="313,484,532,504"/>
+<area shape="rect" id="node1_34" href="pyalgotrade.feed.BaseFeed-class.html#reset" title="pyalgotrade.feed.BaseFeed.reset" alt="" coords="313,504,532,524"/>
+<area shape="rect" id="node1" href="pyalgotrade.feed.BaseFeed-class.html" title="Base class for feeds." alt="" coords="301,237,544,531"/>
+<area shape="rect" id="node5" href="pyalgotrade.feed.memfeed.MemFeed-class.html" title="pyalgotrade.feed.memfeed.MemFeed" alt="" coords="123,549,275,588"/>
+<area shape="rect" id="node14" href="pyalgotrade.barfeed.BaseBarFeed-class.html" title="Base class for :class:`pyalgotrade.bar.Bar` providing feeds." alt="" coords="455,549,617,588"/>
+<area shape="rect" id="node2_35" href="abc.ABCMeta-class.html" title="Metaclass for defining Abstract Base Classes (ABCs)." alt="" coords="301,29,544,49"/>
+<area shape="rect" id="node2_36" href="pyalgotrade.observer.Subject-class.html#eof" title="pyalgotrade.observer.Subject.eof" alt="" coords="301,52,544,72"/>
+<area shape="rect" id="node2_37" href="pyalgotrade.observer.Subject-class.html#getDispatchPriority" title="pyalgotrade.observer.Subject.getDispatchPriority" alt="" coords="301,72,544,92"/>
+<area shape="rect" id="node2_38" href="pyalgotrade.observer.Subject-class.html#join" title="pyalgotrade.observer.Subject.join" alt="" coords="301,92,544,112"/>
+<area shape="rect" id="node2_39" href="pyalgotrade.observer.Subject-class.html#onDispatcherRegistered" title="pyalgotrade.observer.Subject.onDispatcherRegistered" alt="" coords="301,112,544,132"/>
+<area shape="rect" id="node2_40" href="pyalgotrade.observer.Subject-class.html#peekDateTime" title="pyalgotrade.observer.Subject.peekDateTime" alt="" coords="301,132,544,152"/>
+<area shape="rect" id="node2_41" href="pyalgotrade.observer.Subject-class.html#setDispatchPriority" title="pyalgotrade.observer.Subject.setDispatchPriority" alt="" coords="301,152,544,172"/>
+<area shape="rect" id="node2_42" href="pyalgotrade.observer.Subject-class.html#start" title="pyalgotrade.observer.Subject.start" alt="" coords="301,172,544,192"/>
+<area shape="rect" id="node2_43" href="pyalgotrade.observer.Subject-class.html#stop" title="pyalgotrade.observer.Subject.stop" alt="" coords="301,192,544,212"/>
+<area shape="rect" id="node2" href="pyalgotrade.observer.Subject-class.html" title="pyalgotrade.observer.Subject" alt="" coords="289,5,556,219"/>
+<area shape="rect" id="node3" href="pyalgotrade.feed.csvfeed.BaseFeed-class.html" title="pyalgotrade.feed.csvfeed.BaseFeed" alt="" coords="15,607,159,645"/>
+<area shape="rect" id="node7" href="pyalgotrade.feed.csvfeed.Feed-class.html" title="A feed that loads values from CSV formatted files." alt="" coords="29,664,144,703"/>
+<area shape="rect" id="node4" href="pyalgotrade.barfeed.yahoofeed.Feed-class.html" title="A :class:`pyalgotrade.barfeed.csvfeed.BarFeed` that loads bars from CSV files downloaded from Yahoo! Finance." alt="" coords="5,721,181,760"/>
+<area shape="rect" id="node6" href="pyalgotrade.barfeed.quandlfeed.Feed-class.html" title="A :class:`pyalgotrade.barfeed.csvfeed.BarFeed` that loads bars from CSV files downloaded from Quandl." alt="" coords="925,779,1104,817"/>
+<area shape="rect" id="node8" href="pyalgotrade.barfeed.ibfeed.Feed-class.html" title="A :class:`pyalgotrade.barfeed.csvfeed.BarFeed` that loads bars from CSV files exported from NinjaTrader." alt="" coords="211,721,362,760"/>
+<area shape="rect" id="node9" href="pyalgotrade.bitcoincharts.barfeed.CSVTradeFeed-class.html" title="A BarFeed that builds bars from a Historic Trade Data CSV file as described in http://www.bitcoincharts.com/about/markets&#45;api/." alt="" coords="392,721,643,760"/>
+<area shape="rect" id="node10" href="pyalgotrade.bitstamp.livefeed.LiveTradeFeed-class.html" title="A real&#45;time BarFeed that builds bars from live trades." alt="" coords="188,607,412,645"/>
+<area shape="rect" id="node11" href="pyalgotrade.barfeed.OptimizerBarFeed-class.html" title="pyalgotrade.barfeed.OptimizerBarFeed" alt="" coords="442,607,630,645"/>
+<area shape="rect" id="node12" href="pyalgotrade.barfeed.csvfeed.BarFeed-class.html" title="Base class for CSV file based :class:`pyalgotrade.barfeed.BarFeed`." alt="" coords="553,664,735,703"/>
+<area shape="rect" id="node15" href="pyalgotrade.barfeed.ninjatraderfeed.Feed-class.html" title="A :class:`pyalgotrade.barfeed.csvfeed.BarFeed` that loads bars from CSV files exported from NinjaTrader." alt="" coords="672,721,872,760"/>
+<area shape="rect" id="node16" href="pyalgotrade.barfeed.csvfeed.GenericBarFeed-class.html" title="A BarFeed that loads bars from CSV files that have the following format: ::" alt="" coords="901,721,1128,760"/>
+<area shape="rect" id="node19" href="pyalgotrade.barfeed.googlefeed.Feed-class.html" title="A :class:`pyalgotrade.barfeed.csvfeed.BarFeed` that loads bars from CSV files downloaded from Google Finance." alt="" coords="1157,721,1336,760"/>
+<area shape="rect" id="node13" href="pyalgotrade.barfeed.membf.BarFeed-class.html" title="pyalgotrade.barfeed.membf.BarFeed" alt="" coords="660,607,836,645"/>
+<area shape="rect" id="node17" href="pyalgotrade.barfeed.sqlitefeed.Feed-class.html" title="pyalgotrade.barfeed.sqlitefeed.Feed" alt="" coords="765,664,937,703"/>
+<area shape="rect" id="node18" href="pyalgotrade.barfeed.resampled.ResampledBarFeed-class.html" title="pyalgotrade.barfeed.resampled.ResampledBarFeed" alt="" coords="865,607,1127,645"/>
 </map>
-  <img src="uml_class_diagram_for_pyalgotr_110.gif" alt='' usemap="#uml_class_diagram_for_pyalgotr_110" ismap="ismap" class="graph-without-title" />
+  <img src="uml_class_diagram_for_pyalgotr_111.gif" alt='' usemap="#uml_class_diagram_for_pyalgotr_111" ismap="ismap" class="graph-without-title" />
 </center>
 </center>
 <hr />
@@ -166,94 +166,49 @@ Base class for feeds.
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
+          <td><span class="summary-sig"><a name="__contains__"></a><span class="summary-sig-name">__contains__</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">key</span>)</span><br />
+      Returns True if a :class:`pyalgotrade.dataseries.DataSeries` for the 
+      given key is available.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.feed-pysrc.html#BaseFeed.__contains__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="__getitem__"></a><span class="summary-sig-name">__getitem__</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">key</span>)</span><br />
+      Returns the :class:`pyalgotrade.dataseries.DataSeries` for a given 
+      key.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.feed-pysrc.html#BaseFeed.__getitem__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
           <td><span class="summary-sig"><a href="pyalgotrade.feed.BaseFeed-class.html#__init__" class="summary-sig-name">__init__</a>(<span class="summary-sig-arg">self</span>,
         <span class="summary-sig-arg">maxLen</span>)</span><br />
       x.__init__(...) initializes x; see help(type(x)) for signature</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="pyalgotrade.feed-pysrc.html#BaseFeed.__init__">source&nbsp;code</a></span>
-            
-          </td>
-        </tr>
-      </table>
-      
-    </td>
-  </tr>
-<tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-      <table width="100%" cellpadding="0" cellspacing="0" border="0">
-        <tr>
-          <td><span class="summary-sig"><a name="reset"></a><span class="summary-sig-name">reset</span>(<span class="summary-sig-arg">self</span>)</span></td>
-          <td align="right" valign="top">
-            <span class="codelink"><a href="pyalgotrade.feed-pysrc.html#BaseFeed.reset">source&nbsp;code</a></span>
-            
-          </td>
-        </tr>
-      </table>
-      
-    </td>
-  </tr>
-<tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-      <table width="100%" cellpadding="0" cellspacing="0" border="0">
-        <tr>
-          <td><span class="summary-sig"><a href="pyalgotrade.feed.BaseFeed-class.html#createDataSeries" class="summary-sig-name">createDataSeries</a>(<span class="summary-sig-arg">self</span>,
-        <span class="summary-sig-arg">key</span>,
-        <span class="summary-sig-arg">maxLen</span>)</span></td>
-          <td align="right" valign="top">
-            <span class="codelink"><a href="pyalgotrade.feed-pysrc.html#BaseFeed.createDataSeries">source&nbsp;code</a></span>
-            
-          </td>
-        </tr>
-      </table>
-      
-    </td>
-  </tr>
-<tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-      <table width="100%" cellpadding="0" cellspacing="0" border="0">
-        <tr>
-          <td><span class="summary-sig"><a href="pyalgotrade.feed.BaseFeed-class.html#getNextValues" class="summary-sig-name">getNextValues</a>(<span class="summary-sig-arg">self</span>)</span></td>
-          <td align="right" valign="top">
-            <span class="codelink"><a href="pyalgotrade.feed-pysrc.html#BaseFeed.getNextValues">source&nbsp;code</a></span>
-            
-          </td>
-        </tr>
-      </table>
-      
-    </td>
-  </tr>
-<tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-      <table width="100%" cellpadding="0" cellspacing="0" border="0">
-        <tr>
-          <td><span class="summary-sig"><a name="registerDataSeries"></a><span class="summary-sig-name">registerDataSeries</span>(<span class="summary-sig-arg">self</span>,
-        <span class="summary-sig-arg">key</span>)</span></td>
-          <td align="right" valign="top">
-            <span class="codelink"><a href="pyalgotrade.feed-pysrc.html#BaseFeed.registerDataSeries">source&nbsp;code</a></span>
-            
-          </td>
-        </tr>
-      </table>
-      
-    </td>
-  </tr>
-<tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-      <table width="100%" cellpadding="0" cellspacing="0" border="0">
-        <tr>
-          <td><span class="summary-sig"><a name="getNextValuesAndUpdateDS"></a><span class="summary-sig-name">getNextValuesAndUpdateDS</span>(<span class="summary-sig-arg">self</span>)</span></td>
-          <td align="right" valign="top">
-            <span class="codelink"><a href="pyalgotrade.feed-pysrc.html#BaseFeed.getNextValuesAndUpdateDS">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -283,10 +238,11 @@ Base class for feeds.
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a href="pyalgotrade.feed.BaseFeed-class.html#getNewValuesEvent" class="summary-sig-name">getNewValuesEvent</a>(<span class="summary-sig-arg">self</span>)</span><br />
-      Returns the event that will be emitted when new values are available.</td>
+          <td><span class="summary-sig"><a href="pyalgotrade.feed.BaseFeed-class.html#createDataSeries" class="summary-sig-name">createDataSeries</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">key</span>,
+        <span class="summary-sig-arg">maxLen</span>)</span></td>
           <td align="right" valign="top">
-            <span class="codelink"><a href="pyalgotrade.feed-pysrc.html#BaseFeed.getNewValuesEvent">source&nbsp;code</a></span>
+            <span class="codelink"><a href="pyalgotrade.feed-pysrc.html#BaseFeed.createDataSeries">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -332,12 +288,10 @@ Base class for feeds.
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="__getitem__"></a><span class="summary-sig-name">__getitem__</span>(<span class="summary-sig-arg">self</span>,
-        <span class="summary-sig-arg">key</span>)</span><br />
-      Returns the :class:`pyalgotrade.dataseries.DataSeries` for a given 
-      key.</td>
+          <td><span class="summary-sig"><a href="pyalgotrade.feed.BaseFeed-class.html#getNewValuesEvent" class="summary-sig-name">getNewValuesEvent</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Returns the event that will be emitted when new values are available.</td>
           <td align="right" valign="top">
-            <span class="codelink"><a href="pyalgotrade.feed-pysrc.html#BaseFeed.__getitem__">source&nbsp;code</a></span>
+            <span class="codelink"><a href="pyalgotrade.feed-pysrc.html#BaseFeed.getNewValuesEvent">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -351,12 +305,58 @@ Base class for feeds.
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="__contains__"></a><span class="summary-sig-name">__contains__</span>(<span class="summary-sig-arg">self</span>,
-        <span class="summary-sig-arg">key</span>)</span><br />
-      Returns True if a :class:`pyalgotrade.dataseries.DataSeries` for the 
-      given key is available.</td>
+          <td><span class="summary-sig"><a href="pyalgotrade.feed.BaseFeed-class.html#getNextValues" class="summary-sig-name">getNextValues</a>(<span class="summary-sig-arg">self</span>)</span></td>
           <td align="right" valign="top">
-            <span class="codelink"><a href="pyalgotrade.feed-pysrc.html#BaseFeed.__contains__">source&nbsp;code</a></span>
+            <span class="codelink"><a href="pyalgotrade.feed-pysrc.html#BaseFeed.getNextValues">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="getNextValuesAndUpdateDS"></a><span class="summary-sig-name">getNextValuesAndUpdateDS</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.feed-pysrc.html#BaseFeed.getNextValuesAndUpdateDS">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="registerDataSeries"></a><span class="summary-sig-name">registerDataSeries</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">key</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.feed-pysrc.html#BaseFeed.registerDataSeries">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="reset"></a><span class="summary-sig-name">reset</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyalgotrade.feed-pysrc.html#BaseFeed.reset">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -427,7 +427,7 @@ Base class for feeds.
     <td width="15%" align="right" valign="top" class="summary">
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
-        <a name="_abc_negative_cache_version"></a><span class="summary-name">_abc_negative_cache_version</span> = <code title="31">31</code>
+        <a name="_abc_negative_cache_version"></a><span class="summary-name">_abc_negative_cache_version</span> = <code title="30">30</code>
     </td>
   </tr>
   <tr>
@@ -533,26 +533,25 @@ Base class for feeds.
   </dl>
 </td></tr></table>
 </div>
-<a name="getNextValues"></a>
+<a name="dispatch"></a>
 <div>
 <table class="details" border="1" cellpadding="3"
        cellspacing="0" width="100%" bgcolor="white">
 <tr><td>
   <table width="100%" cellpadding="0" cellspacing="0" border="0">
   <tr valign="top"><td>
-  <h3 class="epydoc"><span class="sig"><span class="sig-name">getNextValues</span>(<span class="sig-arg">self</span>)</span>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">dispatch</span>(<span class="sig-arg">self</span>)</span>
   </h3>
   </td><td align="right" valign="top"
-    ><span class="codelink"><a href="pyalgotrade.feed-pysrc.html#BaseFeed.getNextValues">source&nbsp;code</a></span>&nbsp;
+    ><span class="codelink"><a href="pyalgotrade.feed-pysrc.html#BaseFeed.dispatch">source&nbsp;code</a></span>&nbsp;
     </td>
   </tr></table>
   
   
   <dl class="fields">
-    <dt>Decorators:</dt>
-    <dd><ul class="nomargin-top">
-        <li><code>@abc.abstractmethod</code></li>
-    </ul></dd>
+    <dt>Overrides:
+        <a href="pyalgotrade.observer.Subject-class.html#dispatch">observer.Subject.dispatch</a>
+    </dt>
   </dl>
 </td></tr></table>
 </div>
@@ -585,25 +584,26 @@ Base class for feeds.
   </dl>
 </td></tr></table>
 </div>
-<a name="dispatch"></a>
+<a name="getNextValues"></a>
 <div>
 <table class="details" border="1" cellpadding="3"
        cellspacing="0" width="100%" bgcolor="white">
 <tr><td>
   <table width="100%" cellpadding="0" cellspacing="0" border="0">
   <tr valign="top"><td>
-  <h3 class="epydoc"><span class="sig"><span class="sig-name">dispatch</span>(<span class="sig-arg">self</span>)</span>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">getNextValues</span>(<span class="sig-arg">self</span>)</span>
   </h3>
   </td><td align="right" valign="top"
-    ><span class="codelink"><a href="pyalgotrade.feed-pysrc.html#BaseFeed.dispatch">source&nbsp;code</a></span>&nbsp;
+    ><span class="codelink"><a href="pyalgotrade.feed-pysrc.html#BaseFeed.getNextValues">source&nbsp;code</a></span>&nbsp;
     </td>
   </tr></table>
   
   
   <dl class="fields">
-    <dt>Overrides:
-        <a href="pyalgotrade.observer.Subject-class.html#dispatch">observer.Subject.dispatch</a>
-    </dt>
+    <dt>Decorators:</dt>
+    <dd><ul class="nomargin-top">
+        <li><code>@abc.abstractmethod</code></li>
+    </ul></dd>
   </dl>
 </td></tr></table>
 </div>
@@ -677,7 +677,7 @@ Base class for feeds.
 <table border="0" cellpadding="0" cellspacing="0" width="100%%">
   <tr>
     <td align="left" class="footer">
-    Generated by Epydoc 3.0.1 on Sat Oct 15 14:17:48 2016
+    Generated by Epydoc 3.0.1 on Sun Oct 23 19:02:01 2016
     </td>
     <td align="right" class="footer">
       <a target="mainFrame" href="http://epydoc.sourceforge.net"

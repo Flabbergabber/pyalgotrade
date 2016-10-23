@@ -60,72 +60,72 @@
 <h1 class="epydoc">Class WebSocketClient</h1><p class="nomargin-top"><span class="codelink"><a href="pyalgotrade.bitstamp.wsclient-pysrc.html#WebSocketClient">source&nbsp;code</a></span></p>
 <center>
 <center>  <map id="uml_class_diagram_for_pyalgotr_47" name="uml_class_diagram_for_pyalgotr_47">
-<area shape="rect" id="node1_60" href="javascript:void(0);" title="Underlying websocket stream that performs the websocket parsing to high &#160;level objects." alt="" coords="71,29,270,49"/>
-<area shape="rect" id="node1_61" href="javascript:void(0);" title="List of protocols supported by this endpoint." alt="" coords="71,49,270,69"/>
-<area shape="rect" id="node1_62" href="javascript:void(0);" title="List of extensions supported by this endpoint." alt="" coords="71,69,270,89"/>
-<area shape="rect" id="node1_63" href="javascript:void(0);" title="Underlying connection." alt="" coords="71,89,270,109"/>
-<area shape="rect" id="node1_64" href="javascript:void(0);" title="Indicates if the client has been marked as terminated." alt="" coords="71,109,270,129"/>
-<area shape="rect" id="node1_65" href="javascript:void(0);" title="Indicates if the server has been marked as terminated." alt="" coords="71,129,270,149"/>
-<area shape="rect" id="node1_66" href="javascript:void(0);" title="Current connection reading buffer size." alt="" coords="71,149,270,169"/>
-<area shape="rect" id="node1_67" href="javascript:void(0);" title="WSGI environ dictionary." alt="" coords="71,169,270,189"/>
-<area shape="rect" id="node1_68" href="javascript:void(0);" title="At which interval the heartbeat will be running." alt="" coords="71,189,270,209"/>
-<area shape="rect" id="node1_69" href="javascript:void(0);" title="Local endpoint address as a tuple" alt="" coords="71,209,270,229"/>
-<area shape="rect" id="node1_70" href="javascript:void(0);" title="Peer endpoint address as a tuple" alt="" coords="71,229,270,249"/>
-<area shape="rect" id="node1_71" href="javascript:void(0);" title="Returns ``True`` if both the client and server have been marked as &#160;terminated." alt="" coords="71,249,270,269"/>
-<area shape="rect" id="node1_72" href="javascript:void(0);" title="ws4py.websocket.WebSocket.connection" alt="" coords="71,269,270,289"/>
-<area shape="rect" id="node1_73" href="javascript:void(0);" title="Send a ping message to the remote peer." alt="" coords="71,292,270,312"/>
-<area shape="rect" id="node1_74" href="javascript:void(0);" title="Pong message, as a :class:`messaging.PongControlMessage` instance, received on the stream." alt="" coords="71,312,270,332"/>
-<area shape="rect" id="node1_75" href="javascript:void(0);" title="Called whenever a socket, or an OS, error is trapped by ws4py but not &#160;managed by it." alt="" coords="71,332,270,352"/>
-<area shape="rect" id="node1_76" href="javascript:void(0);" title="Sends the given ``payload`` out." alt="" coords="71,352,270,372"/>
-<area shape="rect" id="node1_77" href="javascript:void(0);" title="Performs the operation of reading from the underlying connection in order &#160;to feed the stream of bytes." alt="" coords="71,372,270,392"/>
-<area shape="rect" id="node1_78" href="javascript:void(0);" title="Completes the websocket by calling the `closed` method either using the &#160;received closing code and reason, or when none was received, using the &#160;special `1006` code." alt="" coords="71,392,270,412"/>
-<area shape="rect" id="node1_79" href="javascript:void(0);" title="Takes some bytes and process them through the internal stream&#39;s parser." alt="" coords="71,412,270,432"/>
-<area shape="rect" id="node1_80" href="javascript:void(0);" title="Performs the operation of reading from the underlying connection in order to feed the stream of bytes." alt="" coords="71,432,270,452"/>
-<area shape="rect" id="node1" href="javascript:void(0);" title="Represents a websocket endpoint and provides a high level interface to drive the endpoint." alt="" coords="59,5,281,459"/>
-<area shape="rect" id="node2_81" href="javascript:void(0);" title="Returns the Unix socket path if or a tuple ``(host, port)`` depending on &#160;the initial URL&#39;s scheme." alt="" coords="43,501,299,521"/>
-<area shape="rect" id="node2_82" href="javascript:void(0);" title="List of headers appropriate for the upgrade handshake." alt="" coords="43,521,299,541"/>
-<area shape="rect" id="node2_83" href="javascript:void(0);" title="Prepare the request to be sent for the upgrade handshake." alt="" coords="43,541,299,561"/>
-<area shape="rect" id="node2_84" href="javascript:void(0);" title="Initiate the closing handshake with the server." alt="" coords="43,564,299,584"/>
-<area shape="rect" id="node2_85" href="javascript:void(0);" title="Ensure that we received a HTTP `101` status code in response to our request and if not raises :exc:`HandshakeError`." alt="" coords="43,584,299,604"/>
-<area shape="rect" id="node2_86" href="javascript:void(0);" title="Read the upgrade handshake&#39;s response headers and validate them against &#160;:rfc:`6455`." alt="" coords="43,604,299,624"/>
-<area shape="rect" id="node2_87" href="javascript:void(0);" title="ws4py.client.WebSocketBaseClient.handshake_ok" alt="" coords="43,624,299,644"/>
-<area shape="rect" id="node2" href="javascript:void(0);" title="ws4py.client.WebSocketBaseClient" alt="" coords="31,477,311,651"/>
-<area shape="rect" id="node4_88" href="javascript:void(0);" title="Connects the websocket and initiate the upgrade handshake." alt="" coords="18,702,323,722"/>
-<area shape="rect" id="node4_89" href="javascript:void(0);" title="Close the underlying connection" alt="" coords="18,722,323,742"/>
-<area shape="rect" id="node4" href="javascript:void(0);" title="ws4py.client.tornadoclient.TornadoWebSocketClient" alt="" coords="5,669,335,748"/>
-<area shape="rect" id="node3_90" href="pyalgotrade.websocket.pusher.WebSocketClient-class.html#sendEvent" title="pyalgotrade.websocket.pusher.WebSocketClient.sendEvent" alt="" coords="54,1036,289,1056"/>
-<area shape="rect" id="node3_91" href="pyalgotrade.websocket.pusher.WebSocketClient-class.html#subscribeChannel" title="pyalgotrade.websocket.pusher.WebSocketClient.subscribeChannel" alt="" coords="54,1056,289,1076"/>
-<area shape="rect" id="node3_92" href="pyalgotrade.websocket.pusher.WebSocketClient-class.html#sendPing" title="pyalgotrade.websocket.pusher.WebSocketClient.sendPing" alt="" coords="54,1076,289,1096"/>
-<area shape="rect" id="node3_93" href="pyalgotrade.websocket.pusher.WebSocketClient-class.html#sendPong" title="pyalgotrade.websocket.pusher.WebSocketClient.sendPong" alt="" coords="54,1096,289,1116"/>
-<area shape="rect" id="node3_94" href="pyalgotrade.websocket.pusher.WebSocketClient-class.html#onSubscriptionSucceeded" title="pyalgotrade.websocket.pusher.WebSocketClient.onSubscriptionSucceeded" alt="" coords="54,1116,289,1136"/>
-<area shape="rect" id="node3" href="pyalgotrade.websocket.pusher.WebSocketClient-class.html" title="pyalgotrade.websocket.pusher.WebSocketClient" alt="" coords="42,1004,301,1143"/>
-<area shape="rect" id="node6_95" href="pyalgotrade.bitstamp.wsclient.WebSocketClient-class.html#PUSHER_APP_KEY" title="pyalgotrade.bitstamp.wsclient.WebSocketClient.PUSHER_APP_KEY" alt="" coords="39,1186,302,1206"/>
-<area shape="rect" id="node6_96" href="pyalgotrade.bitstamp.wsclient.WebSocketClient-class.html#ON_TRADE" title="pyalgotrade.bitstamp.wsclient.WebSocketClient.ON_TRADE" alt="" coords="39,1206,302,1226"/>
-<area shape="rect" id="node6_97" href="pyalgotrade.bitstamp.wsclient.WebSocketClient-class.html#ON_ORDER_BOOK_UPDATE" title="pyalgotrade.bitstamp.wsclient.WebSocketClient.ON_ORDER_BOOK_UPDATE" alt="" coords="39,1226,302,1246"/>
-<area shape="rect" id="node6_98" href="pyalgotrade.bitstamp.wsclient.WebSocketClient-class.html#ON_CONNECTED" title="pyalgotrade.bitstamp.wsclient.WebSocketClient.ON_CONNECTED" alt="" coords="39,1246,302,1266"/>
-<area shape="rect" id="node6_99" href="pyalgotrade.bitstamp.wsclient.WebSocketClient-class.html#ON_DISCONNECTED" title="pyalgotrade.bitstamp.wsclient.WebSocketClient.ON_DISCONNECTED" alt="" coords="39,1266,302,1286"/>
-<area shape="rect" id="node6_100" href="pyalgotrade.bitstamp.wsclient.WebSocketClient-class.html#__init__" title=".." alt="" coords="39,1289,302,1309"/>
-<area shape="rect" id="node6_101" href="pyalgotrade.bitstamp.wsclient.WebSocketClient-class.html#getQueue" title="pyalgotrade.bitstamp.wsclient.WebSocketClient.getQueue" alt="" coords="39,1309,302,1329"/>
-<area shape="rect" id="node6_102" href="pyalgotrade.bitstamp.wsclient.WebSocketClient-class.html#onMessage" title="pyalgotrade.bitstamp.wsclient.WebSocketClient.onMessage" alt="" coords="39,1329,302,1349"/>
-<area shape="rect" id="node6_103" href="pyalgotrade.bitstamp.wsclient.WebSocketClient-class.html#onOpened" title="pyalgotrade.bitstamp.wsclient.WebSocketClient.onOpened" alt="" coords="39,1349,302,1369"/>
-<area shape="rect" id="node6_104" href="pyalgotrade.bitstamp.wsclient.WebSocketClient-class.html#onClosed" title="pyalgotrade.bitstamp.wsclient.WebSocketClient.onClosed" alt="" coords="39,1369,302,1389"/>
-<area shape="rect" id="node6_105" href="pyalgotrade.bitstamp.wsclient.WebSocketClient-class.html#onDisconnectionDetected" title="pyalgotrade.bitstamp.wsclient.WebSocketClient.onDisconnectionDetected" alt="" coords="39,1389,302,1409"/>
-<area shape="rect" id="node6_106" href="pyalgotrade.bitstamp.wsclient.WebSocketClient-class.html#onConnectionEstablished" title="pyalgotrade.bitstamp.wsclient.WebSocketClient.onConnectionEstablished" alt="" coords="39,1409,302,1429"/>
-<area shape="rect" id="node6_107" href="pyalgotrade.bitstamp.wsclient.WebSocketClient-class.html#onError" title="pyalgotrade.bitstamp.wsclient.WebSocketClient.onError" alt="" coords="39,1429,302,1449"/>
-<area shape="rect" id="node6_108" href="pyalgotrade.bitstamp.wsclient.WebSocketClient-class.html#onUnknownEvent" title="pyalgotrade.bitstamp.wsclient.WebSocketClient.onUnknownEvent" alt="" coords="39,1449,302,1469"/>
-<area shape="rect" id="node6_109" href="pyalgotrade.bitstamp.wsclient.WebSocketClient-class.html#onTrade" title="pyalgotrade.bitstamp.wsclient.WebSocketClient.onTrade" alt="" coords="39,1469,302,1489"/>
-<area shape="rect" id="node6_110" href="pyalgotrade.bitstamp.wsclient.WebSocketClient-class.html#onOrderBookUpdate" title="pyalgotrade.bitstamp.wsclient.WebSocketClient.onOrderBookUpdate" alt="" coords="39,1489,302,1509"/>
-<area shape="rect" id="node6" href="pyalgotrade.bitstamp.wsclient.WebSocketClient-class.html" title="pyalgotrade.bitstamp.wsclient.WebSocketClient" alt="" coords="27,1161,313,1515"/>
-<area shape="rect" id="node5_111" href="pyalgotrade.websocket.client.WebSocketClientBase-class.html#getIOLoop" title="pyalgotrade.websocket.client.WebSocketClientBase.getIOLoop" alt="" coords="54,799,289,819"/>
-<area shape="rect" id="node5_112" href="pyalgotrade.websocket.client.WebSocketClientBase-class.html#setKeepAliveMgr" title="pyalgotrade.websocket.client.WebSocketClientBase.setKeepAliveMgr" alt="" coords="54,819,289,839"/>
-<area shape="rect" id="node5_113" href="pyalgotrade.websocket.client.WebSocketClientBase-class.html#received_message" title="Called whenever a complete ``message``, binary or text, is received and &#160;ready for application&#39;s processing." alt="" coords="54,839,289,859"/>
-<area shape="rect" id="node5_114" href="pyalgotrade.websocket.client.WebSocketClientBase-class.html#opened" title="Called by the server when the upgrade handshake has succeeeded." alt="" coords="54,859,289,879"/>
-<area shape="rect" id="node5_115" href="pyalgotrade.websocket.client.WebSocketClientBase-class.html#closed" title="Called &#160;when the websocket stream and connection are finally closed." alt="" coords="54,879,289,899"/>
-<area shape="rect" id="node5_116" href="pyalgotrade.websocket.client.WebSocketClientBase-class.html#isConnected" title="pyalgotrade.websocket.client.WebSocketClientBase.isConnected" alt="" coords="54,899,289,919"/>
-<area shape="rect" id="node5_117" href="pyalgotrade.websocket.client.WebSocketClientBase-class.html#startClient" title="pyalgotrade.websocket.client.WebSocketClientBase.startClient" alt="" coords="54,919,289,939"/>
-<area shape="rect" id="node5_118" href="pyalgotrade.websocket.client.WebSocketClientBase-class.html#stopClient" title="pyalgotrade.websocket.client.WebSocketClientBase.stopClient" alt="" coords="54,939,289,959"/>
-<area shape="rect" id="node5_119" href="pyalgotrade.websocket.client.WebSocketClientBase-class.html#onUnhandledException" title="pyalgotrade.websocket.client.WebSocketClientBase.onUnhandledException" alt="" coords="54,959,289,979"/>
-<area shape="rect" id="node5" href="pyalgotrade.websocket.client.WebSocketClientBase-class.html" title="pyalgotrade.websocket.client.WebSocketClientBase" alt="" coords="42,767,301,985"/>
+<area shape="rect" id="node1_60" href="javascript:void(0);" title="Connects the websocket and initiate the upgrade handshake." alt="" coords="18,702,323,722"/>
+<area shape="rect" id="node1_61" href="javascript:void(0);" title="Close the underlying connection" alt="" coords="18,722,323,742"/>
+<area shape="rect" id="node1" href="javascript:void(0);" title="ws4py.client.tornadoclient.TornadoWebSocketClient" alt="" coords="5,669,335,748"/>
+<area shape="rect" id="node6_62" href="pyalgotrade.websocket.client.WebSocketClientBase-class.html#closed" title="Called &#160;when the websocket stream and connection are finally closed." alt="" coords="54,799,289,819"/>
+<area shape="rect" id="node6_63" href="pyalgotrade.websocket.client.WebSocketClientBase-class.html#getIOLoop" title="pyalgotrade.websocket.client.WebSocketClientBase.getIOLoop" alt="" coords="54,819,289,839"/>
+<area shape="rect" id="node6_64" href="pyalgotrade.websocket.client.WebSocketClientBase-class.html#isConnected" title="pyalgotrade.websocket.client.WebSocketClientBase.isConnected" alt="" coords="54,839,289,859"/>
+<area shape="rect" id="node6_65" href="pyalgotrade.websocket.client.WebSocketClientBase-class.html#onUnhandledException" title="pyalgotrade.websocket.client.WebSocketClientBase.onUnhandledException" alt="" coords="54,859,289,879"/>
+<area shape="rect" id="node6_66" href="pyalgotrade.websocket.client.WebSocketClientBase-class.html#opened" title="Called by the server when the upgrade handshake has succeeeded." alt="" coords="54,879,289,899"/>
+<area shape="rect" id="node6_67" href="pyalgotrade.websocket.client.WebSocketClientBase-class.html#received_message" title="Called whenever a complete ``message``, binary or text, is received and &#160;ready for application&#39;s processing." alt="" coords="54,899,289,919"/>
+<area shape="rect" id="node6_68" href="pyalgotrade.websocket.client.WebSocketClientBase-class.html#setKeepAliveMgr" title="pyalgotrade.websocket.client.WebSocketClientBase.setKeepAliveMgr" alt="" coords="54,919,289,939"/>
+<area shape="rect" id="node6_69" href="pyalgotrade.websocket.client.WebSocketClientBase-class.html#startClient" title="pyalgotrade.websocket.client.WebSocketClientBase.startClient" alt="" coords="54,939,289,959"/>
+<area shape="rect" id="node6_70" href="pyalgotrade.websocket.client.WebSocketClientBase-class.html#stopClient" title="pyalgotrade.websocket.client.WebSocketClientBase.stopClient" alt="" coords="54,959,289,979"/>
+<area shape="rect" id="node6" href="pyalgotrade.websocket.client.WebSocketClientBase-class.html" title="pyalgotrade.websocket.client.WebSocketClientBase" alt="" coords="42,767,301,985"/>
+<area shape="rect" id="node2_71" href="javascript:void(0);" title="Underlying websocket stream that performs the websocket parsing to high &#160;level objects." alt="" coords="71,29,270,49"/>
+<area shape="rect" id="node2_72" href="javascript:void(0);" title="List of protocols supported by this endpoint." alt="" coords="71,49,270,69"/>
+<area shape="rect" id="node2_73" href="javascript:void(0);" title="List of extensions supported by this endpoint." alt="" coords="71,69,270,89"/>
+<area shape="rect" id="node2_74" href="javascript:void(0);" title="Underlying connection." alt="" coords="71,89,270,109"/>
+<area shape="rect" id="node2_75" href="javascript:void(0);" title="Indicates if the client has been marked as terminated." alt="" coords="71,109,270,129"/>
+<area shape="rect" id="node2_76" href="javascript:void(0);" title="Indicates if the server has been marked as terminated." alt="" coords="71,129,270,149"/>
+<area shape="rect" id="node2_77" href="javascript:void(0);" title="Current connection reading buffer size." alt="" coords="71,149,270,169"/>
+<area shape="rect" id="node2_78" href="javascript:void(0);" title="WSGI environ dictionary." alt="" coords="71,169,270,189"/>
+<area shape="rect" id="node2_79" href="javascript:void(0);" title="At which interval the heartbeat will be running." alt="" coords="71,189,270,209"/>
+<area shape="rect" id="node2_80" href="javascript:void(0);" title="Local endpoint address as a tuple" alt="" coords="71,209,270,229"/>
+<area shape="rect" id="node2_81" href="javascript:void(0);" title="Peer endpoint address as a tuple" alt="" coords="71,229,270,249"/>
+<area shape="rect" id="node2_82" href="javascript:void(0);" title="Returns ``True`` if both the client and server have been marked as &#160;terminated." alt="" coords="71,249,270,269"/>
+<area shape="rect" id="node2_83" href="javascript:void(0);" title="ws4py.websocket.WebSocket.connection" alt="" coords="71,269,270,289"/>
+<area shape="rect" id="node2_84" href="javascript:void(0);" title="Send a ping message to the remote peer." alt="" coords="71,292,270,312"/>
+<area shape="rect" id="node2_85" href="javascript:void(0);" title="Pong message, as a :class:`messaging.PongControlMessage` instance, received on the stream." alt="" coords="71,312,270,332"/>
+<area shape="rect" id="node2_86" href="javascript:void(0);" title="Called whenever a socket, or an OS, error is trapped by ws4py but not &#160;managed by it." alt="" coords="71,332,270,352"/>
+<area shape="rect" id="node2_87" href="javascript:void(0);" title="Sends the given ``payload`` out." alt="" coords="71,352,270,372"/>
+<area shape="rect" id="node2_88" href="javascript:void(0);" title="Performs the operation of reading from the underlying connection in order &#160;to feed the stream of bytes." alt="" coords="71,372,270,392"/>
+<area shape="rect" id="node2_89" href="javascript:void(0);" title="Completes the websocket by calling the `closed` method either using the &#160;received closing code and reason, or when none was received, using the &#160;special `1006` code." alt="" coords="71,392,270,412"/>
+<area shape="rect" id="node2_90" href="javascript:void(0);" title="Takes some bytes and process them through the internal stream&#39;s parser." alt="" coords="71,412,270,432"/>
+<area shape="rect" id="node2_91" href="javascript:void(0);" title="Performs the operation of reading from the underlying connection in order to feed the stream of bytes." alt="" coords="71,432,270,452"/>
+<area shape="rect" id="node2" href="javascript:void(0);" title="Represents a websocket endpoint and provides a high level interface to drive the endpoint." alt="" coords="59,5,281,459"/>
+<area shape="rect" id="node5_92" href="javascript:void(0);" title="Returns the Unix socket path if or a tuple ``(host, port)`` depending on &#160;the initial URL&#39;s scheme." alt="" coords="43,501,299,521"/>
+<area shape="rect" id="node5_93" href="javascript:void(0);" title="List of headers appropriate for the upgrade handshake." alt="" coords="43,521,299,541"/>
+<area shape="rect" id="node5_94" href="javascript:void(0);" title="Prepare the request to be sent for the upgrade handshake." alt="" coords="43,541,299,561"/>
+<area shape="rect" id="node5_95" href="javascript:void(0);" title="Initiate the closing handshake with the server." alt="" coords="43,564,299,584"/>
+<area shape="rect" id="node5_96" href="javascript:void(0);" title="Ensure that we received a HTTP `101` status code in response to our request and if not raises :exc:`HandshakeError`." alt="" coords="43,584,299,604"/>
+<area shape="rect" id="node5_97" href="javascript:void(0);" title="Read the upgrade handshake&#39;s response headers and validate them against &#160;:rfc:`6455`." alt="" coords="43,604,299,624"/>
+<area shape="rect" id="node5_98" href="javascript:void(0);" title="ws4py.client.WebSocketBaseClient.handshake_ok" alt="" coords="43,624,299,644"/>
+<area shape="rect" id="node5" href="javascript:void(0);" title="ws4py.client.WebSocketBaseClient" alt="" coords="31,477,311,651"/>
+<area shape="rect" id="node3_99" href="pyalgotrade.bitstamp.wsclient.WebSocketClient-class.html#PUSHER_APP_KEY" title="pyalgotrade.bitstamp.wsclient.WebSocketClient.PUSHER_APP_KEY" alt="" coords="39,1186,302,1206"/>
+<area shape="rect" id="node3_100" href="pyalgotrade.bitstamp.wsclient.WebSocketClient-class.html#ON_TRADE" title="pyalgotrade.bitstamp.wsclient.WebSocketClient.ON_TRADE" alt="" coords="39,1206,302,1226"/>
+<area shape="rect" id="node3_101" href="pyalgotrade.bitstamp.wsclient.WebSocketClient-class.html#ON_ORDER_BOOK_UPDATE" title="pyalgotrade.bitstamp.wsclient.WebSocketClient.ON_ORDER_BOOK_UPDATE" alt="" coords="39,1226,302,1246"/>
+<area shape="rect" id="node3_102" href="pyalgotrade.bitstamp.wsclient.WebSocketClient-class.html#ON_CONNECTED" title="pyalgotrade.bitstamp.wsclient.WebSocketClient.ON_CONNECTED" alt="" coords="39,1246,302,1266"/>
+<area shape="rect" id="node3_103" href="pyalgotrade.bitstamp.wsclient.WebSocketClient-class.html#ON_DISCONNECTED" title="pyalgotrade.bitstamp.wsclient.WebSocketClient.ON_DISCONNECTED" alt="" coords="39,1266,302,1286"/>
+<area shape="rect" id="node3_104" href="pyalgotrade.bitstamp.wsclient.WebSocketClient-class.html#__init__" title=".." alt="" coords="39,1289,302,1309"/>
+<area shape="rect" id="node3_105" href="pyalgotrade.bitstamp.wsclient.WebSocketClient-class.html#getQueue" title="pyalgotrade.bitstamp.wsclient.WebSocketClient.getQueue" alt="" coords="39,1309,302,1329"/>
+<area shape="rect" id="node3_106" href="pyalgotrade.bitstamp.wsclient.WebSocketClient-class.html#onMessage" title="pyalgotrade.bitstamp.wsclient.WebSocketClient.onMessage" alt="" coords="39,1329,302,1349"/>
+<area shape="rect" id="node3_107" href="pyalgotrade.bitstamp.wsclient.WebSocketClient-class.html#onOpened" title="pyalgotrade.bitstamp.wsclient.WebSocketClient.onOpened" alt="" coords="39,1349,302,1369"/>
+<area shape="rect" id="node3_108" href="pyalgotrade.bitstamp.wsclient.WebSocketClient-class.html#onClosed" title="pyalgotrade.bitstamp.wsclient.WebSocketClient.onClosed" alt="" coords="39,1369,302,1389"/>
+<area shape="rect" id="node3_109" href="pyalgotrade.bitstamp.wsclient.WebSocketClient-class.html#onDisconnectionDetected" title="pyalgotrade.bitstamp.wsclient.WebSocketClient.onDisconnectionDetected" alt="" coords="39,1389,302,1409"/>
+<area shape="rect" id="node3_110" href="pyalgotrade.bitstamp.wsclient.WebSocketClient-class.html#onConnectionEstablished" title="pyalgotrade.bitstamp.wsclient.WebSocketClient.onConnectionEstablished" alt="" coords="39,1409,302,1429"/>
+<area shape="rect" id="node3_111" href="pyalgotrade.bitstamp.wsclient.WebSocketClient-class.html#onError" title="pyalgotrade.bitstamp.wsclient.WebSocketClient.onError" alt="" coords="39,1429,302,1449"/>
+<area shape="rect" id="node3_112" href="pyalgotrade.bitstamp.wsclient.WebSocketClient-class.html#onUnknownEvent" title="pyalgotrade.bitstamp.wsclient.WebSocketClient.onUnknownEvent" alt="" coords="39,1449,302,1469"/>
+<area shape="rect" id="node3_113" href="pyalgotrade.bitstamp.wsclient.WebSocketClient-class.html#onTrade" title="pyalgotrade.bitstamp.wsclient.WebSocketClient.onTrade" alt="" coords="39,1469,302,1489"/>
+<area shape="rect" id="node3_114" href="pyalgotrade.bitstamp.wsclient.WebSocketClient-class.html#onOrderBookUpdate" title="pyalgotrade.bitstamp.wsclient.WebSocketClient.onOrderBookUpdate" alt="" coords="39,1489,302,1509"/>
+<area shape="rect" id="node3" href="pyalgotrade.bitstamp.wsclient.WebSocketClient-class.html" title="pyalgotrade.bitstamp.wsclient.WebSocketClient" alt="" coords="27,1161,313,1515"/>
+<area shape="rect" id="node4_115" href="pyalgotrade.websocket.pusher.WebSocketClient-class.html#sendEvent" title="pyalgotrade.websocket.pusher.WebSocketClient.sendEvent" alt="" coords="54,1036,289,1056"/>
+<area shape="rect" id="node4_116" href="pyalgotrade.websocket.pusher.WebSocketClient-class.html#subscribeChannel" title="pyalgotrade.websocket.pusher.WebSocketClient.subscribeChannel" alt="" coords="54,1056,289,1076"/>
+<area shape="rect" id="node4_117" href="pyalgotrade.websocket.pusher.WebSocketClient-class.html#sendPing" title="pyalgotrade.websocket.pusher.WebSocketClient.sendPing" alt="" coords="54,1076,289,1096"/>
+<area shape="rect" id="node4_118" href="pyalgotrade.websocket.pusher.WebSocketClient-class.html#sendPong" title="pyalgotrade.websocket.pusher.WebSocketClient.sendPong" alt="" coords="54,1096,289,1116"/>
+<area shape="rect" id="node4_119" href="pyalgotrade.websocket.pusher.WebSocketClient-class.html#onSubscriptionSucceeded" title="pyalgotrade.websocket.pusher.WebSocketClient.onSubscriptionSucceeded" alt="" coords="54,1116,289,1136"/>
+<area shape="rect" id="node4" href="pyalgotrade.websocket.pusher.WebSocketClient-class.html" title="pyalgotrade.websocket.pusher.WebSocketClient" alt="" coords="42,1004,301,1143"/>
 </map>
   <img src="uml_class_diagram_for_pyalgotr_47.gif" alt='' usemap="#uml_class_diagram_for_pyalgotr_47" ismap="ismap" class="graph-without-title" />
 </center>
@@ -778,7 +778,7 @@
 <table border="0" cellpadding="0" cellspacing="0" width="100%%">
   <tr>
     <td align="left" class="footer">
-    Generated by Epydoc 3.0.1 on Sat Oct 15 14:17:43 2016
+    Generated by Epydoc 3.0.1 on Sun Oct 23 19:01:56 2016
     </td>
     <td align="right" class="footer">
       <a target="mainFrame" href="http://epydoc.sourceforge.net"
