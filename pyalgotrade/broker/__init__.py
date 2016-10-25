@@ -485,6 +485,7 @@ class OptionOrder(Order):
     def setExpiry(self, expiry):
         self.__expiry = expiry
 
+
 class OptionLimitOrder(OptionOrder):
     """Base class for limit orders.
 
