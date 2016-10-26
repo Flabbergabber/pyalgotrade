@@ -162,7 +162,9 @@ class Position(object):
         self.__shares = 0
         self.__strategy = strategy
         self.__entryOrder = None
-        self.__expiryDate = None
+        self.__expiry = None
+        self.__right = None
+        self.__strike = None
         self.__entryDateTime = None
         self.__exitOrder = None
         self.__exitDateTime = None
@@ -196,10 +198,22 @@ class Position(object):
         self.__exitDateTime = dateTime
         
     def setExpiryDate(self, dateTime):
-        self.__expiryDate = dateTime
+        self.__expiry = dateTime
         
     def getExpiryDate(self):
-        return self.__expiryDate
+        return self.__expiry
+        
+    def setRight(self, right):
+        self.__right = right
+        
+    def getRight(self):
+        return self.__right
+        
+    def setStrike(self, strike):
+        self.__strike = strike
+        
+    def getStrike(self):
+        return self.__strikey
 
     def switchState(self, newState):
         self.__state = newState
@@ -494,14 +508,14 @@ class ShortPosition(Position):
 ###################################
 #### OPTION
    
-class OptionPosition(Position):
-    def __init__(self,strategy, entryOrder, goodTillCanceled, allOrNone):
-        super(OptionPosition, self).__init__(strategy, entryOrder, goodTillCanceled, allOrNone)
-    
-    def executeOptionOrder(self):
-        raise NotImplementedError()
+#class OptionPosition(Position):
+#    def __init__(self,strategy, entryOrder, goodTillCanceled, allOrNone):
+#        super(OptionPosition, self).__init__(strategy, entryOrder, goodTillCanceled, allOrNone)
+#    
+#    def executeOptionOrder(self):
+#        raise NotImplementedError()
          
-class LongOptionPosition(OptionPosition):
+class LongOptionPosition(Position):
     def __init__(self, strategy, instrument, stopPrice, limitPrice, quantity, right, strike, expiry, goodTillCanceled, allOrNone):
         if limitPrice is None and stopPrice is None:
             entryOrder = strategy.getBroker().createOptionOrder(broker.Order.Action.BUY, instrument, quantity, right, strike, expiry, False)
@@ -520,13 +534,13 @@ class LongOptionPosition(OptionPosition):
         quantity = self.getShares()
         assert(quantity > 0)
         if limitPrice is None and stopPrice is None:
-            ret = self.getStrategy().getBroker().createOptionOrder(broker.Order.Action.SELL, self.getInstrument(), quantity, False)
+            ret = self.getStrategy().getBroker().createOptionOrder(broker.Order.Action.SELL, self.getInstrument(), quantity, self.getRight, self.getStrike, self.getExpiryDate, False)
         elif limitPrice is not None and stopPrice is None:
-            ret = self.getStrategy().getBroker().createOptionLimitOrder(broker.Order.Action.SELL, self.getInstrument(), limitPrice, quantity)
+            ret = self.getStrategy().getBroker().createOptionLimitOrder(broker.Order.Action.SELL, self.getInstrument(), limitPrice, quantity,  self.getRight, self.getStrike, self.getExpiryDate)
         elif limitPrice is None and stopPrice is not None:
-            ret = self.getStrategy().getBroker().createOptionStopOrder(broker.Order.Action.SELL, self.getInstrument(), stopPrice, quantity)
+            ret = self.getStrategy().getBroker().createOptionStopOrder(broker.Order.Action.SELL, self.getInstrument(), stopPrice, quantity,  self.getRight, self.getStrike, self.getExpiryDate)
         elif limitPrice is not None and stopPrice is not None:
-            ret = self.getStrategy().getBroker().createOptionStopLimitOrder(broker.Order.Action.SELL, self.getInstrument(), stopPrice, limitPrice, quantity)
+            ret = self.getStrategy().getBroker().createOptionStopLimitOrder(broker.Order.Action.SELL, self.getInstrument(), stopPrice, limitPrice, quantity, self.getRight, self.getStrike, self.getExpiryDate)
         else:
             assert(False)
 
@@ -536,7 +550,7 @@ class LongOptionPosition(OptionPosition):
         raise NotImplementedError()
 
 # This class is reponsible for order management in short positions.
-class ShortOptionPosition(OptionPosition):
+class ShortOptionPosition(Position):
     def __init__(self, strategy, instrument, stopPrice, limitPrice, quantity , right, strike, expiry, goodTillCanceled, allOrNone):
         if limitPrice is None and stopPrice is None:
             entryOrder = strategy.getBroker().createOptionOrder(broker.Order.Action.SELL_SHORT, instrument, quantity, right, strike, expiry,False)
@@ -555,13 +569,13 @@ class ShortOptionPosition(OptionPosition):
         quantity = self.getShares() * -1
         assert(quantity > 0)
         if limitPrice is None and stopPrice is None:
-            ret = self.getStrategy().getBroker().createMarketOrder(broker.Order.Action.BUY_TO_COVER, self.getInstrument(), quantity, False)
+            ret = self.getStrategy().getBroker().createMarketOrder(broker.Order.Action.BUY_TO_COVER, self.getInstrument(), quantity, self.getRight, self.getStrike, self.getExpiryDate, False)
         elif limitPrice is not None and stopPrice is None:
-            ret = self.getStrategy().getBroker().createLimitOrder(broker.Order.Action.BUY_TO_COVER, self.getInstrument(), limitPrice, quantity)
+            ret = self.getStrategy().getBroker().createLimitOrder(broker.Order.Action.BUY_TO_COVER, self.getInstrument(), limitPrice, quantity, self.getRight, self.getStrike, self.getExpiryDate)
         elif limitPrice is None and stopPrice is not None:
-            ret = self.getStrategy().getBroker().createStopOrder(broker.Order.Action.BUY_TO_COVER, self.getInstrument(), stopPrice, quantity)
+            ret = self.getStrategy().getBroker().createStopOrder(broker.Order.Action.BUY_TO_COVER, self.getInstrument(), stopPrice, quantity, self.getRight, self.getStrike, self.getExpiryDate)
         elif limitPrice is not None and stopPrice is not None:
-            ret = self.getStrategy().getBroker().createStopLimitOrder(broker.Order.Action.BUY_TO_COVER, self.getInstrument(), stopPrice, limitPrice, quantity)
+            ret = self.getStrategy().getBroker().createStopLimitOrder(broker.Order.Action.BUY_TO_COVER, self.getInstrument(), stopPrice, limitPrice, quantity, self.getRight, self.getStrike, self.getExpiryDate)
         else:
             assert(False)
 
