@@ -533,8 +533,7 @@ class DefaultStrategy(FillStrategy):
             price = bar.getOpen(broker_.getUseAdjustedValues())
         assert price is not None
         
-        # If expiry date is met, execute
-#        if bar.getDateTime() >= order.getExpiryDate():
+        
             
 
         # Don't slip prices when the bar represents the trading activity of a single trade.
@@ -542,6 +541,12 @@ class DefaultStrategy(FillStrategy):
             price = self.__slippageModel.calculatePrice(
                 order, price, fillSize, bar, self.__volumeUsed[order.getInstrument()]
             )
+            
+        # If expiry date is met, prix a 0
+        if bar.getDateTime() >= order.getExpiry():
+            price=0
+            
+            
         return FillInfo(price, fillSize)
     
     def fillOptionLimitOrder(self, broker_, order, bar):
@@ -556,6 +561,10 @@ class DefaultStrategy(FillStrategy):
         ret = None
         price = get_limit_price_trigger(order.getAction(), order.getLimitPrice(), broker_.getUseAdjustedValues(), bar)
         if price is not None:
+            # If expiry date is met, prix a 0
+            if bar.getDateTime() >= order.getExpiry():
+                price=0
+         
             ret = FillInfo(price, fillSize)
         return ret
 
@@ -598,6 +607,10 @@ class DefaultStrategy(FillStrategy):
                 price = self.__slippageModel.calculatePrice(
                     order, price, fillSize, bar, self.__volumeUsed[order.getInstrument()]
                 )
+            # If expiry date is met, prix a 0
+            if bar.getDateTime() >= order.getExpiry():
+                price=0
+         
             ret = FillInfo(price, fillSize)
         return ret
 
@@ -644,7 +657,10 @@ class DefaultStrategy(FillStrategy):
                         # If the stop price triggered is greater than the limit price, then use that one.
                         # Else use the limit price.
                         price = max(stopPriceTrigger, order.getLimitPrice())
-
+                # If expiry date is met, prix a 0
+                if bar.getDateTime() >= order.getExpiry():
+                    price=0
+         
                 ret = FillInfo(price, fillSize)
 
         return ret

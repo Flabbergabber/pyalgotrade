@@ -54,7 +54,7 @@ class MyStrategy(strategy.BacktestingStrategy):
                 right = broker.OptionOrder.Right.PUT
                 strike = bar.getPrice() + 10
                 bar.getDateTime()
-                expiry = datetime.date(2016, 3, 30)
+                expiry = datetime.datetime(2016, 3, 30, 16, 30)
                 
                 #if bar.getPrice() > self.__sma[-1]:
                     # Enter a buy market order for 10 shares. The order is good till canceled.
