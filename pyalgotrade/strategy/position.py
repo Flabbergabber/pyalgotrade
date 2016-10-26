@@ -380,6 +380,7 @@ class Position(object):
         if goodTillCanceled is None:
             goodTillCanceled = self.__entryOrder.getGoodTillCanceled()
         exitOrder.setGoodTillCanceled(goodTillCanceled)
+        
 
         exitOrder.setAllOrNone(self.__allOrNone)
 

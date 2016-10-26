@@ -390,7 +390,6 @@ class DefaultStrategy(FillStrategy):
                 )
             )
             return None
-
         # Unless its a fill-on-close order, use the open price.
         if order.getFillOnClose():
             price = bar.getClose(broker_.getUseAdjustedValues())

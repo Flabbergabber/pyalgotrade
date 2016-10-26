@@ -45,29 +45,32 @@ class MyStrategy(strategy.BacktestingStrategy):
             return
 
         bar = bars[self.__instrument]
-#        self.info("current bar price: $%.2f and current sma: $%.2f" % (bar.getPrice(), self.__sma[-1]))
+        self.info("current bar price: $%.2f and current sma: $%.2f" % (bar.getPrice(), self.__sma[-1]))
         # If a position was not opened, check if we should enter a long position.
 #        if self.__option is None and not self.__optionAlreadyExecuted:
         if self.__position is None: 
             
-            right = broker.OptionOrder.Right.PUT
-            strike = bar.getPrice() + 10
-            bar.getDateTime()
-            expiry = datetime.date(2016, 3, 30)
-            
-            #if bar.getPrice() > self.__sma[-1]:
-                # Enter a buy market order for 10 shares. The order is good till canceled.
-            self.__position = self.enterOptionLong(self.__instrument, 10, right, strike, expiry, True)
-            #self.__optionAlreadyExecuted = True
-            
-            print "Option executed for: $%.2f" % (bar.getPrice())
+            if bar.getPrice() > self.__sma[-1]:
+                right = broker.OptionOrder.Right.PUT
+                strike = bar.getPrice() + 10
+                bar.getDateTime()
+                expiry = datetime.date(2016, 3, 30)
+                
+                #if bar.getPrice() > self.__sma[-1]:
+                    # Enter a buy market order for 10 shares. The order is good till canceled.
+                self.__position = self.enterOptionLong(self.__instrument, 10, right, strike, expiry, True)
+                #self.__optionAlreadyExecuted = True
+                
+#                print "Option executed for: $%.2f" % (bar.getPrice())
         # Check if we have to exit the position.
         #elif bar.getPrice() < self.__sma[-1] and not self.__position.exitActive():
             #self.__position.exitMarket()
         
-        elif self.__position is not None and self.__position.getAge().days == 60 :
+        elif bar.getPrice() < self.__sma[-1] and not self.__position.exitActive():
             self.__position.exitMarket()
-            print "Order exited at: $%.2f" % bar.getPrice()
+#            print "Option exited at: $%.2f" % bar.getPrice()
+        
+
         
         #### l'ordre devrait etre generer a partir de la position de l'option avec le strike price si expiry n'est pas depasse
 #        elif self.__position is None and self.__option.getAge().days == 25 :
@@ -105,4 +108,4 @@ def run_strategy(smaPeriod):
 
     plt.plot()
     
-run_strategy(20)
+run_strategy(30)
