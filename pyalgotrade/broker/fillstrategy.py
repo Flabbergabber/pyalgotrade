@@ -543,8 +543,8 @@ class DefaultStrategy(FillStrategy):
             )
             
         # If expiry date is met, prix a 0
-        if bar.getDateTime() >= order.getExpiry():
-            price=0
+#        if bar.getDateTime() >= order.getExpiry():
+#            price=0
             
             
         return FillInfo(price, fillSize)
@@ -562,8 +562,8 @@ class DefaultStrategy(FillStrategy):
         price = get_limit_price_trigger(order.getAction(), order.getLimitPrice(), broker_.getUseAdjustedValues(), bar)
         if price is not None:
             # If expiry date is met, prix a 0
-            if bar.getDateTime() >= order.getExpiry():
-                price=0
+ #           if bar.getDateTime() >= order.getExpiry():
+#                price=0
          
             ret = FillInfo(price, fillSize)
         return ret
@@ -608,8 +608,8 @@ class DefaultStrategy(FillStrategy):
                     order, price, fillSize, bar, self.__volumeUsed[order.getInstrument()]
                 )
             # If expiry date is met, prix a 0
-            if bar.getDateTime() >= order.getExpiry():
-                price=0
+#            if bar.getDateTime() >= order.getExpiry():
+#                price=0
          
             ret = FillInfo(price, fillSize)
         return ret
@@ -658,8 +658,8 @@ class DefaultStrategy(FillStrategy):
                         # Else use the limit price.
                         price = max(stopPriceTrigger, order.getLimitPrice())
                 # If expiry date is met, prix a 0
-                if bar.getDateTime() >= order.getExpiry():
-                    price=0
+#                if bar.getDateTime() >= order.getExpiry():
+#                    price=0
          
                 ret = FillInfo(price, fillSize)
 

@@ -45,7 +45,7 @@ class MyStrategy(strategy.BacktestingStrategy):
             return
 
         bar = bars[self.__instrument]
-        self.info("current bar price: $%.2f and current sma: $%.2f" % (bar.getPrice(), self.__sma[-1]))
+#        self.info("current bar price: $%.2f and current sma: $%.2f" % (bar.getPrice(), self.__sma[-1]))
         # If a position was not opened, check if we should enter a long position.
 #        if self.__option is None and not self.__optionAlreadyExecuted:
         if self.__position is None: 
@@ -86,11 +86,11 @@ def run_strategy(smaPeriod):
 #    feed = yahoofeed.Feed()
 #    feed.addBarsFromCSV("orcl", "orcl-2000.csv")
     feed = ibfeed.Feed()
-    feed.addBarsFromCSV("bac", "samples/bac.csv")
+    feed.addBarsFromCSV("bac23R20160412", "samples/bac_10000.csv")
 
     # Evaluate the strategy with the feed.
 #    myStrategy = MyStrategy(feed, "orcl", smaPeriod)
-    myStrategy = MyStrategy(feed, "bac", smaPeriod)
+    myStrategy = MyStrategy(feed, "bac23R20160412", smaPeriod)
     
     # Attach a returns analyzers to the strategy.
     returnsAnalyzer = returns.Returns()
@@ -108,4 +108,4 @@ def run_strategy(smaPeriod):
 
     plt.plot()
     
-run_strategy(30)
+run_strategy(10)

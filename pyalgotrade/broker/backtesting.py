@@ -24,6 +24,7 @@ from pyalgotrade import broker
 from pyalgotrade.broker import fillstrategy
 from pyalgotrade import logger
 import pyalgotrade.bar
+from datetime import datetime
 
 
 ######################################################################
@@ -356,9 +357,16 @@ class Broker(broker.Broker):
     def __getEquityWithBars(self, bars):
         ret = self.getCash()
         if bars is not None:
+            
             for instrument, shares in self.__shares.iteritems():
+                year = self._getBar(bars, instrument).getDateTime().year
+                month = self._getBar(bars, instrument).getDateTime().month
+                day = self._getBar(bars, instrument).getDateTime().day
+                if datetime.strptime(instrument[-8:], '%Y%m%d') == datetime(year, month, day):
+                    self.__logger.debug("POSITION EST EXPIREE")
                 instrumentPrice = self._getBar(bars, instrument).getClose(self.getUseAdjustedValues())
                 ret += instrumentPrice * shares
+#        print "%return is $%.2f" % (ret)
         return ret
 
     def getEquity(self):
