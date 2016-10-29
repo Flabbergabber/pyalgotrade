@@ -362,8 +362,13 @@ class Broker(broker.Broker):
                 year = self._getBar(bars, instrument).getDateTime().year
                 month = self._getBar(bars, instrument).getDateTime().month
                 day = self._getBar(bars, instrument).getDateTime().day
+                
                 if datetime.strptime(instrument[-8:], '%Y%m%d') == datetime(year, month, day):
                     self.__logger.debug("POSITION EST EXPIREE")
+                    shares = 0
+                    for order in self.getActiveOrders(instrument):
+                        self._unregisterOrder(order)
+                    
                 instrumentPrice = self._getBar(bars, instrument).getClose(self.getUseAdjustedValues())
                 ret += instrumentPrice * shares
 #        print "%return is $%.2f" % (ret)
