@@ -363,7 +363,7 @@ class Broker(broker.Broker):
                 month = self._getBar(bars, instrument).getDateTime().month
                 day = self._getBar(bars, instrument).getDateTime().day
                 
-                if datetime.strptime(instrument[-8:], '%Y%m%d') == datetime(year, month, day):
+                if datetime.strptime(instrument[-8:], '%Y%m%d') <= datetime(year, month, day):
                     self.__logger.debug("POSITION EST EXPIREE")
                     shares = 0
                     for order in self.getActiveOrders(instrument):

@@ -86,11 +86,11 @@ def run_strategy(smaPeriod):
 #    feed = yahoofeed.Feed()
 #    feed.addBarsFromCSV("orcl", "orcl-2000.csv")
     feed = ibfeed.Feed()
-    feed.addBarsFromCSV("bac23R20160412", "samples/bac_10000.csv")
+    feed.addBarsFromCSV("bac23R20160312", "samples/bac_10000.csv")
 
     # Evaluate the strategy with the feed.
 #    myStrategy = MyStrategy(feed, "orcl", smaPeriod)
-    myStrategy = MyStrategy(feed, "bac23R20160412", smaPeriod)
+    myStrategy = MyStrategy(feed, "bac23R20160312", smaPeriod)
     
     # Attach a returns analyzers to the strategy.
     returnsAnalyzer = returns.Returns()
