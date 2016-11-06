@@ -359,15 +359,22 @@ class Broker(broker.Broker):
         if bars is not None:
             
             for instrument, shares in self.__shares.iteritems():
-                year = self._getBar(bars, instrument).getDateTime().year
-                month = self._getBar(bars, instrument).getDateTime().month
-                day = self._getBar(bars, instrument).getDateTime().day
+                ##### on va chercher la date pour detarminer lexpiration 'un option
                 
-                if datetime.strptime(instrument[-8:], '%Y%m%d') <= datetime(year, month, day):
-                    self.__logger.debug("POSITION EST EXPIREE")
-                    shares = 0
-                    for order in self.getActiveOrders(instrument):
-                        self._unregisterOrder(order)
+                ##### on detecte vaguement si le format est pour une option
+                if len(instrument) > 8:
+                    time = self._getBar(bars, instrument).getDateTime()
+                    year = self._getBar(bars, instrument).getDateTime().year
+                    month = self._getBar(bars, instrument).getDateTime().month
+                    day = self._getBar(bars, instrument).getDateTime().day
+                    ####### Si la date de la bar est egale ou superieure a la date d'expiration, on annule les part et empeche les order sur cet instrument
+                    currentdatetime= datetime.strptime(instrument[-8:], '%Y%m%d')
+                    if datetime.strptime(instrument[-8:], '%Y%m%d') <= datetime(year, month, day):
+                        self.__logger.debug("POSITION EST EXPIREE")
+                        shares = 0
+                        instument=None
+#                        for order in self.getActiveOrders(instrument):
+#                            self._unregisterOrder(order)
                     
                 instrumentPrice = self._getBar(bars, instrument).getClose(self.getUseAdjustedValues())
                 ret += instrumentPrice * shares

@@ -6,23 +6,39 @@ from pyalgotrade.technical import ma
 from pyalgotrade import broker
 import datetime
 from pyalgotrade.stratanalyzer import returns
+from pyalgotrade.stratanalyzer import drawdown
 from pyalgotrade import plotter
 
 
 class MyStrategy(strategy.BacktestingStrategy):
-    def __init__(self, feed, instrument, smaPeriod):
+    def __init__(self, feed, instrument1,instrument2, smaPeriod):
         super(MyStrategy, self).__init__(feed, 1000)
         self.__position = None
         self.__option = None
-        self.__optionAlreadyExecuted = False
-        self.__instrument = instrument
+        self.__instrument1 = instrument1
+        self.__instrument2 = instrument2
+        
         # We'll use adjusted close values instead of regular close values.
         #self.setUseAdjustedValues(True)
-        self.__sma = ma.SMA(feed[instrument].getPriceDataSeries(), smaPeriod)
+        self.__sma = ma.SMA(feed[instrument1].getPriceDataSeries(), smaPeriod)
 
     def onEnterOk(self, position):
         execInfo = position.getEntryOrder().getExecutionInfo()
         self.info("BUY at $%.2f" % (execInfo.getPrice()))
+    
+    def isExpired(self, bar, position):
+        ret=False
+        time = position.getExpiryDate()
+        year = position.getExpiryDate().year
+        month = position.getExpiryDate().month
+        day = position.getExpiryDate().day
+        ####### Si la date de la bar est egale ou superieure a la date d'expiration, on annule les part et empeche les order sur cet instrument
+#        currentdatetime= datetime.strptime(instrument[-8:], '%Y%m%d')
+        if datetime.datetime.strptime(self.__instrument2[-8:], '%Y%m%d') <= datetime(year, month, day):
+            self.__logger.debug("POSITION EST EXPIREE")
+            ret=True
+        return ret            
+        
         
     def getSMA(self):
         return self.__sma
@@ -41,24 +57,25 @@ class MyStrategy(strategy.BacktestingStrategy):
 
     def onBars(self, bars):
         # Wait for enough bars to be available to calculate a SMA.
-        if self.__sma[-1] is None:
+        if bars.getBar(self.__instrument1) and bars.getBar(self.__instrument2) and self.__sma[-1] is None:
             return
 
-        bar = bars[self.__instrument]
 #        self.info("current bar price: $%.2f and current sma: $%.2f" % (bar.getPrice(), self.__sma[-1]))
         # If a position was not opened, check if we should enter a long position.
 #        if self.__option is None and not self.__optionAlreadyExecuted:
-        if self.__position is None: 
+        if bars.getBar(self.__instrument1) and bars.getBar(self.__instrument2) and self.__position is None: 
             
-            if bar.getPrice() > self.__sma[-1]:
+            if bars.getBar(self.__instrument1).getPrice() > self.__sma[-1]:
                 right = broker.OptionOrder.Right.PUT
-                strike = bar.getPrice() + 10
-                bar.getDateTime()
-                expiry = datetime.datetime(2016, 3, 30, 16, 30)
+                strike = bars.getBar(self.__instrument2).getPrice()-3
+                bars.getBar(self.__instrument2).getDateTime()
+                expiry = datetime.datetime(2016, 8, 19, 16, 30)
                 
                 #if bar.getPrice() > self.__sma[-1]:
                     # Enter a buy market order for 10 shares. The order is good till canceled.
-                self.__position = self.enterOptionLong(self.__instrument, 10, right, strike, expiry, True)
+                self.__position = self.enterLong(self.__instrument1, 2, True)
+                self.__option = self.enterOptionLong(self.__instrument2, 2, right, strike, expiry, True)
+                
                 #self.__optionAlreadyExecuted = True
                 
 #                print "Option executed for: $%.2f" % (bar.getPrice())
@@ -66,9 +83,12 @@ class MyStrategy(strategy.BacktestingStrategy):
         #elif bar.getPrice() < self.__sma[-1] and not self.__position.exitActive():
             #self.__position.exitMarket()
         
-        elif bar.getPrice() < self.__sma[-1] and not self.__position.exitActive():
+        elif bars.getBar(self.__instrument1).getPrice() < self.__sma[-1] and not self.__position.exitActive() and not self.__option.exitActive():
             self.__position.exitMarket()
+            self.__option.exitMarket()
+                
 #            print "Option exited at: $%.2f" % bar.getPrice()
+        
         
 
         
@@ -86,18 +106,23 @@ def run_strategy(smaPeriod):
 #    feed = yahoofeed.Feed()
 #    feed.addBarsFromCSV("orcl", "orcl-2000.csv")
     feed = ibfeed.Feed()
-    feed.addBarsFromCSV("bac", "samples/bac.csv")
+    feed.addBarsFromCSV("bac", "samples/bac_2mois_7-9.csv")
+    feed.addBarsFromCSV("bac20p20160819", "samples/bac_20p20160819.csv")
 
     # Evaluate the strategy with the feed.
 #    myStrategy = MyStrategy(feed, "orcl", smaPeriod)
-    myStrategy = MyStrategy(feed, "bac", smaPeriod)
+    myStrategy = MyStrategy(feed, "bac","bac20p20160819", smaPeriod)
     
     # Attach a returns analyzers to the strategy.
     returnsAnalyzer = returns.Returns()
+    drawdownAnalyzer = drawdown.DrawDown()
     myStrategy.attachAnalyzer(returnsAnalyzer)
+    myStrategy.attachAnalyzer(drawdownAnalyzer)
+    
     
     # Attach the plotter to the strategy.
     plt = plotter.StrategyPlotter(myStrategy)
+#    plt.getOrCreateSubplot("cash").addCallback("Cash", lambda x: myStrategy.getBroker().getCash())
     # Include the SMA in the instrument's subplot to get it displayed along with the closing prices.
     plt.getInstrumentSubplot("bac").addDataSeries("SMA", myStrategy.getSMA())
     # Plot the simple returns on each bar.
@@ -105,6 +130,8 @@ def run_strategy(smaPeriod):
 
     myStrategy.run()
     print "Final portfolio value: $%.2f" % myStrategy.getBroker().getEquity()
+    print "Final portfolio value: $%.2f" % myStrategy.getBroker().getEquity()
+    print "Final mlonguest drawdown duration: %s" % str(drawdownAnalyzer.getLongestDrawDownDuration())
 
     plt.plot()
     
