@@ -1,0 +1,5 @@
+projectKey=pyalgotrade
+serverUrl=http://35.164.127.0:9000
+dashboardUrl=http://35.164.127.0:9000/dashboard/index/pyalgotrade
+ceTaskId=AVjKvNqR4BYz_b5Xl5yy
+ceTaskUrl=http://35.164.127.0:9000/api/ce/task?id=AVjKvNqR4BYz_b5Xl5yy
