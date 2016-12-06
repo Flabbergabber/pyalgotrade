@@ -1,0 +1,1 @@
+nosetests --with-xunit --with-coverage --cover-xml --cover-package=pyalgotrade --cover-xml-file=coverage.xml
