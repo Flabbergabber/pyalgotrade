@@ -1,4 +1,4 @@
-# PyAlgoTrade
+0# PyAlgoTrade
 #
 # Copyright 2011-2015 Gabriel Martin Becedillas Ruiz
 #
@@ -347,6 +347,9 @@ class Broker(broker.Broker):
 
     def getShares(self, instrument):
         return self.__shares.get(instrument, 0)
+        
+    def resetShares(self, instrument):
+        self.__shares[instrument] = 0
 
     def getPositions(self):
         return self.__shares
@@ -593,7 +596,10 @@ class Broker(broker.Broker):
     def createOptionStopLimitOrder(self, action, instrument, stopPrice, limitPrice, quantity, right, strike, expiry):
         return OptionStopLimitOrder(action, instrument, stopPrice, limitPrice, quantity, right, strike, expiry, self.getInstrumentTraits(instrument))
 
-
+    def cancelOption(self, order):
+        self._unregisterOrder(order)
+        
+        
     def cancelOrder(self, order):
         activeOrder = self.__activeOrders.get(order.getId())
 #        if activeOrder is None:

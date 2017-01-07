@@ -63,7 +63,7 @@ class MyStrategy(strategy.BacktestingStrategy):
 #        self.info("current bar price: $%.2f and current sma: $%.2f" % (bar.getPrice(), self.__sma[-1]))
         # If a position was not opened, check if we should enter a long position.
 #        if self.__option is None and not self.__optionAlreadyExecuted:
-        if bars.getBar(self.__instrument1) and bars.getBar(self.__instrument2) and self.__position is None: 
+        if bars.getBar(self.__instrument1) and bars.getBar(self.__instrument2) and self.__position is None and self.__option is None: 
             
             if bars.getBar(self.__instrument1).getPrice() > self.__sma[-1]:
                 right = broker.OptionOrder.Right.PUT

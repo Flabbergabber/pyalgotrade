@@ -9,7 +9,7 @@ from pyalgotrade.stratanalyzer import returns
 from pyalgotrade import plotter
 
 
-class MyStrategy(strategy.BacktestingStrategy):
+class MyStrategy(strategy.BacktestingOptionStrategy):
     def __init__(self, feed, instrument, smaPeriod):
         super(MyStrategy, self).__init__(feed, 1000)
         self.__position = None
@@ -29,17 +29,8 @@ class MyStrategy(strategy.BacktestingStrategy):
         
     def onEnterCanceled(self, position):
         self.__position = None
-
-    def onExitOk(self, position):
-        execInfo = position.getExitOrder().getExecutionInfo()
-        self.info("SELL at $%.2f" % (execInfo.getPrice()))
-        self.__position = None
-
-    def onExitCanceled(self, position):
-        # If the exit was canceled, re-submit it.
-        self.__position.exitMarket()
-        
-    def UpdateExpired(self, bars):
+    
+    def updateExpired(self, bars):
         if bars is not None:
             for instrument, shares in self.getBroker().getPositions().iteritems():
                 ##### on va chercher la date pour detarminer lexpiration 'un option
@@ -51,21 +42,27 @@ class MyStrategy(strategy.BacktestingStrategy):
                     month = self.getBroker()._getBar(bars, instrument).getDateTime().month
                     day = self.getBroker()._getBar(bars, instrument).getDateTime().day
                     ####### Si la date de la bar est egale ou superieure a la date d'expiration, on annule les part et empeche les order sur cet instrument
-                    currentdatetime= datetime.strptime(instrument[-8:], '%Y%m%d')
-                    if datetime.strptime(instrument[-8:], '%Y%m%d') <= datetime(year, month, day):
-                        self.__logger.debug("POSITION EST EXPIREE")
-                        shares = 0
-#                        instument=None
+                    currentdatetime= datetime.datetime.strptime(instrument[-8:], '%Y%m%d')
+                    if datetime.datetime.strptime(instrument[-8:], '%Y%m%d') <= datetime.datetime(year, month, day):
+                        self.debug("POSITION EST EXPIREE")
+                        self.getBroker().resetShares(instrument)
                         for order in self.getBroker().getActiveOrders(instrument):
-                            self.getBroker().cancelOrder(order)
-         
-    
+                            self.getBroker().cancelOption(order)
+
+    def onExitOk(self, position):
+        execInfo = position.getExitOrder().getExecutionInfo()
+        self.info("SELL at $%.2f" % (execInfo.getPrice()))
+        self.__position = None
+
+    def onExitCanceled(self, position):
+        # If the exit was canceled, re-submit it.
+        self.__position.exitMarket()
+
     def onBars(self, bars):
         # Wait for enough bars to be available to calculate a SMA.
         if self.__sma[-1] is None:
             return
-        self.UpdateExpired(bars)    
-        
+        self.updateExpired(bars)
         bar = bars[self.__instrument]
 #        self.info("current bar price: $%.2f and current sma: $%.2f" % (bar.getPrice(), self.__sma[-1]))
         # If a position was not opened, check if we should enter a long position.
@@ -108,11 +105,11 @@ def run_strategy(smaPeriod):
 #    feed = yahoofeed.Feed()
 #    feed.addBarsFromCSV("orcl", "orcl-2000.csv")
     feed = ibfeed.Feed()
-    feed.addBarsFromCSV("bac", "samples/bac.csv")
+    feed.addBarsFromCSV("bac20160308", "samples/bac_20p20160308.csv")
 
     # Evaluate the strategy with the feed.
 #    myStrategy = MyStrategy(feed, "orcl", smaPeriod)
-    myStrategy = MyStrategy(feed, "bac", smaPeriod)
+    myStrategy = MyStrategy(feed, "bac20160308", smaPeriod)
     
     # Attach a returns analyzers to the strategy.
     returnsAnalyzer = returns.Returns()
