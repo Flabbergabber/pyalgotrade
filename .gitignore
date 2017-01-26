@@ -5,6 +5,7 @@ doc/_build
 .coverage
 .ipynb_checkpoints
 .ropeproject
+.spyproject
 
 data
 dist
