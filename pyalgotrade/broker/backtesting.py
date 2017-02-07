@@ -24,7 +24,6 @@ from pyalgotrade import broker
 from pyalgotrade.broker import fillstrategy
 from pyalgotrade import logger
 import pyalgotrade.bar
-from datetime import datetime
 
 
 ######################################################################
@@ -120,6 +119,7 @@ class MarketOrder(broker.MarketOrder, BacktestingOrder):
     def process(self, broker_, bar_):
         return broker_.getFillStrategy().fillMarketOrder(broker_, self, bar_)
 
+
 class LimitOrder(broker.LimitOrder, BacktestingOrder):
     def __init__(self, action, instrument, limitPrice, quantity, instrumentTraits):
         super(LimitOrder, self).__init__(action, instrument, limitPrice, quantity, instrumentTraits)
@@ -163,63 +163,6 @@ class StopLimitOrder(broker.StopLimitOrder, BacktestingOrder):
     def process(self, broker_, bar_):
         return broker_.getFillStrategy().fillStopLimitOrder(broker_, self, bar_)
 
-#############################################################################
-####   OPTION PART
-#
-#############################################################################
-class OptionOrder(broker.OptionOrder, BacktestingOrder):
-    def __init__(self, action, instrument, quantity, right, strike, expiry,  onClose, instrumentTraits):
-        super(OptionOrder, self).__init__(action, instrument, quantity, right, strike, expiry, onClose, instrumentTraits)
-
-    def process(self, broker_, bar_):
-        return broker_.getFillStrategy().fillOptionOrder(broker_, self, bar_)
-
-class OptionLimitOrder(broker.OptionLimitOrder, BacktestingOrder):
-    def __init__(self, action, instrument, limitPrice, quantity, right, strike, expiry,  instrumentTraits):
-        super(LimitOrder, self).__init__(action, instrument, limitPrice, quantity, right, strike, expiry, instrumentTraits)
-
-    def process(self, broker_, bar_):
-        return broker_.getFillStrategy().fillOptionLimitOrder(broker_, self, bar_)
-
-
-class OptionStopOrder(broker.OptionStopOrder, BacktestingOrder):
-    def __init__(self, action, instrument, stopPrice, quantity, right, strike, expiry,  instrumentTraits):
-        super(StopOrder, self).__init__(action, instrument, stopPrice, quantity, right, strike, expiry, instrumentTraits)
-        self.__stopHit = False
-
-    def process(self, broker_, bar_):
-        return broker_.getFillStrategy().fillOptionStopOrder(broker_, self, bar_)
-
-    def setStopHit(self, stopHit):
-        self.__stopHit = stopHit
-
-    def getStopHit(self):
-        return self.__stopHit
-
-
-# http://www.sec.gov/answers/stoplim.htm
-# http://www.interactivebrokers.com/en/trading/orders/stopLimit.php
-class OptionStopLimitOrder(broker.OptionStopLimitOrder, BacktestingOrder):
-    def __init__(self, action, instrument, stopPrice, limitPrice, quantity, right, strike, expiry, instrumentTraits):
-        super(StopLimitOrder, self).__init__(action, instrument, stopPrice, limitPrice, quantity, right, strike, expiry, instrumentTraits)
-        self.__stopHit = False  # Set to true when the limit order is activated (stop price is hit)
-
-    def setStopHit(self, stopHit):
-        self.__stopHit = stopHit
-
-    def getStopHit(self):
-        return self.__stopHit
-
-    def isLimitOrderActive(self):
-        # TODO: Deprecated since v0.15. Use getStopHit instead.
-        return self.__stopHit
-
-    def process(self, broker_, bar_):
-        return broker_.getFillStrategy().fillOptionStopLimitOrder(broker_, self, bar_)
-
-#### FIN OPTION
-
-
 
 ######################################################################
 # Broker
@@ -248,7 +191,6 @@ class Broker(broker.Broker):
             self.__commission = commission
         self.__shares = {}
         self.__activeOrders = {}
-        self.__activeOptionsOrders = {}
         self.__useAdjustedValues = False
         self.__fillStrategy = fillstrategy.DefaultStrategy()
         self.__logger = logger.getLogger(Broker.LOGGER_NAME)
@@ -357,28 +299,9 @@ class Broker(broker.Broker):
     def __getEquityWithBars(self, bars):
         ret = self.getCash()
         if bars is not None:
-            
             for instrument, shares in self.__shares.iteritems():
-                ##### on va chercher la date pour detarminer lexpiration 'un option
-                
-                ##### on detecte vaguement si le format est pour une option
- #               if len(instrument) > 8:
- #                   time = self._getBar(bars, instrument).getDateTime()
- #                   year = self._getBar(bars, instrument).getDateTime().year
- #                   month = self._getBar(bars, instrument).getDateTime().month
- #                   day = self._getBar(bars, instrument).getDateTime().day
-                    ####### Si la date de la bar est egale ou superieure a la date d'expiration, on annule les part et empeche les order sur cet instrument
-#                    currentdatetime= datetime.strptime(instrument[-8:], '%Y%m%d')
-#                    if datetime.strptime(instrument[-8:], '%Y%m%d') <= datetime(year, month, day):
-#                        self.__logger.debug("POSITION EST EXPIREE")
-#                        shares = 0
-#                        instument=None
-#                        for order in self.getActiveOrders(instrument):
- #                           self._unregisterOrder(order)
-                    
                 instrumentPrice = self._getBar(bars, instrument).getClose(self.getUseAdjustedValues())
                 ret += instrumentPrice * shares
-#        print "%return is $%.2f" % (ret)
         return ret
 
     def getEquity(self):
@@ -527,8 +450,6 @@ class Broker(broker.Broker):
         for order in ordersToProcess:
             # This may trigger orders to be added/removed from __activeOrders.
             self.__onBarsImpl(order, bars)
-            
-        ordersToProcess = self.__activeOptionsOrders.values()
 
     def start(self):
         super(Broker, self).start()
@@ -570,36 +491,12 @@ class Broker(broker.Broker):
     def createStopLimitOrder(self, action, instrument, stopPrice, limitPrice, quantity):
         return StopLimitOrder(action, instrument, stopPrice, limitPrice, quantity, self.getInstrumentTraits(instrument))
 
-############################################################
-#section des options
-################################################
-
-    def createOptionOrder(self, action, instrument, quantity, right, strike, expiry, onClose=False):
-        # In order to properly support market-on-close with intraday feeds I'd need to know about different
-        # exchange/market trading hours and support specifying routing an order to a specific exchange/market.
-        # Even if I had all this in place it would be a problem while paper-trading with a live feed since
-        # I can't tell if the next bar will be the last bar of the market session or not.
-        if onClose is True and self.__barFeed.isIntraday():
-            raise Exception("Market-on-close not supported with intraday feeds")
-
-        return OptionOrder(action, instrument, quantity, right, strike, expiry, onClose, self.getInstrumentTraits(instrument))
-    
-    def createOptionLimitOrder(self, action, instrument, limitPrice, quantity, right, strike, expiry):
-        return OptionLimitOrder(action, instrument, limitPrice, quantity, right, strike, expiry, self.getInstrumentTraits(instrument))
-
-    def createOptionStopOrder(self, action, instrument, stopPrice, quantity, right, strike, expiry):
-        return OptionStopOrder(action, instrument, stopPrice, quantity, right, strike, expiry, self.getInstrumentTraits(instrument))
-
-    def createOptionStopLimitOrder(self, action, instrument, stopPrice, limitPrice, quantity, right, strike, expiry):
-        return OptionStopLimitOrder(action, instrument, stopPrice, limitPrice, quantity, right, strike, expiry, self.getInstrumentTraits(instrument))
-
-
     def cancelOrder(self, order):
         activeOrder = self.__activeOrders.get(order.getId())
-#        if activeOrder is None:
-#            raise Exception("The order is not active anymore")
-#        if activeOrder.isFilled():
-#            raise Exception("Can't cancel order that has already been filled")
+        if activeOrder is None:
+            raise Exception("The order is not active anymore")
+        if activeOrder.isFilled():
+            raise Exception("Can't cancel order that has already been filled")
 
         self._unregisterOrder(activeOrder)
         activeOrder.switchState(broker.Order.State.CANCELED)
