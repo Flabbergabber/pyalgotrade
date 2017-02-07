@@ -14,43 +14,33 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""
-.. moduleauthor:: Gabriel Martin Becedillas Ruiz <gabriel.becedillas@gmail.com>
-"""
-
 from pyalgotrade.barfeed import csvfeed
 from pyalgotrade import bar
-
 
 import datetime
 
 
 ######################################################################
-## NinjaTrader CSV parser
+## Interactive Broker CSV parser
 # Each bar must be on its own line and fields must be separated by semicolon (;).
 #
 # Minute Bars Format:
-# yyyyMMdd HHmmss;open price;high price;low price;close price;volume
+# mm/dd/YYYY HH:mm;open price;high price;low price;close price;number_ticks;volume;value
 #
-# Daily Bars Format:
-# yyyyMMdd;open price;high price;low price;close price;volume
-#
-# The exported data will be in the UTC time zone.
+# The exported data will be in the UTC time zone.(have to verify that)
 
 def parse_datetime(dateTime):
     # Sample: 20081231 230600
     # This custom parsing works faster than:
     # datetime.datetime.strptime(dateTime, "%Y%m%d %H%M%S")
-    #year = int(dateTime[0:4])
-    #month = int(dateTime[4:6])
-    #day = int(dateTime[6:8])
-    #hour = int(dateTime[9:11])
-    #minute = int(dateTime[11:13])
-    #sec = int(dateTime[13:15])
-    #return datetime.datetime(year, month, day, hour, minute, sec)
+    # year = int(dateTime[0:4])
+    # month = int(dateTime[4:6])
+    # day = int(dateTime[6:8])
+    # hour = int(dateTime[9:11])
+    # minute = int(dateTime[11:13])
+    # sec = int(dateTime[13:15])
+    # return datetime.datetime(year, month, day, hour, minute, sec)
     return datetime.datetime.strptime(dateTime, "%m/%d/%Y %H:%M")
-
-
 
 
 class RowParser(csvfeed.RowParser):
@@ -60,14 +50,13 @@ class RowParser(csvfeed.RowParser):
         self.__timezone = timezone
 
     def __parseDateTime(self, dateTime):
-
         ret = parse_datetime(dateTime)
-        
+
         return ret
 
     def getFieldNames(self):
-        #return ["Date","OPEN","HIGH","LOW","Close","NUMBER_TICKS","VOLUME","VALUE"]
         return None
+
     def getDelimiter(self):
         return ";"
 
@@ -82,10 +71,9 @@ class RowParser(csvfeed.RowParser):
 
 
 class Feed(csvfeed.BarFeed):
-    """A :class:`pyalgotrade.barfeed.csvfeed.BarFeed` that loads bars from CSV files exported from NinjaTrader.
+    """A :class:`pyalgotrade.barfeed.csvfeed.BarFeed` that loads bars from CSV files exported from Interactive Broker.
 
-    :param frequency: The frequency of the bars. Only **pyalgotrade.bar.Frequency.MINUTE** or **pyalgotrade.bar.Frequency.DAY**
-        are supported.
+    :param frequency: The frequency of the bars. Only **pyalgotrade.bar.Frequency.MINUTE** are supported.
     :param timezone: The default timezone to use to localize bars. Check :mod:`pyalgotrade.marketsession`.
     :type timezone: A pytz timezone.
     :param maxLen: The maximum number of values that the :class:`pyalgotrade.dataseries.bards.BarDataSeries` will hold.
@@ -95,8 +83,6 @@ class Feed(csvfeed.BarFeed):
     """
 
     def __init__(self, frequency=bar.Frequency.DAY, timezone=None, maxLen=None):
-       
-        
         super(Feed, self).__init__(frequency, maxLen)
 
         self.__timezone = timezone
@@ -117,7 +103,8 @@ class Feed(csvfeed.BarFeed):
         """
 
         if isinstance(timezone, int):
-            raise Exception("timezone as an int parameter is not supported anymore. Please use a pytz timezone instead.")
+            raise Exception(
+                "timezone as an int parameter is not supported anymore. Please use a pytz timezone instead.")
 
         if timezone is None:
             timezone = self.__timezone
