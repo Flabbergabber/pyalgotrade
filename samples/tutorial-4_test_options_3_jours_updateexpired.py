@@ -1,15 +1,15 @@
-from pyalgotrade import strategy
+from pyalgotrade.strategy import optstrategy
 #from pyalgotrade.barfeed import yahoofeed
 #from pyalgotrade.barfeed import googlefeed
 from pyalgotrade.barfeed import ibfeed
 from pyalgotrade.technical import ma
-from pyalgotrade import broker
+from pyalgotrade.broker import optbroker
 import datetime
 from pyalgotrade.stratanalyzer import returns
 from pyalgotrade import plotter
 
 
-class MyStrategy(strategy.BacktestingOptionStrategy):
+class MyStrategy(optstrategy.OptionBacktestingStrategy):
     def __init__(self, feed, instrument, smaPeriod):
         super(MyStrategy, self).__init__(feed, 1000)
         self.__position = None
@@ -70,7 +70,7 @@ class MyStrategy(strategy.BacktestingOptionStrategy):
         if self.__position is None: 
             
             if bar.getPrice() > self.__sma[-1]:
-                right = broker.OptionOrder.Right.PUT
+                right = optbroker.OptionOrder.Right.PUT
                 strike = bar.getPrice() + 10
                 bar.getDateTime()
                 expiry = datetime.datetime(2016, 3, 30, 16, 30)
@@ -105,7 +105,7 @@ def run_strategy(smaPeriod):
 #    feed = yahoofeed.Feed()
 #    feed.addBarsFromCSV("orcl", "orcl-2000.csv")
     feed = ibfeed.Feed()
-    feed.addBarsFromCSV("bac20160308", "samples/bac_20p20160308.csv")
+    feed.addBarsFromCSV("bac20160308", "bac_20p20160308.csv")
 
     # Evaluate the strategy with the feed.
 #    myStrategy = MyStrategy(feed, "orcl", smaPeriod)
