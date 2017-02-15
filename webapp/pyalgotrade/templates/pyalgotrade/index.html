@@ -1,6 +1,143 @@
 {% extends "pyalgotrade/header.html" %}
 
 {% block content %}
+    <style media="screen">
+        #editor {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            height: 608px;
+        }
+
+        #editorRow {
+            height: 608px;
+        }
+    </style>
+    <br/>
+    <div class="row">
+        <div class="col-md-6">
+            <input type="text" placeholder="File name"/>
+        </div>
+        <div class="col-md-6">
+            <input type="text" placeholder="Start Date" />
+            <input type="text" placeholder="End Date" />
+            <input type="text" placeholder="Strike" />
+            <button type="submit" class="btn btn-default">Build & Launch</button>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-6">
+            <div id="editorRow" class="row">
+                <div id="editor">
+from pyalgotrade import strategy
+from pyalgotrade.barfeed import yahoofeed
+from pyalgotrade.technical import ma
+
+
+class MyStrategy(strategy.BacktestingStrategy):
+    def __init__(self, feed, instrument, smaPeriod):
+        super(MyStrategy, self).__init__(feed, 1000)
+        self.__position = None
+        self.__instrument = instrument
+        # We'll use adjusted close values instead of regular close values.
+        self.setUseAdjustedValues(False)
+        self.__sma = ma.SMA(feed[instrument].getPriceDataSeries(), smaPeriod)
+
+    def onEnterOk(self, position):
+        execInfo = position.getEntryOrder().getExecutionInfo()
+        self.info("BUY at $%.2f" % (execInfo.getPrice()))
+
+    def onEnterCanceled(self, position):
+        self.__position = None
+
+    def onExitOk(self, position):
+        execInfo = position.getExitOrder().getExecutionInfo()
+        self.info("SELL at $%.2f" % (execInfo.getPrice()))
+        self.__position = None
+
+    def onExitCanceled(self, position):
+        # If the exit was canceled, re-submit it.
+        self.__position.exitMarket()
+
+    def onBars(self, bars):
+        # Wait for enough bars to be available to calculate a SMA.
+        if self.__sma[-1] is None:
+            return
+
+        bar = bars[self.__instrument]
+        # If a position was not opened, check if we should enter a long position.
+        if self.__position is None:
+            if bar.getPrice() > self.__sma[-1]:
+                # Enter a buy market order for 10 shares. The order is good till canceled.
+                self.__position = self.enterOptionLong(self.__instrument, 10, True)
+        # Check if we have to exit the position.
+        elif bar.getPrice() < self.__sma[-1] and not self.__position.exitActive():
+            self.__position.exitMarket()
+
+
+def run_strategy(smaPeriod):
+    # Load the yahoo feed from the CSV file
+    feed = yahoofeed.Feed()
+    feed.addBarsFromCSV("orcl", "orcl-2000.csv")
+#    feed = ibfeed.Feed()
+#    feed.addBarsFromCSV("bac", "bac_short.csv")
+
+    # Evaluate the strategy with the feed.
+    myStrategy = MyStrategy(feed, "orcl", smaPeriod)
+#    myStrategy = MyStrategy(feed, "bac", smaPeriod)
+    myStrategy.run()
+    print "Final portfolio value: $%.2f" % myStrategy.getBroker().getEquity()
+
+for i in range(10, 30):
+    run_strategy(i)
+
+
+                </div>
+            </div>
+            <div class="row">
+                <button type="submit" class="btn btn-default pull-right">Load</button>
+                <button type="submit" class="btn btn-default pull-right">Save</button>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="row">
+                <div id="chartdiv" style="width: 100%; height: 400px; background-color: #FFFFFF;" ></div>
+            </div>
+            <div class="row">
+                <div>
+
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active"><a href="#log" aria-controls="log" role="tab" data-toggle="tab">Log</a></li>
+                        <li role="presentation"><a href="#results" aria-controls="results" role="tab" data-toggle="tab">Results</a></li>
+                        <li role="presentation"><a href="#markers" aria-controls="markers" role="tab" data-toggle="tab">Markers</a></li>
+                    </ul>
+
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="log">
+                            <textarea readonly style="min-width: 100%;height:200px;">Strategy successfully executed.</textarea>
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="results">...</div>
+                        <div role="tabpanel" class="tab-pane" id="markers">...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block footer_scripts %}
+    {% load staticfiles %}
+    <script src="{% static 'pyalgotrade/js/ace/ace.js' %}" type="text/javascript" charset="utf-8"></script>
+    <script>
+        var editor = ace.edit("editor");
+        editor.setTheme("ace/theme/github");
+        editor.getSession().setMode("ace/mode/python");
+        editor.setOption("showPrintMargin", false);
+    </script>
     <!-- amCharts javascript sources -->
     <script type="text/javascript" src="https://www.amcharts.com/lib/3/amcharts.js"></script>
     <script type="text/javascript" src="https://www.amcharts.com/lib/3/serial.js"></script>
@@ -1002,142 +1139,5 @@
                 ]
             }
         );
-    </script>
-
-    <style media="screen">
-        #editor {
-            position: absolute;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            left: 0;
-            height: 608px;
-        }
-
-        #editorRow {
-            height: 608px;
-        }
-    </style>
-    <br/>
-    <div class="row">
-        <div class="col-md-6">
-            <input type="text" placeholder="File name"/>
-        </div>
-        <div class="col-md-6">
-            <input type="text" placeholder="Start Date" />
-            <input type="text" placeholder="End Date" />
-            <input type="text" placeholder="Strike" />
-            <button type="submit" class="btn btn-default">Build & Launch</button>
-        </div>
-    </div>
-    <br />
-    <div class="row">
-        <div class="col-md-6">
-            <div id="editorRow" class="row">
-                <div id="editor">
-from pyalgotrade import strategy
-from pyalgotrade.barfeed import yahoofeed
-from pyalgotrade.technical import ma
-
-
-class MyStrategy(strategy.BacktestingStrategy):
-    def __init__(self, feed, instrument, smaPeriod):
-        super(MyStrategy, self).__init__(feed, 1000)
-        self.__position = None
-        self.__instrument = instrument
-        # We'll use adjusted close values instead of regular close values.
-        self.setUseAdjustedValues(False)
-        self.__sma = ma.SMA(feed[instrument].getPriceDataSeries(), smaPeriod)
-
-    def onEnterOk(self, position):
-        execInfo = position.getEntryOrder().getExecutionInfo()
-        self.info("BUY at $%.2f" % (execInfo.getPrice()))
-
-    def onEnterCanceled(self, position):
-        self.__position = None
-
-    def onExitOk(self, position):
-        execInfo = position.getExitOrder().getExecutionInfo()
-        self.info("SELL at $%.2f" % (execInfo.getPrice()))
-        self.__position = None
-
-    def onExitCanceled(self, position):
-        # If the exit was canceled, re-submit it.
-        self.__position.exitMarket()
-
-    def onBars(self, bars):
-        # Wait for enough bars to be available to calculate a SMA.
-        if self.__sma[-1] is None:
-            return
-
-        bar = bars[self.__instrument]
-        # If a position was not opened, check if we should enter a long position.
-        if self.__position is None:
-            if bar.getPrice() > self.__sma[-1]:
-                # Enter a buy market order for 10 shares. The order is good till canceled.
-                self.__position = self.enterOptionLong(self.__instrument, 10, True)
-        # Check if we have to exit the position.
-        elif bar.getPrice() < self.__sma[-1] and not self.__position.exitActive():
-            self.__position.exitMarket()
-
-
-def run_strategy(smaPeriod):
-    # Load the yahoo feed from the CSV file
-    feed = yahoofeed.Feed()
-    feed.addBarsFromCSV("orcl", "orcl-2000.csv")
-#    feed = ibfeed.Feed()
-#    feed.addBarsFromCSV("bac", "bac_short.csv")
-
-    # Evaluate the strategy with the feed.
-    myStrategy = MyStrategy(feed, "orcl", smaPeriod)
-#    myStrategy = MyStrategy(feed, "bac", smaPeriod)
-    myStrategy.run()
-    print "Final portfolio value: $%.2f" % myStrategy.getBroker().getEquity()
-
-for i in range(10, 30):
-    run_strategy(i)
-
-
-                </div>
-            </div>
-            <div class="row">
-                <button type="submit" class="btn btn-default pull-right">Load</button>
-                <button type="submit" class="btn btn-default pull-right">Save</button>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="row">
-                <div id="chartdiv" style="width: 100%; height: 400px; background-color: #FFFFFF;" ></div>
-            </div>
-            <div class="row">
-                <div>
-
-                    <!-- Nav tabs -->
-                    <ul class="nav nav-tabs" role="tablist">
-                        <li role="presentation" class="active"><a href="#log" aria-controls="log" role="tab" data-toggle="tab">Log</a></li>
-                        <li role="presentation"><a href="#results" aria-controls="results" role="tab" data-toggle="tab">Results</a></li>
-                        <li role="presentation"><a href="#markers" aria-controls="markers" role="tab" data-toggle="tab">Markers</a></li>
-                    </ul>
-
-                    <!-- Tab panes -->
-                    <div class="tab-content">
-                        <div role="tabpanel" class="tab-pane active" id="log">
-                            <textarea readonly style="min-width: 100%;height:200px;">Strategy successfully executed.</textarea>
-                        </div>
-                        <div role="tabpanel" class="tab-pane" id="results">...</div>
-                        <div role="tabpanel" class="tab-pane" id="markers">...</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    {% load staticfiles %}
-    <script src="{% static 'pyalgotrade/js/ace/ace.js' %}" type="text/javascript" charset="utf-8"></script>
-    <script>
-        var editor = ace.edit("editor");
-        editor.setTheme("ace/theme/github");
-        editor.getSession().setMode("ace/mode/python");
-        editor.setOption("showPrintMargin", false);
     </script>
 {% endblock %}
