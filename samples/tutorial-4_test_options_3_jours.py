@@ -81,15 +81,42 @@ class MyStrategy(strategy.BacktestingStrategy):
 #            self.__position.exitMarket()
 #            print "Order exited at: $%.2f" % bar.getPrice()
 
-def run_strategy(smaPeriod):
+def run_strategy(smaPeriod, filename):
     # Load the yahoo feed from the CSV file
 #    feed = yahoofeed.Feed()
 #    feed.addBarsFromCSV("orcl", "orcl-2000.csv")
     feed = ibfeed.Feed()
-    feed.addBarsFromCSV("bac20160308", "samples/bac_20p20160308.csv")
+
+    slashIndex = filename.rfind('/')
+
+    if(slashIndex > -1):
+        filename = filename[slashIndex+1:]
+
+    zinstrument = filename[0:3]
+    zStrikePrice = filename[4:6]
+    zDate = filename[7:15]
+    optiontype = filename[6]
+    if (optiontype.lower() == "p"):
+        optiontype = "PUT"
+    elif (optiontype.lower() == "c"):
+        optiontype = "CALL"
+    else:
+        optiontype = str(None)
+
+    # Gossage juste pour la date
+    zDateYear = zDate[0:4]
+    zDateMonth = zDate[4:6]
+    zDateDay = zDate[6:8]
+
+    print "Instrument: " + zinstrument
+    print "Strice price: " + zStrikePrice
+    print "Date: " + zDateYear + "-" + zDateMonth + "-" + zDateDay
+    print "OptionType: " + optiontype
+
+    feed.addBarsFromCSV("bac20160308", filename)
 
     # Evaluate the strategy with the feed.
-#    myStrategy = MyStrategy(feed, "orcl", smaPeriod)
+    #    myStrategy = MyStrategy(feed, "orcl", smaPeriod)
     myStrategy = MyStrategy(feed, "bac20160308", smaPeriod)
     
     # Attach a returns analyzers to the strategy.
@@ -108,4 +135,4 @@ def run_strategy(smaPeriod):
 
     plt.plot()
     
-run_strategy(10)
+run_strategy(10, "samples/bac_20p20160308.csv")
