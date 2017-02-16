@@ -8,6 +8,7 @@
 	<link rel="stylesheet" href="{% static 'pyalgotrade/css/bootstrap.min.css' %}" type = "text/css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<script src="{% static 'pyalgotrade/js/bootstrap.js' %}"></script>
+    <script src="{% static 'pyalgotrade/js/main.js' %}"></script>
     <meta name="viewport" content = "width=device-width, initial-scale=1.0">
 
 	<style type="text/css" media="screen">
@@ -81,7 +82,9 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
+    {% block footer_scripts %}
 
+    {% endblock %}
   </body>
 
 </html>
