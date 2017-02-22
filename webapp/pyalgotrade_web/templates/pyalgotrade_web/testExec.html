@@ -1,0 +1,171 @@
+{% extends "pyalgotrade_web/header.html" %}
+
+{% block content %}
+    <style media="screen">
+        #editor {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            height: 608px;
+        }
+            #editorRow {
+            height: 608px;
+        }
+    </style>
+
+    <div id="editorRow" class="row">
+        <div class="col-md-6">
+            <div id="editor">
+class MyStrategy(optstrategy.OptionBacktestingStrategy):
+    def __init__(self, feed, instrument, smaPeriod):
+        super(MyStrategy, self).__init__(feed, 1000)
+        self.__position = None
+        self.__option = None
+        self.__optionAlreadyExecuted = False
+        self.__instrument = instrument
+        # We'll use adjusted close values instead of regular close values.
+        #self.setUseAdjustedValues(True)
+        self.__sma = ma.SMA(feed[instrument].getPriceDataSeries(), smaPeriod)
+
+    def onEnterOk(self, position):
+        execInfo = position.getEntryOrder().getExecutionInfo()
+        self.info("BUY at $%.2f" % (execInfo.getPrice()))
+
+    def getSMA(self):
+        return self.__sma
+
+    def onEnterCanceled(self, position):
+        self.__position = None
+
+    def updateExpired(self, bars):
+        if bars is not None:
+            for instrument, shares in self.getBroker().getPositions().iteritems():
+                ##### on va chercher la date pour detarminer lexpiration 'un option
+
+                ##### on detecte vaguement si le format est pour une option
+                if len(instrument) > 8:
+                    time = self.getBroker()._getBar(bars, instrument).getDateTime()
+                    year = self.getBroker()._getBar(bars, instrument).getDateTime().year
+                    month = self.getBroker()._getBar(bars, instrument).getDateTime().month
+                    day = self.getBroker()._getBar(bars, instrument).getDateTime().day
+                    ####### Si la date de la bar est egale ou superieure a la date d'expiration, on annule les part et empeche les order sur cet instrument
+                    currentdatetime= datetime.datetime.strptime(instrument[-8:], '%Y%m%d')
+                    if datetime.datetime.strptime(instrument[-8:], '%Y%m%d') <= datetime.datetime(year, month, day):
+                        self.debug("POSITION EST EXPIREE")
+                        self.getBroker().resetShares(instrument)
+                        for order in self.getBroker().getActiveOrders(instrument):
+                            self.getBroker().cancelOption(order)
+
+    def onExitOk(self, position):
+        execInfo = position.getExitOrder().getExecutionInfo()
+        self.info("SELL at $%.2f" % (execInfo.getPrice()))
+        self.__position = None
+
+    def onExitCanceled(self, position):
+        # If the exit was canceled, re-submit it.
+        self.__position.exitMarket()
+
+    def onBars(self, bars):
+        # Wait for enough bars to be available to calculate a SMA.
+        if self.__sma[-1] is None:
+            return
+        self.updateExpired(bars)
+        bar = bars[self.__instrument]
+#        self.info("current bar price: $%.2f and current sma: $%.2f" % (bar.getPrice(), self.__sma[-1]))
+        # If a position was not opened, check if we should enter a long position.
+#        if self.__option is None and not self.__optionAlreadyExecuted:
+        if self.__position is None:
+
+            if bar.getPrice() > self.__sma[-1]:
+                right = optbroker.OptionOrder.Right.PUT
+                strike = bar.getPrice() + 10
+                bar.getDateTime()
+                expiry = datetime.datetime(2016, 3, 30, 16, 30)
+
+                #if bar.getPrice() > self.__sma[-1]:
+                    # Enter a buy market order for 10 shares. The order is good till canceled.
+                self.__position = self.enterOptionLong(self.__instrument, 10, right, strike, expiry, True)
+                #self.__optionAlreadyExecuted = True
+
+#                print "Option executed for: $%.2f" % (bar.getPrice())
+        # Check if we have to exit the position.
+        #elif bar.getPrice() < self.__sma[-1] and not self.__position.exitActive():
+            #self.__position.exitMarket()
+
+        elif bar.getPrice() < self.__sma[-1] and not self.__position.exitActive():
+            self.__position.exitMarket()
+#            print "Option exited at: $%.2f" % bar.getPrice()
+
+
+
+        #### l'ordre devrait etre generer a partir de la position de l'option avec le strike price si expiry n'est pas depasse
+#        elif self.__position is None and self.__option.getAge().days == 25 :
+#            self.__position = self.enterLong(self.__option.getInstrument(), 10, True)
+#            print "Order executed at: $%.2f" % bar.getPrice()
+
+#        elif self.__position is not None and self.__position.getAge().days == 60 :
+#            self.__position.exitMarket()
+#            print "Order exited at: $%.2f" % bar.getPrice()
+
+def run_strategy(smaPeriod):
+    # Load the yahoo feed from the CSV file
+#    feed = yahoofeed.Feed()
+#    feed.addBarsFromCSV("orcl", "orcl-2000.csv")
+    feed = ibfeed.Feed()
+    feed.addBarsFromCSV("bac20160308", "../../pyalgotrade/samples/bac_20p20160308.csv")
+
+    # Evaluate the strategy with the feed.
+#    myStrategy = MyStrategy(feed, "orcl", smaPeriod)
+    myStrategy = MyStrategy(feed, "bac20160308", smaPeriod)
+
+    # Attach a returns analyzers to the strategy.
+    returnsAnalyzer = returns.Returns()
+    myStrategy.attachAnalyzer(returnsAnalyzer)
+
+    myStrategy.run()
+    print "Final portfolio value: $%.2f" % myStrategy.getBroker().getEquity()
+
+run_strategy(10)</div>
+        </div>
+        <div class="col-md-6">
+            <textarea style="min-width: 100%;height:200px;" id="result" readonly></textarea>
+        </div>
+    </div>
+    <div class="row">
+        {% csrf_token %}
+        <button id="btnSubmit" type="submit" class="btn btn-default">Test</button>
+    </div>
+{% endblock %}
+
+{% block footer_scripts %}
+    {% load staticfiles %}
+    <script src="{% static 'pyalgotrade_web/js/ace/ace.js' %}" type="text/javascript" charset="utf-8"></script>
+    <script>
+        var editor = ace.edit("editor");
+        editor.setTheme("ace/theme/github");
+        editor.getSession().setMode("ace/mode/python");
+        editor.setOption("showPrintMargin", false);
+
+        $(document).ready(function(){
+            $('#btnSubmit').click(function(e) {
+                console.log("Lol");
+                e.preventDefault();
+
+                // information to be sent to the server
+                var strategy = editor.getValue();
+
+                $.ajax({
+                    type: "POST",
+                    url: '/testExec/execStrategy/',
+                    dataType: "json",
+                    data: {strategy: strategy},
+                    success: function(result) {
+                        $("#result").val(result.message);
+                    }
+                });
+            });
+        });
+    </script>
+{% endblock %}
