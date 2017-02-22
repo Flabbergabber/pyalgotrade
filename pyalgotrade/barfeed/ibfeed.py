@@ -111,3 +111,13 @@ class Feed(csvfeed.BarFeed):
 
         rowParser = RowParser(self.getFrequency(), self.getDailyBarTime(), timezone)
         super(Feed, self).addBarsFromCSV(instrument, path, rowParser)
+
+#Option contract
+class Instrument:
+    def __init__(self, symbol, strike, right, expiry, filename, id):
+        self.symbol = symbol
+        self.strike = strike
+        self.right = right
+        self.expiry = expiry
+        self.filename = filename
+        self.id = id

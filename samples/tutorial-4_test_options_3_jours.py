@@ -1,15 +1,16 @@
-from pyalgotrade import strategy
+from pyalgotrade.strategy import optstrategy
 #from pyalgotrade.barfeed import yahoofeed
 #from pyalgotrade.barfeed import googlefeed
 from pyalgotrade.barfeed import ibfeed
 from pyalgotrade.technical import ma
-from pyalgotrade import broker
+from pyalgotrade.broker import optbroker
 import datetime
 from pyalgotrade.stratanalyzer import returns
 from pyalgotrade import plotter
+from pyalgotrade.tools import filename as filenametool
 
 
-class MyStrategy(strategy.BacktestingStrategy):
+class MyStrategy(optstrategy.OptionBacktestingStrategy):
     def __init__(self, feed, instrument, smaPeriod):
         super(MyStrategy, self).__init__(feed, 1000)
         self.__position = None
@@ -51,7 +52,7 @@ class MyStrategy(strategy.BacktestingStrategy):
         if self.__position is None: 
             
             if bar.getPrice() > self.__sma[-1]:
-                right = broker.OptionOrder.Right.PUT
+                right = optbroker.OptionOrder.Right.PUT
                 strike = bar.getPrice() + 10
                 bar.getDateTime()
                 expiry = datetime.datetime(2016, 3, 30, 16, 30)
@@ -87,37 +88,14 @@ def run_strategy(smaPeriod, filename):
 #    feed.addBarsFromCSV("orcl", "orcl-2000.csv")
     feed = ibfeed.Feed()
 
-    slashIndex = filename.rfind('/')
+    parser = filenametool.Parser()
+    instru1 = parser.parse(filename)
 
-    if(slashIndex > -1):
-        filename = filename[slashIndex+1:]
-
-    zinstrument = filename[0:3]
-    zStrikePrice = filename[4:6]
-    zDate = filename[7:15]
-    optiontype = filename[6]
-    if (optiontype.lower() == "p"):
-        optiontype = "PUT"
-    elif (optiontype.lower() == "c"):
-        optiontype = "CALL"
-    else:
-        optiontype = str(None)
-
-    # Gossage juste pour la date
-    zDateYear = zDate[0:4]
-    zDateMonth = zDate[4:6]
-    zDateDay = zDate[6:8]
-
-    print "Instrument: " + zinstrument
-    print "Strice price: " + zStrikePrice
-    print "Date: " + zDateYear + "-" + zDateMonth + "-" + zDateDay
-    print "OptionType: " + optiontype
-
-    feed.addBarsFromCSV("bac20160308", filename)
+    feed.addBarsFromCSV(instru1.id, instru1.filename)
 
     # Evaluate the strategy with the feed.
     #    myStrategy = MyStrategy(feed, "orcl", smaPeriod)
-    myStrategy = MyStrategy(feed, "bac20160308", smaPeriod)
+    myStrategy = MyStrategy(feed, instru1.id, smaPeriod)
     
     # Attach a returns analyzers to the strategy.
     returnsAnalyzer = returns.Returns()
@@ -135,4 +113,4 @@ def run_strategy(smaPeriod, filename):
 
     plt.plot()
     
-run_strategy(10, "samples/bac_20p20160308.csv")
+run_strategy(10, "bac_20p20160308.csv")
