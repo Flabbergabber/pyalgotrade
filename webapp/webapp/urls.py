@@ -15,9 +15,9 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-import pyalgotrade
+import pyalgotrade_web
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^', include('pyalgotrade.urls'))
+    url(r'^', include('pyalgotrade_web.urls'))
 ]

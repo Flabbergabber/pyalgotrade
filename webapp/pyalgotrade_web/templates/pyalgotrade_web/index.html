@@ -1,4 +1,4 @@
-{% extends "pyalgotrade/header.html" %}
+{% extends "pyalgotrade_web/header.html" %}
 
 {% block content %}
     <style media="screen">
@@ -208,7 +208,7 @@ run_strategy(10)
 {% endblock %}
 {% block footer_scripts %}
     {% load staticfiles %}
-    <script src="{% static 'pyalgotrade/js/ace/ace.js' %}" type="text/javascript" charset="utf-8"></script>
+    <script src="{% static 'pyalgotrade_web/js/ace/ace.js' %}" type="text/javascript" charset="utf-8"></script>
     <script>
         var editor = ace.edit("editor");
         editor.setTheme("ace/theme/github");
