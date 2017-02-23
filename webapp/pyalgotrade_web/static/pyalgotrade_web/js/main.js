@@ -30,9 +30,12 @@ $(document).ready(function () {
             if (!csrfSafeMethod(settings.type)) {
                 xhr.setRequestHeader("X-CSRFToken", csrftoken);
             }
+            $(".loadingmodal").show();
+        },
+        complete: function () {
+            $(".loadingmodal").hide();
         }
     });
-
 
     $('#btnLoad').click(function (e) {
 
@@ -94,37 +97,33 @@ $(document).ready(function () {
 
     });
 
-    function download(filename, text) {
-        var element = document.createElement('a');
-        element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
-        element.setAttribute('download', filename);
-
-        element.style.display = 'none';
-        document.body.appendChild(element);
-
-        element.click();
-
-        document.body.removeChild(element);
-    }
-
-    // Start file download.
-    //download("hello.txt","This is the content of my file :)");
-
     $("#btnSave").click(function (e) {
 
         var codePython = ace.edit('editor').getValue();
         var fileName = "Strategy.py";
-        //var oldURL = window.location.href;
-        //window.location.href = "data:application/octet-stream;charset=utf-16le;base64,";
-
-        //download("Strategy.py",codePython);
-
 
         var blob = new Blob([codePython], {
             type: "text/plain;charset=utf-8"
         });
 
         saveAs(blob, fileName);
+    });
+
+    $("#btnBeginBacktest").click(function(e) {
+        e.preventDefault();
+
+        // information to be sent to the server
+        var strategy = editor.getValue();
+
+        $.ajax({
+            type: "POST",
+            url: 'ajax/beginBacktest/',
+            dataType: "json",
+            data: {strategy: strategy},
+            success: function(result) {
+                $("#backtestResults").val(result.message);
+            }
+        });
     });
 
 });

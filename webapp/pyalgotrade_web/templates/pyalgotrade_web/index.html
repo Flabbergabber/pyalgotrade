@@ -41,18 +41,7 @@
     <div class="row">
         <div class="col-md-6">
             <div id="editorRow" class="row">
-                <div id="editor">from pyalgotrade.strategy import optstrategy
-#from pyalgotrade.barfeed import yahoofeed
-#from pyalgotrade.barfeed import googlefeed
-from pyalgotrade.barfeed import ibfeed
-from pyalgotrade.technical import ma
-from pyalgotrade.broker import optbroker
-import datetime
-from pyalgotrade.stratanalyzer import returns
-from pyalgotrade import plotter
-
-
-class MyStrategy(optstrategy.OptionBacktestingStrategy):
+                <div id="editor">class MyStrategy(optstrategy.OptionBacktestingStrategy):
     def __init__(self, feed, instrument, smaPeriod):
         super(MyStrategy, self).__init__(feed, 1000)
         self.__position = None
@@ -65,7 +54,7 @@ class MyStrategy(optstrategy.OptionBacktestingStrategy):
 
     def onEnterOk(self, position):
         execInfo = position.getEntryOrder().getExecutionInfo()
-        self.info("BUY at $%.2f" % (execInfo.getPrice()))
+        print("BUY at $%.2f" % (execInfo.getPrice()))
 
     def getSMA(self):
         return self.__sma
@@ -75,7 +64,7 @@ class MyStrategy(optstrategy.OptionBacktestingStrategy):
 
     def onExitOk(self, position):
         execInfo = position.getExitOrder().getExecutionInfo()
-        self.info("SELL at $%.2f" % (execInfo.getPrice()))
+        print("SELL at $%.2f" % (execInfo.getPrice()))
         self.__position = None
 
     def onExitCanceled(self, position):
@@ -110,7 +99,7 @@ class MyStrategy(optstrategy.OptionBacktestingStrategy):
         self.UpdateExpired(bars)
 
         bar = bars[self.__instrument]
-#        self.info("current bar price: $%.2f and current sma: $%.2f" % (bar.getPrice(), self.__sma[-1]))
+#        print("current bar price: $%.2f and current sma: $%.2f" % (bar.getPrice(), self.__sma[-1]))
         # If a position was not opened, check if we should enter a long position.
 #        if self.__option is None and not self.__optionAlreadyExecuted:
         if self.__position is None:
@@ -151,7 +140,7 @@ def run_strategy(smaPeriod):
 #    feed = yahoofeed.Feed()
 #    feed.addBarsFromCSV("orcl", "orcl-2000.csv")
     feed = ibfeed.Feed()
-    feed.addBarsFromCSV("bac", "bac.csv")
+    feed.addBarsFromCSV("bac", "../../pyalgotrade/samples/bac.csv")
 
     # Evaluate the strategy with the feed.
 #    myStrategy = MyStrategy(feed, "orcl", smaPeriod)
@@ -161,23 +150,14 @@ def run_strategy(smaPeriod):
     returnsAnalyzer = returns.Returns()
     myStrategy.attachAnalyzer(returnsAnalyzer)
 
-    # Attach the plotter to the strategy.
-    plt = plotter.StrategyPlotter(myStrategy)
-    # Include the SMA in the instrument's subplot to get it displayed along with the closing prices.
-    plt.getInstrumentSubplot("bac").addDataSeries("SMA", myStrategy.getSMA())
-    # Plot the simple returns on each bar.
-    plt.getOrCreateSubplot("returns").addDataSeries("Simple returns", returnsAnalyzer.getReturns())
-
     myStrategy.run()
     print "Final portfolio value: $%.2f" % myStrategy.getBroker().getEquity()
-
-    plt.plot()
 
 run_strategy(10)
                 </div>
             </div>
             <div class="row">
-                <button type="submit" class="btn btn-default pull-right">Build & Launch</button>
+                <button id="btnBeginBacktest" type="submit" class="btn btn-default pull-right">Begin Backtest</button>
 
                 <!--
                 <button id="btnLoad" type="submit" class="btn btn-default pull-left">Load</button>
@@ -205,12 +185,18 @@ run_strategy(10)
                     <!-- Tab panes -->
                     <div class="tab-content">
                         <div role="tabpanel" class="tab-pane active" id="log">
-                            <textarea readonly style="min-width: 100%;height:200px;">Strategy successfully executed.</textarea>
+                            <textarea id="backtestResults" readonly style="min-width: 100%;height:200px;"></textarea>
                         </div>
                         <div role="tabpanel" class="tab-pane" id="results">...</div>
                         <div role="tabpanel" class="tab-pane" id="markers">...</div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+    <div class="loadingmodal" style="display: none">
+        <div class="loadingcenter">
+            <div class="loader">
             </div>
         </div>
     </div>

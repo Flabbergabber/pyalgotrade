@@ -34,7 +34,8 @@ def stdoutIO(stdout=None):
     yield stdout
     sys.stdout = old
 
-def execStrategy(request):
+
+def beginBacktest(request):
     if request.is_ajax() and request.POST:
         code = request.POST.get('strategy')
         with stdoutIO() as s:
