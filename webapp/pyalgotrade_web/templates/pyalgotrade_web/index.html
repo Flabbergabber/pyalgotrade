@@ -83,8 +83,8 @@
                     month = self.getBroker()._getBar(bars, instrument).getDateTime().month
                     day = self.getBroker()._getBar(bars, instrument).getDateTime().day
                     ####### Si la date de la bar est egale ou superieure a la date d'expiration, on annule les part et empeche les order sur cet instrument
-                    currentdatetime= datetime.strptime(instrument[-8:], '%Y%m%d')
-                    if datetime.strptime(instrument[-8:], '%Y%m%d') <= datetime(year, month, day):
+                    currentdatetime= datetime.datetime.strptime(instrument[-8:], '%Y%m%d')
+                    if datetime.datetime.strptime(instrument[-8:], '%Y%m%d') <= datetime.datetime(year, month, day):
                         self.__logger.debug("POSITION EST EXPIREE")
                         shares = 0
 #                        instument=None
