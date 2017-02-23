@@ -46,3 +46,4 @@ def execStrategy(request):
         return HttpResponse(json.dumps(data), content_type='application/json')
     else:
         raise Http404
+

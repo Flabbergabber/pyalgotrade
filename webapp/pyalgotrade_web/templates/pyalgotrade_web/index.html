@@ -17,16 +17,17 @@
     </style>
     <br/>
     <div class="row">
+        <!--
        <div class="col-md-6">
-             <input type="text" placeholder="File name"/>
-            <!--<input type="text" class="pull-right" placeholder="Instrument"/>
+             < <input type="text" placeholder="File name"/>
+            <input type="text" class="pull-right" placeholder="Instrument"/>
              <select id="ddlOptType" class="pull-right" style="min-height:25px;min-width:70px;">
                 <option value="PUT">PUT</option>
                 <option value="CALL">CALL</option>
             </select>
             <input type="text" class="pull-right" placeholder="Expiration {mm/dd/yyyy}"/>
--->
-        </div>
+
+        </div>-->
          <!--<div class="col-md-6">
 
             <input type="text" placeholder="Start Date" />
@@ -40,8 +41,7 @@
     <div class="row">
         <div class="col-md-6">
             <div id="editorRow" class="row">
-                <div id="editor">
-from pyalgotrade.strategy import optstrategy
+                <div id="editor">from pyalgotrade.strategy import optstrategy
 #from pyalgotrade.barfeed import yahoofeed
 #from pyalgotrade.barfeed import googlefeed
 from pyalgotrade.barfeed import ibfeed
@@ -178,8 +178,13 @@ run_strategy(10)
             </div>
             <div class="row">
                 <button type="submit" class="btn btn-default pull-right">Build & Launch</button>
-                <button type="submit" class="btn btn-default pull-left">Load</button>
-                <button type="submit" class="btn btn-default pull-left">Save</button>
+
+                <!--
+                <button id="btnLoad" type="submit" class="btn btn-default pull-left">Load</button>
+                -->
+                <button id="btnLoad" class="btn btn-default pull-left">Load</button>
+
+               <button id="btnSave" type="submit" class="btn btn-default pull-left">Save</button>
 
             </div>
         </div>
@@ -246,7 +251,7 @@ run_strategy(10)
                 "trendLines": [],
                 "graphs": [
                     {
-                        "balloonText": "Open:<b>[[open]]</b><br>Low:<b>[[low]]</b><br>High:<b>[[high]]</b><br>Close:<b>[[close]]</b><br>",
+                        "balloonText": "Open:<b>[[open]]</b><br>Low:<b>[[low]]</b><br>High:<b>[[high]]</b><br>Close:<b>[[close]]</b><br>Ask:<b>[[ask]]</b><br>",
                         "closeField": "close",
                         "fillAlphas": 0.9,
                         "fillColors": "#7f8da9",
@@ -278,6 +283,7 @@ run_strategy(10)
                         "high": "136.96",
                         "low": "134.15",
                         "close": "136.49"
+                        ,"ask" : "160.00"
                     },
                     {
                         "date": "2011-08-02",
@@ -285,6 +291,7 @@ run_strategy(10)
                         "high": "135.95",
                         "low": "131.50",
                         "close": "131.85"
+                        ,"ask" : "160.00"
                     },
                     {
                         "date": "2011-08-05",
@@ -292,6 +299,7 @@ run_strategy(10)
                         "high": "135.27",
                         "low": "128.30",
                         "close": "135.25"
+                        ,"ask" : "160.00"
                     },
                     {
                         "date": "2011-08-06",
@@ -299,6 +307,7 @@ run_strategy(10)
                         "high": "137.24",
                         "low": "132.63",
                         "close": "135.03"
+                        ,"ask" : "160.00"
                     },
                     {
                         "date": "2011-08-07",
@@ -306,6 +315,7 @@ run_strategy(10)
                         "high": "136.86",
                         "low": "132.00",
                         "close": "134.01"
+                        ,"ask" : "160.00"
                     },
                     {
                         "date": "2011-08-08",
@@ -313,6 +323,7 @@ run_strategy(10)
                         "high": "133.00",
                         "low": "125.09",
                         "close": "126.39"
+                        ,"ask" : "160.00"
                     },
                     {
                         "date": "2011-08-09",
@@ -320,6 +331,7 @@ run_strategy(10)
                         "high": "127.75",
                         "low": "120.30",
                         "close": "125.00"
+                        ,"ask" : "160.00"
                     },
                     {
                         "date": "2011-08-12",
