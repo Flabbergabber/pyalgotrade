@@ -140,9 +140,21 @@ $(document).ready(function () {
             data: {strategy: strategy},
             success: function(result) {
                 $("#backtestResults").val(result.message);
+
+                var statusMessagesSeperated = '';
+                $.each(result.statusmessages, function (index, value) {
+                    statusMessagesSeperated += value  + "<br>"
+                });
+                alertModal("Strategy execution result", statusMessagesSeperated);
             }
         });
     });
 
+    function alertModal(title, body) {
+        // Display error message to the user in a modal
+        $('#alert-modal-title').html(title);
+        $('#alert-modal-body').html(body);
+        $('#alert-modal').modal('show');
+    }
 });
 

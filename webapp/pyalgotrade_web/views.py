@@ -36,10 +36,10 @@ def beginBacktest(request):
         code = request.POST.get('strategy')
         with stdoutIO() as s:
             env = RestrictedExecutionEnv()
-            env.executeUnstrustedCode(code)
+            success, messages = env.executeUnstrustedCode(code)
 
         execResult = s.getvalue()
-        data = {'message': execResult}
+        data = {'message': execResult, 'statusmessages': messages}
         return HttpResponse(json.dumps(data), content_type='application/json')
     else:
         raise Http404
