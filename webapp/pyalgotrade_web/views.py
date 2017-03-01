@@ -4,15 +4,7 @@ from django.http import Http404, HttpResponse
 import sys
 import StringIO
 import contextlib
-
-import os
-sys.path.append(os.path.abspath(os.path.dirname(__file__) + '/' + '../..'))
-from pyalgotrade.strategy import optstrategy
-from pyalgotrade.barfeed import ibfeed
-from pyalgotrade.technical import ma
-from pyalgotrade.broker import optbroker
-import datetime
-from pyalgotrade.stratanalyzer import returns
+from .util.sandbox import RestrictedExecutionEnv
 
 # Create your views here.
 
@@ -39,8 +31,8 @@ def beginBacktest(request):
     if request.is_ajax() and request.POST:
         code = request.POST.get('strategy')
         with stdoutIO() as s:
-            compiledCode = compile(code, '<string>', 'exec')
-            exec(compiledCode, globals())
+            env = RestrictedExecutionEnv()
+            env.executeUnstrustedCode(code)
 
         execResult = s.getvalue()
         data = {'message': execResult}
