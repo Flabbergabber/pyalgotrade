@@ -109,6 +109,38 @@ $(document).ready(function () {
         saveAs(blob, fileName);
     });
 
+    function getChart(id) {
+        var allCharts = AmCharts.charts;
+        for (var i = 0; i < allCharts.length; i++) {
+            if (id == allCharts[i].div.id) {
+                return allCharts[i];
+            }
+        }
+    }
+
+
+    $("#ddlCsv").on('change',function(){
+        //this.value
+        var inputReg = new RegExp("^[a-zA-Z]{3,4}_[0-9]{2,3}[PCpc]{1}[0-9]{8}$");
+        if(inputReg.test(this.value)){ //Valid input select
+            console.log("Requesting chart values for: " + this.value);
+
+            $.ajax({
+                type: "POST",
+                url: 'ajax/requestChartData/',
+                dataType: "json",
+                data: {selectedData: this.value},
+                success: function(result) {
+
+                    var myChart = getChart("chartdiv");
+                    myChart.dataProvider = result;
+                    myChart.validateData();
+                }
+            });
+        }
+    });
+
+
     $("#btnBeginBacktest").click(function(e) {
         e.preventDefault();
 
