@@ -5,6 +5,8 @@ import sys
 import StringIO
 import contextlib
 import os
+from os.path import abspath, dirname
+sys.path.append(abspath(dirname(__file__) + '/' + '../..'))
 from pyalgotrade.barfeed import ibfeed
 from .util.sandbox import RestrictedExecutionEnv
 
