@@ -74,20 +74,6 @@ $(document).ready(function () {
                 var newString = file.content.replace("data:text/plain;base64,", "");
                 console.log(file.content);
                 editor.setValue(Base64.decode(newString), -1);
-                /*
-                 $.ajax({
-                 type: "POST",
-                 url: 'ajax/uploadFile/',
-                 dataType: "json",
-                 data: {fileName: file.content},
-                 success: function(result) {
-                 //Handle le retour du controller (texte)
-                 console.log("btnLoad success")
-                 var editor = ace.edit("editor");
-                 editor.setValue(result.texte,-1);
-                 }
-                 });
-                 */
 
             }).on('cancel.bs.filedialog', function (ev) {
             // DO SOMETHING
@@ -119,7 +105,7 @@ $(document).ready(function () {
     }
 
 
-    $("#ddlCsv").on('change',function(){
+    $("#ddlCsv").change(function(){
         //this.value
         var inputReg = new RegExp("^[a-zA-Z]{3,4}_[0-9]{2,3}[PCpc]{1}[0-9]{8}$");
         if(inputReg.test(this.value)){ //Valid input select
