@@ -116,10 +116,11 @@ $(document).ready(function () {
                 dataType: "json",
                 data: {selectedData: this.value},
                 success: function(result) {
-
-                    var myChart = getChart("chartdiv");
-                    myChart.dataProvider = result;
-                    myChart.validateData();
+                    if(result != null){
+                        var myChart = getChart("chartdiv");
+                        myChart.dataProvider = result;
+                        myChart.validateData();
+                    }
                 }
             });
         }

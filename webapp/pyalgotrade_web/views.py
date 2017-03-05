@@ -85,27 +85,34 @@ def loadChartDataCsv(request):
 
 def requestChartData(request):
     if request.is_ajax() and request.POST:
-        # TODO: Validation REGEX pour le 'selectedData'
-        selectedFile = str(request.POST.get('selectedData'))
 
-        # TODO: Permettre d'avoir d'autres instruments
-        instrument = selectedFile[0:3] + selectedFile[7:]
+        selectedfile = str(request.POST.get('selectedData'))
 
-        # Read the file line by line and construct array of chart dots {date, open, high, low, close, ask, bid}
-        feed = ibfeed.Feed()
-        feed.addBarsFromCSV(instrument, samples_folder + selectedFile + ".csv")
+        # REGEX pour le 'selectedData'
+        matchobj = re.match(r'^([a-z]{3,4})_([0-9]{2,4})(p|c)([0-9]{8})$', selectedfile, re.IGNORECASE)
 
-        data = []
-        for date, bars in feed:
-            item = dict()
-            item['date'] = str(date)
-            item['low'] = str(bars.getBar(instrument).getLow())
-            item['high'] = str(bars.getBar(instrument).getHigh())
-            item['close'] = str(bars.getBar(instrument).getClose())
-            item['open'] = str(bars.getBar(instrument).getOpen())
-            data.append(item)
+        if matchobj is not None:
 
-        return HttpResponse(json.dumps(data), content_type='application/json')
+            # instrument = selectedFile[0:3] + selectedFile[7:]
+            instrument = matchobj.group(1) + matchobj.group(4)
+
+            # Read the file line by line and construct array of chart dots {date, open, high, low, close, ask, bid}
+            feed = ibfeed.Feed()
+            feed.addBarsFromCSV(instrument, data_folder + selectedfile + ".csv")
+
+            data = []
+            for date, bars in feed:
+                item = dict()
+                item['date'] = str(date)
+                item['low'] = str(bars.getBar(instrument).getLow())
+                item['high'] = str(bars.getBar(instrument).getHigh())
+                item['close'] = str(bars.getBar(instrument).getClose())
+                item['open'] = str(bars.getBar(instrument).getOpen())
+                data.append(item)
+
+            return HttpResponse(json.dumps(data), content_type='application/json')
+        else:
+            return HttpResponse(json.dumps(None), content_type='application/json')
     else:
         raise Http404
 
