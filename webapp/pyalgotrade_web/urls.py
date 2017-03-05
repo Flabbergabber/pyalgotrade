@@ -6,4 +6,5 @@ urlpatterns = [
     url(r'^testExec/$', views.testExec, name='test_exec'),
     url(r'^ajax/beginBacktest/$', views.beginBacktest, name='begin_backtest'),
     url(r'^ajax/requestChartData/$', views.requestChartData, name='requestChartData'),
+    url(r'^ajax/loadChartDataCsv/$', views.loadChartDataCsv, name='loadChartDataCsv'),
 ]

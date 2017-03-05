@@ -5,13 +5,20 @@ import sys
 import StringIO
 import contextlib
 import os
+import re
+
 from os.path import abspath, dirname
 sys.path.append(abspath(dirname(__file__) + '/' + '../..'))
 from pyalgotrade.barfeed import ibfeed
 from .util.sandbox import RestrictedExecutionEnv
 
-# Create your views here.
+# Global variables
 
+base_dir = os.path.abspath(os.path.dirname(__file__) + '/' + '../..')
+data_folder = base_dir + "\\data\\"
+samples_folder = base_dir + "\\samples\\"
+
+# Create your views here.
 
 def index(request):
     return render(request, 'pyalgotrade_web/index.html')
@@ -44,21 +51,49 @@ def beginBacktest(request):
     else:
         raise Http404
 
-def requestChartData(request):
 
+def loadChartDataCsv(request):
+
+    if request.is_ajax() and request.method == 'GET':
+
+        result = []
+
+        # Ici on load les noms de fichiers CSV
+        file_list = os.listdir(data_folder)
+
+        for filename in file_list:
+            matchobj = re.match(r'^([a-z]{3,4})_([0-9]{2,4})(p|c)([0-9]{8})(.csv)$', filename, re.IGNORECASE)
+            if matchobj is not None:
+                item = dict()
+                item['file'] = filename.lower().split(".csv")[0]
+                curr_instr = matchobj.group(1).upper()
+                curr_opt_type = "PUT" if matchobj.group(3).lower() == 'p' else "CALL"
+                curr_strike_price = matchobj.group(2)
+                curr_expiry_date = matchobj.group(4)[0:4] \
+                            + "-" + matchobj.group(4)[4:6] \
+                            + "-" + matchobj.group(4)[6:8]
+                item['title'] = curr_instr + " | " + curr_opt_type + " | " + curr_strike_price + "$ | " \
+                                + curr_expiry_date
+                result.append(item)
+            else:
+                continue
+
+        return HttpResponse(json.dumps(result), content_type='application/json')
+    else:
+        raise Http404
+
+
+def requestChartData(request):
     if request.is_ajax() and request.POST:
         # TODO: Validation REGEX pour le 'selectedData'
         selectedFile = str(request.POST.get('selectedData'))
 
-        basePath = os.path.abspath(os.path.dirname(__file__) + '/' + '../..') + "\\samples\\"
-
         # TODO: Permettre d'avoir d'autres instruments
         instrument = selectedFile[0:3] + selectedFile[7:]
 
-
         # Read the file line by line and construct array of chart dots {date, open, high, low, close, ask, bid}
         feed = ibfeed.Feed()
-        feed.addBarsFromCSV(instrument, basePath + selectedFile + ".csv")
+        feed.addBarsFromCSV(instrument, samples_folder + selectedFile + ".csv")
 
         data = []
         for date, bars in feed:

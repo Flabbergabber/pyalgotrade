@@ -104,7 +104,6 @@ $(document).ready(function () {
         }
     }
 
-
     $("#ddlCsv").change(function(){
         //this.value
         var inputReg = new RegExp("^[a-zA-Z]{3,4}_[0-9]{2,3}[PCpc]{1}[0-9]{8}$");
@@ -125,7 +124,6 @@ $(document).ready(function () {
             });
         }
     });
-
 
     $("#btnBeginBacktest").click(function(e) {
         e.preventDefault();
@@ -156,5 +154,25 @@ $(document).ready(function () {
         $('#alert-modal-body').html(body);
         $('#alert-modal').modal('show');
     }
+
+
+    //Loading des chart data (dropdown #ddlCsv)
+    $.ajax({
+        type: "GET",
+        url: 'ajax/loadChartDataCsv/',
+        dataType: "json",
+        //data:{},
+        success: function(result) {
+            //Ici on popule le dropdown pour le chart data
+            var html = "";
+            for (var i = 0; i < result.length ; i++){
+                var current = result[i];
+                var file = current.file;
+                var title = current.title;
+                html += "<option value='"+ file +"'>"+ title +"</option>";
+            }
+            $("#ddlCsv").append(html);
+        }
+    });
 });
 
