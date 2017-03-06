@@ -38,15 +38,29 @@ def stdoutIO(stdout=None):
     sys.stdout = old
 
 
+def find_second_last(text, pattern):
+    return text.rfind(pattern, 0, text.rfind(pattern))
+
+
 def beginBacktest(request):
-    if request.is_ajax() and request.POST:
+    if request.is_ajax() and request.method == 'POST':
+
         code = request.POST.get('strategy')
+
         with stdoutIO() as s:
             env = RestrictedExecutionEnv()
             success, messages = env.executeUnstrustedCode(code)
 
         execResult = s.getvalue()
-        data = {'message': execResult, 'statusmessages': messages}
+
+        startportfolio = 1000.0
+        endportfolio = execResult[find_second_last(execResult, "\n"):]
+        endportfolio = float(endportfolio[endportfolio.index('$')+1:endportfolio.rfind("\n")])
+        performance = str((endportfolio - startportfolio) / startportfolio * 100) + " %"
+        results = " Start: $ " + str(startportfolio) + "\n End: $ " + str(endportfolio) + "\n Performance: " + performance + "\n"
+
+        data = {'message': execResult, 'statusmessages': messages, 'results': results}
+
         return HttpResponse(json.dumps(data), content_type='application/json')
     else:
         raise Http404
@@ -84,7 +98,7 @@ def loadChartDataCsv(request):
 
 
 def requestChartData(request):
-    if request.is_ajax() and request.POST:
+    if request.is_ajax() and request.method == 'POST':
 
         selectedfile = str(request.POST.get('selectedData'))
 

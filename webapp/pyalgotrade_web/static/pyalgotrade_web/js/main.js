@@ -138,12 +138,15 @@ $(document).ready(function () {
             dataType: "json",
             data: {strategy: strategy},
             success: function(result) {
-                $("#backtestResults").val(result.message);
+                $("#backtestLog").val(result.message);
 
                 var statusMessagesSeperated = '';
                 $.each(result.statusmessages, function (index, value) {
                     statusMessagesSeperated += value  + "<br>"
                 });
+
+                $("#backtestResults").val(result.results);
+
                 alertModal("Strategy execution result", statusMessagesSeperated);
             }
         });

@@ -182,16 +182,18 @@ run_strategy(10)
                     <ul class="nav nav-tabs" role="tablist">
                         <li role="presentation" class="active"><a href="#log" aria-controls="log" role="tab" data-toggle="tab">Log</a></li>
                         <li role="presentation"><a href="#results" aria-controls="results" role="tab" data-toggle="tab">Results</a></li>
-                        <li role="presentation"><a href="#markers" aria-controls="markers" role="tab" data-toggle="tab">Markers</a></li>
+                        {#<li role="presentation"><a href="#markers" aria-controls="markers" role="tab" data-toggle="tab">Markers</a></li>#}
                     </ul>
 
                     <!-- Tab panes -->
                     <div class="tab-content">
                         <div role="tabpanel" class="tab-pane active" id="log">
+                            <textarea id="backtestLog" readonly style="min-width: 100%;height:200px;"></textarea>
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="results">
                             <textarea id="backtestResults" readonly style="min-width: 100%;height:200px;"></textarea>
                         </div>
-                        <div role="tabpanel" class="tab-pane" id="results">...</div>
-                        <div role="tabpanel" class="tab-pane" id="markers">...</div>
+                        {#<div role="tabpanel" class="tab-pane" id="markers">...</div>#}
                     </div>
                 </div>
             </div>
@@ -281,6 +283,7 @@ run_strategy(10)
                 "allLabels": [],
                 "balloon": {},
                 "titles": [],
+                "dataprovider" : [],
             }
         );
 
