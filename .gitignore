@@ -12,3 +12,8 @@ build
 PyAlgoTrade.egg-info
 
 testcases/twitter_credentials.py
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
