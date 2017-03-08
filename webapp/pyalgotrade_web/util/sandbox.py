@@ -8,6 +8,7 @@ from pyalgotrade.technical import ma
 from pyalgotrade.broker import optbroker
 import datetime
 from pyalgotrade.stratanalyzer import returns
+from datasourcehelper import DataSourceHelper
 
 class RestrictedExecutionEnv:
     blacklist = {'import': 'import[ ]{1}[A-Za-z\.]*', 'open': '.*open[ |\(].*[ |\)].*'}

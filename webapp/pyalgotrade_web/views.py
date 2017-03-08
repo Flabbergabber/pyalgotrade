@@ -11,7 +11,7 @@ from os.path import abspath, dirname
 sys.path.append(abspath(dirname(__file__) + '/' + '../..'))
 from pyalgotrade.barfeed import ibfeed
 from .util.sandbox import RestrictedExecutionEnv
-import util.datasourcehelper as ds
+import util.datasourcehelper as dsh
 
 # Create your views here.
 
@@ -68,7 +68,7 @@ def loadChartDataCsv(request):
         result = []
 
         # Ici on load les noms de fichiers CSV
-        file_list = os.listdir(ds.PYALGOTRADE_DATA_FOLDER)
+        file_list = os.listdir(dsh.PYALGOTRADE_DATA_FOLDER)
 
         for filename in file_list:
             matchobj = re.match(r'^([a-z]{3,4})_([0-9]{2,4})(p|c)([0-9]{8})(.csv)$', filename, re.IGNORECASE)
@@ -107,7 +107,7 @@ def requestChartData(request):
 
             # Read the file line by line and construct array of chart dots {date, open, high, low, close, ask, bid}
             feed = ibfeed.Feed()
-            feed.addBarsFromCSV(instrument, ds.PYALGOTRADE_DATA_FOLDER + selectedfile + ".csv")
+            feed.addBarsFromCSV(instrument, dsh.PYALGOTRADE_DATA_FOLDER + selectedfile + ".csv")
 
             data = []
             for date, bars in feed:
