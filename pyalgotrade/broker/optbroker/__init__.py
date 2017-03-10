@@ -20,6 +20,16 @@ from pyalgotrade import broker
 from pyalgotrade.broker import Order
 
 
+class InstrumentTraits(object):
+
+    __metaclass__ = abc.ABCMeta
+
+    # Return the floating point value number rounded.
+    @abc.abstractmethod
+    def roundQuantity(self, quantity):
+        raise NotImplementedError()
+
+
 class OptionOrder(Order):
     """Base class for Option orders.
 
@@ -48,16 +58,11 @@ class OptionOrder(Order):
         PUT = 1
         CALL = 2
 
-    def __init__(self, action, instrument, quantity, right, strike, expiry, onClose, instrumentTraits):
-        super(OptionOrder, self).__init__(self.OptionType.OPTION_MARKET, action, instrument, quantity, instrumentTraits)
-        self.__onClose = onClose
+    def __init__(self, type_, action, instrument, quantity, right, strike, expiry, instrumentTraits):
+        super(OptionOrder, self).__init__(type_, action, instrument, quantity, instrumentTraits)
         self.__right = right
         self.__strike = strike
         self.__expiry = expiry
-
-    def getFillOnClose(self):
-        """Returns True if the order should be filled as close to the closing price as possible (Market-On-Close order)."""
-        return self.__onClose
 
     def getRight(self):
         return self.__right
@@ -78,6 +83,23 @@ class OptionOrder(Order):
         self.__expiry = expiry
 
 
+class OptionMarketOrder(OptionOrder):
+    """Base class for market orders.
+
+    .. note::
+
+        This is a base class and should not be used directly.
+    """
+
+    def __init__(self, action, instrument, quantity, right, strike, expiry, onClose, instrumentTraits):
+        super(OptionMarketOrder, self).__init__(self.OptionType.OPTION_MARKET, action, instrument, quantity, right, strike, expiry, instrumentTraits)
+        self.__onClose = onClose
+
+    def getFillOnClose(self):
+        """Returns True if the order should be filled as close to the closing price as possible (Market-On-Close order)."""
+        return self.__onClose
+
+
 class OptionLimitOrder(OptionOrder):
     """Base class for limit orders.
 
@@ -87,7 +109,7 @@ class OptionLimitOrder(OptionOrder):
     """
 
     def __init__(self, action, instrument, limitPrice, quantity, right, strike, expiry, instrumentTraits):
-        super(OptionLimitOrder, self).__init__(self.OptionType.OPTION_LIMIT, action, instrument, quantity, instrumentTraits)
+        super(OptionLimitOrder, self).__init__(self.OptionType.OPTION_LIMIT, action, instrument, quantity, right, strike, expiry, instrumentTraits)
         self.__limitPrice = limitPrice
 
     def getLimitPrice(self):
@@ -146,7 +168,7 @@ class AbstractOptionBroker(broker.Broker):
         super(AbstractOptionBroker, self).__init__()
 
     @abc.abstractmethod
-    def createOptionOrder(self, action, instrument, quantity, right, strike, expiry, onClose=False):
+    def createOptionMarketOrder(self, action, instrument, quantity, right, strike, expiry, onClose=False):
         """Creates a Market order.
         A market order is an order to buy or sell a stock at the best available price.
         Generally, this type of order will be executed immediately. However, the price at which a market order will be executed

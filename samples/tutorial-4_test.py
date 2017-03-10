@@ -65,7 +65,7 @@ class MyStrategy(optstrategy.OptionBacktestingStrategy):
         if self.__sma[-1] is None:
             return
         self.UpdateExpired(bars)    
-        
+
         bar = bars[self.__instrument]
 #        self.info("current bar price: $%.2f and current sma: $%.2f" % (bar.getPrice(), self.__sma[-1]))
         # If a position was not opened, check if we should enter a long position.

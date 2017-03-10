@@ -27,13 +27,13 @@ from . import optfillstrategy
 import pyalgotrade.bar
 
 
-class OptionOrder(optbroker.OptionOrder, backtesting.BacktestingOrder):
+class OptionMarketOrder(optbroker.OptionMarketOrder, backtesting.BacktestingOrder):
     def __init__(self, action, instrument, quantity, right, strike, expiry, onClose, instrumentTraits):
-        super(OptionOrder, self).__init__(action, instrument, quantity, right, strike, expiry, onClose,
-                                          instrumentTraits)
+        super(OptionMarketOrder, self).__init__(action, instrument, quantity, right, strike, expiry, onClose,
+                                                instrumentTraits)
 
     def process(self, broker_, bar_):
-        return broker_.getFillStrategy().fillOptionOrder(broker_, self, bar_)
+        return broker_.getFillStrategy().fillOptionMarketOrder(broker_, self, bar_)
 
 
 class OptionLimitOrder(optbroker.OptionLimitOrder, backtesting.BacktestingOrder):
@@ -126,7 +126,7 @@ class OptionBroker(optbroker.AbstractOptionBroker):
     def resetShares(self, instrument):
         self.__shares[instrument] = 0
 
-    def createOptionOrder(self, action, instrument, quantity, right, strike, expiry, onClose=False):
+    def createOptionMarketOrder(self, action, instrument, quantity, right, strike, expiry, onClose=False):
         # In order to properly support market-on-close with intraday feeds I'd need to know about different
         # exchange/market trading hours and support specifying routing an order to a specific exchange/market.
         # Even if I had all this in place it would be a problem while paper-trading with a live feed since
@@ -134,8 +134,8 @@ class OptionBroker(optbroker.AbstractOptionBroker):
         if onClose is True and self.__barFeed.isIntraday():
             raise Exception("Market-on-close not supported with intraday feeds")
 
-        return OptionOrder(action, instrument, quantity, right, strike, expiry, onClose,
-                           self.getInstrumentTraits(instrument))
+        return OptionMarketOrder(action, instrument, quantity, right, strike, expiry, onClose,
+                                 self.getInstrumentTraits(instrument))
 
     def createOptionLimitOrder(self, action, instrument, limitPrice, quantity, right, strike, expiry):
         return OptionLimitOrder(action, instrument, limitPrice, quantity, right, strike, expiry,

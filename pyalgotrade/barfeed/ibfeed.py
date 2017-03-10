@@ -16,6 +16,7 @@
 
 from pyalgotrade.barfeed import csvfeed
 from pyalgotrade import bar
+from pyalgotrade.utils import dt
 
 import datetime
 
@@ -52,6 +53,9 @@ class RowParser(csvfeed.RowParser):
     def __parseDateTime(self, dateTime):
         ret = parse_datetime(dateTime)
 
+        # Localize bars if a market session was set.
+        if self.__timezone:
+            ret = dt.localize(ret, self.__timezone)
         return ret
 
     def getFieldNames(self):
@@ -84,6 +88,9 @@ class Feed(csvfeed.BarFeed):
 
     def __init__(self, frequency=bar.Frequency.DAY, timezone=None, maxLen=None):
         super(Feed, self).__init__(frequency, maxLen)
+
+        if isinstance(timezone, int):
+            raise Exception("timezone as an int parameter is not supported anymore. Please use a pytz timezone instead.")
 
         self.__timezone = timezone
 

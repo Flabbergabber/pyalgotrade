@@ -1,9 +1,9 @@
-from pyalgotrade import strategy
+from pyalgotrade.strategy import optstrategy
 from pyalgotrade.technical import ma
 from pyalgotrade.barfeed import ibfeed
 from pyalgotrade.tools import filename as filenametool
 
-class MyStrategy(strategy.BacktestingStrategy):
+class MyStrategy(optstrategy.OptionBacktestingStrategy):
     def __init__(self, feed, instruments):
         super(MyStrategy, self).__init__(feed)
         self.__smaList = []
@@ -21,7 +21,7 @@ class MyStrategy(strategy.BacktestingStrategy):
 
 
 # Load the yahoo feed from the CSV file
-feed = ibfeed.Feed()
+feed = ibfeed.Feed(maxLen=2)
 
 parser = filenametool.Parser()
 

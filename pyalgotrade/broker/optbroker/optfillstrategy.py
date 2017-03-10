@@ -29,7 +29,7 @@ class OptionFillStrategy(fillstrategy.FillStrategy):
         super(OptionFillStrategy, self).__init__()
 
     @abc.abstractmethod
-    def fillOptionOrder(self, broker_, order, bar):
+    def fillOptionMarketOrder(self, broker_, order, bar):
         """Override to return the fill price and quantity for a market order or None if the order can't be filled
         at the given time.
 
@@ -103,7 +103,7 @@ class OptionDefaultStrategy(OptionFillStrategy, fillstrategy.DefaultStrategy):
         OptionFillStrategy.__init__(self)
         fillstrategy.DefaultStrategy.__init__(self, volumeLimit)
 
-    def fillOptionOrder(self, broker_, order, bar):
+    def fillOptionMarketOrder(self, broker_, order, bar):
         # Calculate the fill size for the order.
         fillSize = self._calculateFillSize(broker_, order, bar)
         if fillSize == 0:
