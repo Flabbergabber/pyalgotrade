@@ -53,6 +53,7 @@
         self.__sma = ma.SMA(feed[instrument].getPriceDataSeries(), smaPeriod)
 
     def onEnterOk(self, position):
+        optstrategy.OptionBacktestingStrategy.onEnterOk(self, position)
         execInfo = position.getEntryOrder().getExecutionInfo()
         print("BUY at $%.2f" % (execInfo.getPrice()))
 
@@ -63,6 +64,7 @@
         self.__position = None
 
     def onExitOk(self, position):
+        optstrategy.OptionBacktestingStrategy.onExitOk(self, position)
         execInfo = position.getExitOrder().getExecutionInfo()
         print("SELL at $%.2f" % (execInfo.getPrice()))
         self.__position = None

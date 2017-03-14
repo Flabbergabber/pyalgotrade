@@ -21,6 +21,7 @@ import pyalgotrade.broker
 from pyalgotrade.strategy import BaseStrategy
 from pyalgotrade.broker.optbroker.optbacktesting import OptionBroker
 from . import optposition
+from .strategytransferobject import StrategyTransferObject
 
 class OptionBaseStrategy(BaseStrategy):
     """Base class for strategies.
@@ -468,8 +469,10 @@ class OptionBacktestingStrategy(OptionBaseStrategy):
         self.__useAdjustedValues = False
         self.setUseEventDateTimeInLogs(True)
         self.setDebugMode(True)
+        self.__strategyTransferObject = StrategyTransferObject()
 
     def getUseAdjustedValues(self):
+        self.attachAnalyzer()
         return self.__useAdjustedValues
 
     def setUseAdjustedValues(self, useAdjusted):
@@ -483,3 +486,27 @@ class OptionBacktestingStrategy(OptionBaseStrategy):
         level = logging.DEBUG if debugOn else logging.INFO
         self.getLogger().setLevel(level)
         self.getBroker().getLogger().setLevel(level)
+
+    def onEnterOk(self, position):
+        # TODO Add Buy to result output object with date and price
+        execInfo = position.getEntryOrder().getExecutionInfo()
+        inst = position.getInstrument()
+        action = pyalgotrade.broker.Order.Action.BUY
+        self.__strategyTransferObject.recordBuySell(action, inst, execInfo.getDateTime(), execInfo.getPrice())
+
+    def onExitOk(self, position):
+        # TODO Add Sell to result output object with date and price
+        execInfo = position.getExitOrder().getExecutionInfo()
+        inst = position.getInstrument()
+        action = pyalgotrade.broker.Order.Action.SELL
+        self.__strategyTransferObject.recordBuySell(action, inst, execInfo.getDateTime(), execInfo.getPrice())
+
+    def onStart(self):
+        # TODO Add initial Equity
+        self.__strategyTransferObject.setInitialEquity(self.getBroker().getEquity())
+
+    def onFinish(self, bars):
+        # TODO Add final Equity to result output object
+        # TODO Dump data from output object to json file
+        self.__strategyTransferObject.setFinalEquity(self.getBroker().getEquity())
+        self.__strategyTransferObject.dumpToFile()

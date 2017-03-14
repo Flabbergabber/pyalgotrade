@@ -138,7 +138,7 @@ $(document).ready(function () {
             dataType: "json",
             data: {strategy: strategy},
             success: function(result) {
-                $("#backtestLog").val(result.message);
+                $("#backtestLog").val(JSON.stringify(result.message));
 
                 var statusMessagesSeperated = '';
                 $.each(result.statusmessages, function (index, value) {
