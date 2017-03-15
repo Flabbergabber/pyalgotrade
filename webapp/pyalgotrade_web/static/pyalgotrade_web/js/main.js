@@ -118,7 +118,8 @@ $(document).ready(function () {
                 success: function(result) {
                     if(result != null){
                         var myChart = getChart("chartdiv");
-                        myChart.dataProvider = result;
+                        myChart.dataSets[0].dataProvider = result;
+                        myChart.dataProvider = myChart.dataSets[0].dataProvider.concat(myChart.dataSets[1].dataProvider);
                         myChart.validateData();
                     }
                 }
@@ -138,13 +139,52 @@ $(document).ready(function () {
             dataType: "json",
             data: {strategy: strategy},
             success: function(result) {
-                $("#backtestLog").val(JSON.stringify(result.message));
+
+                //Output les BUY/SELL dans le "Log"
+                var history = result.message["buySellHistory"];
+                var logOutput = "";
+
+                var myChart = getChart("chartdiv");
+                var currentData = [];
+
+                $.each(history, function (i, value) {
+
+                    if(value["buysell"] == "BUY")    {
+                         currentData.push({
+                            date: value["date"],
+                            buy: value["price"]
+                        });
+                    }
+                    else{ // == "SELL"
+                        currentData.push({
+                            date: value["date"],
+                            sell: value["price"]
+                        });
+                    }
+
+                    var buysell = value["buysell"];
+                    var date = value["date"];
+                    var instrument = value["instrument"];
+                    var price = value["price"]
+
+                    logOutput += " > " + buysell + " - " + price + " - " + instrument
+                        + " - " + date + " \n";
+                });
+                //Output to chart
+                myChart.dataSets[1].dataProvider =  currentData;
+                myChart.dataProvider = myChart.dataSets[0].dataProvider.concat(myChart.dataSets[1].dataProvider);
+                myChart.validateData();
+                //Output to log
+                $("#backtestLog").val(logOutput);
+
+                //$("#backtestLog").val(JSON.stringify(result.message));
 
                 var statusMessagesSeperated = '';
                 $.each(result.statusmessages, function (index, value) {
-                    statusMessagesSeperated += value  + "<br>"
+                    statusMessagesSeperated += value  + "<br>";
                 });
 
+                //Mettre les valeurs initiales et finales dans le result
                 $("#backtestResults").val(result.results);
 
                 alertModal("Strategy execution result", statusMessagesSeperated);

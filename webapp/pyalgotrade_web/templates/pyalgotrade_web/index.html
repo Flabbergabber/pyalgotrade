@@ -235,6 +235,8 @@ run_strategy(10)
      <!-- amCharts javascript sources -->
     <script type="text/javascript" src="https://www.amcharts.com/lib/3/amcharts.js"></script>
     <script type="text/javascript" src="https://www.amcharts.com/lib/3/serial.js"></script>
+    {#<script type="text/javascript" src="//www.amcharts.com/lib/3/themes/light.js"></script>#}
+    <script type="text/javascript" src="//www.amcharts.com/lib/3/amstock.js"></script>
 
     <!-- amCharts javascript code -->
     <script type="text/javascript">
@@ -273,23 +275,207 @@ run_strategy(10)
                         "openField": "open",
                         "title": "Price:",
                         "type": "candlestick",
-                        "valueField": "close"
+                        "valueField": "close",
+                        "comparable": true,
+                        "compareField": "date"
+                    },
+                    {
+                        "balloonText": "BUY: [[buy]]",
+                        "type": "line",
+                        "valueField": "buy",
+                        "lineColor": "#00cc00",
+                        "lineAlpha": 0,
+                        "bullet": "square",
+                        "useDataSetColors ": false,
+                        "comparable": true,
+                        "compareField": "date"
+                    },
+                    {
+                        "balloonText": "SELL: [[sell]]",
+                        "type": "line",
+                        "valueField": "sell",
+                        "lineColor": "#cc0000",
+                        "lineAlpha": 0,
+                        "bullet": "square",
+                        "useDataSetColors ": false,
+                        "comparable": true,
+                        "compareField": "date"
                     }
                 ],
-                "guides": [],
+                //"guides": [],
                 "valueAxes": [
                     {
                         "id": "ValueAxis-1"
                     }
                 ],
-                "allLabels": [],
-                "balloon": {},
-                "titles": [],
-                "dataprovider" : [],
+                //"allLabels": [],
+                //"balloon": {},
+                //"titles": [],
+                "dataSets":[
+                    {
+                        title: "dataset1",
+                        fieldMappings: [{
+                            fromField: "open",
+                            toField: "open"
+                        }, {
+                            fromField: "close",
+                            toField: "close"
+                        }, {
+                            fromField: "high",
+                            toField: "high"
+                        },{
+                            fromField: "low",
+                            toField: "low"
+                        }
+
+                    ],
+                        dataProvider: [],
+                        categoryField: "date"
+                    },
+                    {
+                        title: "dataset2",
+                        fieldMappings: [{
+                            fromField: "buy",
+                            toField: "buy"
+                        },{
+                            fromField: "sell",
+                            toField: "sell"
+                    }],
+                        dataProvider: [],
+                        categoryField: "date",
+                        compared: true
+                    }
+                ],
+                "dataProvider" : [],
             }
         );
+       /*
+        AmCharts.ready( function() {
+            var chart;
+            var newPanel;
+            var stockPanel;
 
+            chart = new AmCharts.AmStockChart();
+            chart.balloon.horizontalPadding = 13;
 
+            var dataSet = new AmCharts.DataSet();
+            dataSet.fieldMappings = [ {
+                fromField: "open",
+                toField: "open"
+                }, {
+                fromField: "close",
+                toField: "close"
+                }, {
+                fromField: "high",
+                toField: "high"
+                }, {
+                fromField: "low",
+                toField: "low"
+                }, {
+                fromField: "volume",
+                toField: "volume"
+                }, {
+                fromField: "value",
+                toField: "value"
+                }, {
+                fromField: "buy",
+                toField: "buy"
+                }, {
+                fromField: "sell",
+                toField: "sell"
+            } ];
+            dataSet.color = "#7f8da9";
+            //dataSet.dataProvider = chartData;
+            dataSet.categoryField = "date";
+
+            chart.dataSets = [ dataSet ];
+
+            stockPanel = new AmCharts.StockPanel();
+            stockPanel.title = "Value";
+
+            // graph of first stock panel
+            var graph = new AmCharts.StockGraph();
+            graph.type = "candlestick";
+            graph.openField = "open";
+            graph.closeField = "close";
+            graph.highField = "high";
+            graph.lowField = "low";
+            graph.valueField = "high";
+            graph.lineColor = "#7f8da9";
+            graph.fillColors = "#7f8da9";
+            graph.negativeLineColor = "#db4c3c";
+            graph.negativeFillColors = "#db4c3c";
+            graph.fillAlphas = 1;
+            graph.balloonText = "open:<b>[[open]]</b><br>close:<b>[[close]]</b><br>low:<b>[[low]]</b><br>high:<b>[[high]]</b>";
+            graph.useDataSetColors = false;
+
+            stockPanel.addStockGraph( graph );
+            chart.panels = [ stockPanel ];
+
+            // add buy graph
+            var graph = new AmCharts.StockGraph();
+            graph.type = "line";
+            graph.valueField = "buy";
+            graph.lineColor = "#00cc00";
+            graph.lineAlpha = 0;
+            graph.bullet = "square";
+            graph.useDataSetColors = false;
+            stockPanel.addStockGraph( graph );
+
+            // add sell graph
+            var graph = new AmCharts.StockGraph();
+            graph.type = "line";
+            graph.valueField = "sell";
+            graph.lineColor = "#cc0000";
+            graph.lineAlpha = 0;
+            graph.bullet = "square";
+            graph.useDataSetColors = false;
+            stockPanel.addStockGraph( graph );
+
+            // OTHER SETTINGS
+            var sbsettings = new AmCharts.ChartScrollbarSettings();
+            sbsettings.graph = graph;
+            sbsettings.graphType = "line";
+            sbsettings.usePeriod = "WW";
+            chart.chartScrollbarSettings = sbsettings;
+
+            // Enable pan events
+            var panelsSettings = new AmCharts.PanelsSettings();
+            panelsSettings.panEventsEnabled = true;
+            chart.panelsSettings = panelsSettings;
+
+            // CURSOR
+            var cursorSettings = new AmCharts.ChartCursorSettings();
+            cursorSettings.valueBalloonsEnabled = true;
+            chart.chartCursorSettings = cursorSettings;
+
+            // PERIOD SELECTOR
+            var periodSelector = new AmCharts.PeriodSelector();
+            periodSelector.position = "bottom";
+            periodSelector.periods = [ {
+                period: "DD",
+                count: 10,
+                label: "10 days"
+                }, {
+                period: "MM",
+                selected: true,
+                count: 1,
+                label: "1 month"
+                }, {
+                period: "YYYY",
+                count: 1,
+                label: "1 year"
+                }, {
+                period: "YTD",
+                label: "YTD"
+                }, {
+                period: "MAX",
+                label: "MAX"
+            } ];
+            chart.periodSelector = periodSelector;
+
+            chart.write('chartdiv');
+        });*/
     </script>
 
 {% endblock %}

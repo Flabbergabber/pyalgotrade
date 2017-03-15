@@ -55,7 +55,7 @@ def beginBacktest(request):
         endportfolio = stdoutExecResult[find_second_last(stdoutExecResult, "\n"):]
         endportfolio = float(endportfolio[endportfolio.index('$')+1:endportfolio.rfind("\n")])
         performance = str((endportfolio - startportfolio) / startportfolio * 100) + " %"
-        results = " Start: $ " + str(startportfolio) + "\n End: $ " + str(endportfolio) + "\n Performance: " + performance + "\n"
+        results = " Start: $ " + str(startportfolio)    + "\n End: $ " + str(endportfolio) + "\n Performance: " + performance + "\n"
 
         data = {'message': execResult, 'statusmessages': messages, 'results': results}
 
