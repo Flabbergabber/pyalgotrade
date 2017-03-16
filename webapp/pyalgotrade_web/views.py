@@ -42,20 +42,17 @@ def beginBacktest(request):
 
         code = request.POST.get('strategy')
 
-        with stdoutIO() as s:
-            env = RestrictedExecutionEnv()
-            success, messages = env.executeUnstrustedCode(code)
+        env = RestrictedExecutionEnv()
+        success, messages = env.executeUnstrustedCode(code)
 
         execResult = ''
         with open(dsh.PYALGOTRADE_TEMP_DUMP_JSON_FILE, 'r') as strat_exec_json_dump:
             execResult = json.load(strat_exec_json_dump)
 
-        stdoutExecResult = s.getvalue()
-        startportfolio = 1000.0
-        endportfolio = stdoutExecResult[find_second_last(stdoutExecResult, "\n"):]
-        endportfolio = float(endportfolio[endportfolio.index('$')+1:endportfolio.rfind("\n")])
+        startportfolio = float(execResult["initialEquity"])
+        endportfolio = float(execResult["finalEquity"])
         performance = str((endportfolio - startportfolio) / startportfolio * 100) + " %"
-        results = " Start: $ " + str(startportfolio)    + "\n End: $ " + str(endportfolio) + "\n Performance: " + performance + "\n"
+        results = " Initial portfolio value: $ " + str(startportfolio) + "\n Final portfolio value: $ " + str(endportfolio) + "\n Performance: " + performance + "\n"
 
         data = {'message': execResult, 'statusmessages': messages, 'results': results}
 

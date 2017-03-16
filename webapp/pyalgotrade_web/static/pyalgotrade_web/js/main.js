@@ -154,7 +154,6 @@ $(document).ready(function () {
                             type: "text",
                             backGroundColor: "#CC0000",
                             graph: "g1",
-                            //description: value["price"],
                             text: "Buy @ " + value["price"],
                             showAt: "high"
 
@@ -163,9 +162,8 @@ $(document).ready(function () {
                         currentData.push({
                             date: value["date"],
                             type: "text",
-                            backGroundColor: "#CC0000",//"#00CC00",
+                            backGroundColor: "#CC0000",
                             graph: "g1",
-                            //description: value["price"],
                             text: "Sell @ " + value["price"],
                             showAt: "high"
                         });
