@@ -119,7 +119,6 @@ $(document).ready(function () {
                     if(result != null){
                         var myChart = getChart("chartdiv");
                         myChart.dataSets[0].dataProvider = result;
-                        myChart.dataProvider = myChart.dataSets[0].dataProvider.concat(myChart.dataSets[1].dataProvider);
                         myChart.validateData();
                     }
                 }
@@ -149,16 +148,26 @@ $(document).ready(function () {
 
                 $.each(history, function (i, value) {
 
-                    if(value["buysell"] == "BUY")    {
-                         currentData.push({
-                            date: value["date"],
-                            buy: value["price"]
-                        });
-                    }
-                    else{ // == "SELL"
+                    if(value["buysell"] == "BUY") {
                         currentData.push({
                             date: value["date"],
-                            sell: value["price"]
+                            type: "text",
+                            backGroundColor: "#CC0000",
+                            graph: "g1",
+                            //description: value["price"],
+                            text: "Buy @ " + value["price"],
+                            showAt: "high"
+
+                        });
+                    } else { // == "SELL"
+                        currentData.push({
+                            date: value["date"],
+                            type: "text",
+                            backGroundColor: "#CC0000",//"#00CC00",
+                            graph: "g1",
+                            //description: value["price"],
+                            text: "Sell @ " + value["price"],
+                            showAt: "high"
                         });
                     }
 
@@ -171,13 +180,11 @@ $(document).ready(function () {
                         + " - " + date + " \n";
                 });
                 //Output to chart
-                myChart.dataSets[1].dataProvider =  currentData;
-                myChart.dataProvider = myChart.dataSets[0].dataProvider.concat(myChart.dataSets[1].dataProvider);
-                myChart.validateData();
+                myChart.dataSets[0].stockEvents = currentData;
+                myChart.validateNow(true, true);
+
                 //Output to log
                 $("#backtestLog").val(logOutput);
-
-                //$("#backtestLog").val(JSON.stringify(result.message));
 
                 var statusMessagesSeperated = '';
                 $.each(result.statusmessages, function (index, value) {
