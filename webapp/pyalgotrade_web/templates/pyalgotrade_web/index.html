@@ -166,7 +166,6 @@ run_strategy(10)
 
                 <select id="ddlCsv" class="input-large" style="min-width: 80px; min-height: 33px;">
                     <option value="" selected disabled>Chart data</option>
-                    {#<option value="bac_20p20160308" >BAC | PUT 20 | 2016-03-08</option>#}
                 </select>
 
                 {% csrf_token %}
@@ -175,6 +174,8 @@ run_strategy(10)
         </div>
         <div class="col-md-6">
             <div class="row">
+                <label><input id="chkStockEvents" type="checkbox" onclick="toggleStockEvents(this.checked);" disabled="true"/> Afficher BUY/SELL </label>
+                <hr />
                 <div id="chartdiv" style="width: 100%; height: 400px; background-color: #FFFFFF;" ></div>
             </div>
             <div class="row">
@@ -184,7 +185,6 @@ run_strategy(10)
                     <ul class="nav nav-tabs" role="tablist">
                         <li role="presentation" class="active"><a href="#log" aria-controls="log" role="tab" data-toggle="tab">Log</a></li>
                         <li role="presentation"><a href="#results" aria-controls="results" role="tab" data-toggle="tab">Results</a></li>
-                        {#<li role="presentation"><a href="#markers" aria-controls="markers" role="tab" data-toggle="tab">Markers</a></li>#}
                     </ul>
 
                     <!-- Tab panes -->
@@ -195,7 +195,6 @@ run_strategy(10)
                         <div role="tabpanel" class="tab-pane" id="results">
                             <textarea id="backtestResults" readonly style="min-width: 100%;height:200px;"></textarea>
                         </div>
-                        {#<div role="tabpanel" class="tab-pane" id="markers">...</div>#}
                     </div>
                 </div>
             </div>
@@ -240,242 +239,104 @@ run_strategy(10)
 
     <!-- amCharts javascript code -->
     <script type="text/javascript">
-        AmCharts.makeChart("chartdiv",
-            {
-                "type": "serial",
+
+        var chart = AmCharts.makeChart( "chartdiv", {
+            "type": "stock",
+            "theme": "none",
+            "dataDateFormat": "YYYY-MM-DD HH:NN:SS",
+            "categoryField": "date",
+            "categoryAxis": {
+                "parseDates": true,
+                "minPeriod" : "ss"
+            },
+            "chartCursor": {
+                "enabled": true,
+                "categoryBalloonDateFormat": "YYYY-MM-DD HH:NN:SS", //"2016-03-07 09:30:00"
+            },
+            "cursorSettings": {
+                "valueBalloonsEnabled": true,
+                "valueLineBalloonEnabled": true,
+                "valueLineEnabled": true
+            },
+            "chartScrollbar": {
+                "enabled": true,
+                "graph": "g1",
+                "graphType": "line",
+                "scrollbarHeight": 30,
+                "updateOnReleaseOnly" : true
+            },
+            "valueAxes": [
+                {
+                    "id": "ValueAxis-1"
+                }
+            ],
+            "dataSets": [ {
+                "fieldMappings": [ {
+                    "fromField": "open",
+                    "toField": "open"
+                }, {
+                    "fromField": "close",
+                    "toField": "close"
+                }, {
+                    "fromField": "high",
+                    "toField": "high"
+                }, {
+                    "fromField": "low",
+                    "toField": "low"
+                }],
+                "color": "#7f8da9",
+                "dataProvider": [],
                 "categoryField": "date",
-                "dataDateFormat": "YYYY-MM-DD HH:NN:SS", //"2016-03-07 09:30:00"
-                "categoryAxis": {
-                    "parseDates": true,
-                    "minPeriod" : "ss",
-                },
-                "chartCursor": {
-                    "enabled": true,
-                    "categoryBalloonDateFormat": "YYYY-MM-DD HH:NN:SS", //"2016-03-07 09:30:00"
-                },
-                "chartScrollbar": {
-                    "enabled": true,
-                    "graph": "g1",
-                    "graphType": "line",
-                    "scrollbarHeight": 30
-                },
-                "trendLines": [],
-                "graphs": [
-                    {
-                        "balloonText": "Open:<b>[[open]]</b><br>Low:<b>[[low]]</b><br>High:<b>[[high]]</b><br>Close:<b>[[close]]</b><br>",
-                        "closeField": "close",
-                        "fillAlphas": 0.9,
-                        "fillColors": "#7f8da9",
-                        "highField": "high",
-                        "id": "g1",
-                        "lineColor": "#7f8da9",
-                        "lowField": "low",
-                        "negativeFillColors": "#db4c3c",
-                        "negativeLineColor": "#db4c3c",
-                        "openField": "open",
-                        "title": "Price:",
-                        "type": "candlestick",
-                        "valueField": "close",
-                        "comparable": true,
-                        "compareField": "date"
-                    },
-                    {
-                        "balloonText": "BUY: [[buy]]",
-                        "type": "line",
-                        "valueField": "buy",
-                        "lineColor": "#00cc00",
-                        "lineAlpha": 0,
-                        "bullet": "square",
-                        "useDataSetColors ": false,
-                        "comparable": true,
-                        "compareField": "date"
-                    },
-                    {
-                        "balloonText": "SELL: [[sell]]",
-                        "type": "line",
-                        "valueField": "sell",
-                        "lineColor": "#cc0000",
-                        "lineAlpha": 0,
-                        "bullet": "square",
-                        "useDataSetColors ": false,
-                        "comparable": true,
-                        "compareField": "date"
-                    }
-                ],
-                //"guides": [],
-                "valueAxes": [
-                    {
-                        "id": "ValueAxis-1"
-                    }
-                ],
-                //"allLabels": [],
-                //"balloon": {},
-                //"titles": [],
-                "dataSets":[
-                    {
-                        title: "dataset1",
-                        fieldMappings: [{
-                            fromField: "open",
-                            toField: "open"
-                        }, {
-                            fromField: "close",
-                            toField: "close"
-                        }, {
-                            fromField: "high",
-                            toField: "high"
-                        },{
-                            fromField: "low",
-                            toField: "low"
-                        }
+                "stockEvents": []
+            } ],
+            "balloon": {
+                "horizontalPadding": 13
+            },
+             "categoryAxesSettings": {
+                "minPeriod" : "ss",
+                "groupToPeriods": ["mm"]
+            },
+            "panels": [ {
+                "title": "Value",
 
-                    ],
-                        dataProvider: [],
-                        categoryField: "date"
-                    },
-                    {
-                        title: "dataset2",
-                        fieldMappings: [{
-                            fromField: "buy",
-                            toField: "buy"
-                        },{
-                            fromField: "sell",
-                            toField: "sell"
-                    }],
-                        dataProvider: [],
-                        categoryField: "date",
-                        compared: true
-                    }
-                ],
-                "dataProvider" : [],
+                "stockGraphs": [ {
+                    "id": "g1",
+                    "type": "candlestick",
+                    "balloonText": "Open:<b>[[open]]</b><br>Low:<b>[[low]]</b><br>High:<b>[[high]]</b><br>Close:<b>[[close]]</b><br>",
+                    "closeField": "close",
+                    "fillAlphas": 0.9,
+                    "fillColors": "#7f8da9",
+                    "highField": "high",
+                    "lineColor": "#7f8da9",
+                    "lowField": "low",
+                    "negativeFillColors": "#db4c3c",
+                    "negativeLineColor": "#db4c3c",
+                    "openField": "open",
+                    "title": "Price:",
+
+                    "valueField": "close"
+                } ]
+            } ],
+            "scrollBarSettings": {
+                "graphType": "line",
+                "usePeriod": "WW"
+            },
+            "panelsSettings": {
+                "panEventsEnabled": true
             }
-        );
-       /*
-        AmCharts.ready( function() {
-            var chart;
-            var newPanel;
-            var stockPanel;
+        } );
 
-            chart = new AmCharts.AmStockChart();
-            chart.balloon.horizontalPadding = 13;
+        function toggleStockEvents(isChecked){
 
-            var dataSet = new AmCharts.DataSet();
-            dataSet.fieldMappings = [ {
-                fromField: "open",
-                toField: "open"
-                }, {
-                fromField: "close",
-                toField: "close"
-                }, {
-                fromField: "high",
-                toField: "high"
-                }, {
-                fromField: "low",
-                toField: "low"
-                }, {
-                fromField: "volume",
-                toField: "volume"
-                }, {
-                fromField: "value",
-                toField: "value"
-                }, {
-                fromField: "buy",
-                toField: "buy"
-                }, {
-                fromField: "sell",
-                toField: "sell"
-            } ];
-            dataSet.color = "#7f8da9";
-            //dataSet.dataProvider = chartData;
-            dataSet.categoryField = "date";
+            if(!($("#chkStockEvents").is(':disabled'))) {
 
-            chart.dataSets = [ dataSet ];
-
-            stockPanel = new AmCharts.StockPanel();
-            stockPanel.title = "Value";
-
-            // graph of first stock panel
-            var graph = new AmCharts.StockGraph();
-            graph.type = "candlestick";
-            graph.openField = "open";
-            graph.closeField = "close";
-            graph.highField = "high";
-            graph.lowField = "low";
-            graph.valueField = "high";
-            graph.lineColor = "#7f8da9";
-            graph.fillColors = "#7f8da9";
-            graph.negativeLineColor = "#db4c3c";
-            graph.negativeFillColors = "#db4c3c";
-            graph.fillAlphas = 1;
-            graph.balloonText = "open:<b>[[open]]</b><br>close:<b>[[close]]</b><br>low:<b>[[low]]</b><br>high:<b>[[high]]</b>";
-            graph.useDataSetColors = false;
-
-            stockPanel.addStockGraph( graph );
-            chart.panels = [ stockPanel ];
-
-            // add buy graph
-            var graph = new AmCharts.StockGraph();
-            graph.type = "line";
-            graph.valueField = "buy";
-            graph.lineColor = "#00cc00";
-            graph.lineAlpha = 0;
-            graph.bullet = "square";
-            graph.useDataSetColors = false;
-            stockPanel.addStockGraph( graph );
-
-            // add sell graph
-            var graph = new AmCharts.StockGraph();
-            graph.type = "line";
-            graph.valueField = "sell";
-            graph.lineColor = "#cc0000";
-            graph.lineAlpha = 0;
-            graph.bullet = "square";
-            graph.useDataSetColors = false;
-            stockPanel.addStockGraph( graph );
-
-            // OTHER SETTINGS
-            var sbsettings = new AmCharts.ChartScrollbarSettings();
-            sbsettings.graph = graph;
-            sbsettings.graphType = "line";
-            sbsettings.usePeriod = "WW";
-            chart.chartScrollbarSettings = sbsettings;
-
-            // Enable pan events
-            var panelsSettings = new AmCharts.PanelsSettings();
-            panelsSettings.panEventsEnabled = true;
-            chart.panelsSettings = panelsSettings;
-
-            // CURSOR
-            var cursorSettings = new AmCharts.ChartCursorSettings();
-            cursorSettings.valueBalloonsEnabled = true;
-            chart.chartCursorSettings = cursorSettings;
-
-            // PERIOD SELECTOR
-            var periodSelector = new AmCharts.PeriodSelector();
-            periodSelector.position = "bottom";
-            periodSelector.periods = [ {
-                period: "DD",
-                count: 10,
-                label: "10 days"
-                }, {
-                period: "MM",
-                selected: true,
-                count: 1,
-                label: "1 month"
-                }, {
-                period: "YYYY",
-                count: 1,
-                label: "1 year"
-                }, {
-                period: "YTD",
-                label: "YTD"
-                }, {
-                period: "MAX",
-                label: "MAX"
-            } ];
-            chart.periodSelector = periodSelector;
-
-            chart.write('chartdiv');
-        });*/
+                if(isChecked) {
+                    chart.showStockEvents();
+                } else {
+                    chart.hideStockEvents();
+                }
+            }
+        }
     </script>
 
 {% endblock %}
