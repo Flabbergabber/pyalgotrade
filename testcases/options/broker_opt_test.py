@@ -1,6 +1,6 @@
 import datetime
 
-import common
+import testcases.common
 
 from pyalgotrade import broker
 from pyalgotrade.broker import optbroker
@@ -10,7 +10,7 @@ class DefaultTraits(optbroker.InstrumentTraits):
         return int(quantity)
 
 
-class OrderTestCase(common.TestCase):
+class OrderTestCase(testcases.common.TestCase):
     def __buildAcceptedLimitOrder(self, action, limitPrice, quantity):
         ret = optbroker.OptionLimitOrder(action, "orcl", limitPrice, quantity, optbroker.OptionOrder.Right.CALL, 20, "2016-01-01", DefaultTraits())
         self.assertEquals(ret.getSubmitDateTime(), None)
