@@ -175,6 +175,9 @@ run_strategy(10)
         </div>
         <div class="col-md-6">
             <div class="row">
+                <!-- <input type="button" class="amChartsButton" id="btnStockEvents" value="StockEvents" onclick="toggleStockEvents();"> -->
+                <label><input id="chkStockEvents" type="checkbox" onclick="toggleStockEvents(this.checked);" disabled="true"/> Afficher BUY/SELL </label>
+                <hr />
                 <div id="chartdiv" style="width: 100%; height: 400px; background-color: #FFFFFF;" ></div>
             </div>
             <div class="row">
@@ -244,7 +247,8 @@ run_strategy(10)
         var chart = AmCharts.makeChart( "chartdiv", {
             "type": "stock",
             "theme": "none",
-            "dataDateFormat": "YYYY-MM-DD HH:NN:SS", //"2016-03-07 09:30:00"
+            //"dateFormats": "YYYY-MM-DD HH:NN:SS", //"2016-03-07 09:30:00"
+           // "dateFormats":[{period:'ss',format:'YYYY-MM-DD HH:NN:SS'}],
             "categoryField": "date",
             "categoryAxis": {
                 "parseDates": true,
@@ -267,9 +271,9 @@ run_strategy(10)
                 "updateOnReleaseOnly" : true
             },
             "valueAxes": [
-                    {
-                        "id": "ValueAxis-1"
-                    }
+                {
+                    "id": "ValueAxis-1"
+                }
             ],
             "dataSets": [ {
                 "fieldMappings": [ {
@@ -292,10 +296,6 @@ run_strategy(10)
             } ],
             "balloon": {
                 "horizontalPadding": 13
-            },
-             "chartCursorSettings ": {
-                "categoryBalloonDateFormats" : [ {period:"mm", format:"YYYY-MM-DD HH:NN:SS"} ],
-                 "categoryBalloonEnabled": true
             },
              "categoryAxesSettings": {
                 "minPeriod" : "ss",
@@ -331,6 +331,16 @@ run_strategy(10)
             }
         } );
 
+        function toggleStockEvents(isChecked){
+
+            if(!($("#chkStockEvents").is(':disabled'))){
+
+                if(isChecked)
+                    chart.showStockEvents();
+                else
+                    chart.hideStockEvents();
+            }
+        }
     </script>
 
 {% endblock %}

@@ -1,4 +1,7 @@
 $(document).ready(function () {
+
+    var stockEventsShown = false;
+
     // CSRF code
     function getCookie(name) {
         var cookieValue = null;
@@ -191,6 +194,9 @@ $(document).ready(function () {
 
                 //Mettre les valeurs initiales et finales dans le result
                 $("#backtestResults").val(result.results);
+
+                $("#chkStockEvents").prop('disabled', false);
+                $("#chkStockEvents").prop('checked', true);
 
                 alertModal("Strategy execution result", statusMessagesSeperated);
             }
