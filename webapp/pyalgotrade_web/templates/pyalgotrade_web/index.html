@@ -166,7 +166,6 @@ run_strategy(10)
 
                 <select id="ddlCsv" class="input-large" style="min-width: 80px; min-height: 33px;">
                     <option value="" selected disabled>Chart data</option>
-                    {#<option value="bac_20p20160308" >BAC | PUT 20 | 2016-03-08</option>#}
                 </select>
 
                 {% csrf_token %}
@@ -175,7 +174,6 @@ run_strategy(10)
         </div>
         <div class="col-md-6">
             <div class="row">
-                <!-- <input type="button" class="amChartsButton" id="btnStockEvents" value="StockEvents" onclick="toggleStockEvents();"> -->
                 <label><input id="chkStockEvents" type="checkbox" onclick="toggleStockEvents(this.checked);" disabled="true"/> Afficher BUY/SELL </label>
                 <hr />
                 <div id="chartdiv" style="width: 100%; height: 400px; background-color: #FFFFFF;" ></div>
@@ -187,7 +185,6 @@ run_strategy(10)
                     <ul class="nav nav-tabs" role="tablist">
                         <li role="presentation" class="active"><a href="#log" aria-controls="log" role="tab" data-toggle="tab">Log</a></li>
                         <li role="presentation"><a href="#results" aria-controls="results" role="tab" data-toggle="tab">Results</a></li>
-                        {#<li role="presentation"><a href="#markers" aria-controls="markers" role="tab" data-toggle="tab">Markers</a></li>#}
                     </ul>
 
                     <!-- Tab panes -->
@@ -198,7 +195,6 @@ run_strategy(10)
                         <div role="tabpanel" class="tab-pane" id="results">
                             <textarea id="backtestResults" readonly style="min-width: 100%;height:200px;"></textarea>
                         </div>
-                        {#<div role="tabpanel" class="tab-pane" id="markers">...</div>#}
                     </div>
                 </div>
             </div>
@@ -247,8 +243,7 @@ run_strategy(10)
         var chart = AmCharts.makeChart( "chartdiv", {
             "type": "stock",
             "theme": "none",
-            //"dateFormats": "YYYY-MM-DD HH:NN:SS", //"2016-03-07 09:30:00"
-           // "dateFormats":[{period:'ss',format:'YYYY-MM-DD HH:NN:SS'}],
+            "dataDateFormat": "YYYY-MM-DD HH:NN:SS",
             "categoryField": "date",
             "categoryAxis": {
                 "parseDates": true,
@@ -333,12 +328,13 @@ run_strategy(10)
 
         function toggleStockEvents(isChecked){
 
-            if(!($("#chkStockEvents").is(':disabled'))){
+            if(!($("#chkStockEvents").is(':disabled'))) {
 
-                if(isChecked)
+                if(isChecked) {
                     chart.showStockEvents();
-                else
+                } else {
                     chart.hideStockEvents();
+                }
             }
         }
     </script>
