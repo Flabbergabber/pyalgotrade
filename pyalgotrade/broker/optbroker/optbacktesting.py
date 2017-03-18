@@ -430,22 +430,3 @@ class OptionBroker(optbroker.AbstractOptionBroker):
 
     def peekDateTime(self):
         return None
-
-    def createMarketOrder(self, action, instrument, quantity, onClose=False):
-        # In order to properly support market-on-close with intraday feeds I'd need to know about different
-        # exchange/market trading hours and support specifying routing an order to a specific exchange/market.
-        # Even if I had all this in place it would be a problem while paper-trading with a live feed since
-        # I can't tell if the next bar will be the last bar of the market session or not.
-        if onClose is True and self.__barFeed.isIntraday():
-            raise Exception("Market-on-close not supported with intraday feeds")
-
-        return backtesting.MarketOrder(action, instrument, quantity, onClose, self.getInstrumentTraits(instrument))
-
-    def createLimitOrder(self, action, instrument, limitPrice, quantity):
-        return backtesting.LimitOrder(action, instrument, limitPrice, quantity, self.getInstrumentTraits(instrument))
-
-    def createStopOrder(self, action, instrument, stopPrice, quantity):
-        return backtesting.StopOrder(action, instrument, stopPrice, quantity, self.getInstrumentTraits(instrument))
-
-    def createStopLimitOrder(self, action, instrument, stopPrice, limitPrice, quantity):
-        return backtesting.StopLimitOrder(action, instrument, stopPrice, limitPrice, quantity, self.getInstrumentTraits(instrument))

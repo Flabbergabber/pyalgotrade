@@ -66,10 +66,10 @@ class OptionBaseStrategy(BaseStrategy):
 
         ret = None
         if quantity > 0:
-            ret = self.getBroker().createMarketOrder(pyalgotrade.broker.Order.Action.BUY, instrument, quantity, right,
+            ret = self.getBroker().createOptionMarketOrder(pyalgotrade.broker.Order.Action.BUY, instrument, quantity, right,
                                                      strike, expiry, onClose)
         elif quantity < 0:
-            ret = self.getBroker().createMarketOrder(pyalgotrade.broker.Order.Action.SELL, instrument, quantity * -1,
+            ret = self.getBroker().createOptionMarketOrder(pyalgotrade.broker.Order.Action.SELL, instrument, quantity * -1,
                                                      right, strike, expiry, onClose)
         if ret:
             ret.setGoodTillCanceled(goodTillCanceled)
@@ -105,10 +105,10 @@ class OptionBaseStrategy(BaseStrategy):
 
         ret = None
         if quantity > 0:
-            ret = self.getBroker().createLimitOrder(pyalgotrade.broker.Order.Action.BUY, instrument, limitPrice,
+            ret = self.getBroker().createOptionLimitOrder(pyalgotrade.broker.Order.Action.BUY, instrument, limitPrice,
                                                     quantity, right, strike, expiry)
         elif quantity < 0:
-            ret = self.getBroker().createLimitOrder(pyalgotrade.broker.Order.Action.SELL, instrument, limitPrice,
+            ret = self.getBroker().createOptionLimitOrder(pyalgotrade.broker.Order.Action.SELL, instrument, limitPrice,
                                                     quantity * -1, right, strike, expiry)
         if ret:
             ret.setGoodTillCanceled(goodTillCanceled)
@@ -143,10 +143,11 @@ class OptionBaseStrategy(BaseStrategy):
 
         ret = None
         if quantity > 0:
-            ret = self.getBroker().createStopOrder(pyalgotrade.broker.Order.Action.BUY, instrument, stopPrice, quantity)
+            ret = self.getBroker().createOptionStopOrder(pyalgotrade.broker.Order.Action.BUY, instrument, stopPrice, quantity,
+                                                         right, strike, expiry)
         elif quantity < 0:
-            ret = self.getBroker().createStopOrder(pyalgotrade.broker.Order.Action.SELL, instrument, stopPrice,
-                                                   quantity * -1)
+            ret = self.getBroker().createOptionStopOrder(pyalgotrade.broker.Order.Action.SELL, instrument, stopPrice,
+                                                   quantity * -1, right, strike, expiry)
         if ret:
             ret.setGoodTillCanceled(goodTillCanceled)
             ret.setAllOrNone(allOrNone)
@@ -183,10 +184,10 @@ class OptionBaseStrategy(BaseStrategy):
 
         ret = None
         if quantity > 0:
-            ret = self.getBroker().createStopLimitOrder(pyalgotrade.broker.Order.Action.BUY, instrument, stopPrice,
+            ret = self.getBroker().createOptionStopLimitOrder(pyalgotrade.broker.Order.Action.BUY, instrument, stopPrice,
                                                         limitPrice, quantity, right, strike, expiry)
         elif quantity < 0:
-            ret = self.getBroker().createStopLimitOrder(pyalgotrade.broker.Order.Action.SELL, instrument, stopPrice,
+            ret = self.getBroker().createOptionStopLimitOrder(pyalgotrade.broker.Order.Action.SELL, instrument, stopPrice,
                                                         limitPrice, quantity * -1, right, strike, expiry)
         if ret:
             ret.setGoodTillCanceled(goodTillCanceled)
