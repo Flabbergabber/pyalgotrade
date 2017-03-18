@@ -224,7 +224,7 @@ run_strategy(10)
 {% block footer_scripts %}
     {% load staticfiles %}
     <script src="{% static 'pyalgotrade_web/js/ace/ace.js' %}" type="text/javascript" charset="utf-8"></script>
-    <script>
+    <script type="text/javascript">
         var editor = ace.edit("editor");
         editor.setTheme("ace/theme/github");
         editor.getSession().setMode("ace/mode/python");
@@ -234,8 +234,8 @@ run_strategy(10)
      <!-- amCharts javascript sources -->
     <script type="text/javascript" src="https://www.amcharts.com/lib/3/amcharts.js"></script>
     <script type="text/javascript" src="https://www.amcharts.com/lib/3/serial.js"></script>
-    {#<script type="text/javascript" src="//www.amcharts.com/lib/3/themes/light.js"></script>#}
     <script type="text/javascript" src="//www.amcharts.com/lib/3/amstock.js"></script>
+    <script type="text/javascript" src="//www.amcharts.com/lib/3/themes/light.js"></script>
 
     <!-- amCharts javascript code -->
     <script type="text/javascript">
@@ -247,16 +247,31 @@ run_strategy(10)
             "categoryField": "date",
             "categoryAxis": {
                 "parseDates": true,
-                "minPeriod" : "ss"
+                "minPeriod" : "ss",
             },
-            "chartCursor": {
-                "enabled": true,
-                "categoryBalloonDateFormat": "YYYY-MM-DD HH:NN:SS", //"2016-03-07 09:30:00"
+             "categoryAxesSettings": {
+                "minPeriod" : "ss",
+                "groupToPeriods": ["mm"],
+                 //Formattage du label (date) sur l'axe des abscisse
+                /*"dateFormats" : [{"period":"fff","format":"YYYY-MM-DD JJ:NN:SS"},
+                    {"period":"ss","format":"YYYY-MM-DD JJ:NN:SS"},
+                    {"period":"mm","format":"YYYY-MM-DD JJ:NN:SS"},
+                    {"period":"hh","format":"YYYY-MM-DD JJ:NN:SS"},
+                    {"period":"DD","format":"YYYY-MM-DD JJ:NN:SS"},
+                    {"period":"WW","format":"YYYY-MM-DD JJ:NN:SS"},
+                    {"period":"MM","format":"YYYY-MM-DD JJ:NN:SS"},
+                    {"period":"YYYY","format":"YYYY-MM-DD JJ:NN:SS"}]*/
             },
-            "cursorSettings": {
-                "valueBalloonsEnabled": true,
-                "valueLineBalloonEnabled": true,
-                "valueLineEnabled": true
+            "chartCursorSettings": {
+                "categoryBalloonColor":"#2E002E",
+                    "categoryBalloonDateFormats": [{"period":"fff","format":"YYYY-MM-DD JJ:NN:SS"},
+                    {"period":"ss","format":"YYYY-MM-DD JJ:NN:SS"},
+                    {"period":"mm","format":"YYYY-MM-DD JJ:NN:SS"},
+                    {"period":"hh","format":"YYYY-MM-DD JJ:NN:SS"},
+                    {"period":"DD","format":"YYYY-MM-DD JJ:NN:SS"},
+                    {"period":"WW","format":"YYYY-MM-DD JJ:NN:SS"},
+                    {"period":"MM","format":"YYYY-MM-DD JJ:NN:SS"},
+                    {"period":"YYYY","format":"YYYY-MM-DD JJ:NN:SS"}]
             },
             "chartScrollbar": {
                 "enabled": true,
@@ -265,11 +280,10 @@ run_strategy(10)
                 "scrollbarHeight": 30,
                 "updateOnReleaseOnly" : true
             },
-            "valueAxes": [
-                {
-                    "id": "ValueAxis-1"
-                }
-            ],
+            "scrollBarSettings": {
+                "graphType": "line",
+                "usePeriod": "WW"
+            },
             "dataSets": [ {
                 "fieldMappings": [ {
                     "fromField": "open",
@@ -289,13 +303,6 @@ run_strategy(10)
                 "categoryField": "date",
                 "stockEvents": []
             } ],
-            "balloon": {
-                "horizontalPadding": 13
-            },
-             "categoryAxesSettings": {
-                "minPeriod" : "ss",
-                "groupToPeriods": ["mm"]
-            },
             "panels": [ {
                 "title": "Value",
 
@@ -313,14 +320,9 @@ run_strategy(10)
                     "negativeLineColor": "#db4c3c",
                     "openField": "open",
                     "title": "Price:",
-
                     "valueField": "close"
                 } ]
             } ],
-            "scrollBarSettings": {
-                "graphType": "line",
-                "usePeriod": "WW"
-            },
             "panelsSettings": {
                 "panEventsEnabled": true
             }
