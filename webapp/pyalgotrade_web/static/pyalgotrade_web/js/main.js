@@ -155,20 +155,22 @@ $(document).ready(function () {
                         currentData.push({
                             date: value["date"],
                             type: "text",
-                            backGroundColor: "#CC0000",
+                            backgroundColor: "#f47442",
                             graph: "g1",
-                            text: "Buy @ " + value["price"],
-                            showAt: "high"
+                            text: "B " + value["price"],
+                            showAt: "high",
+                            fontSize: 9
 
                         });
                     } else { // == "SELL"
                         currentData.push({
                             date: value["date"],
                             type: "text",
-                            backGroundColor: "#CC0000",
+                            backgroundColor: "#00CC00",
                             graph: "g1",
-                            text: "Sell @ " + value["price"],
-                            showAt: "high"
+                            text: "S " + value["price"],
+                            showAt: "high",
+                            fontSize: 9
                         });
                     }
 
@@ -199,6 +201,8 @@ $(document).ready(function () {
                 $("#chkStockEvents").prop('checked', true);
 
                 alertModal("Strategy execution result", statusMessagesSeperated);
+
+                $("a[title='JavaScript charts']").remove();
             }
         });
     });
@@ -229,5 +233,7 @@ $(document).ready(function () {
             $("#ddlCsv").append(html);
         }
     });
+
+
 });
 
