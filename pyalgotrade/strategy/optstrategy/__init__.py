@@ -38,8 +38,8 @@ class OptionBaseStrategy(BaseStrategy):
     def __init__(self, barFeed, broker):
         super(OptionBaseStrategy, self).__init__(barFeed, broker)
 
-    def optionOrder(self, instrument, quantity, right, strike, expiry, onClose=False, goodTillCanceled=False,
-                    allOrNone=False):
+    def optionMarketOrder(self, instrument, quantity, right, strike, expiry, onClose=False, goodTillCanceled=False,
+                          allOrNone=False):
         """Submits a market order.
 
         :param instrument: Instrument identifier.
