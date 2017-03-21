@@ -8,11 +8,14 @@ class Parser(object):
         if (slashIndex > -1):
             filename = filename[slashIndex + 1:]
 
-        zinstrument = filename[0:3]
-        zStrikePrice = filename[4:6]
-        zDate = filename[7:15]
-        zID = filename[0:15]
-        optiontype = filename[6]
+        underscoreIndex = filename.rfind('_')
+        hyphenIndex = filename.rfind('-')
+
+        zinstrument = filename[0:underscoreIndex]
+        zStrikePrice = filename[underscoreIndex+1:hyphenIndex]
+        zDate = filename[hyphenIndex+2:hyphenIndex+10]
+        zID = filename[0:hyphenIndex+10]
+        optiontype = filename[hyphenIndex+1]
         if (optiontype.lower() == "p"):
             optiontype = "PUT"
         elif (optiontype.lower() == "c"):
@@ -20,8 +23,11 @@ class Parser(object):
         else:
             optiontype = str(None)
 
+        #Todo Gerer mauvaise date
         date = datetime.datetime.strptime(zDate, '%Y%m%d')
 
-        instrument = ibfeed.Instrument(zinstrument,zStrikePrice,optiontype,date,filename,zID)
+        floatStrike = float(zStrikePrice[:len(zStrikePrice)-2] + '.' + zStrikePrice[len(zStrikePrice)-2:])
+
+        instrument = ibfeed.Instrument(zinstrument,floatStrike,optiontype,date,filename,zID)
 
         return instrument

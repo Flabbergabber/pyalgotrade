@@ -25,11 +25,14 @@ feed = ibfeed.Feed(maxLen=2)
 
 parser = filenametool.Parser()
 
-fileList = ["bac_20p20170217.csv","bac_21p20170217.csv","bac_22p20170217.csv"]
+fileList = ["bac_2000-p20170217.csv","bac_2100-p20170217.csv","bac_2200-p20170217.csv"]
 
-instru1 = parser.parse("bac_20p20170217.csv")
-instru2 = parser.parse("bac_21p20170217.csv")
-instru3 = parser.parse("bac_22p20170217.csv")
+instru1 = parser.parse("bac_2000-p20170217.csv")
+print instru1.id + " " + str(instru1.expiry) + " " +instru1.filename + " " +instru1.right+ " " +str(instru1.strike)+ " " +instru1.symbol
+instru2 = parser.parse("bac_2100-p20170217.csv")
+print instru2.id +  " " +str(instru2.expiry) + " " +instru2.filename + " " +instru2.right+ " " +str(instru2.strike)+ " " +instru2.symbol
+instru3 = parser.parse("bac_2200-p20170217.csv")
+print instru3.id + " " + str(instru3.expiry) + " " +instru3.filename + " " +instru3.right+ " " +str(instru3.strike)+ " " +instru3.symbol
 
 idList = []
 
