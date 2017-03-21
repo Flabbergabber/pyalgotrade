@@ -126,7 +126,7 @@ class OptionStopOrder(OptionOrder):
     """
 
     def __init__(self, action, instrument, stopPrice, quantity, right, strike, expiry, instrumentTraits):
-        super(OptionStopOrder, self).__init__(self.OptionType.OPTION_STOP, action, instrument, quantity, instrumentTraits)
+        super(OptionStopOrder, self).__init__(self.OptionType.OPTION_STOP, action, instrument, quantity, right, strike, expiry, instrumentTraits)
         self.__stopPrice = stopPrice
 
     def getStopPrice(self):
@@ -144,7 +144,7 @@ class OptionStopLimitOrder(OptionOrder):
 
     def __init__(self, action, instrument, stopPrice, limitPrice, quantity, right, strike, expiry, instrumentTraits):
         super(OptionStopLimitOrder, self).__init__(self.OptionType.OPTION_STOP_LIMIT, action, instrument, quantity,
-                                                   instrumentTraits)
+                                                   right, strike, expiry, instrumentTraits)
         self.__stopPrice = stopPrice
         self.__limitPrice = limitPrice
 
@@ -164,6 +164,7 @@ class AbstractOptionBroker(broker.Broker):
 
         This is a base class and should not be used directly.
     """
+
     def __init__(self):
         super(AbstractOptionBroker, self).__init__()
 
@@ -247,4 +248,14 @@ class AbstractOptionBroker(broker.Broker):
         :type quantity: int/float.
         :rtype: A :class:`StopLimitOrder` subclass.
         """
+        raise NotImplementedError()
+
+    #This is because the base class Broker needs those methods but we don't want them in the class OptionBroker
+    def createMarketOrder(self, action, instrument, quantity, onClose=False):
+        raise NotImplementedError()
+    def createLimitOrder(self, action, instrument, limitPrice, quantity):
+        raise NotImplementedError()
+    def createStopOrder(self, action, instrument, stopPrice, quantity):
+        raise NotImplementedError()
+    def createStopLimitOrder(self, action, instrument, stopPrice, limitPrice, quantity):
         raise NotImplementedError()

@@ -113,4 +113,4 @@ def run_strategy(smaPeriod, filename):
 
     plt.plot()
     
-run_strategy(10, "bac_20p20160308.csv")
+run_strategy(10, "bac_2000-p20160308.csv")

@@ -107,7 +107,7 @@ def run_strategy(smaPeriod):
 #    feed.addBarsFromCSV("orcl", "orcl-2000.csv")
     feed = ibfeed.Feed()
     feed.addBarsFromCSV("bac", "samples/bac_2mois_7-9.csv")
-    feed.addBarsFromCSV("bac20p20160819", "samples/bac_20p20160819.csv")
+    feed.addBarsFromCSV("bac20p20160819", "samples/bac_2000-p20160819.csv")
 
     # Evaluate the strategy with the feed.
 #    myStrategy = MyStrategy(feed, "orcl", smaPeriod)
