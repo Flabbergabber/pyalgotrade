@@ -198,7 +198,6 @@ $(document).ready(function () {
                 $("#backtestResults").val(result.results);
 
                 $("#chkStockEvents").prop('disabled', false);
-                $("#chkStockEvents").prop('checked', true);
 
                 alertModal("Strategy execution result", statusMessagesSeperated);
 

@@ -325,7 +325,29 @@ run_strategy(10)
             } ],
             "panelsSettings": {
                 "panEventsEnabled": true
-            }
+            },
+            "listeners": [{
+                "event": "zoomed",
+                "method": function( event ) {
+
+                    // get chart
+                    var chart = event.chart;
+
+                    // calculate the length of selected period in hours
+                    var timeDiff = Math.abs( event.endDate.getTime() - event.startDate.getTime() );
+                    var diffHours = Math.ceil( timeDiff / ( 1000 * 3600) );
+
+                    if (diffHours <= 12) {
+                        chart.showStockEvents();
+                        $("#chkStockEvents").prop('checked', true);
+                    } else {
+                        chart.hideStockEvents();
+                        $("#chkStockEvents").prop('checked', false);
+                    }
+
+                    chart.validateData();
+                }
+            }]
         } );
 
         function toggleStockEvents(isChecked){
