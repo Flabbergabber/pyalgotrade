@@ -109,7 +109,7 @@ $(document).ready(function () {
 
     $("#ddlCsv").change(function(){
         //this.value
-        var inputReg = new RegExp("^[a-zA-Z]{3,4}_[0-9]{2,3}[PCpc]{1}[0-9]{8}$");
+        var inputReg = new RegExp("^[a-zA-Z]{1,4}_[0-9]{2,4}-[PCpc]{1}[0-9]{8}$");
         if(inputReg.test(this.value)){ //Valid input select
             console.log("Requesting chart values for: " + this.value);
 

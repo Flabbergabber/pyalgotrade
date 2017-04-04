@@ -10,8 +10,10 @@ import re
 from os.path import abspath, dirname
 sys.path.append(abspath(dirname(__file__) + '/' + '../..'))
 from pyalgotrade.barfeed import ibfeed
+from pyalgotrade.tools import filename as filenametool
 from .util.sandbox import RestrictedExecutionEnv
 import util.datasourcehelper as dsh
+import datetime
 
 # Create your views here.
 
@@ -70,17 +72,18 @@ def loadChartDataCsv(request):
         # Ici on load les noms de fichiers CSV
         file_list = os.listdir(dsh.PYALGOTRADE_DATA_FOLDER)
 
+        parser = filenametool.Parser()
+
         for filename in file_list:
-            matchobj = re.match(r'^([a-z]{3,4})_([0-9]{2,4})(p|c)([0-9]{8})(.csv)$', filename, re.IGNORECASE)
+            matchobj = re.match(r'^([a-z]{1,4})_([0-9]{2,4})-(p|c)([0-9]{8})(.csv)$', filename, re.IGNORECASE)
             if matchobj is not None:
                 item = dict()
                 item['file'] = filename.lower().split(".csv")[0]
-                curr_instr = matchobj.group(1).upper()
-                curr_opt_type = "PUT" if matchobj.group(3).lower() == 'p' else "CALL"
-                curr_strike_price = matchobj.group(2)
-                curr_expiry_date = matchobj.group(4)[0:4] \
-                            + "-" + matchobj.group(4)[4:6] \
-                            + "-" + matchobj.group(4)[6:8]
+                instru = parser.parse(filename.lower())
+                curr_instr = instru.symbol
+                curr_opt_type = instru.right
+                curr_strike_price = str(instru.strike)
+                curr_expiry_date = instru.expiry.strftime('%Y-%m-%d')
                 item['title'] = curr_instr + " | " + curr_opt_type + " | " + curr_strike_price + "$ | " \
                                 + curr_expiry_date
                 result.append(item)
@@ -98,7 +101,7 @@ def requestChartData(request):
         selectedfile = str(request.POST.get('selectedData'))
 
         # REGEX pour le 'selectedData'
-        matchobj = re.match(r'^([a-z]{3,4})_([0-9]{2,4})(p|c)([0-9]{8})$', selectedfile, re.IGNORECASE)
+        matchobj = re.match(r'^([a-z]{1,4})_([0-9]{2,4})-(p|c)([0-9]{8})$', selectedfile, re.IGNORECASE)
 
         if matchobj is not None:
 
