@@ -34,8 +34,11 @@ class RestrictedExecutionEnv:
         if blackListElementFound:
             return (False, messages)
         else:
-            compiledCode = compile(code, '<string>', 'exec')
-            exec (compiledCode, globals())
-            return (True, ['Code successfully executed!'])
+            try:
+                compiledCode = compile(code, '<string>', 'exec')
+                exec (compiledCode, globals())
+                return (True, ['Code successfully executed!'])
+            except SyntaxError as se:
+                return (False, ['Compilation error: %s' % str(se)])
 
 
